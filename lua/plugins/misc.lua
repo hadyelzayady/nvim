@@ -1,5 +1,4 @@
 return {
-
   {
     -- better search and replace with preserving case and change word case by cru,crs,crc,cr.
     "tpope/vim-abolish"

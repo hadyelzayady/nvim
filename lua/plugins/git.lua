@@ -434,8 +434,20 @@ return {
   },
   {
     "lambdalisue/gin.vim",
-    dependencies={
+    dependencies = {
       "vim-denops/denops.vim"
     }
-  }
+  },
+  {
+    "kdheepak/lazygit.nvim",
+    cmd = {
+      "LazyGit",
+      "LazyGitCurrentFile",
+      "LazyGitFilterCurrentFile",
+      "LazyGitFilter",
+    },
+    config = function()
+      vim.g.lazygit_floating_window_scaling_factor = 1
+    end,
+  },
 }

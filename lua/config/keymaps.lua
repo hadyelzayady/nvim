@@ -13,7 +13,14 @@ map("n", "<leader>ww", "<C-W>p", { desc = "Other window" })
 map("n", "<leader>wd", "<C-W>c", { desc = "Delete window" })
 map("n", "<leader>ws", "<C-W>s", { desc = "Split window below" })
 map("n", "<leader>wv", "<C-W>v", { desc = "Split window right" })
+-- Don't yank on delete char
+map("n", "x", '"_x', { silent = true })
+map("n", "X", '"_X', { silent = true })
+map("v", "x", '"_x', { silent = true })
+map("v", "X", '"_X', { silent = true })
 
+-- Don't yank on visual paste
+map("v", "p", '"_dP', { silent = true })
 -- Move Lines
 -- map("n", "<C-S>j>", ":m .+1<cr>==", { desc = "Move down" })
 map("v", "<C-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
@@ -68,13 +75,13 @@ map("n", "<leader>sg", "<cmd>FzfLua live_grep_native<cr>", { desc = "Grep" })
 -- quit/session/projects
 map("n", "<leader>qq", "<cmd>q<cr>", { desc = "Quit" })
 map("n", "<leader>qQ", "<cmd>qa<cr>", { desc = "Quit all" })
-map("n", "<leader>Q", "<cmd>silent! qa!<cr>", {desc = "Force Quit all" })
+map("n", "<leader>Q", "<cmd>silent! qa!<cr>", { desc = "Force Quit all" })
 map("n", "<leader>qp", "<cmd>lua require'telescope'.extensions.projects.projects{}<cr>", { desc = "Find Project" })
 map("n", "<leader>qw", "<cmd>silent! wall<cr>", { desc = "Save All" })
 map("n", "<leader>qW", "<cmd>silent! w<cr>", { desc = "Save Current" })
 
 -- Git
-map("n", "<leader>gg", "<cmd>lua _lazygit_toggle()<CR>", { desc = "Lazygit", silent = true })
+map("n", "<leader>gg", "<cmd>LazyGit<CR>", { desc = "Lazygit", silent = true })
 map("n", "<leader>gn", "<cmd><CR>", { desc = "Lazygit", silent = true })
 map("n", "<leader>gd", ":DiffviewOpen -- %<cr>", { desc = "Diff file" })
 map("n", "<leader>gc", "<cmd>FzfLua git_branches<CR>", { desc = "Checkout Branch" })
@@ -165,7 +172,7 @@ function M.on_attach_setup(ev)
 
   map('n', 'gD', vim.lsp.buf.declaration, opts)
   -- map('n', 'K', vim.lsp.buf.hover, opts)
-        -- Setup keymaps
+  -- Setup keymaps
   vim.keymap.set('n', 'K', function()
     local winid = require('ufo').peekFoldedLinesUnderCursor()
     if not winid then
@@ -174,7 +181,7 @@ function M.on_attach_setup(ev)
     end
   end)
 
-  vim.keymap.set("n", "gK", require("hover").hover_select, {desc = "hover.nvim (select)"})
+  vim.keymap.set("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
 
   -- map('n', 'gi', vim.lsp.buf.implementation, opts)
   map({ 'n', 'i' }, '<C-s>', vim.lsp.buf.signature_help, opts)
@@ -186,6 +193,7 @@ function M.on_attach_setup(ev)
   map('n', '<leader>lf', function() require('plugins.lsp.utils').format(ev.buf) end,
     { silent = true, desc = "Format" })
 
+  map('n', '<leader>lr', vim.lsp.buf.rename, opts)
   local client = vim.lsp.get_client_by_id(ev.data.client_id)
   if client.name == "tsserver" then
     vim.keymap.set("n", "<leader>co", "<cmd>TypescriptOrganizeImports<cr>",
@@ -233,19 +241,19 @@ function M.search_replace_setup()
   vim.api.nvim_set_keymap("v", "<C-s>", "<CMD>SearchReplaceWithinVisualSelection<CR>", opts)
   vim.api.nvim_set_keymap("v", "<C-b>", "<CMD>SearchReplaceWithinVisualSelectionCWord<CR>", opts)
 
-  vim.api.nvim_set_keymap("n", "<leader>rs", "<CMD>SearchReplaceSingleBufferSelections<CR>", opts)
-  vim.api.nvim_set_keymap("n", "<leader>ro", "<CMD>SearchReplaceSingleBufferOpen<CR>", opts)
-  vim.api.nvim_set_keymap("n", "<leader>rw", "<CMD>SearchReplaceSingleBufferCWord<CR>", opts)
-  vim.api.nvim_set_keymap("n", "<leader>rW", "<CMD>SearchReplaceSingleBufferCWORD<CR>", opts)
-  vim.api.nvim_set_keymap("n", "<leader>re", "<CMD>SearchReplaceSingleBufferCExpr<CR>", opts)
-  vim.api.nvim_set_keymap("n", "<leader>rf", "<CMD>SearchReplaceSingleBufferCFile<CR>", opts)
+  vim.api.nvim_set_keymap("n", "<leader>srs", "<CMD>SearchReplaceSingleBufferSelections<CR>", opts)
+  vim.api.nvim_set_keymap("n", "<leader>sro", "<CMD>SearchReplaceSingleBufferOpen<CR>", opts)
+  vim.api.nvim_set_keymap("n", "<leader>srw", "<CMD>SearchReplaceSingleBufferCWord<CR>", opts)
+  vim.api.nvim_set_keymap("n", "<leader>srW", "<CMD>SearchReplaceSingleBufferCWORD<CR>", opts)
+  vim.api.nvim_set_keymap("n", "<leader>sre", "<CMD>SearchReplaceSingleBufferCExpr<CR>", opts)
+  vim.api.nvim_set_keymap("n", "<leader>srf", "<CMD>SearchReplaceSingleBufferCFile<CR>", opts)
 
-  vim.api.nvim_set_keymap("n", "<leader>rbs", "<CMD>SearchReplaceMultiBufferSelections<CR>", opts)
-  vim.api.nvim_set_keymap("n", "<leader>rbo", "<CMD>SearchReplaceMultiBufferOpen<CR>", opts)
-  vim.api.nvim_set_keymap("n", "<leader>rbw", "<CMD>SearchReplaceMultiBufferCWord<CR>", opts)
-  vim.api.nvim_set_keymap("n", "<leader>rbW", "<CMD>SearchReplaceMultiBufferCWORD<CR>", opts)
-  vim.api.nvim_set_keymap("n", "<leader>rbe", "<CMD>SearchReplaceMultiBufferCExpr<CR>", opts)
-  vim.api.nvim_set_keymap("n", "<leader>rbf", "<CMD>SearchReplaceMultiBufferCFile<CR>", opts)
+  vim.api.nvim_set_keymap("n", "<leader>srms", "<CMD>SearchReplaceMultiBufferSelections<CR>", opts)
+  vim.api.nvim_set_keymap("n", "<leader>srmo", "<CMD>SearchReplaceMultiBufferOpen<CR>", opts)
+  vim.api.nvim_set_keymap("n", "<leader>srmw", "<CMD>SearchReplaceMultiBufferCWord<CR>", opts)
+  vim.api.nvim_set_keymap("n", "<leader>srmW", "<CMD>SearchReplaceMultiBufferCWORD<CR>", opts)
+  vim.api.nvim_set_keymap("n", "<leader>srme", "<CMD>SearchReplaceMultiBufferCExpr<CR>", opts)
+  vim.api.nvim_set_keymap("n", "<leader>srmf", "<CMD>SearchReplaceMultiBufferCFile<CR>", opts)
 end
 
 function M.terminal_keymaps()

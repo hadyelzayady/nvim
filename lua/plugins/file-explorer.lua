@@ -1,3 +1,23 @@
+---@class FileMovedArgs
+---@field source string
+---@field destination string
+
+---@param args FileMovedArgs
+local function on_file_remove(args)
+  local ts_clients = vim.lsp.get_active_clients({ name = "tsserver" })
+  for _, ts_client in ipairs(ts_clients) do
+    ts_client.request("workspace/executeCommand", {
+      command = "_typescript.applyRenameFile",
+      arguments = {
+        {
+          sourceUri = vim.uri_from_fname(args.source),
+          targetUri = vim.uri_from_fname(args.destination),
+        },
+      },
+    })
+  end
+end
+
 return {
   {
     "nvim-neo-tree/neo-tree.nvim",
@@ -28,7 +48,6 @@ return {
         "filesystem",
         "buffers",
         "git_status",
-        -- "document_symbols",
       },
       add_blank_line_at_top = false,           -- Add a blank line at the top of the tree.
       auto_clean_after_session_restore = true, -- Automatically clean up broken neo-tree buffers saved in sessions
@@ -111,78 +130,74 @@ return {
         highlight_separator_active = "NeoTreeTabSeparatorActive",
       },
       --
-      --event_handlers = {
-      --  {
-      --    event = "before_render",
-      --    handler = function (state)
-      --      -- add something to the state that can be used by custom components
-      --    end
-      --  },
-      --  {
-      --    event = "file_opened",
-      --    handler = function(file_path)
-      --      --auto close
-      --      require("neo-tree").close_all()
-      --    end
-      --  },
-      --  {
-      --    event = "file_opened",
-      --    handler = function(file_path)
-      --      --clear search after opening a file
-      --      require("neo-tree.sources.filesystem").reset_search()
-      --    end
-      --  },
-      --  {
-      --    event = "file_renamed",
-      --    handler = function(args)
-      --      -- fix references to file
-      --      print(args.source, " renamed to ", args.destination)
-      --    end
-      --  },
-      --  {
-      --    event = "file_moved",
-      --    handler = function(args)
-      --      -- fix references to file
-      --      print(args.source, " moved to ", args.destination)
-      --    end
-      --  },
-      --  {
-      --    event = "neo_tree_buffer_enter",
-      --    handler = function()
-      --      vim.cmd 'highlight! Cursor blend=100'
-      --    end
-      --  },
-      --  {
-      --    event = "neo_tree_buffer_leave",
-      --    handler = function()
-      --      vim.cmd 'highlight! Cursor guibg=#5f87af blend=0'
-      --    end
-      --  },
-      -- {
-      --   event = "neo_tree_window_before_open",
-      --   handler = function(args)
-      --     print("neo_tree_window_before_open", vim.inspect(args))
-      --   end
-      -- },
-      -- {
-      --   event = "neo_tree_window_after_open",
-      --   handler = function(args)
-      --     vim.cmd("wincmd =")
-      --   end
-      -- },
-      -- {
-      --   event = "neo_tree_window_before_close",
-      --   handler = function(args)
-      --     print("neo_tree_window_before_close", vim.inspect(args))
-      --   end
-      -- },
-      -- {
-      --   event = "neo_tree_window_after_close",
-      --   handler = function(args)
-      --     vim.cmd("wincmd =")
-      --   end
-      -- }
-      --},
+      event_handlers = {
+        --  {
+        --    event = "before_render",
+        --    handler = function (state)
+        --      -- add something to the state that can be used by custom components
+        --    end
+        --  },
+        --  {
+        --    event = "file_opened",
+        --    handler = function(file_path)
+        --      --auto close
+        --      require("neo-tree").close_all()
+        --    end
+        --  },
+        --  {
+        --    event = "file_opened",
+        --    handler = function(file_path)
+        --      --clear search after opening a file
+        --      require("neo-tree.sources.filesystem").reset_search()
+        --    end
+        --  },
+        {
+          event = "file_renamed",
+          handler = on_file_remove
+        },
+        {
+          event = "file_moved",
+          handler = on_file_remove
+        },
+        {
+          event = "neo_tree_buffer_enter",
+          handler = function()
+            vim.wo.number = true
+            vim.wo.relativenumber = true
+            vim.cmd 'highlight! Cursor blend=100'
+          end
+        },
+        --  {
+        --    event = "neo_tree_buffer_leave",
+        --    handler = function()
+        --      vim.cmd 'highlight! Cursor guibg=#5f87af blend=0'
+        --    end
+        --  },
+        -- {
+        --   event = "neo_tree_window_before_open",
+        --   handler = function(args)
+        --     print("neo_tree_window_before_open", vim.inspect(args))
+        --   end
+        -- },
+        -- {
+        --   event = "neo_tree_window_after_open",
+        --   handler = function(args)
+        --     vim.cmd("wincmd =")
+        --   end
+        -- },
+        -- {
+        --   event = "neo_tree_window_before_close",
+        --   handler = function(args)
+        --     print("neo_tree_window_before_close", vim.inspect(args))
+        --   end
+        -- },
+        -- {
+        --   event = "neo_tree_window_after_close",
+        --   handler = function(args)
+        --     vim.cmd("wincmd =")
+        --   end
+        -- }
+      },
       default_component_configs = {
         container = {
           enable_character_fade = true,
@@ -499,7 +514,7 @@ return {
         --  end
         --  return args
         --end,
-        group_empty_dirs = true,               -- when true, empty folders will be grouped together
+        group_empty_dirs = true,                -- when true, empty folders will be grouped together
         search_limit = 50,                      -- max number of search results when using filters
         follow_current_file = false,            -- This will find and focus the file in the active buffer every time
         -- the current file is changed while the tree is open.

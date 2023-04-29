@@ -2,6 +2,7 @@ local M = {}
 
 function M.setup()
   require 'lspconfig'.lua_ls.setup {
+    capabilities = require("plugins.lsp.servers_configs").capabilities,
     settings = {
       Lua = {
         runtime = {

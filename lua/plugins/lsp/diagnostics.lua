@@ -9,7 +9,7 @@ function M.setup()
   vim.diagnostic.config({
       diagnostics = {
           underline = true,
-          update_in_insert = false,
+          update_in_insert = true,
           virtual_text = { spacing = 4, prefix = "●" },
           severity_sort = true,
       },

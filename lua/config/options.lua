@@ -62,5 +62,3 @@ vim.g.markdown_recommended_style = 0
 vim.o.foldlevel = 10000 -- Using ufo provider need a large value, feel free to decrease the value
 vim.o.fillchars = [[foldopen:,foldclose:]]
 vim.o.foldcolumn = '1'
-
-

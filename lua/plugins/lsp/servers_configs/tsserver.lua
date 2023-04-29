@@ -8,9 +8,9 @@ function M.setup()
       fallback = true,        -- fall back to standard LSP definition on failure
     },
     server = {
-    on_attach = function(client, buffer)
-    client.handlers["textDocument/publishDiagnostics"] = function() end
-  end,
+      capabilities = require("plugins.lsp.servers_configs").capabilities,
+      on_attach = function(client, buffer)
+      end,
     },
   })
 end

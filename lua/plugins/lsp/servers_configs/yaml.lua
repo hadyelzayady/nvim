@@ -17,8 +17,8 @@ function M.setup()
           {
             {
               description = 'openapi',
-              -- fileMatch = { 'foobar.json', '.foobar.json' },
-              -- name = 'foobar.json',
+              fileMatch = { 'openapi-merged.yaml' },
+              name = 'openapi-merged.yaml',
               url = 'https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.0/schema.yaml',
             },
           },
