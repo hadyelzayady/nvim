@@ -93,8 +93,8 @@ map("n", "<leader>ga", "<cmd>lua require('telescope').extensions.githubcoauthors
   { desc = "Co-authors" })
 
 -- -- Debug
--- map("n", "<leader>rd", "<cmd>DapContinue<CR>", { desc = "Debug" })
--- map("n", "<leader>ru", "<cmd>lua require('dapui').toggle()<CR>", { desc = "Toggle Ui" })
+map("n", "<leader>rd", "<cmd>DapContinue<CR>", { desc = "Debug" })
+map("n", "<leader>ru", "<cmd>lua require('dapui').toggle()<CR>", { desc = "Toggle Ui" })
 
 -- Jump
 map("n", "<leader>jl", "<cmd>HopLine<CR>", { desc = "Line" })
@@ -112,7 +112,9 @@ map(
 )
 
 map("n", "<leader>mf", "<cmd>FzfLua filetypes<CR>", { desc = "File Types" })
-map("n", "<leader>uc", "<cmd>lua require('utils.toggle').toggle_conceal()<CR>", { desc = "Toggle Conceal" })
+
+-- map("n", "<leader>uc", "<cmd>lua require('utils.toggle').toggle_conceal()<CR>", { desc = "Toggle Conceal" })
+-- map("n", "<leader>uc", "<cmd>lua require('utils.toggle').toggle_conceal()<CR>", { desc = "Toggle Conceal" })
 
 
 -- Lists
@@ -129,6 +131,7 @@ map("n", "<leader>tf", "<cmd>ToggleTerm direction=float<CR>", { desc = "Float Te
 
 -- toggle/reveal
 map("n", "<leader>nr", "<cmd>Neotree reveal<cr>", { desc = "Reveal File" })
+map("n", "<leader>nc", "<cmd>TSContextToggle<cr>", { desc = "Context Toggle" })
 
 local M = {}
 function M.lsp_global_setup()
@@ -265,6 +268,22 @@ function M.terminal_keymaps()
   map('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opts)
   map('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opts)
   map('t', '<C-w>', [[<C-\><C-n><C-w>]], opts)
+end
+
+function M.gitsigns()
+
+  map("n", "<leader>gb", ":Gitsigns blame_line<cr>", { desc = "Blame Current Line" })
+  map("n", "<leader>gB", ":Gitsigns toggle_current_line_blame<cr>",
+    { desc = "Blame Toggle Show Current Line" })
+  map("n", "<leader>gp", ":Gitsigns preview_hunk_inline<cr>", { desc = "Preview Hunk Inline" })
+  map("n", "<leader>gj", ":Gitsigns next_hunk<cr>", { desc = "Next Hunk" })
+  map("n", "<leader>gk", ":Gitsigns prev_hunk<cr>", { desc = "Prev Hunk" })
+  map("n", "]g", ":Gitsigns next_hunk<cr>", { desc = "Next Hunk" })
+  map("n", "[g", ":Gitsigns prev_hunk<cr>", { desc = "Prev Hunk" })
+  map("n", "<leader>gr", ":Gitsigns reset_hunk<cr>", { desc = "Reset Hunk", silent = true })
+  map("n", "<leader>gR", ":Gitsigns reset_buffer<cr>", { desc = "Reset Buffer" })
+  map("n", "<leader>gs", ":Gitsigns stage_hunk<cr>", { desc = "Stage Hunk" })
+  map("n", "<leader>gS", ":Gitsigns undo_stage_hunk<cr>", { desc = "UnStage Hunk" })
 end
 
 return M

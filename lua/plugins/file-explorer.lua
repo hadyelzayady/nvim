@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-field
 ---@class FileMovedArgs
 ---@field source string
 ---@field destination string
@@ -292,29 +293,6 @@ return {
             },
           },
         },
-        file = {
-          { "indent" },
-          { "icon" },
-          {
-            "container",
-            content = {
-              {
-                "name",
-                zindex = 10
-              },
-              -- {
-              --   "symlink_target",
-              --   zindex = 10,
-              --   highlight = "NeoTreeSymbolicLinkTarget",
-              -- },
-              { "clipboard",   zindex = 10 },
-              { "bufnr",       zindex = 10 },
-              { "modified",    zindex = 20, align = "right" },
-              { "diagnostics", zindex = 20, align = "right" },
-              { "git_status",  zindex = 20, align = "right" },
-            },
-          },
-        },
         message = {
           { "indent", with_markers = false },
           { "name",   highlight = "NeoTreeMessage" },
@@ -375,6 +353,9 @@ return {
             "toggle_node",
             nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use
           },
+          ["<space>c"] = {
+            "+command",
+          },
           ["<2-LeftMouse>"] = "open",
           ["<cr>"] = "open",
           ["<esc>"] = "revert_preview",
@@ -415,6 +396,43 @@ return {
         },
       },
       filesystem = {
+        components = {
+          harpoon_index = function(config, node)
+            local Marked = require("harpoon.mark")
+            local path = node:get_id()
+            local succuss, index = pcall(Marked.get_index_of, path)
+            if succuss and index and index > 0 then
+              return {
+                text = string.format(" ⥤ %d", index), -- <-- Add your favorite harpoon like arrow here
+                highlight = config.highlight or "NeoTreeDirectoryIcon",
+              }
+            else
+              return {}
+            end
+          end
+        },
+        renderers = {
+          file = {
+            { "indent" },
+            { "icon" },
+            {
+              "container",
+              content = {
+                {
+                  "name",
+                  zindex = 10
+                },
+                { "clipboard",     zindex = 10 },
+                { "harpoon_index", zindex = 10 }, --> This is what actually adds the component in where you want it
+                { "modified",      zindex = 20, align = "right" },
+                { "diagnostics",   zindex = 20, align = "right" },
+                { "git_status",    zindex = 20, align = "right" },
+              },
+            },
+
+          }
+        },
+
         window = {
           mappings = {
             ["H"] = "toggle_hidden",
@@ -441,9 +459,9 @@ return {
         async_directory_scan = "auto", -- "auto"   means refreshes are async, but it's synchronous when called from the Neotree commands.
         -- "always" means directory scans are always async.
         -- "never"  means directory scans are never async.
-        scan_mode = "shallow", -- "shallow": Don't scan into directories to detect possible empty directory a priori
+        scan_mode = "deep", -- "shallow": Don't scan into directories to detect possible empty directory a priori
         -- "deep": Scan into directories to detect empty or grouped empty directories a priori.
-        bind_to_cwd = true,    -- true creates a 2-way binding between vim's cwd and neo-tree's root
+        bind_to_cwd = false,   -- true creates a 2-way binding between vim's cwd and neo-tree's root
         cwd_target = {
           sidebar = "tab",     -- sidebar is when position = left or right
           current = "window"   -- current is when position = current
@@ -481,42 +499,10 @@ return {
             --".null-ls_*",
           },
         },
-        find_by_full_path_words = false, -- `false` means it only searches the tail of a path.
-        -- `true` will change the filter into a full path
-        -- search with space as an implicit ".*", so
-        -- `fi init`
-        -- will match: `./sources/filesystem/init.lua
-        --find_command = "fd", -- this is determined automatically, you probably don't need to set it
-        --find_args = {  -- you can specify extra args to pass to the find command.
-        --  fd = {
-        --  "--exclude", ".git",
-        --  "--exclude",  "node_modules"
-        --  }
-        --},
-        ---- or use a function instead of list of strings
-        --find_args = function(cmd, path, search_term, args)
-        --  if cmd ~= "fd" then
-        --    return args
-        --  end
-        --  --maybe you want to force the filter to always include hidden files:
-        --  table.insert(args, "--hidden")
-        --  -- but no one ever wants to see .git files
-        --  table.insert(args, "--exclude")
-        --  table.insert(args, ".git")
-        --  -- or node_modules
-        --  table.insert(args, "--exclude")
-        --  table.insert(args, "node_modules")
-        --  --here is where it pays to use the function, you can exclude more for
-        --  --short search terms, or vary based on the directory
-        --  if string.len(search_term) < 4 and path == "/home/cseickel" then
-        --    table.insert(args, "--exclude")
-        --    table.insert(args, "Library")
-        --  end
-        --  return args
-        --end,
+        find_by_full_path_words = false,        -- `false` means it only searches the tail of a path.
         group_empty_dirs = true,                -- when true, empty folders will be grouped together
         search_limit = 50,                      -- max number of search results when using filters
-        follow_current_file = false,            -- This will find and focus the file in the active buffer every time
+        follow_current_file = true,             -- This will find and focus the file in the active buffer every time
         -- the current file is changed while the tree is open.
         hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
         -- in whatever position is specified in window.position
@@ -553,84 +539,6 @@ return {
             ["gg"] = "git_commit_and_push",
           },
         },
-      },
-      document_symbols = {
-        client_filters = "first",
-        renderers = {
-          root = {
-            { "indent" },
-            { "icon",  default = "C" },
-            { "name",  zindex = 10 },
-          },
-          symbol = {
-            { "indent",    with_expanders = true },
-            { "kind_icon", default = "?" },
-            {
-              "container",
-              content = {
-                { "name",      zindex = 10 },
-                { "kind_name", zindex = 20, align = "right" },
-              }
-            }
-          },
-        },
-        window = {
-          mappings = {
-            ["<cr>"] = "jump_to_symbol",
-            ["o"] = "jump_to_symbol",
-            ["A"] = "noop", -- also accepts the config.show_path and config.insert_as options.
-            ["d"] = "noop",
-            ["y"] = "noop",
-            ["x"] = "noop",
-            ["p"] = "noop",
-            ["c"] = "noop",
-            ["m"] = "noop",
-            ["a"] = "noop",
-          },
-        },
-        custom_kinds = {
-          -- define custom kinds here (also remember to add icon and hl group to kinds)
-          -- ccls
-          -- [252] = 'TypeAlias',
-          -- [253] = 'Parameter',
-          -- [254] = 'StaticMethod',
-          -- [255] = 'Macro',
-        },
-        kinds = {
-          Unknown = { icon = "?", hl = "" },
-          Root = { icon = "", hl = "NeoTreeRootName" },
-          File = { icon = "", hl = "Tag" },
-          Module = { icon = "", hl = "Exception" },
-          Namespace = { icon = "", hl = "Include" },
-          Package = { icon = "", hl = "Label" },
-          Class = { icon = "", hl = "Include" },
-          Method = { icon = "", hl = "Function" },
-          Property = { icon = "", hl = "@property" },
-          Field = { icon = "", hl = "@field" },
-          Constructor = { icon = "", hl = "@constructor" },
-          Enum = { icon = "了", hl = "@number" },
-          Interface = { icon = "", hl = "Type" },
-          Function = { icon = "", hl = "Function" },
-          Variable = { icon = "", hl = "@variable" },
-          Constant = { icon = "", hl = "Constant" },
-          String = { icon = "", hl = "String" },
-          Number = { icon = "", hl = "Number" },
-          Boolean = { icon = "", hl = "Boolean" },
-          Array = { icon = "", hl = "Type" },
-          Object = { icon = "", hl = "Type" },
-          Key = { icon = "", hl = "" },
-          Null = { icon = "", hl = "Constant" },
-          EnumMember = { icon = "", hl = "Number" },
-          Struct = { icon = "", hl = "Type" },
-          Event = { icon = "", hl = "Constant" },
-          Operator = { icon = "", hl = "Operator" },
-          TypeParameter = { icon = "", hl = "Type" },
-          -- ccls
-          -- TypeAlias = { icon = ' ', hl = 'Type' },
-          -- Parameter = { icon = ' ', hl = '@parameter' },
-          -- StaticMethod = { icon = 'ﴂ ', hl = 'Function' },
-          -- Macro = { icon = ' ', hl = 'Macro' },
-        }
       },
       example = {
         renderers = {

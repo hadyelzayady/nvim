@@ -10,6 +10,7 @@ return {
       'David-Kunz/cmp-npm',
       'rcarriga/cmp-dap',
       -- "hrsh7th/cmp-path",
+      'hrsh7th/cmp-calc',
       'saadparwaiz1/cmp_luasnip',
       'davidsierradz/cmp-conventionalcommits',
     },
@@ -57,7 +58,8 @@ return {
         sources = cmp.config.sources({
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
-          { name = 'npm' }
+          { name = 'npm' },
+          { name = 'calc' }
         })
       }
     end,

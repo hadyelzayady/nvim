@@ -392,21 +392,10 @@ return {
       yadm                         = {
         enable = false
       },
-      on_attach                    = function(buffer)
-        local function map(mode, l, r, desc)
-          vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
-        end
-        map("n", "<leader>gb", ":Gitsigns blame_line<cr>", { desc = "Blame Current Line" })
-        map("n", "<leader>gB", ":Gitsigns toggle_current_line_blame<cr>",
-          { desc = "Blame Toggle Show Current Line" })
-        map("n", "<leader>gp", ":Gitsigns preview_hunk_inline<cr>", { desc = "Preview Hunk Inline" })
-        map("n", "<leader>gj", ":Gitsigns next_hunk<cr>", { desc = "Next Hunk" })
-        map("n", "<leader>gk", ":Gitsigns prev_hunk<cr>", { desc = "Prev Hunk" })
-        map("n", "<leader>gr", ":Gitsigns reset_hunk<cr>", { desc = "Reset Hunk", silent = true })
-        map("n", "<leader>gR", ":Gitsigns reset_buffer<cr>", { desc = "Reset Buffer" })
-        map("n", "<leader>gs", ":Gitsigns stage_hunk<cr>", { desc = "Stage Hunk" })
-        map("n", "<leader>gS", ":Gitsigns undo_stage_hunk<cr>", { desc = "UnStage Hunk" })
-      end,
+      on_attach                    =
+          function(buffer)
+            require("config.keymaps").gitsigns()
+          end,
     },
   },
   {

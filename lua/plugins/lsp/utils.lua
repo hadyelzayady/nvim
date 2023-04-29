@@ -6,6 +6,8 @@ function M.format(bufnr)
       local ft = vim.bo[bufnr].filetype
 
       local have_null_ls = #require("null-ls.sources").get_available(ft, "NULL_LS_FORMATTING") > 0
+      print('havenull:'.. client.name)
+      print(have_null_ls)
       if have_null_ls then
         return client.name == "null-ls"
       else

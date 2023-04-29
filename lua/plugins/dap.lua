@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-field
 return {
   {
     "mfussenegger/nvim-dap",
@@ -203,12 +204,15 @@ return {
         only_first_definition = true,       -- only show virtual text at first definition (if there are multiple)
         all_references = false,             -- show virtual text on all all references of the variable (not only definitions)
         --- A callback that determines how a variable is displayed or whether it should be omitted
+        ---@diagnostic disable-next-line: undefined-doc-name
         --- @param variable Variable https://microsoft.github.io/debug-adapter-protocol/specification#Types_Variable
         --- @param buf number
+        ---@diagnostic disable-next-line: undefined-doc-name
         --- @param stackframe dap.StackFrame https://microsoft.github.io/debug-adapter-protocol/specification#Types_StackFrame
         --- @param node userdata tree-sitter node identified as variable definition of reference (see `:h tsnode`)
         --- @return string|nil A text how the virtual text should be displayed or nil, if this variable shouldn't be displayed
-        display_callback = function(variable, _buf, _stackframe, _node)
+        ---@diagnostic disable-next-line: unused-local
+        display_callback = function(variable, buf, stackframe, node)
           return variable.name .. ' = ' .. variable.value
         end,
 

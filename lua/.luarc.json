@@ -6,5 +6,8 @@
         "/Users/hady/.config/MinimalNvim/lua",
         "${3rd}/luv/library",
         "${3rd}/luv/library"
+    ],
+    "diagnostics.disable": [
+        "param-type-mismatch"
     ]
 }
