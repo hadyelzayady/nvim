@@ -29,7 +29,6 @@ return {
       require("luasnip").setup(opts)
 
       local snippets_folder = vim.fn.stdpath "config" .. "/lua/plugins/completion/snippets/"
-      print(snippets_folder)
       require("luasnip.loaders.from_lua").lazy_load { paths = snippets_folder }
 
       vim.api.nvim_create_user_command("LuaSnipEdit", function()

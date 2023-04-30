@@ -353,9 +353,9 @@ return {
             "toggle_node",
             nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use
           },
-          ["<space>c"] = {
-            "+command",
-          },
+          ["<space>cp"] = function()
+
+          end,
           ["<2-LeftMouse>"] = "open",
           ["<cr>"] = "open",
           ["<esc>"] = "revert_preview",
@@ -459,12 +459,12 @@ return {
         async_directory_scan = "auto", -- "auto"   means refreshes are async, but it's synchronous when called from the Neotree commands.
         -- "always" means directory scans are always async.
         -- "never"  means directory scans are never async.
-        scan_mode = "deep", -- "shallow": Don't scan into directories to detect possible empty directory a priori
+        scan_mode = "deep",  -- "shallow": Don't scan into directories to detect possible empty directory a priori
         -- "deep": Scan into directories to detect empty or grouped empty directories a priori.
-        bind_to_cwd = false,   -- true creates a 2-way binding between vim's cwd and neo-tree's root
+        bind_to_cwd = false, -- true creates a 2-way binding between vim's cwd and neo-tree's root
         cwd_target = {
-          sidebar = "tab",     -- sidebar is when position = left or right
-          current = "window"   -- current is when position = current
+          sidebar = "tab",   -- sidebar is when position = left or right
+          current = "window" -- current is when position = current
         },
         -- The renderer section provides the renderers that will be used to render the tree.
         --   The first level is the node type.

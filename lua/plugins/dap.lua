@@ -6,7 +6,6 @@ return {
       local dap = require('dap')
       vim.api.nvim_create_user_command("DapUiToggle", function()
         require("dapui").toggle()
-        print("Dapu toggle")
       end, {})
 
       dap.adapters.lldb = {
