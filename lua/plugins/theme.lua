@@ -5,7 +5,7 @@ return {
     lazy = true,
     opts = { style = "moon" },
     init = function()
-    require("tokyonight").load()
+      require("tokyonight").load()
     end
   },
   -- catppuccin
@@ -14,4 +14,12 @@ return {
     lazy = true,
     name = "catppuccin",
   },
+  {
+    "sainnhe/sonokai",
+    lazy = true,
+    opts = {
+      sonokai_style = 'atlantis',
+      sonokai_better_performance = 1
+    }
+  }
 }
