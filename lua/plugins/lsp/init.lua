@@ -25,6 +25,7 @@ return {
       })
     end,
     dependencies = { "b0o/schemastore.nvim", "jose-elias-alvarez/typescript.nvim", "mfussenegger/nvim-jdtls",
+      "yioneko/nvim-vtsls",
       "folke/neodev.nvim",
       {
         "folke/neoconf.nvim",
@@ -36,8 +37,8 @@ return {
           -- import existing settings from other plugins
           import = {
             vscode = true, -- local .vscode/settings.json
-            coc = true, -- global/local coc-settings.json
-            nlsp = true, -- global/local nlsp-settings.nvim json settings
+            coc = true,    -- global/local coc-settings.json
+            nlsp = true,   -- global/local nlsp-settings.nvim json settings
           },
           -- send new configuration to lsp clients when changing json settings
           live_reload = true,
@@ -307,6 +308,7 @@ return {
   },
   {
     "kosayoda/nvim-lightbulb",
+    enabled = false,
     opts = {
       -- LSP client names to ignore
       -- Example: {"sumneko_lua", "null-ls"}
@@ -495,4 +497,22 @@ return {
       }
     end
   },
+  {
+    "dmmulroy/tsc.nvim",
+    opts = function()
+      local utils = require("tsc.utils")
+      return {
+        auto_open_qflist = true,
+        enable_progress_notifications = true,
+        flags = {
+          noEmit = true,
+          project = function()
+            return utils.find_nearest_tsconfig()
+          end,
+        },
+        hide_progress_notifications_from_history = true,
+        spinner = { "⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷" },
+      }
+    end
+  }
 }

@@ -1,9 +1,9 @@
 local M = {}
 
-function M.format(bufnr)
+function M.format()
   vim.lsp.buf.format {
     filter = function(client)
-      local ft = vim.bo[bufnr].filetype
+      local ft = vim.bo.filetype
 
       local have_null_ls = #require("null-ls.sources").get_available(ft, "NULL_LS_FORMATTING") > 0
       print('havenull:' .. client.name)

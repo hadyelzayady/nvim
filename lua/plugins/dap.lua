@@ -192,6 +192,7 @@ return {
       "nvim-treesitter/nvim-treesitter",
       "mfussenegger/nvim-dap"
     },
+    lazy = true,
     config = function()
       require("nvim-dap-virtual-text").setup {
         enabled = true,                     -- enable this plugin (the default)

@@ -5,7 +5,7 @@
 
 ---@param args FileMovedArgs
 local function on_file_remove(args)
-  local ts_clients = vim.lsp.get_active_clients({ name = "tsserver" })
+  local ts_clients = vim.lsp.get_active_clients({ name = "vtsls" })
   for _, ts_client in ipairs(ts_clients) do
     ts_client.request("workspace/executeCommand", {
       command = "_typescript.applyRenameFile",
@@ -235,9 +235,9 @@ return {
         },
         icon = {
           folder_closed = "",
-          folder_open = "",
-          folder_empty = "ﰊ",
-          folder_empty_open = "ﰊ",
+          folder_open = "",
+          folder_empty = "",
+          folder_empty_open = "",
           -- The next two settings are only a fallback, if you use nvim-web-devicons and configure default icons there
           -- then these will never be used.
           default = "*",
@@ -396,6 +396,7 @@ return {
         },
       },
       filesystem = {
+        display_name = " Files",
         components = {
           harpoon_index = function(config, node)
             local Marked = require("harpoon.mark")
@@ -513,6 +514,7 @@ return {
         -- instead of relying on nvim autocmd events.
       },
       buffers = {
+        display_name = " Buffers",
         bind_to_cwd = true,
         follow_current_file = true, -- This will find and focus the file in the active buffer every time
         -- the current file is changed while the tree is open.
@@ -528,6 +530,7 @@ return {
         },
       },
       git_status = {
+        display_name = "󰊢 Git",
         window = {
           mappings = {
             ["A"] = "git_add_all",

@@ -30,19 +30,19 @@ map("i", "<C-k>", "<Esc>:m .-2<cr>==gi", { desc = "Move up" })
 -- map("n", "<C-k>", ":m .-2<cr>==", { desc = "Move up" })
 
 -- buffers
-map("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
-map("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
-map("n", "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", { desc = "Pin buffer" })
-map("n", "<leader>bj", "<cmd>BufferLinePick<cr>", { desc = "Pick buffer" })
-map("n", "<leader>bo", "<cmd>execute 'BufferLineCloseRight' | BufferLineCloseLeft<cr>", { desc = "Delete Other Buffers" })
-map("n", "<leader>ba", function()
-    vim.cmd("BufferLineCloseLeft")
-    vim.cmd("BufferLineCloseRight")
-    require("mini.bufremove").delete(0, false)
-  end,
-  { desc = "Delete All Buffers" })
-map("n", "<leader>br", "<Cmd>BufferLineCloseRight<CR>", { desc = "Delete Right Buffers" })
-map("n", "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>", { desc = "Delete Left Buffers" })
+-- map("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
+-- map("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
+-- map("n", "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", { desc = "Pin buffer" })
+-- map("n", "<leader>bj", "<cmd>BufferLinePick<cr>", { desc = "Pick buffer" })
+-- map("n", "<leader>bo", "<cmd>execute 'BufferLineCloseRight' | BufferLineCloseLeft<cr>", { desc = "Delete Other Buffers" })
+-- map("n", "<leader>ba", function()
+--     vim.cmd("BufferLineCloseLeft")
+--     vim.cmd("BufferLineCloseRight")
+--     require("mini.bufremove").delete(0, false)
+--   end,
+--   { desc = "Delete All Buffers" })
+-- map("n", "<leader>br", "<Cmd>BufferLineCloseRight<CR>", { desc = "Delete Right Buffers" })
+-- map("n", "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>", { desc = "Delete Left Buffers" })
 
 -- Clear search with <esc>
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
@@ -132,6 +132,8 @@ map("n", "<leader>tf", "<cmd>ToggleTerm direction=float<CR>", { desc = "Float Te
 -- toggle/reveal
 map("n", "<leader>nr", "<cmd>Neotree reveal<cr>", { desc = "Reveal File" })
 map("n", "<leader>nc", "<cmd>TSContextToggle<cr>", { desc = "Context Toggle" })
+map("n", "<leader>nCp", "<cmd>CccPick<cr>", { desc = "Color Picker" })
+map("n", "<leader>nCt", "<cmd>CccConvert<cr>", { desc = "Color Convert" })
 
 local M = {}
 function M.lsp_global_setup()
@@ -193,7 +195,7 @@ function M.on_attach_setup(ev)
   map('n', '<space>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, opts)
-  map('n', '<leader>lf', function() require('plugins.lsp.utils').format(ev.buf) end,
+  map('n', '<leader>lf', function() require('plugins.lsp.utils').format() end,
     { silent = true, desc = "Format" })
 
   map('n', '<leader>lr', vim.lsp.buf.rename, opts)
@@ -205,6 +207,12 @@ function M.on_attach_setup(ev)
     vim.keymap.set("n", "<leader>cf", "<cmd>EslintFixAll<cr>", { desc = "Fix All", buffer = ev.buf })
     vim.keymap.set("n", "<leader>cc", ":TypescriptRemoveUnused<cr>", { desc = "Clean Code", buffer = ev.buf })
     vim.keymap.set("n", "<leader>ci", ":TypescriptAddMissingImports<cr>", { desc = "Add Imports", buffer = ev.buf })
+  end
+  if client.name == "vtsls" then
+    vim.keymap.set("n", "<leader>cR", "<cmd>VtsExec rename_file<cr>", { desc = "Rename File", buffer = ev.buf })
+    vim.keymap.set("n", "<leader>cf", "<cmd>EslintFixAll<cr>", { desc = "Fix All", buffer = ev.buf })
+    vim.keymap.set("n", "<leader>cc", ":VtsExec remove_unused<cr>", { desc = "Clean Code", buffer = ev.buf })
+    vim.keymap.set("n", "<leader>ci", ":VtsExec add_missing_imports<cr>", { desc = "Add Imports", buffer = ev.buf })
   end
 end
 
