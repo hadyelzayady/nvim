@@ -1,7 +1,7 @@
 return {
   {
     "phaazon/hop.nvim",
-    branch = 'v2',     -- optional but strongly recommended
+    branch = 'v2', -- optional but strongly recommended
     opts = {
       keys = 'etovxqpdygfblzhckisuran',
     },
@@ -31,8 +31,8 @@ return {
     keys = {
       { "<leader>ja", function() require("harpoon.mark").add_file() end,        desc = "Add File" },
       { "<leader>jm", function() require("harpoon.ui").toggle_quick_menu() end, desc = "File Menu" },
-      { "<leader>jn", function() require("harpoon.ui").nav_next() end, desc = "Harpoon Next" },
-      { "<leader>jp",  function() require("harpoon.ui").nav_prev() end,         desc = "Harpoon Prev" },
+      { "<leader>jn", function() require("harpoon.ui").nav_next() end,          desc = "Harpoon Next" },
+      { "<leader>jp", function() require("harpoon.ui").nav_prev() end,          desc = "Harpoon Prev" },
       { "<leader>1",  function() require("harpoon.ui").nav_file(1) end,         desc = "Harpoon 1" },
       { "<leader>2",  function() require("harpoon.ui").nav_file(2) end,         desc = "Harpoon 2" },
       { "<leader>3",  function() require("harpoon.ui").nav_file(3) end,         desc = "Harpoon 3" },
@@ -60,5 +60,5 @@ return {
     -- e-->e-->e----->e--->e--------->e-->e
     -- b<---b<--b<-----b<----b<--------b<-b
     "chaoren/vim-wordmotion"
-  }
+  },
 }
