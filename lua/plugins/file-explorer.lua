@@ -318,7 +318,22 @@ return {
       -- }                         |  }                        |      end
       --
       -- see `:h neo-tree-global-custom-commands`
-      commands = {}, -- A list of functions
+      commands = {
+        copy_to_system_clipboard = function(state)
+          local node = state.tree:get_node()
+          local path = node:get_id()
+          -- macOs: open file in default application in the background.
+          -- Probably you need to adapt the Linux recipe for manage path with spaces. I don't have a mac to try.
+          os.execute("echo " .. path .. " | pbcopy")
+        end,
+        paste_from_system_clipboard = function(state)
+          local file_path = require('utils.functions').os_capture("pbpaste")
+          local node = state.tree:get_node()
+          local parent_path = node:get_parent_id()
+          os.execute("cp -rf " .. file_path ..  " " .. parent_path)
+          vim.cmd("Neotree show")
+        end
+      }, -- A list of functions
       window = {
         -- see https://github.com/MunifTanjim/nui.nvim/tree/main/lua/nui/popup for
         -- possible options. These can also be functions that return these options.
@@ -448,6 +463,8 @@ return {
             ["."] = "set_root",
             ["[g"] = "prev_git_modified",
             ["]g"] = "next_git_modified",
+            ["<space>y"] = "copy_to_system_clipboard",
+            ["<space>p"] = "paste_from_system_clipboard"
           },
           fuzzy_finder_mappings = {
             -- define keymaps for filter popup window in fuzzy_finder_mode

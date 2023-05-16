@@ -173,7 +173,7 @@ return {
         -- popup 80% width, 80% height (note `-p` requires tmux > 3.2)
         -- and removes the sides margin added by `fzf-tmux` (fzf#3162)
         -- for more options run `fzf-tmux --help`
-        fzf_tmux_opts       = { ["-p"] = "80%,80%",["--margin"] = "0,0" },
+        fzf_tmux_opts       = { ["-p"] = "80%,80%", ["--margin"] = "0,0" },
         -- fzf '--color=' options (optional)
         --[[ fzf_colors = {
       ["fg"]          = { "fg", "CursorLine" },
@@ -352,6 +352,9 @@ return {
             preview = "git log --graph --pretty=oneline --abbrev-commit --color {1}",
             actions = {
               ["default"] = actions.git_switch,
+              ["ctrl-t"] = function(state)
+                os.execute('git checkout --track ' .. state[1])
+              end
             },
           },
           stash = {
@@ -430,7 +433,7 @@ return {
         oldfiles = {
           prompt                  = 'History❯ ',
           cwd_only                = true,
-          stat_file               = true,  -- verify files exist on disk
+          stat_file               = true, -- verify files exist on disk
           include_current_session = true, -- include bufs from current session
         },
         buffers = {
@@ -558,95 +561,6 @@ return {
         quickfix_stack = {
           prompt = "Quickfix Stack> ",
           marker = ">", -- current list marker
-        },
-        lsp = {
-          prompt_postfix     = '❯ ', -- will be appended to the LSP label
-          -- to override use 'prompt' instead
-          cwd_only           = true, -- LSP/diagnostics for cwd only?
-          async_or_timeout   = 5000, -- timeout(ms) or 'true' for async calls
-          file_icons         = true,
-          git_icons          = false,
-          -- The equivalent of using `includeDeclaration` in lsp buf calls, e.g:
-          -- :lua vim.lsp.buf.references({includeDeclaration = false})
-          includeDeclaration = true, -- include current declaration in LSP context
-          -- settings for 'lsp_{document|workspace|lsp_live_workspace}_symbols'
-          symbols            = {
-            file_ignore_patterns = { "node_modules/.*" },
-            async_or_timeout     = true, -- symbols are async by default
-            symbol_style         = 1,    -- style for document/workspace symbols
-            -- false: disable,    1: icon+kind
-            --     2: icon only,  3: kind only
-            -- NOTE: icons are extracted from
-            -- vim.lsp.protocol.CompletionItemKind
-            -- icons for symbol kind
-            -- see https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#symbolKind
-            -- see https://github.com/neovim/neovim/blob/829d92eca3d72a701adc6e6aa17ccd9fe2082479/runtime/lua/vim/lsp/protocol.lua#L117
-            symbol_icons         = {
-              File          = "",
-              Module        = "",
-              Namespace     = "󰦮",
-              Package       = "",
-              Class         = "",
-              Method        = "",
-              Property      = "",
-              Field         = "",
-              Constructor   = "",
-              Enum          = "",
-              Interface     = "",
-              Function      = "",
-              Variable      = "",
-              Constant      = "",
-              String        = "",
-              Number        = "󰎠",
-              Boolean       = "󰨙",
-              Array         = "󱡠",
-              Object        = "",
-              Key           = "",
-              Null          = "󰟢",
-              EnumMember    = "",
-              Struct        = "",
-              Event         = "",
-              Operator      = "",
-              TypeParameter = "󰗴",
-            },
-            -- colorize using Treesitter '@' highlight groups ("@function", etc).
-            -- or 'false' to disable highlighting
-            symbol_hl            = function(s) return "@" .. s:lower() end,
-            -- additional symbol formatting, works with or without style
-            symbol_fmt           = function(s, opts) return "[" .. s .. "]" end,
-            -- prefix child symbols. set to any string or `false` to disable
-            child_prefix         = true,
-          },
-          code_actions       = {
-            prompt           = 'Code Actions> ',
-            async_or_timeout = 5000,
-            winopts          = {
-              row    = 0.40,
-              height = 0.35,
-              width  = 0.60,
-            },
-          },
-          finder             = {
-            prompt             = "LSP Finder> ",
-            file_icons         = true,
-            color_icons        = true,
-            git_icons          = false,
-            async              = true, -- async by default
-            silent             = true, -- suppress "not found"
-            separator          = "| ", -- separator after provider prefix, `false` to disable
-            includeDeclaration = true, -- include current declaration in LSP context
-            -- by default display all LSP locations
-            -- to customize, duplicate table and delete unwanted providers
-            providers          = {
-              { "references",      prefix = require("fzf-lua").utils.ansi_codes.blue("ref ") },
-              { "definitions",     prefix = require("fzf-lua").utils.ansi_codes.green("def ") },
-              { "declarations",    prefix = require("fzf-lua").utils.ansi_codes.magenta("decl") },
-              { "typedefs",        prefix = require("fzf-lua").utils.ansi_codes.red("tdef") },
-              { "implementations", prefix = require("fzf-lua").utils.ansi_codes.green("impl") },
-              { "incoming_calls",  prefix = require("fzf-lua").utils.ansi_codes.cyan("in  ") },
-              { "outgoing_calls",  prefix = require("fzf-lua").utils.ansi_codes.yellow("out ") },
-            },
-          }
         },
         diagnostics = {
           prompt       = 'Diagnostics❯ ',
