@@ -330,8 +330,44 @@ return {
           local file_path = require('utils.functions').os_capture("pbpaste")
           local node = state.tree:get_node()
           local parent_path = node:get_parent_id()
-          os.execute("cp -rf " .. file_path ..  " " .. parent_path)
+          os.execute("cp -rf " .. file_path .. " " .. parent_path)
           vim.cmd("Neotree show")
+        end,
+        diff_files = function(state)
+          local node = state.tree:get_node()
+          local log = require("neo-tree.log")
+          state.clipboard = state.clipboard or {}
+          if diff_Node and diff_Node ~= tostring(node.id) then
+            local current_Diff = node.id
+            require("neo-tree.utils").open_file(state, diff_Node, open)
+            vim.cmd("vert diffs " .. current_Diff)
+            log.info("Diffing " .. diff_Name .. " against " .. node.name)
+            diff_Node = nil
+            current_Diff = nil
+            state.clipboard = {}
+            require("neo-tree.ui.renderer").redraw(state)
+          else
+            local existing = state.clipboard[node.id]
+            if existing and existing.action == "diff" then
+              state.clipboard[node.id] = nil
+              diff_Node = nil
+              require("neo-tree.ui.renderer").redraw(state)
+            else
+              state.clipboard[node.id] = { action = "diff", node = node }
+              diff_Name = state.clipboard[node.id].node.name
+              diff_Node = tostring(state.clipboard[node.id].node.id)
+              log.info("Diff source file " .. diff_Name)
+              require("neo-tree.ui.renderer").redraw(state)
+            end
+          end
+        end,
+        git_diff_file = function(state)
+          local node = state.tree:get_node()
+          local file = node:get_id()
+          vim.cmd("DiffviewOpen -- " .. file)
+        end,
+        git_diff = function()
+          vim.cmd("DiffviewOpen")
         end
       }, -- A list of functions
       window = {
@@ -362,52 +398,51 @@ return {
           nowait = true,
         },
         mappings = {
-          ['b'] = function() vim.api.nvim_exec('Neotree focus buffers left', true) end,
-          ['i'] = function() vim.api.nvim_exec('Neotree focus git_status left', true) end,
-          ["<space>"] = {
+          ['b']             = function() vim.api.nvim_exec('Neotree focus buffers left', true) end,
+          ['i']             = function() vim.api.nvim_exec('Neotree focus git_status left', true) end,
+
+          ['<space>d']      = 'diff_files',
+          ["<space>"]       = {
             "toggle_node",
             nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use
           },
-          ["<space>cp"] = function()
-
-          end,
           ["<2-LeftMouse>"] = "open",
-          ["<cr>"] = "open",
-          ["<esc>"] = "revert_preview",
-          ["P"] = { "toggle_preview", config = { use_float = true } },
-          ["l"] = "focus_preview",
-          ["S"] = "open_split",
+          ["<cr>"]          = "open",
+          ["<esc>"]         = "revert_preview",
+          ["P"]             = { "toggle_preview", config = { use_float = true } },
+          ["l"]             = "focus_preview",
+          ["S"]             = "open_split",
           -- ["S"] = "split_with_window_picker",
-          ["s"] = "open_vsplit",
+          ["s"]             = "open_vsplit",
           -- ["s"] = "vsplit_with_window_picker",
-          ["t"] = "open_tabnew",
+          ["t"]             = "open_tabnew",
           -- ["<cr>"] = "open_drop",
           -- ["t"] = "open_tab_drop",
-          ["w"] = "open_with_window_picker",
-          ["C"] = "close_node",
-          ["z"] = "close_all_nodes",
+          ["w"]             = "open_with_window_picker",
+          ["C"]             = "close_node",
+          ["z"]             = "close_all_nodes",
           --["Z"] = "expand_all_nodes",
-          ["R"] = "refresh",
-          ["a"] = {
+          ["R"]             = "refresh",
+          ["a"]             = {
             "add",
             -- some commands may take optional config options, see `:h neo-tree-mappings` for details
             config = {
               show_path = "none", -- "none", "relative", "absolute"
             }
           },
-          ["A"] = "add_directory", -- also accepts the config.show_path and config.insert_as options.
-          ["d"] = "delete",
-          ["r"] = "rename",
-          ["y"] = "copy_to_clipboard",
-          ["x"] = "cut_to_clipboard",
-          ["p"] = "paste_from_clipboard",
-          ["c"] = "copy", -- takes text input for destination, also accepts the config.show_path and config.insert_as options
-          ["m"] = "move", -- takes text input for destination, also accepts the config.show_path and config.insert_as options
-          ["e"] = "toggle_auto_expand_width",
-          ["q"] = "close_window",
-          ["?"] = "show_help",
-          ["<"] = "prev_source",
-          [">"] = "next_source",
+          ["A"]             = "add_directory", -- also accepts the config.show_path and config.insert_as options.
+          ["d"]             = "delete",
+          ["r"]             = "rename",
+          ["y"]             = "copy_to_clipboard",
+          ["x"]             = "cut_to_clipboard",
+          ["p"]             = "paste_from_clipboard",
+          ["c"]             = "copy", -- takes text input for destination, also accepts the config.show_path and config.insert_as options
+          ["m"]             = "move", -- takes text input for destination, also accepts the config.show_path and config.insert_as options
+          ["e"]             = "toggle_auto_expand_width",
+          ["q"]             = "close_window",
+          ["?"]             = "show_help",
+          ["<"]             = "prev_source",
+          [">"]             = "next_source",
         },
       },
       filesystem = {
@@ -557,6 +592,8 @@ return {
             ["gc"] = "git_commit",
             ["gp"] = "git_push",
             ["gg"] = "git_commit_and_push",
+            ["d"] = "git_diff_file",
+            ["D"] = "git_diff"
           },
         },
       },

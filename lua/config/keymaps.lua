@@ -87,7 +87,8 @@ map("n", "<leader>gd", ":DiffviewOpen -- %<cr>", { desc = "Diff file" })
 map("n", "<leader>gc", "<cmd>FzfLua git_branches<CR>", { desc = "Checkout Branch" })
 map("n", "<leader>gu", "<cmd>Gin pull<CR>", { desc = "Pull" })
 map("n", "<leader>gU", "<cmd>Gin push<CR>", { desc = "Push" })
-map({ "n", "v" }, "<leader>gh", "<cmd>DiffviewFileHistory %<CR>", { desc = "Buffer History" })
+map("n", "<leader>gh", ":DiffviewFileHistory %<CR>", { desc = "Buffer History" })
+map("v", "<leader>gh", ":'<,'>DiffviewFileHistory %<CR>", { desc = "Range Buffer History" })
 map("n", "<leader>gn", "<cmd>Neogit<CR>", { desc = "Neogit" })
 map("n", "<leader>ga", "<cmd>lua require('telescope').extensions.githubcoauthors.coauthors()<CR>",
   { desc = "Co-authors" })
@@ -279,7 +280,6 @@ function M.terminal_keymaps()
 end
 
 function M.gitsigns()
-
   map("n", "<leader>gb", ":Gitsigns blame_line<cr>", { desc = "Blame Current Line" })
   map("n", "<leader>gB", ":Gitsigns toggle_current_line_blame<cr>",
     { desc = "Blame Toggle Show Current Line" })
