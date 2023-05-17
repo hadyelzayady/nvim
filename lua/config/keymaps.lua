@@ -23,11 +23,12 @@ map("v", "X", '"_X', { silent = true })
 map("v", "p", '"_dP', { silent = true })
 -- Move Lines
 -- map("n", "<C-S>j>", ":m .+1<cr>==", { desc = "Move down" })
-map("v", "<C-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
-map("v", "<C-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
-map("i", "<C-j>", "<Esc>:m .+1<cr>==gi", { desc = "Move down" })
-map("i", "<C-k>", "<Esc>:m .-2<cr>==gi", { desc = "Move up" })
--- map("n", "<C-k>", ":m .-2<cr>==", { desc = "Move up" })
+map("v", "<C-J>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
+map("v", "<C-K>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
+-- map("i", "<C-J>", "<Esc>:m .+1<cr>==gi", { desc = "Move down" })
+-- map("i", "<C-K>", "<Esc>:m .-2<cr>==gi", { desc = "Move up" })
+map("n", "<C-k>", ":m .-2<cr>==", { desc = "Move up" })
+map("n", "<C-j>", ":m .+1<cr>==", { desc = "Move down" })
 
 -- buffers
 -- map("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
@@ -95,6 +96,7 @@ map("n", "<leader>ga", "<cmd>lua require('telescope').extensions.githubcoauthors
 
 -- -- Debug
 map("n", "<leader>rd", "<cmd>DapContinue<CR>", { desc = "Debug" })
+map("n", "<leader>rb", "<cmd>DapToggleBreakpoint<CR>", { desc = "Toggle Breakpoint" })
 map("n", "<leader>ru", "<cmd>lua require('dapui').toggle()<CR>", { desc = "Toggle Ui" })
 
 -- Jump
