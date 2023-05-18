@@ -4,7 +4,6 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     config = function()
       -- Setup language servers.
-      require('plugins.lsp.servers_configs').setup()
       require('plugins.lsp.diagnostics').setup()
       -- Global mappings.
       -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -24,8 +23,7 @@ return {
         end,
       })
     end,
-    dependencies = { "b0o/schemastore.nvim", "jose-elias-alvarez/typescript.nvim", "mfussenegger/nvim-jdtls",
-      "yioneko/nvim-vtsls",
+    dependencies = {
       "folke/neodev.nvim",
       {
         "folke/neoconf.nvim",
@@ -261,8 +259,8 @@ return {
           end,
         },
         folds = {
-          fold_closed = '',
-          fold_open = '',
+          fold_closed = '󰅂',
+          fold_open = '󰅀',
           folded = true, -- Automatically fold list on startup
         },
         indent_lines = {
@@ -499,6 +497,8 @@ return {
   },
   {
     "dmmulroy/tsc.nvim",
+    lazy = true,
+    cmd = "TSC",
     opts = function()
       local utils = require("tsc.utils")
       return {
@@ -514,5 +514,23 @@ return {
         spinner = { "⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷" },
       }
     end
+  },
+  {
+    "mfussenegger/nvim-jdtls",
+    lazy = true,
+    ft = { 'java' }
+  },
+  {
+    "jose-elias-alvarez/typescript.nvim",
+    lazy = true,
+    ft = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" }
+  },
+  {
+    "b0o/schemastore.nvim",
+    lazy = true
+  },
+  {
+    "yioneko/nvim-vtsls",
+    enabled = false
   }
 }

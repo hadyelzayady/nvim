@@ -14,6 +14,7 @@ return {
   },
   {
     "mbbill/undotree",
+    cmd = { "UndotreeFocus", "UndotreeHide", "UndotreeShow", "UndotreeToggle" },
     config = function()
       vim.cmd("source ~/.config/MinimalNvim/vimscript/undotree.vim")
     end

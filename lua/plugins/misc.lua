@@ -16,7 +16,7 @@ return {
   },
   {
     "metakirby5/codi.vim",
-    event = "VeryLazy"
+    cmd = { "Codi", "CodiSelect", "CodiNew", "CodiExpand" }
   },
   -- makes some plugins dot-repeatable like leap
   { "tpope/vim-repeat", enabled = false, event = "VeryLazy" },
@@ -74,8 +74,11 @@ return {
   },
   {
     "chrishrb/gx.nvim",
-    event = { "BufEnter" },
     dependencies = { "nvim-lua/plenary.nvim" },
+    lazy = true,
+    keys = {
+      { "gx", desc = "Goto link" },
+    },
     -- you can specify also another config if you want
     config = function()
       require("gx").setup {

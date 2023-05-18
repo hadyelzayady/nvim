@@ -1,5 +1,7 @@
 return {
   "stevearc/aerial.nvim",
+  lazy = true,
+  cmd = { "AerialToggle", "AerialNavToggle" },
   opts = {
     -- Call the setup function to change the default behavior
     -- Priority list of preferred backends for aerial.
