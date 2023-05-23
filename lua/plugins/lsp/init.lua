@@ -5,6 +5,7 @@ return {
     config = function()
       -- Setup language servers.
       require('plugins.lsp.diagnostics').setup()
+      require('plugins.lsp.servers_configs').setup()
       -- Global mappings.
       -- See `:help vim.diagnostic.*` for documentation on any of the below functions
       require("config.keymaps").lsp_global_setup();
@@ -532,5 +533,10 @@ return {
   {
     "yioneko/nvim-vtsls",
     enabled = false
+  },
+  {
+    "simrat39/rust-tools.nvim",
+    lazy = true,
+    ft = { "rust" }
   }
 }

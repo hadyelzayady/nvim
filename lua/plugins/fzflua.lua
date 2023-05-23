@@ -255,35 +255,38 @@ return {
           -- previewer      = "bat",          -- uncomment to override previewer
           -- (name from 'previewers' table)
           -- set to 'false' to disable
-          prompt               = 'Files❯ ',
-          multiprocess         = true, -- run command in a separate process
-          git_icons            = true, -- show git icons?
-          file_icons           = true, -- show file icons?
-          color_icons          = true, -- colorize file|git icons
-          continue_last_search = true,
+          prompt                 = 'Files❯ ',
+          multiprocess           = true, -- run command in a separate process
+          git_icons              = true, -- show git icons?
+          file_icons             = true, -- show file icons?
+          color_icons            = true, -- colorize file|git icons
+          continue_last_search   = true,
           -- path_shorten   = 1,              -- 'true' or number, shorten path?
           -- executed command priority is 'cmd' (if exists)
           -- otherwise auto-detect prioritizes `fd`:`rg`:`find`
           -- default options are controlled by 'fd|rg|find|_opts'
           -- NOTE: 'find -printf' requires GNU find
           -- cmd            = "find . -type f -printf '%P\n'",
-          find_opts            = [[-type f -not -path '*/\.git/*' -printf '%P\n']],
-          rg_opts              = "--color=never --files --hidden --follow -g '!.git'",
-          fd_opts              = "--color=never --type f --hidden --follow --exclude .git",
+          find_opts              = [[-type f -not -path '*/\.git/*' -printf '%P\n']],
+          rg_opts                = "--color=never --files --hidden --follow -g '!.git'",
+          fd_opts                = "--color=never --type f --hidden --follow --exclude .git",
           -- by default, cwd appears in the header only if {opts} contain a cwd
           -- parameter to a different folder than the current working directory
           -- uncomment if you wish to force display of the cwd as part of the
           -- query prompt string (fzf.vim style), header line or both
           -- show_cwd_prompt = true,
           -- show_cwd_header = true,
-          actions              = {
+          cwd_prompt             = false,
+          cwd_prompt_shorten_len = 32, -- shorten prompt beyond this length
+          cwd_prompt_shorten_val = 1, -- shortened path parts length
+          actions                = {
             -- inherits from 'actions.files', here we can override
             -- or set bind to 'false' to disable a default action
             ["default"] = actions.file_edit,
             -- custom actions are available too
             ["ctrl-y"]  = function(selected) print(selected[1]) end,
           },
-          fzf_opts             = {
+          fzf_opts               = {
             ['--history'] = vim.fn.stdpath("data") .. '/fzf-lua-files-history',
           },
         },
