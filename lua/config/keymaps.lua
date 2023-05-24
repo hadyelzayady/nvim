@@ -13,6 +13,10 @@ map("n", "<leader>ww", "<C-W>p", { desc = "Other window" })
 map("n", "<leader>wd", "<C-W>c", { desc = "Delete window" })
 map("n", "<leader>ws", "<C-W>s", { desc = "Split window below" })
 map("n", "<leader>wv", "<C-W>v", { desc = "Split window right" })
+vim.keymap.set("n", "<leader>wp", function()
+  local picked_window_id = require('window-picker').pick_window() or vim.api.nvim_get_current_win()
+  vim.api.nvim_set_current_win(picked_window_id)
+end, { desc = "Pick a window" })
 -- Don't yank on delete char
 map("n", "x", '"_x', { silent = true })
 map("n", "X", '"_X', { silent = true })
@@ -59,7 +63,7 @@ map("n", "<leader><tab>p", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
 -- files/find
 -- map("n", "<C-e>", ":lua require('telescope.builtin').oldfiles { only_cwd = true }<cr>", { desc = "Recent Files" })
-map("n", "<C-e>", ":FzfLua oldfiles<cr>", { desc = "Recent Files" })
+map("n", "<C-e>", "<cmd>FzfLua oldfiles<cr>", { desc = "Recent Files" })
 map("n", "<leader>ff", "<cmd>lua require('utils.find').find_project_files()<cr>", { desc = "Find File" })
 map("n", "<leader>fb", "<cmd>FzfLua buffers<cr>", { desc = "Find Buffer" })
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
@@ -137,7 +141,6 @@ map("n", "<leader>nr", "<cmd>Neotree reveal<cr>", { desc = "Reveal File" })
 map("n", "<leader>nc", "<cmd>TSContextToggle<cr>", { desc = "Context Toggle" })
 map("n", "<leader>nCp", "<cmd>CccPick<cr>", { desc = "Color Picker" })
 map("n", "<leader>nCt", "<cmd>CccConvert<cr>", { desc = "Color Convert" })
-
 local M = {}
 function M.lsp_global_setup()
   -- Global mappings.
