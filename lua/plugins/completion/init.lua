@@ -9,7 +9,7 @@ return {
       "hrsh7th/cmp-buffer",
       'David-Kunz/cmp-npm',
       'rcarriga/cmp-dap',
-      -- "hrsh7th/cmp-path",
+      "hrsh7th/cmp-path",
       'hrsh7th/cmp-calc',
       'saadparwaiz1/cmp_luasnip',
       'davidsierradz/cmp-conventionalcommits',
@@ -108,7 +108,8 @@ return {
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'npm' },
-          { name = 'calc' }
+          { name = 'calc' },
+          { name = 'path' }
         })
       }
     end,
@@ -142,7 +143,7 @@ return {
   },
   {
     'David-Kunz/cmp-npm',
-    requires = {
+    dependencies = {
       'nvim-lua/plenary.nvim'
     },
     config = function()

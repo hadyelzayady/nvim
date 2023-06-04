@@ -466,6 +466,8 @@ return {
       return {
         sources = {
           nls.builtins.formatting.prettierd,
+          nls.builtins.formatting.beautysh,
+          nls.builtins.code_actions.refactoring,
           -- nls.builtins.code_actions.gitsigns,
           nls.builtins.code_actions.eslint_d,
           -- require("typescript.extensions.null-ls.code-actions"),

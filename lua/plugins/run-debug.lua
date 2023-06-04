@@ -1,14 +1,14 @@
 return {
   {
     'kndndrj/nvim-projector',
-    requires = {
+    dependencies = {
       -- Install the ones you want (I recommend all)
       'mfussenegger/nvim-dap',
       'rcarriga/nvim-dap-ui',
       'tpope/vim-dadbod',
       'kristijanhusak/vim-dadbod-ui',
       -- Devicons are also supported:
-      'kyazdani42/nvim-web-devicons',
+      'nvim-tree/nvim-web-devicons',
       -- Any extra extensions that you want:
       'kndndrj/projector-loader-vscode',
     },

@@ -59,6 +59,7 @@ return {
     -- w--->w-->w----->w---->w-------->w->w
     -- e-->e-->e----->e--->e--------->e-->e
     -- b<---b<--b<-----b<----b<--------b<-b
-    "chaoren/vim-wordmotion"
+    "chaoren/vim-wordmotion",
+    enabled=false
   },
 }

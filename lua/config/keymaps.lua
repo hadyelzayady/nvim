@@ -68,6 +68,7 @@ map("n", "<leader>ff", "<cmd>lua require('utils.find').find_project_files()<cr>"
 map("n", "<leader>fb", "<cmd>FzfLua buffers<cr>", { desc = "Find Buffer" })
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 map("n", "<leader>fm", "<cmd>FzfLua marks<cr>", { desc = "marks" })
+map("n", "<leader>fr", "<cmd>FzfLua resume<cr>", { desc = "Resume find" })
 
 -- search
 map("n", "<leader>sw", "<cmd>FzfLua grep_cword<cr>", { desc = "Search Current Word (project)" })
@@ -210,15 +211,25 @@ function M.on_attach_setup(ev)
     vim.keymap.set("n", "<leader>co", "<cmd>TypescriptOrganizeImports<cr>",
       { buffer = ev.buf, desc = "Organize Imports" })
     vim.keymap.set("n", "<leader>cR", "<cmd>TypescriptRenameFile<cr>", { desc = "Rename File", buffer = ev.buf })
-    vim.keymap.set("n", "<leader>cf", "<cmd>EslintFixAll<cr>", { desc = "Fix All", buffer = ev.buf })
+    vim.keymap.set("n", "<leader>cf", "mF:%!eslint_d --stdin --fix-to-stdout --stdin-filename %<CR>`F", { desc = "Fix All", buffer = ev.buf })
+    vim.keymap.set("v", "<leader>cf", ":!eslint_d --stdin --fix-to-stdout<CR>gv", { desc = "Fix", buffer = ev.buf })
     vim.keymap.set("n", "<leader>cc", ":TypescriptRemoveUnused<cr>", { desc = "Clean Code", buffer = ev.buf })
     vim.keymap.set("n", "<leader>ci", ":TypescriptAddMissingImports<cr>", { desc = "Add Imports", buffer = ev.buf })
+    return
   end
   if client.name == "vtsls" then
     vim.keymap.set("n", "<leader>cR", "<cmd>VtsExec rename_file<cr>", { desc = "Rename File", buffer = ev.buf })
     vim.keymap.set("n", "<leader>cf", "<cmd>EslintFixAll<cr>", { desc = "Fix All", buffer = ev.buf })
     vim.keymap.set("n", "<leader>cc", ":VtsExec remove_unused<cr>", { desc = "Clean Code", buffer = ev.buf })
     vim.keymap.set("n", "<leader>ci", ":VtsExec add_missing_imports<cr>", { desc = "Add Imports", buffer = ev.buf })
+    return
+  end
+  if client.name == "rust_analyzer" then
+    -- vim.keymap.set("n", "<leader>cR", "<cmd>VtsExec rename_file<cr>", { desc = "Rename File", buffer = ev.buf })
+    vim.keymap.set("n", "<leader>cf", "<cmd>silent! !cargo fix --allow-dirty<cr>", { desc = "Fix All", buffer = ev.buf })
+    -- vim.keymap.set("n", "<leader>cc", ":VtsExec remove_unused<cr>", { desc = "Clean Code", buffer = ev.buf })
+    -- vim.keymap.set("n", "<leader>ci", ":VtsExec add_missing_imports<cr>", { desc = "Add Imports", buffer = ev.buf })
+    return
   end
 end
 
