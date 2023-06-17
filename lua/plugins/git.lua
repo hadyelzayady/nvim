@@ -91,6 +91,10 @@ return {
   {
     'sindrets/diffview.nvim',
     dependencies = 'nvim-lua/plenary.nvim',
+    cmd = {
+      "DiffviewOpen",
+      "DiffviewFileHistory"
+    },
     config = function()
       -- Lua
       local actions = require("diffview.actions")
@@ -419,7 +423,8 @@ return {
     }
   },
   {
-    "tpope/vim-fugitive"
+    "tpope/vim-fugitive",
+    cmd = { "Git" }
   },
   {
     "lambdalisue/gin.vim",

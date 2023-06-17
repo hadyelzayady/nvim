@@ -2,6 +2,10 @@ return {
   {
     --Create Color Code in neovim and colorizer
     "uga-rosa/ccc.nvim",
+    cmd = {
+      "CccPick",
+      "CccConvert"
+    },
     opts = function()
       local ccc = require("ccc")
       return {
@@ -17,14 +21,14 @@ return {
           ccc.picker.css_name
         },
         highlighter = {
-          auto_enable = true,
-          lsp = true,
-          filetypes = {
-            "scss",
-            "javascriptreact",
-            "typescriptreact",
-            "css"
-          }
+          auto_enable = false,
+          lsp = false,
+          -- filetypes = {
+          --   "scss",
+          --   "javascriptreact",
+          --   "typescriptreact",
+          --   "css"
+          -- }
         },
       }
     end
@@ -294,6 +298,7 @@ return {
   },
   {
     "folke/trouble.nvim",
+    cmd = { 'Trouble', 'TroubleToggle' },
     opts = {
       position = "bottom",            -- position of the list can be: bottom, top, left, right
       height = 10,                    -- height of the trouble list when position is top or bottom
@@ -402,6 +407,7 @@ return {
   },
   {
     "folke/zen-mode.nvim",
+    cmd = { "ZenMode" },
     opts = {
       window = {
         backdrop = 0.95, -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
@@ -463,6 +469,14 @@ return {
       -- callback where you can add custom code when the Zen window closes
       on_close = function()
       end,
+    }
+  },
+  {
+    'brenoprata10/nvim-highlight-colors',
+    opts = {
+      render = 'background', -- or 'foreground' or 'first_column'
+      enable_named_colors = true,
+      enable_tailwind = false,
     }
   }
 }

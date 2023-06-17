@@ -1,5 +1,8 @@
 return {
   "ThePrimeagen/refactoring.nvim",
+  keys = {
+    "<leader>R"
+  },
   dependencies = {
     { "nvim-lua/plenary.nvim" },
     { "nvim-treesitter/nvim-treesitter" }

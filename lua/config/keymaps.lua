@@ -31,8 +31,8 @@ map("v", "<C-J>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
 map("v", "<C-K>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 -- map("i", "<C-J>", "<Esc>:m .+1<cr>==gi", { desc = "Move down" })
 -- map("i", "<C-K>", "<Esc>:m .-2<cr>==gi", { desc = "Move up" })
-map("n", "<C-k>", ":m .-2<cr>==", { desc = "Move up" })
-map("n", "<C-j>", ":m .+1<cr>==", { desc = "Move down" })
+-- map("n", "<C-K>", ":m .-2<cr>==", { desc = "Move up" })
+-- map("n", "<C-J>", ":m .+1<cr>==", { desc = "Move down" })
 
 -- buffers
 -- map("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
@@ -75,7 +75,7 @@ map("n", "<leader>sw", "<cmd>FzfLua grep_cword<cr>", { desc = "Search Current Wo
 map("n", "<leader>sb", "<cmd>FzfLua grep_curbuf<cr>", { desc = "Search Buffer" })
 map("n", "<leader>sp", "<cmd>FzfLua grep_project<cr>", { desc = "Search Project" })
 map("n", "<leader>sv", "<cmd>FzfLua grep_visual<cr>", { desc = "Search Visual" })
-map("n", "<leader>sg", "<cmd>FzfLua live_grep_native<cr>", { desc = "Grep" })
+map("n", "<leader>sg", "<cmd>FzfLua live_grep_glob<cr>", { desc = "Grep" })
 
 
 -- quit/session/projects
@@ -114,7 +114,7 @@ map("n", "<leader>h", "<cmd>UndotreeToggle<CR>", { desc = "history" })
 -- remap to open the Telescope refactoring menu in visual mode
 map(
   "v",
-  "<leader>rr",
+  "<leader>R",
   "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>",
   { noremap = true }
 )
@@ -211,7 +211,8 @@ function M.on_attach_setup(ev)
     vim.keymap.set("n", "<leader>co", "<cmd>TypescriptOrganizeImports<cr>",
       { buffer = ev.buf, desc = "Organize Imports" })
     vim.keymap.set("n", "<leader>cR", "<cmd>TypescriptRenameFile<cr>", { desc = "Rename File", buffer = ev.buf })
-    vim.keymap.set("n", "<leader>cf", "mF:%!eslint_d --stdin --fix-to-stdout --stdin-filename %<CR>`F", { desc = "Fix All", buffer = ev.buf })
+    vim.keymap.set("n", "<leader>cf", "mF:%!eslint_d --stdin --fix-to-stdout --stdin-filename %<CR>`F",
+      { desc = "Fix All", buffer = ev.buf })
     vim.keymap.set("v", "<leader>cf", ":!eslint_d --stdin --fix-to-stdout<CR>gv", { desc = "Fix", buffer = ev.buf })
     vim.keymap.set("n", "<leader>cc", ":TypescriptRemoveUnused<cr>", { desc = "Clean Code", buffer = ev.buf })
     vim.keymap.set("n", "<leader>ci", ":TypescriptAddMissingImports<cr>", { desc = "Add Imports", buffer = ev.buf })

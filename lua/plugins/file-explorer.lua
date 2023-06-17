@@ -319,6 +319,13 @@ return {
       --
       -- see `:h neo-tree-global-custom-commands`
       commands = {
+        system_open = function(state)
+          local node = state.tree:get_node()
+          local path = node:get_id()
+          -- macOs: open file in default application in the background.
+          -- Probably you need to adapt the Linux recipe for manage path with spaces. I don't have a mac to try.
+          vim.api.nvim_command("silent !open " .. '"' .. path .. '"')
+        end,
         copy_to_system_clipboard = function(state)
           local node = state.tree:get_node()
           local path = node:get_id()
@@ -499,7 +506,8 @@ return {
             ["[g"] = "prev_git_modified",
             ["]g"] = "next_git_modified",
             ["<space>y"] = "copy_to_system_clipboard",
-            ["<space>p"] = "paste_from_system_clipboard"
+            ["<space>p"] = "paste_from_system_clipboard",
+            ["o"] = "system_open",
           },
           fuzzy_finder_mappings = {
             -- define keymaps for filter popup window in fuzzy_finder_mode
@@ -615,5 +623,19 @@ return {
         },
       },
     }
+  },
+  {
+    'stevearc/oil.nvim',
+    opts = {},
+    keys = {
+      '-'
+    },
+    -- Optional dependencies
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function(_, opts)
+      require("oil").setup(opts)
+      vim.keymap.set("n", "-", require("oil").open, { desc = "Open parent directory" })
+    end
+
   }
 }

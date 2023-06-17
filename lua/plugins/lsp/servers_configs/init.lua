@@ -9,6 +9,7 @@ function M.setup()
   require('plugins.lsp.servers_configs.cssmodules').setup()
   require('plugins.lsp.servers_configs.csslsp').setup()
   require('plugins.lsp.servers_configs.sh').setup()
+  require('plugins.lsp.servers_configs.markdown').setup()
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
