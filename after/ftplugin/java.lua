@@ -10,7 +10,7 @@ local config_location = jdtls_root .. ("config_mac")
 -- Find root of project
 -- File types that signify a Java project's root directory. This will be
 -- used by eclipse to determine what constitutes a workspace
--- local lombok = LSP_ROOT_PATH .. "/jdtls/lombok.jar"
+local lombok = LSP_ROOT_PATH .. "/jdtls/lombok.jar"
 local root_markers = {'gradlew', 'mvnw', '.git'}
 local root_dir = require('jdtls.setup').find_root(root_markers)
 
@@ -155,7 +155,7 @@ local config = {
     '--add-opens', 'java.base/java.util=ALL-UNNAMED',
     '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
     -- If you use lombok, download the lombok jar and place it in ~/.local/share/eclipse
-    -- '-javaagent:' .. lomb3ok,
+    '-javaagent:' .. lombok,
 
     -- The jar file is located where jdtls was installed. This will need to be updated
     -- to the location where you installed jdtls

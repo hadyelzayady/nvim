@@ -226,7 +226,7 @@ function M.on_attach_setup(ev)
     return
   end
   if client.name == "rust_analyzer" then
-    -- vim.keymap.set("n", "<leader>cR", "<cmd>VtsExec rename_file<cr>", { desc = "Rename File", buffer = ev.buf })
+    vim.keymap.set("n", "<leader>rr", "<cmd>RustRun<cr>", { desc = "Run", buffer = ev.buf })
     vim.keymap.set("n", "<leader>cf", "<cmd>silent! !cargo fix --allow-dirty<cr>", { desc = "Fix All", buffer = ev.buf })
     -- vim.keymap.set("n", "<leader>cc", ":VtsExec remove_unused<cr>", { desc = "Clean Code", buffer = ev.buf })
     -- vim.keymap.set("n", "<leader>ci", ":VtsExec add_missing_imports<cr>", { desc = "Add Imports", buffer = ev.buf })

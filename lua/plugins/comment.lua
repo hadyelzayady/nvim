@@ -2,12 +2,6 @@ return {
   { "JoosepAlviste/nvim-ts-context-commentstring" },
   {
     "numToStr/Comment.nvim",
-    keys = {
-      { "gcc" },
-      { "gbc" },
-      { "gc" },
-      { "gb" },
-    },
     opts = {
       ---Add a space b/w comment and the line
       padding = true,
