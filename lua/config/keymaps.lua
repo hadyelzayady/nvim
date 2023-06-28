@@ -176,7 +176,6 @@ end
 
 function M.on_attach_setup(ev)
   local opts = { buffer = ev.buf, silent = true }
-  -- Lua
   map('n', 'gd', '<CMD>Glance definitions<CR>')
   map('n', 'gr', '<CMD>Glance references<CR>')
   map('n', 'gt', '<CMD>Glance type_definitions<CR>')

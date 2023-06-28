@@ -97,7 +97,7 @@ local function dap_menu()
  _d_: Disconnect                    _S_: Scopes
  _e_: Evaluate                      _X_: Close
  _g_: Get Session                   _i_: Step Into
- _h_: Hover Variables               _o_: Step Over
+ _H_: Hover Variables               _o_: Step Over
  _r_: Toggle REPL                   _u_: Step Out
  _x_: Terminate                     _p_: Pause
  ^ ^               _q_: Quit
@@ -115,7 +115,7 @@ local function dap_menu()
       },
     },
     mode = "n",
-    body = "∂",
+    body = "<space>rh",
     -- stylua: ignore
     heads = {
       { "C", function() dap.set_breakpoint(vim.fn.input "[Condition] > ") end, desc = "Conditional Breakpoint", },
@@ -127,20 +127,28 @@ local function dap_menu()
       { "b", function() dap.step_back() end,                                   desc = "Step Back", },
       { "c", function() dap.continue() end,                                    desc = "Continue", },
       { "d", function() dap.disconnect() end,                                  desc = "Disconnect", },
-      { "e", function() dapui.eval() end,                                      mode = { "n", "v" },                          desc =
-      "Evaluate", },
-      { "g", function() dap.session() end,                                     desc = "Get Session", },
-      { "h", function() dap_widgets.hover() end,                               desc = "Hover Variables", },
-      { "i", function() dap.step_into() end,                                   desc = "Step Into", },
-      { "o", function() dap.step_over() end,                                   desc = "Step Over", },
-      { "p", function() dap.pause.toggle() end,                                desc = "Pause", },
-      { "r", function() dap.repl.toggle() end,                                 desc = "Toggle REPL", },
-      { "s", function() dap.continue() end,                                    desc = "Start", },
-      { "t", function() dap.toggle_breakpoint() end,                           desc = "Toggle Breakpoint", },
-      { "u", function() dap.step_out() end,                                    desc = "Step Out", },
-      { "x", function() dap.terminate() end,                                   desc = "Terminate", },
-      { "q", nil,                                                              { exit = true, nowait = true,
-        desc = "Exit" } },
+      {
+        "e",
+        function() dapui.eval() end,
+        mode = { "n", "v" },
+        desc =
+        "Evaluate",
+      },
+      { "g", function() dap.session() end,           desc = "Get Session", },
+      { "H", function() dap_widgets.hover() end,     desc = "Hover Variables", },
+      { "i", function() dap.step_into() end,         desc = "Step Into", },
+      { "o", function() dap.step_over() end,         desc = "Step Over", },
+      { "p", function() dap.pause.toggle() end,      desc = "Pause", },
+      { "r", function() dap.repl.toggle() end,       desc = "Toggle REPL", },
+      { "s", function() dap.continue() end,          desc = "Start", },
+      { "t", function() dap.toggle_breakpoint() end, desc = "Toggle Breakpoint", },
+      { "u", function() dap.step_out() end,          desc = "Step Out", },
+      { "x", function() dap.terminate() end,         desc = "Terminate", },
+      { "q", nil, {
+        exit = true,
+        nowait = true,
+        desc = "Exit"
+      } },
     },
   }
 end
@@ -243,35 +251,66 @@ _m_: Show Man Pages
     },
     body = "<A-q>",
     heads = {
-      { "t",     cmd "Telescope help_tags",                                       { desc = "Open Help Tags",
-        silent = true } },
-      { "k",     ":lua require('telescope.builtin').keymaps()<CR>",               { desc = "Open Neovim Keymaps",
-        silent = true } },
-      { "c",     cmd "Telescope commands",                                        { desc =
-      "Open Available Telescope Commands", silent = true } },
-      { "m",     cmd "Telescope man_pages",                                       { desc = "Opens Man Pages",
-        silent = true } },
-      { "s",     cmd "Telescope current_buffer_fuzzy_find skip_empty_lines=true",
-                                                                                    { desc =
-        "Fuzzy find in current buffer", silent = true } },
-      { "o",     cmd "Telescope aerial",                                          { desc = "Opens Symbols Outline",
-        exit = true, silent = true } },
-      { "x",     cmd "TroubleToggle quickfix",                                    { desc = "Opens Quickfix",
-        silent = true } },
-      { "l",     cmd "TroubleToggle loclist",                                     { desc = "Opens Location List",
-        silent = true } },
+      { "t", cmd "Telescope help_tags", {
+        desc = "Open Help Tags",
+        silent = true
+      } },
+      { "k", ":lua require('telescope.builtin').keymaps()<CR>", {
+        desc = "Open Neovim Keymaps",
+        silent = true
+      } },
+      { "c", cmd "Telescope commands", {
+        desc =
+        "Open Available Telescope Commands",
+        silent = true
+      } },
+      { "m", cmd "Telescope man_pages", {
+        desc = "Opens Man Pages",
+        silent = true
+      } },
+      { "s", cmd "Telescope current_buffer_fuzzy_find skip_empty_lines=true",
+        {
+          desc =
+          "Fuzzy find in current buffer",
+          silent = true
+        } },
+      { "o", cmd "Telescope aerial", {
+        desc = "Opens Symbols Outline",
+        exit = true,
+        silent = true
+      } },
+      { "x", cmd "TroubleToggle quickfix", {
+        desc = "Opens Quickfix",
+        silent = true
+      } },
+      { "l", cmd "TroubleToggle loclist", {
+        desc = "Opens Location List",
+        silent = true
+      } },
 
-      { "f",     cmd "ToggleTerm direction=float",                                { desc = "Floating Terminal",
-        silent = true } },
-      { "v",     cmd "ToggleTerm direction=vertical",                             { desc = "Vertical Terminal",
-        silent = true } },
-      { "h",     cmd "ToggleTerm direction=horizontal",                           { desc = "Horizontal Terminal",
-        silent = true } },
+      { "f", cmd "ToggleTerm direction=float", {
+        desc = "Floating Terminal",
+        silent = true
+      } },
+      { "v", cmd "ToggleTerm direction=vertical", {
+        desc = "Vertical Terminal",
+        silent = true
+      } },
+      { "h", cmd "ToggleTerm direction=horizontal", {
+        desc = "Horizontal Terminal",
+        silent = true
+      } },
 
-      { "q",     nil,                                                             { desc = "quit", exit = true,
-        nowait = true } },
-      { "<Esc>", nil,                                                             { desc = "quit", exit = true,
-        nowait = true } },
+      { "q", nil, {
+        desc = "quit",
+        exit = true,
+        nowait = true
+      } },
+      { "<Esc>", nil, {
+        desc = "quit",
+        exit = true,
+        nowait = true
+      } },
     },
   }
 end
