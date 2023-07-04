@@ -161,7 +161,8 @@ return {
         typescriptreact = { 'eslint_d', },
         javascript = { 'eslint_d', },
         javascriptreact = { 'eslint_d', },
-        typescript = { 'eslint_d', }
+        typescript = { 'eslint_d', },
+        java = { 'checkstyle', }
       }
       vim.api.nvim_create_autocmd({ "BufWritePost", "InsertLeave", "BufReadPost" }, {
         callback = function()
@@ -490,7 +491,10 @@ return {
           nls.builtins.formatting.beautysh,
           nls.builtins.code_actions.refactoring,
           -- nls.builtins.code_actions.gitsigns,
-          nls.builtins.code_actions.eslint_d,
+          -- nls.builtins.diagnostics.checkstyle
+          --   .with({
+          --   extra_args = { "-c", "/google_checks.xml" }, -- or "/sun_checks.xml" or path to self written rules
+          -- }), nls.builtins.code_actions.eslint_d,
           -- require("typescript.extensions.null-ls.code-actions"),
         },
       }

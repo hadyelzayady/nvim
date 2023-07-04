@@ -63,6 +63,8 @@ function M.setup()
       fallback = true,        -- fall back to standard LSP definition on failure
     },
     server = {
+      inlay_hints = { enabled = true },
+
       -- cmd = { 'bunx', '--bun', 'typescript-language-server', '--stdio' },
       handlers = handlers,
       capabilities = require("plugins.lsp.servers_configs").capabilities,

@@ -63,6 +63,14 @@ local config = {
       eclipse = {
         downloadSources = true,
       },
+      import = {
+        gradle = {
+          enabled = true
+        },
+        maven = {
+          enabled = true
+        },
+      },
       configuration = {
         updateBuildConfiguration = "interactive",
         -- runtimes = {
@@ -96,8 +104,13 @@ local config = {
       format = {
         enabled = false,
       },
+      signatureHelp = { enabled = true },
+      jdt = {
+        ls = {
+          lombokSupport = {}
+        }
+      },
     },
-    signatureHelp = { enabled = true },
     extendedClientCapabilities = extendedClientCapabilities,
   },
   init_options = {

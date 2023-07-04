@@ -78,7 +78,13 @@ return {
           -- { text = { "%s" },                        click = "v:lua.ScSa" },
           { text = { builtin.lnumfunc, " " },          click = "v:lua.ScLa" },
           {
-            sign = { name = { ".*" }, maxwidth = 2, colwidth = 1, auto = true, wrap = true },
+            sign = {
+              name = { ".*" },
+              maxwidth = 2,
+              colwidth = 1,
+              auto = false,
+              wrap = true,
+            },
             click = "v:lua.ScSa"
           },
         },
