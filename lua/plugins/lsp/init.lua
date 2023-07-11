@@ -162,7 +162,7 @@ return {
         javascript = { 'eslint_d', },
         javascriptreact = { 'eslint_d', },
         typescript = { 'eslint_d', },
-        java = { 'checkstyle', }
+        -- java = { 'checkstyle', }
       }
       vim.api.nvim_create_autocmd({ "BufWritePost", "InsertLeave", "BufReadPost" }, {
         callback = function()
@@ -490,6 +490,7 @@ return {
           nls.builtins.formatting.prettierd,
           nls.builtins.formatting.beautysh,
           nls.builtins.code_actions.refactoring,
+          nls.builtins.code_actions.eslint_d,
           -- nls.builtins.code_actions.gitsigns,
           -- nls.builtins.diagnostics.checkstyle
           --   .with({
@@ -554,6 +555,12 @@ return {
     ft = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" }
   },
   {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    enabled = false,
+    opts = {},
+  },
+  {
     "b0o/schemastore.nvim",
     lazy = true
   },
@@ -565,5 +572,23 @@ return {
     "simrat39/rust-tools.nvim",
     lazy = true,
     ft = { "rust" }
+  },
+  {
+    'Exafunction/codeium.vim',
+    config = function()
+      -- Change '<C-g>' here to any keycode you like.
+      vim.keymap.set('i', '<C-g>', function() return vim.fn['codeium#Accept']() end, { expr = true })
+      vim.keymap.set('i', '<c-;>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
+      vim.keymap.set('i', '<c-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
+      vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
+    end
+  },
+  {
+    "artur-shaik/jc.nvim",
+    enabled = false,
+    dependencies = {
+      "puremourning/vimspector",
+      "mfussenegger/nvim-jdtls"
+    }
   }
 }

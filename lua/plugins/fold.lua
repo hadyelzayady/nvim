@@ -72,7 +72,7 @@ return {
         segments = {
           { text = { builtin.foldfunc, colwidth = 2 }, click = "v:lua.ScFa" },
           {
-            sign = { name = { "Diagnostic" }, maxwidth = 2, auto = true },
+            sign = { name = { "Diagnostic" }, maxwidth = 2, auto = false },
             click = "v:lua.ScSa"
           },
           -- { text = { "%s" },                        click = "v:lua.ScSa" },
@@ -82,7 +82,7 @@ return {
               name = { ".*" },
               maxwidth = 2,
               colwidth = 1,
-              auto = false,
+              auto = true,
               wrap = true,
             },
             click = "v:lua.ScSa"

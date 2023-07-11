@@ -206,7 +206,7 @@ function M.on_attach_setup(ev)
 
   map('n', '<leader>lr', vim.lsp.buf.rename, opts)
   local client = vim.lsp.get_client_by_id(ev.data.client_id)
-  if client.name == "tsserver" then
+  if client.name == "tsserver" or client.name == "typescript-tools" then
     vim.keymap.set("n", "<leader>co", "<cmd>TypescriptOrganizeImports<cr>",
       { buffer = ev.buf, desc = "Organize Imports" })
     vim.keymap.set("n", "<leader>cR", "<cmd>TypescriptRenameFile<cr>", { desc = "Rename File", buffer = ev.buf })
