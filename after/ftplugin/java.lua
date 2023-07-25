@@ -1,191 +1,118 @@
-local status, jdtls = pcall(require, "jdtls")
-if not status then
+local _jdtls, jdtls = pcall(require, "jdtls")
+
+if not _jdtls then
   return
 end
 
--- Setup Workspace
-local home = os.getenv "HOME"
-local workspace_path = home .. "/.local/share/eclipse/"
+local function on_init(client)
+  if client.config.settings then
+    client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+  end
+end
+
+local home = os.getenv("HOME")
+local share_dir = home .. "/.local/share"
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
-local workspace_dir = workspace_path .. project_name
+local workspace_dir = share_dir .. "/eclipse/" .. project_name
 
--- Determine OS
-local os_config = "mac"
--- if vim.fn.has "mac" == 1 then
---   os_config = "mac"
--- end
+-- Set proper Java executable
+local mason_registry = require("mason-registry")
 
--- Setup Capabilities
-local capabilities = require("plugins.lsp.servers_configs").capabilities
-local extendedClientCapabilities = jdtls.extendedClientCapabilities
-extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
-
--- Setup Testing and Debugging
-local bundles = {}
-local mason_path = vim.fn.glob(vim.fn.stdpath "data" .. "/mason/")
-vim.list_extend(bundles, vim.split(vim.fn.glob(mason_path .. "packages/java-test/extension/server/*.jar"), "\n"))
-vim.list_extend(
-  bundles,
-  vim.split(
-    vim.fn.glob(mason_path .. "packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar"),
-    "\n"
-  )
-)
-
--- lvim.builtin.dap.active = true
-local config = {
-  cmd = {
-    "java",
-    "-Declipse.application=org.eclipse.jdt.ls.core.id1",
-    "-Dosgi.bundles.defaultStartLevel=4",
-    "-Declipse.product=org.eclipse.jdt.ls.core.product",
-    "-Dlog.protocol=true",
-    "-Dlog.level=ALL",
-    "-Xms1g",
-    "--add-modules=ALL-SYSTEM",
-    "--add-opens",
-    "java.base/java.util=ALL-UNNAMED",
-    "--add-opens",
-    "java.base/java.lang=ALL-UNNAMED",
-    "-javaagent:" .. home .. "/.local/share/nvim/mason/packages/jdtls/lombok.jar",
-    "-jar",
-    vim.fn.glob(home .. "/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
-    "-configuration",
-    home .. "/.local/share/nvim/mason/packages/jdtls/config_" .. os_config,
-    "-data",
-    workspace_dir,
-  },
-  root_dir = require("jdtls.setup").find_root { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" },
-  capabilities = capabilities,
-
-  settings = {
-    java = {
-      eclipse = {
-        downloadSources = true,
-      },
-      import = {
-        gradle = {
-          enabled = true
-        },
-        maven = {
-          enabled = true
-        },
-      },
-      configuration = {
-        updateBuildConfiguration = "interactive",
-        -- runtimes = {
-        --   {
-        --     name = "JavaSE-11",
-        --     path = "~/.sdkman/candidates/java/11.0.17-tem",
-        --   },
-        --   {
-        --     name = "JavaSE-18",
-        --     path = "~/.sdkman/candidates/java/18.0.2-sem",
-        --   },
-        -- },
-      },
-      maven = {
-        downloadSources = true,
-      },
-      implementationsCodeLens = {
-        enabled = true,
-      },
-      referencesCodeLens = {
-        enabled = true,
-      },
-      references = {
-        includeDecompiledSources = true,
-      },
-      inlayHints = {
-        parameterNames = {
-          enabled = "all", -- literals, all, none
-        },
-      },
-      format = {
-        enabled = false,
-      },
-      signatureHelp = { enabled = true },
-      jdt = {
-        ls = {
-          lombokSupport = {}
-        }
-      },
-    },
-    extendedClientCapabilities = extendedClientCapabilities,
-  },
-  init_options = {
-    bundles = bundles,
-  },
+local bundles = {
+  mason_registry.get_package("java-debug-adapter"):get_install_path() ..
+  '/extension/server/com.microsoft.java.debug.plugin-0.45.0.jar'
 }
+vim.list_extend(bundles,
+  vim.split(vim.fn.glob(mason_registry.get_package("java-test"):get_install_path() .. "/extension/server/*.jar"), "\n"))
 
-config["on_attach"] = function(client, bufnr)
+local on_attach = function(client, bufnr)
   local _, _ = pcall(vim.lsp.codelens.refresh)
   require("jdtls").setup_dap({ hotcodereplace = "auto" })
   -- require("").on_attach(client, bufnr)
   local status_ok, jdtls_dap = pcall(require, "jdtls.dap")
   if status_ok then
-    jdtls_dap.setup_dap_main_class_configs()
+    jdtls_dap.setup_dap_main_class_configs({
+      config_overrides = {
+        vmArgs = "-Dspring.profiles.active=local",
+      }
+    })
   end
 end
 
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-  pattern = { "*.java" },
-  callback = function()
-    local _, _ = pcall(vim.lsp.codelens.refresh)
-  end,
-})
+local jdtls_path = mason_registry.get_package("jdtls"):get_install_path()
+local mason_path = share_dir .. "/MinimalNvim/mason"
+local capabilities = require("plugins.lsp.servers_configs").capabilities
+local extendedClientCapabilities = jdtls.extendedClientCapabilities
+extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 
--- local formatters = require "lvim.lsp.null-ls.formatters"
--- formatters.setup {
---   { command = "google_java_format", filetypes = { "java" } },
--- }
-
-require("jdtls").start_or_attach(config)
-
-local status_ok, which_key = pcall(require, "which-key")
-if not status_ok then
-  return
-end
-
-local opts = {
-  mode = "n",     -- NORMAL mode
-  prefix = "<leader>",
-  buffer = nil,   -- Global mappings. Specify a buffer number for buffer local mappings
-  silent = true,  -- use `silent` when creating keymaps
-  noremap = true, -- use `noremap` when creating keymaps
-  nowait = true,  -- use `nowait` when creating keymaps
-}
-
-local vopts = {
-  mode = "v",     -- VISUAL mode
-  prefix = "<leader>",
-  buffer = nil,   -- Global mappings. Specify a buffer number for buffer local mappings
-  silent = true,  -- use `silent` when creating keymaps
-  noremap = true, -- use `noremap` when creating keymaps
-  nowait = true,  -- use `nowait` when creating keymaps
-}
-
-local mappings = {
-  C = {
-    name = "Java",
-    o = { "<Cmd>lua require'jdtls'.organize_imports()<CR>", "Organize Imports" },
-    v = { "<Cmd>lua require('jdtls').extract_variable()<CR>", "Extract Variable" },
-    c = { "<Cmd>lua require('jdtls').extract_constant()<CR>", "Extract Constant" },
-    t = { "<Cmd>lua require'jdtls'.test_nearest_method()<CR>", "Test Method" },
-    T = { "<Cmd>lua require'jdtls'.test_class()<CR>", "Test Class" },
-    u = { "<Cmd>JdtUpdateConfig<CR>", "Update Config" },
+local java_cmd = mason_path .. "/bin/jdtls"
+print('works:' .. workspace_dir)
+local config = {
+  cmd = {
+    java_cmd,
+    '-Declipse.application=org.eclipse.jdt.ls.core.id1',
+    '-Dosgi.bundles.defaultStartLevel=4',
+    '-Declipse.product=org.eclipse.jdt.ls.core.product',
+    '-Dlog.protocol=true',
+    '-Dlog.level=ALL',
+    '-Xms512m',
+    '-Xmx2048m',
+    '--add-modules=ALL-SYSTEM',
+    '--add-opens', 'java.base/java.util=ALL-UNNAMED',
+    '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
+    '-jar',
+    vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar"),
+    '-configuration', jdtls_path .. '/config_mac',
+    '-data', workspace_dir
   },
-}
-
-local vmappings = {
-  C = {
-    name = "Java",
-    v = { "<Esc><Cmd>lua require('jdtls').extract_variable(true)<CR>", "Extract Variable" },
-    c = { "<Esc><Cmd>lua require('jdtls').extract_constant(true)<CR>", "Extract Constant" },
-    m = { "<Esc><Cmd>lua require('jdtls').extract_method(true)<CR>", "Extract Method" },
+  flags = {
+    debounce_text_changes = 150,
+    allow_incremental_sync = true
   },
+  --root_dir = require("jdtls.setup").find_root({"build.gradle", "pom.xml", ".git"}),
+  -- Using .metadata dir (Eclipse workspace) as reference for setting root dir
+  root_dir = require("jdtls.setup").find_root { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" },
+
+  on_init = on_init,
+  init_options = {
+    bundles = bundles
+  },
+  capabilities = capabilities,
+  on_attach = on_attach,
+  settings = {
+    java = {
+      signatureHelp = {
+        enabled = true
+      },
+      saveActions = {
+        organizeImports = true
+      },
+      completion = {
+        maxResults = 20,
+        favoriteStaticMembers = {
+          "org.hamcrest.MatcherAssert.assertThat",
+          "org.hamcrest.Matchers.*",
+          "org.hamcrest.CoreMatchers.*",
+          "org.junit.jupiter.api.Assertions.*",
+          "java.util.Objects.requireNonNull",
+          "java.util.Objects.requireNonNullElse",
+          "org.mockito.Mockito.*"
+        }
+      },
+      sources = {
+        organizeImports = {
+          starThreshold = 9999,
+          staticStarThreshold = 9999
+        }
+      },
+      codeGeneration = {
+        toString = {
+          template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}"
+        }
+      }
+    }
+  }
 }
 
-which_key.register(mappings, opts)
-which_key.register(vmappings, vopts)
-which_key.register(vmappings, vopts)
+print('jdtlssss')
+jdtls.start_or_attach(config)
