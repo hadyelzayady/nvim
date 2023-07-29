@@ -23,4 +23,12 @@ function M.os_capture(cmd, raw)
   return output
 end
 
+function M.escape_path(arg)
+  return vim.fn.shellescape(arg, true)
+end
+
+function M.get_current_buffer_file_path()
+  return vim.api.nvim_buf_get_name(0)
+end
+
 return M

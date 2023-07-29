@@ -4,23 +4,23 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     config = function()
       -- Setup language servers.
-      require('plugins.lsp.diagnostics').setup()
-      require('plugins.lsp.servers_configs').setup()
+      require("plugins.lsp.diagnostics").setup()
+      require("plugins.lsp.servers_configs").setup()
       -- Global mappings.
       -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-      require("config.keymaps").lsp_global_setup();
+      require("config.keymaps").lsp_global_setup()
 
       -- Use LspAttach autocommand to only map the following keys
       -- after the language server attaches to the current buffer
-      vim.api.nvim_create_autocmd('LspAttach', {
-        group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+      vim.api.nvim_create_autocmd("LspAttach", {
+        group = vim.api.nvim_create_augroup("UserLspConfig", {}),
         callback = function(ev)
           -- Enable completion triggered by <c-x><c-o>
           -- vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
 
           -- Buffer local mappings.
           -- See `:help vim.lsp.*` for documentation on any of the below functions
-          require("config.keymaps").on_attach_setup(ev);
+          require("config.keymaps").on_attach_setup(ev)
         end,
       })
     end,
@@ -66,16 +66,15 @@ return {
               enabled = false,
             },
           },
-
-        }
-      }
+        },
+      },
     },
   },
   {
-    "b0o/schemastore.nvim"
+    "b0o/schemastore.nvim",
   },
   {
-    'echasnovski/mini.completion',
+    "echasnovski/mini.completion",
     version = false,
     enabled = false,
     opts = {
@@ -87,13 +86,13 @@ return {
       -- - `height` and `width` are maximum dimensions.
       -- - `border` defines border (as in `nvim_open_win()`).
       window = {
-        info = { height = 25, width = 80, border = 'none' },
-        signature = { height = 25, width = 80, border = 'none' },
+        info = { height = 25, width = 80, border = "none" },
+        signature = { height = 25, width = 80, border = "none" },
       },
       -- Way of how module does LSP completion
       lsp_completion = {
         -- `source_func` should be one of 'completefunc' or 'omnifunc'.
-        source_func = 'omnifunc',
+        source_func = "omnifunc",
         -- `auto_setup` should be boolean indicating if LSP completion is set up
         -- on every `BufEnter` event.
         auto_setup = true,
@@ -112,16 +111,16 @@ return {
       -- Module mappings. Use `''` (empty string) to disable one. Some of them
       -- might conflict with system mappings.
       mappings = {
-        force_twostep = '<C-Space>',  -- Force two-step completion
-        force_fallback = '<A-Space>', -- Force fallback completion
+        force_twostep = "<C-Space>",  -- Force two-step completion
+        force_fallback = "<A-Space>", -- Force fallback completion
       },
       -- Whether to set Vim's settings for better experience (modifies
       -- `shortmess` and `completeopt`)
       set_vim_settings = true,
     },
     config = function(_, opts)
-      require('mini.completion').setup(opts)
-    end
+      require("mini.completion").setup(opts)
+    end,
   },
   {
     "rmagatti/goto-preview",
@@ -151,25 +150,25 @@ return {
     config = function()
       require("goto-preview").setup()
       require("config.keymaps").goto_preview_setup()
-    end
+    end,
   },
   {
     -- linting
     "mfussenegger/nvim-lint",
     config = function()
-      require('lint').linters_by_ft = {
-        typescriptreact = { 'eslint_d', },
-        javascript = { 'eslint_d', },
-        javascriptreact = { 'eslint_d', },
-        typescript = { 'eslint_d', },
+      require("lint").linters_by_ft = {
+        typescriptreact = { "eslint_d" },
+        javascript = { "eslint_d" },
+        javascriptreact = { "eslint_d" },
+        typescript = { "eslint_d" },
         -- java = { 'checkstyle', }
       }
-      vim.api.nvim_create_autocmd({ "BufWritePost", "InsertLeave", "BufReadPost" }, {
+      vim.api.nvim_create_autocmd({ "TextChanged" }, {
         callback = function()
           require("lint").try_lint()
         end,
       })
-    end
+    end,
   },
   {
     "schrieveslaach/sonarlint.nvim",
@@ -177,27 +176,27 @@ return {
     options = {
       server = {
         cmd = {
-          'sonarlint-language-server',
+          "sonarlint-language-server",
           -- Ensure that sonarlint-language-server uses stdio channel
-          '-stdio',
-          '-analyzers',
+          "-stdio",
+          "-analyzers",
           -- paths to the analyzers you need, using those for python and java in this example
           vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarjava.jar"),
-        }
+        },
       },
       filetypes = {
         -- Requires nvim-jdtls, otherwise an error message will be printed
-        'java',
-      }
-    }
+        "java",
+      },
+    },
   },
   {
     -- show lsp progress
     "j-hui/fidget.nvim",
     opts = {},
     config = function(_, opts)
-      require "fidget".setup(opts)
-    end
+      require("fidget").setup(opts)
+    end,
   },
   {
     "dnlhc/glance.nvim",
@@ -224,45 +223,45 @@ return {
         },
         border = {
           enable = false, -- Show window borders. Only horizontal borders allowed
-          top_char = '―',
-          bottom_char = '―',
+          top_char = "―",
+          bottom_char = "―",
         },
         list = {
-          position = 'right', -- Position of the list window 'left'|'right'
+          position = "right", -- Position of the list window 'left'|'right'
           width = 0.33,       -- 33% width relative to the active window, min 0.1, max 0.5
         },
         theme = {
           -- This feature might not work properly in nvim-0.7.2
           enable = true, -- Will generate colors for the plugin based on your current colorscheme
-          mode = 'auto', -- 'brighten'|'darken'|'auto', 'auto' will set mode based on the brightness of your colorscheme
+          mode = "auto", -- 'brighten'|'darken'|'auto', 'auto' will set mode based on the brightness of your colorscheme
         },
         mappings = {
           list = {
-            ['j'] = actions.next,     -- Bring the cursor to the next item in the list
-            ['k'] = actions.previous, -- Bring the cursor to the previous item in the list
-            ['<Down>'] = actions.next,
-            ['<Up>'] = actions.previous,
-            ['<Tab>'] = actions.next_location,       -- Bring the cursor to the next location skipping groups in the list
-            ['<S-Tab>'] = actions.previous_location, -- Bring the cursor to the previous location skipping groups in the list
-            ['<C-u>'] = actions.preview_scroll_win(5),
-            ['<C-d>'] = actions.preview_scroll_win(-5),
-            ['v'] = actions.jump_vsplit,
-            ['s'] = actions.jump_split,
-            ['t'] = actions.jump_tab,
-            ['<CR>'] = actions.jump,
-            ['o'] = actions.jump,
-            ['<leader>l'] = actions.enter_win('preview'), -- Focus preview window
-            ['q'] = actions.close,
-            ['Q'] = actions.close,
-            ['<Esc>'] = actions.close,
+            ["j"] = actions.next,     -- Bring the cursor to the next item in the list
+            ["k"] = actions.previous, -- Bring the cursor to the previous item in the list
+            ["<Down>"] = actions.next,
+            ["<Up>"] = actions.previous,
+            ["<Tab>"] = actions.next_location,       -- Bring the cursor to the next location skipping groups in the list
+            ["<S-Tab>"] = actions.previous_location, -- Bring the cursor to the previous location skipping groups in the list
+            ["<C-u>"] = actions.preview_scroll_win(5),
+            ["<C-d>"] = actions.preview_scroll_win(-5),
+            ["v"] = actions.jump_vsplit,
+            ["s"] = actions.jump_split,
+            ["t"] = actions.jump_tab,
+            ["<CR>"] = actions.jump,
+            ["o"] = actions.jump,
+            ["<leader>l"] = actions.enter_win("preview"), -- Focus preview window
+            ["q"] = actions.close,
+            ["Q"] = actions.close,
+            ["<Esc>"] = actions.close,
             ["<C-q>"] = actions.quickfix,
             -- ['<Esc>'] = false -- disable a mapping
           },
           preview = {
-            ['Q'] = actions.close,
-            ['<Tab>'] = actions.next_location,
-            ['<S-Tab>'] = actions.previous_location,
-            ['<leader>l'] = actions.enter_win('list'), -- Focus list window
+            ["Q"] = actions.close,
+            ["<Tab>"] = actions.next_location,
+            ["<S-Tab>"] = actions.previous_location,
+            ["<leader>l"] = actions.enter_win("list"), -- Focus list window
           },
         },
         hooks = {
@@ -282,19 +281,19 @@ return {
           end,
         },
         folds = {
-          fold_closed = '󰅂',
-          fold_open = '󰅀',
+          fold_closed = "󰅂",
+          fold_open = "󰅀",
           folded = true, -- Automatically fold list on startup
         },
         indent_lines = {
           enable = true,
-          icon = '│',
+          icon = "│",
         },
         winbar = {
           enable = true, -- Available strating from nvim-0.8+
         },
       }
-    end
+    end,
   },
   {
     -- snippets
@@ -325,62 +324,7 @@ return {
     enabled = false,
     opts = {
       input_buffer_type = "dressing",
-    }
-  },
-  {
-    "kosayoda/nvim-lightbulb",
-    enabled = false,
-    opts = {
-      -- LSP client names to ignore
-      -- Example: {"sumneko_lua", "null-ls"}
-      ignore = {},
-      sign = {
-        enabled = false,
-        -- Priority of the gutter sign
-        priority = 10,
-      },
-      float = {
-        enabled = true,
-        -- Text to show in the popup float
-        text = "💡",
-        -- Available keys for window options:
-        -- - height     of floating window
-        -- - width      of floating window
-        -- - wrap_at    character to wrap at for computing height
-        -- - max_width  maximal width of floating window
-        -- - max_height maximal height of floating window
-        -- - pad_left   number of columns to pad contents at left
-        -- - pad_right  number of columns to pad contents at right
-        -- - pad_top    number of lines to pad contents at top
-        -- - pad_bottom number of lines to pad contents at bottom
-        -- - offset_x   x-axis offset of the floating window
-        -- - offset_y   y-axis offset of the floating window
-        -- - anchor     corner of float to place at the cursor (NW, NE, SW, SE)
-        -- - winblend   transparency of the window (0-100)
-        win_opts = {},
-      },
-      virtual_text = {
-        enabled = false,
-        -- Text to show at virtual text
-        text = "💡",
-        -- highlight mode to use for virtual text (replace, combine, blend), see :help nvim_buf_set_extmark() for reference
-        hl_mode = "replace",
-      },
-      status_text = {
-        enabled = false,
-        -- Text to provide when code actions are available
-        text = "💡",
-        -- Text to provide when no actions are available
-        text_unavailable = ""
-      },
-      autocmd = {
-        enabled = true,
-        -- see :help autocmd-pattern
-        pattern = { "*" },
-        -- see :help autocmd-events
-        events = { "CursorHold", "CursorHoldI" }
-      }
-    }
+    },
   },
   {
     "williamboman/mason.nvim",
@@ -389,7 +333,7 @@ return {
       local path = require("plenary.path")
       return {
         -- The directory in which to install packages.
-        install_root_dir = vim.fn.stdpath "data" .. "/mason",
+        install_root_dir = vim.fn.stdpath("data") .. "/mason",
         -- Where Mason should put its bin location in your PATH. Can be one of:
         -- - "prepend" (default, Mason's bin location is put first in PATH)
         -- - "append" (Mason's bin location is put at the end of PATH)
@@ -477,7 +421,7 @@ return {
           },
         },
       }
-    end
+    end,
   },
   {
     "jose-elias-alvarez/null-ls.nvim",
@@ -487,7 +431,6 @@ return {
       local nls = require("null-ls")
       return {
         sources = {
-          nls.builtins.formatting.prettierd,
           nls.builtins.formatting.beautysh,
           nls.builtins.code_actions.refactoring,
           nls.builtins.code_actions.eslint_d,
@@ -504,25 +447,25 @@ return {
   {
     "lewis6991/hover.nvim",
     config = function()
-      require("hover").setup {
+      require("hover").setup({
         init = function()
           -- Require providers
           require("hover.providers.lsp")
-          require('hover.providers.gh')
-          require('hover.providers.gh_user')
+          require("hover.providers.gh")
+          require("hover.providers.gh_user")
           -- require('hover.providers.jira')
           -- require('hover.providers.man')
           -- require('hover.providers.dictionary')
         end,
         preview_opts = {
-          border = nil
+          border = nil,
         },
         -- Whether the contents of a currently open hover window should be moved
         -- to a :h preview-window when pressing the hover keymap.
         preview_window = false,
-        title = true
-      }
-    end
+        title = true,
+      })
+    end,
   },
   {
     "dmmulroy/tsc.nvim",
@@ -542,17 +485,17 @@ return {
         hide_progress_notifications_from_history = true,
         spinner = { "⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷" },
       }
-    end
+    end,
   },
   {
     "mfussenegger/nvim-jdtls",
     lazy = true,
-    ft = { 'java' }
+    ft = { "java" },
   },
   {
     "jose-elias-alvarez/typescript.nvim",
     lazy = true,
-    ft = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" }
+    ft = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
   },
   {
     "pmizio/typescript-tools.nvim",
@@ -562,33 +505,82 @@ return {
   },
   {
     "b0o/schemastore.nvim",
-    lazy = true
+    lazy = true,
   },
   {
     "yioneko/nvim-vtsls",
-    enabled = false
+    enabled = false,
   },
   {
     "simrat39/rust-tools.nvim",
     lazy = true,
-    ft = { "rust" }
+    ft = { "rust" },
   },
   {
-    'Exafunction/codeium.vim',
+    "Exafunction/codeium.vim",
     config = function()
       -- Change '<C-g>' here to any keycode you like.
-      vim.keymap.set('i', '<C-g>', function() return vim.fn['codeium#Accept']() end, { expr = true })
-      vim.keymap.set('i', '<c-;>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
-      vim.keymap.set('i', '<c-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
-      vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
-    end
+      vim.keymap.set("i", "<C-g>", function()
+        return vim.fn["codeium#Accept"]()
+      end, { expr = true })
+      vim.keymap.set("i", "<c-;>", function()
+        return vim.fn["codeium#CycleCompletions"](1)
+      end, { expr = true })
+      vim.keymap.set("i", "<c-,>", function()
+        return vim.fn["codeium#CycleCompletions"](-1)
+      end, { expr = true })
+      vim.keymap.set("i", "<c-x>", function()
+        return vim.fn["codeium#Clear"]()
+      end, { expr = true })
+    end,
   },
   {
     "artur-shaik/jc.nvim",
     enabled = false,
     dependencies = {
       "puremourning/vimspector",
-      "mfussenegger/nvim-jdtls"
-    }
-  }
+      "mfussenegger/nvim-jdtls",
+    },
+  },
+  {
+    "nvimdev/guard.nvim",
+    config = function()
+      local ft = require("guard.filetype")
+
+      local util = require("utils.functions")
+      -- -- use clang-format and clang-tidy for c files
+      -- ft('c'):fmt('clang-format')
+      --     :lint('clang-tidy')
+
+      -- use stylua to format lua files and no linter
+      -- ft('lua'):fmt('stylua')
+
+      -- use lsp to format first then use golines to format
+      -- ft('go'):fmt('lsp')
+      --     :append('golines')
+      --     :lint('golangci')
+
+      -- multiple files register
+      ft("typescript,javascript,typescriptreact"):fmt("prettier"):fmt({
+        cmd = "eslint_d",
+        args = { "--stdin", "--fix-to-stdout", "--stdin-filename" },
+        fname = true,
+        stdin = true,
+      })
+      ft("scss,css"):fmt("prettier")
+      --   :append({
+      --   cmd = 'eslint_d',
+      --   args = { '--stdin', '--fix-to-stdout', '--stdin-filename', vim.fn.expand('%') },
+      --   -- fname = true,
+      --   stdin = true,
+      -- })
+
+      -- call setup LAST
+      require("guard").setup({
+        -- the only option for the setup function
+        fmt_on_save = true,
+      })
+    end,
+  },
+  {},
 }

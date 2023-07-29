@@ -201,7 +201,7 @@ function M.on_attach_setup(ev)
   map('n', '<space>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, opts)
-  map('n', '<leader>lf', function() require('plugins.lsp.utils').format() end,
+  map({ 'n', 'v' }, '<leader>lf', function() require('plugins.lsp.utils').format() end,
     { silent = true, desc = "Format" })
 
   map('n', '<leader>lr', vim.lsp.buf.rename, opts)
