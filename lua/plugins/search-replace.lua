@@ -268,7 +268,7 @@ return {
 		},
 	},
 	{
-		"Yggdroot/LeaderF",
-		cmd = "Leaderf",
+		"eugen0329/vim-esearch",
+		enabled = false,
 	},
 }
