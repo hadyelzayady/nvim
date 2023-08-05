@@ -26,10 +26,10 @@ return {
     end
   },
   {
-      "kylechui/nvim-surround",
-      version = "*", -- Use for stability; omit to use `main` branch for the latest features
-      event = "VeryLazy",
-      config = function(_, opts)
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function(_, opts)
       require("nvim-surround").setup(opts)
     end
   },
@@ -37,5 +37,19 @@ return {
     "axelvc/template-string.nvim",
     ft = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact', 'python' }, -- filetypes where the plugin is active
     opts=require("plugins-options.template-string")
-  }
+  },
+  { "tpope/vim-repeat", event = "VeryLazy" },
+  {
+    "Wansmer/treesj",
+    keys = { "gs" },
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    opts = require("plugins-options.treesj")
+  },
+  {
+    "smjonas/live-command.nvim",
+    opts = require("plugins-options.live-command"),
+    config = function (_,opts)
+      require("live-command").setup(opts)
+    end
+  },
 }

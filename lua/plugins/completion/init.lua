@@ -13,6 +13,7 @@ return {
       'hrsh7th/cmp-calc',
       'saadparwaiz1/cmp_luasnip',
       'davidsierradz/cmp-conventionalcommits',
+      'saadparwaiz1/cmp_luasnip'
     },
     opts = function()
       local cmp = require 'cmp'

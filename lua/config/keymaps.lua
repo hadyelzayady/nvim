@@ -381,4 +381,19 @@ M.harpoon_keys={
   },
 }
 
+function M.codium()
+  map("i", "<C-g>", function()
+    return vim.fn["codeium#Accept"]()
+    end, { expr = true })
+  map("i", "<c-;>", function()
+    return vim.fn["codeium#CycleCompletions"](1)
+    end, { expr = true })
+  map("i", "<c-,>", function()
+    return vim.fn["codeium#CycleCompletions"](-1)
+  end, { expr = true })
+  map("i", "<c-c>", function()
+    return vim.fn["codeium#Clear"]()
+  end, { expr = true })
+end
+
 return M

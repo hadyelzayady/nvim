@@ -3,19 +3,25 @@ return {
 		"Exafunction/codeium.vim",
 		event = { "InsertEnter" },
 		config = function()
-			-- Change '<C-g>' here to any keycode you like.
-			vim.keymap.set("i", "<C-g>", function()
-				return vim.fn["codeium#Accept"]()
-			end, { expr = true })
-			vim.keymap.set("i", "<c-;>", function()
-				return vim.fn["codeium#CycleCompletions"](1)
-			end, { expr = true })
-			vim.keymap.set("i", "<c-,>", function()
-				return vim.fn["codeium#CycleCompletions"](-1)
-			end, { expr = true })
-			vim.keymap.set("i", "<c-c>", function()
-				return vim.fn["codeium#Clear"]()
-			end, { expr = true })
+      require("config.keymaps").codium()
 		end,
 	},
+  {
+    "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
+    dependencies={
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
+      "petertriho/cmp-git",
+      'David-Kunz/cmp-npm',
+      -- 'rcarriga/cmp-dap',
+      "hrsh7th/cmp-path",
+      'hrsh7th/cmp-calc',
+      'saadparwaiz1/cmp_luasnip',
+      'davidsierradz/cmp-conventionalcommits',
+    },
+    opts = require("plugins-options.cmp").opts,
+    config = require("plugins-options.cmp").config
+  },
+  require("plugins-new.completion.luasnip")
 }

@@ -13,19 +13,8 @@ return {
 	{
 		"nvim-telescope/telescope.nvim",
 		dependencies = {
-			{
-				"nvim-telescope/telescope-fzf-native.nvim",
-				build = "make",
-				config = function()
-					require("telescope").load_extension("fzf")
-				end,
-			},
-			{
-				"cwebster2/github-coauthors.nvim",
-				config = function()
-					require("telescope").load_extension("githubcoauthors")
-				end,
-			},
+			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make", config = function() require("telescope").load_extension("fzf") end },
+			{ "cwebster2/github-coauthors.nvim", config = function() require("telescope").load_extension("githubcoauthors") end },
 		},
 		cmd = "Telescope",
 		opts = require("plugins-options.telescope"),
@@ -54,9 +43,7 @@ return {
 			{ "gp", desc = "Goto Preview" },
 		},
 		opts = require("plugins-options.goto-preview"),
-		dependencies = {
-			"nvim-telescope/telescope.nvim",
-		},
+		dependencies = { "nvim-telescope/telescope.nvim" },
 		config = function(_, opts)
 			require("goto-preview").setup(opts)
 			require("config.keymaps").goto_preview_setup()
@@ -67,17 +54,9 @@ return {
 		cmd = { "Trouble", "TroubleToggle" },
 		opts = require("plugins-options.trouble"),
 	},
-	-- better quickfix
 	{
 		"kevinhwang91/nvim-bqf",
-		dependencies = {
-			{
-				"junegunn/fzf",
-				build = function()
-					vim.fn["fzf#install"]()
-				end,
-			},
-		},
+		dependencies = { { "junegunn/fzf", build = function() vim.fn["fzf#install"]() end } },
 	},
 	{
 		"chrishrb/gx.nvim",
