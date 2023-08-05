@@ -1,7 +1,7 @@
 local map = require('utils.functions').map
 
-map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-map("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+-- map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+-- map("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 
 -- Resize window using <ctrl> arrow keys
 map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
@@ -74,7 +74,7 @@ map("n", "<leader>fr", "<cmd>FzfLua resume<cr>", { desc = "Resume find" })
 map("n", "<leader>sw", "<cmd>FzfLua grep_cword<cr>", { desc = "Search Current Word (project)" })
 map("n", "<leader>sb", "<cmd>FzfLua grep_curbuf<cr>", { desc = "Search Buffer" })
 map("n", "<leader>sp", "<cmd>FzfLua grep_project<cr>", { desc = "Search Project" })
-map("n", "<leader>sv", "<cmd>FzfLua grep_visual<cr>", { desc = "Search Visual" })
+map({"n","v"}, "<leader>sv", "<cmd>FzfLua grep_visual<cr>", { desc = "Search Visual", noremap=true })
 map("n", "<leader>sg", "<cmd>FzfLua live_grep_glob<cr>", { desc = "Grep" })
 
 
@@ -142,7 +142,12 @@ map("n", "<leader>nr", "<cmd>Neotree reveal<cr>", { desc = "Reveal File" })
 map("n", "<leader>nc", "<cmd>TSContextToggle<cr>", { desc = "Context Toggle" })
 map("n", "<leader>nCp", "<cmd>CccPick<cr>", { desc = "Color Picker" })
 map("n", "<leader>nCt", "<cmd>CccConvert<cr>", { desc = "Color Convert" })
+
+
 local M = {}
+function M.oil()
+  map("n", "-", require("oil").open, { desc = "Open parent directory" })
+end
 function M.lsp_global_setup()
   -- Global mappings.
   -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -185,14 +190,20 @@ function M.on_attach_setup(ev)
   -- map('n', 'K', vim.lsp.buf.hover, opts)
   -- Setup keymaps
   vim.keymap.set('n', 'K', function()
-    local winid = require('ufo').peekFoldedLinesUnderCursor()
-    if not winid then
-      -- choose one of coc.nvim and nvim lsp
-      require("hover").hover()
-    end
+
+    -- local ok, stats = pcall(require('ufo'))
+    -- if ok then
+    --   local winid = stats.peekFoldedLinesUnderCursor()
+    --   if not winid then
+    --     -- choose one of coc.nvim and nvim lsp
+    --     require("hover").hover()
+    --   end
+    --   else
+        vim.lsp.buf.hover()
+    -- end
   end)
 
-  vim.keymap.set("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
+  -- vim.keymap.set("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
 
   -- map('n', 'gi', vim.lsp.buf.implementation, opts)
   map({ 'n', 'i' }, '<C-s>', vim.lsp.buf.signature_help, opts)
@@ -201,7 +212,7 @@ function M.on_attach_setup(ev)
   map('n', '<space>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, opts)
-  map({ 'n', 'v' }, '<leader>lf', function() require('plugins.lsp.utils').format() end,
+  map({ 'n', 'v' }, '<leader>lf', function() require('plugins-new.lsp.format').format() end,
     { silent = true, desc = "Format" })
 
   map('n', '<leader>lr', vim.lsp.buf.rename, opts)
@@ -222,6 +233,7 @@ function M.on_attach_setup(ev)
     vim.keymap.set("n", "<leader>cf", "<cmd>EslintFixAll<cr>", { desc = "Fix All", buffer = ev.buf })
     vim.keymap.set("n", "<leader>cc", ":VtsExec remove_unused<cr>", { desc = "Clean Code", buffer = ev.buf })
     vim.keymap.set("n", "<leader>ci", ":VtsExec add_missing_imports<cr>", { desc = "Add Imports", buffer = ev.buf })
+    vim.keymap.set("n", "gR", ":VtsExec file_references<cr>", { desc = "Goto file references", buffer = ev.buf })
     return
   end
   if client.name == "rust_analyzer" then
@@ -309,5 +321,64 @@ function M.gitsigns()
   map("n", "<leader>gs", ":Gitsigns stage_hunk<cr>", { desc = "Stage Hunk" })
   map("n", "<leader>gS", ":Gitsigns undo_stage_hunk<cr>", { desc = "UnStage Hunk" })
 end
+
+M.harpoon_keys={
+  {
+    "<leader>ja",
+    function()
+      require("harpoon.mark").add_file()
+    end,
+    desc = "Add File",
+  },
+  {
+    "<leader>jm",
+    function()
+      require("harpoon.ui").toggle_quick_menu()
+    end,
+    desc = "File Menu",
+  },
+  {
+    "<leader>jn",
+    function()
+      require("harpoon.ui").nav_next()
+    end,
+    desc = "Harpoon Next",
+  },
+  {
+    "<leader>jp",
+    function()
+      require("harpoon.ui").nav_prev()
+    end,
+    desc = "Harpoon Prev",
+  },
+  {
+    "<leader>1",
+    function()
+      require("harpoon.ui").nav_file(1)
+    end,
+    desc = "Harpoon 1",
+  },
+  {
+    "<leader>2",
+    function()
+      require("harpoon.ui").nav_file(2)
+    end,
+    desc = "Harpoon 2",
+  },
+  {
+    "<leader>3",
+    function()
+      require("harpoon.ui").nav_file(3)
+    end,
+    desc = "Harpoon 3",
+  },
+  {
+    "<leader>4",
+    function()
+      require("harpoon.ui").nav_file(4)
+    end,
+    desc = "Harpoon 4",
+  },
+}
 
 return M

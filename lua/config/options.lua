@@ -24,7 +24,7 @@ opt.mouse = "a" -- Enable mouse mode
 opt.number = true -- Print line number
 opt.relativenumber = true -- Relative line numbers
 opt.scrolloff = 4 -- Lines of context
-opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
+-- opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
 opt.shortmess:append({ W = true, I = true, c = true })
 opt.showmode = false -- Dont show mode since we have a statusline
 opt.sidescrolloff = 8 -- Columns of context
@@ -47,7 +47,6 @@ opt.updatetime = 200 -- Save swap file and trigger CursorHold
 -- opt.wildmode = "longest:full,full" -- Command-line completion mode
 opt.winminwidth = 5 -- Minimum window width
 opt.splitkeep = "cursor"
-opt.shortmess:append({ C = true })
 opt.wrap = true -- wrap long line
 opt.linebreak = true
 
@@ -61,13 +60,13 @@ vim.g.markdown_recommended_style = 0
 -- vim.g.did_load_filetypes = 1
 vim.o.foldlevel = 10000 -- Using ufo provider need a large value, feel free to decrease the value
 vim.o.fillchars = [[foldopen:,foldclose:]]
-vim.o.foldcolumn = "1"
+-- vim.o.foldcolumn = "1"
 
 -- disable language provider support (lua and vimscript plugins only)
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_node_provider = 0
 vim.g.loaded_python_provider = 0
--- vim.g.loaded_python3_provider = 0
+vim.g.loaded_python3_provider = 0
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1

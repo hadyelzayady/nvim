@@ -1,4 +1,5 @@
-local function gitsigns_menu()
+local M={}
+function M.gitsigns_menu()
   local gitsigns = require "gitsigns"
 
   local hint = [[
@@ -27,10 +28,7 @@ local function gitsigns_menu()
         gitsigns.toggle_linehl(true)
       end,
       on_exit = function()
-        local cursor_pos = vim.api.nvim_win_get_cursor(0)
-        vim.cmd "loadview"
-        vim.api.nvim_win_set_cursor(0, cursor_pos)
-        vim.cmd "normal zv"
+        vim.cmd("silent! DiffviewClose")
         gitsigns.toggle_signs(false)
         gitsigns.toggle_linehl(false)
         gitsigns.toggle_deleted(false)
@@ -83,8 +81,90 @@ local function gitsigns_menu()
     },
   }
 end
+function M.merge_conflict_menu()
+  local gitsigns = require "gitsigns"
 
-local function dap_menu()
+  local hint = [[
+ _J_: Next hunk   _s_: Stage Hunk        _d_: Show Deleted   _b_: Blame Line
+ _K_: Prev hunk   _u_: Undo Last Stage   _p_: Preview Hunk   _B_: Blame Show Full
+ ^ ^              _S_: Stage Buffer      ^ ^                 _/_: Show Base File
+ ^
+ ^ ^              _<Enter>_: Neogit              _q_: Exit
+]]
+
+  return {
+    name = "Git",
+    hint = hint,
+    config = {
+      color = "pink",
+      invoke_on_body = true,
+      hint = {
+        border = "rounded",
+        position = "bottom",
+      },
+      on_enter = function()
+        vim.cmd "mkview"
+        vim.cmd "silent! %foldopen!"
+        vim.bo.modifiable = false
+        gitsigns.toggle_signs(true)
+        gitsigns.toggle_linehl(true)
+      end,
+      on_exit = function()
+        vim.cmd("silent! DiffviewClose")
+        gitsigns.toggle_signs(false)
+        gitsigns.toggle_linehl(false)
+        gitsigns.toggle_deleted(false)
+      end,
+    },
+    body = "<space>gx",
+    heads = {
+      {
+        "J",
+        function()
+          if vim.wo.diff then
+            return "]c"
+          end
+          vim.schedule(function()
+            gitsigns.next_hunk()
+          end)
+          return "<Ignore>"
+        end,
+        { expr = true, desc = "Next Hunk" },
+      },
+      {
+        "K",
+        function()
+          if vim.wo.diff then
+            return "[c"
+          end
+          vim.schedule(function()
+            gitsigns.prev_hunk()
+          end)
+          return "<Ignore>"
+        end,
+        { expr = true, desc = "Prev Hunk" },
+      },
+      { "s", ":Gitsigns stage_hunk<CR>", { silent = true, desc = "Stage Hunk" } },
+      { "u", gitsigns.undo_stage_hunk,   { desc = "Undo Last Stage" } },
+      { "S", gitsigns.stage_buffer,      { desc = "Stage Buffer" } },
+      { "p", gitsigns.preview_hunk,      { desc = "Preview Hunk" } },
+      { "d", gitsigns.toggle_deleted,    { nowait = true, desc = "Toggle Deleted" } },
+      { "b", gitsigns.blame_line,        { desc = "Blame" } },
+      {
+        "B",
+        function()
+          gitsigns.blame_line { full = true }
+        end,
+        { desc = "Blame Show Full" },
+      },
+      { "/",       gitsigns.show,     { exit = true, desc = "Show Base File" } }, -- show the base of the file
+      { "<Enter>", "<Cmd>Neogit<CR>", { exit = true, desc = "Neogit" } },
+      { "q",       nil,               { exit = true, nowait = true, desc = "Exit" } },
+    },
+  }
+end
+
+function M.dap_menu()
   local dap = require "dap"
   local dapui = require "dapui"
   local dap_widgets = require "dap.ui.widgets"
@@ -153,7 +233,7 @@ local function dap_menu()
   }
 end
 
-local function lsp_menu()
+function M.lsp_menu()
   local cmd = require("hydra.keymap-util").cmd
   return {
     name = "LSP Mode",
@@ -214,7 +294,7 @@ _;_/_q_/_<Esc>_: Exit Hydra
   }
 end
 
-local function quick_menu()
+function M.quick_menu()
   local cmd = require("hydra.keymap-util").cmd
   return {
     name = "Quick Menu",
@@ -314,47 +394,5 @@ _m_: Show Man Pages
     },
   }
 end
-return {
-  {
-    "folke/which-key.nvim",
-    event = "VeryLazy",
-    opts = {
-      plugins = { spelling = true },
-    },
-    config = function(_, opts)
-      local wk = require("which-key")
-      wk.setup(opts)
-      wk.register({
-        mode = { "n", "v" },
-        ["g"] = { name = "+goto" },
-        ["]"] = { name = "+next" },
-        ["["] = { name = "+prev" },
-        ["<leader>n"] = { name = "+toggle" },
-        ["<leader>nC"] = { name = "+Color" },
-        ["<leader><tab>"] = { name = "+tabs" },
-        ["<leader>b"] = { name = "+buffer" },
-        ["<leader>t"] = { name = "+terminal" },
-        ["<leader>c"] = { name = "+code" },
-        ["<leader>r"] = { name = "+run/debug" },
-        ["<leader>f"] = { name = "+file/find" },
-        ["<leader>g"] = { name = "+git" },
-        ["<leader>q"] = { name = "+quit/session" },
-        ["<leader>s"] = { name = "+search" },
-        ["<leader>w"] = { name = "+windows" },
-        ["<leader>x"] = { name = "+diagnostics/quickfix" },
-        ["<leader>l"] = { name = "+lsp" },
-        ["<leader>m"] = { name = "+Misc" },
-      })
-    end,
-  },
-  {
-    'anuvyklack/hydra.nvim',
-    event = { "BufReadPre" },
-    config = function(_, _)
-      local hydra = require "hydra"
-      hydra(gitsigns_menu())
-      hydra(dap_menu())
-      hydra(quick_menu())
-    end,
-  }
-}
+
+return M

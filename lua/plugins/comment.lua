@@ -1,5 +1,6 @@
 return {
-  { "JoosepAlviste/nvim-ts-context-commentstring", event = "VeryLazy"
+  { 
+    "JoosepAlviste/nvim-ts-context-commentstring", 
   },
   {
     "numToStr/Comment.nvim",
