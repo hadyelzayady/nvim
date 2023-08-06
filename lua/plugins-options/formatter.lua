@@ -24,6 +24,13 @@ return function()
       typescript = {
         require("formatter.filetypes.typescriptreact").prettierd,
       },
+      scss = {
+        require("formatter.filetypes.typescriptreact").prettierd,
+      },
+
+      sh = {
+        require("formatter.filetypes.sh").shfmt,
+      },
 
       ["*"] = {
         require("formatter.filetypes.any").remove_trailing_whitespace

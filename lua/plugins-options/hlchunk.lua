@@ -1,6 +1,6 @@
 return {
   chunk = {
-    enable = false,
+    enable = true,
     use_treesitter = true,
     notify = true, -- notify if some situation(like disable chunk mod double time)
     exclude_filetypes = {

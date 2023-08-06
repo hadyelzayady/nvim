@@ -13,8 +13,19 @@ return {
 	{
 		"nvim-telescope/telescope.nvim",
 		dependencies = {
-			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make", config = function() require("telescope").load_extension("fzf") end },
-			{ "cwebster2/github-coauthors.nvim", config = function() require("telescope").load_extension("githubcoauthors") end },
+			{
+				"nvim-telescope/telescope-fzf-native.nvim",
+				build = "make",
+				config = function()
+					require("telescope").load_extension("fzf")
+				end,
+			},
+			{
+				"cwebster2/github-coauthors.nvim",
+				config = function()
+					require("telescope").load_extension("githubcoauthors")
+				end,
+			},
 		},
 		cmd = "Telescope",
 		opts = require("plugins-options.telescope"),
@@ -56,7 +67,12 @@ return {
 	},
 	{
 		"kevinhwang91/nvim-bqf",
-		dependencies = { { "junegunn/fzf", build = function() vim.fn["fzf#install"]() end } },
+		dependencies = { {
+			"junegunn/fzf",
+			build = function()
+				vim.fn["fzf#install"]()
+			end,
+		} },
 	},
 	{
 		"chrishrb/gx.nvim",
@@ -65,6 +81,14 @@ return {
 		keys = {
 			{ "gx", desc = "Goto link" },
 		},
-    opts = require("plugins-options.gx"),
+		opts = require("plugins-options.gx"),
+	},
+	{
+		"phaazon/hop.nvim",
+		branch = "v2", -- optional but strongly recommended
+		opts = {
+			keys = "etovxqpdygfblzhckisuran",
+		},
+		config = require("plugins-options.hop").config,
 	},
 }

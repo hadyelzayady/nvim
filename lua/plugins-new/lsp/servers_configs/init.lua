@@ -10,8 +10,8 @@ function M.setup()
   -- require('plugins.lsp.servers_configs.yaml').setup()
   require('plugins-new.lsp.servers_configs.lua').setup()
   require('plugins-new.lsp.servers_configs.cssmodules').setup()
-  -- require('plugins.lsp.servers_configs.csslsp').setup()
-  -- require('plugins.lsp.servers_configs.sh').setup()
+  require('plugins-new.lsp.servers_configs.csslsp').setup()
+  require('plugins.lsp.servers_configs.sh').setup()
   -- require('plugins.lsp.servers_configs.markdown').setup()
 end
 

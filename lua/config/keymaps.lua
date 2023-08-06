@@ -212,8 +212,8 @@ function M.on_attach_setup(ev)
   map('n', '<space>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, opts)
-  map({ 'n', 'v' }, '<leader>lf', function() require('plugins-new.lsp.format').format() end,
-    { silent = true, desc = "Format" })
+  vim.keymap.set({"n","v"}, '<leader>lf', function() return require('plugins-new.lsp.format').format() end,
+    { silent = true, desc = "Format", expr = true })
 
   map('n', '<leader>lr', vim.lsp.buf.rename, opts)
   local client = vim.lsp.get_client_by_id(ev.data.client_id)
