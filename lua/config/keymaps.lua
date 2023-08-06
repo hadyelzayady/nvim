@@ -212,7 +212,7 @@ function M.on_attach_setup(ev)
   map('n', '<space>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, opts)
-  vim.keymap.set({"n","v"}, '<leader>lf', function() return require('plugins-new.lsp.format').format() end,
+  vim.keymap.set({"n","v"}, '<leader>lf', function() return require('plugins.lsp.format').format() end,
     { silent = true, desc = "Format", expr = true })
 
   map('n', '<leader>lr', vim.lsp.buf.rename, opts)

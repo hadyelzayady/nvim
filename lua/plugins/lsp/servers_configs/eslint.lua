@@ -2,8 +2,9 @@ local M = {}
 
 function M.setup()
   require 'lspconfig'.eslint.setup{
+    capabilities = require("plugins.lsp.servers_configs").capabilities,
     on_attach = function(client, buffer)
-    client.handlers["textDocument/publishDiagnostics"] = function() end
+      client.server_capabilities.documentFormattingProvider = nil
   end,
   }
 end

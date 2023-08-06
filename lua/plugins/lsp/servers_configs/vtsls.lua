@@ -36,7 +36,7 @@ function M.setup()
         enableServerSideFuzzyMatch = true
       }
     },
-    capabilities = require("plugins-new.lsp.servers_configs").capabilities,
+    capabilities = require("plugins.lsp.servers_configs").capabilities,
     on_attach = function(client, buffer)
       client.server_capabilities.documentFormattingProvider = nil
       -- client.handlers["textDocument/definition"] = function(x, y)
