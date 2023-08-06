@@ -30,4 +30,8 @@ return {
 	{
 		"dhruvasagar/vim-zoom",
 	},
+  {
+    "brenoprata10/nvim-highlight-colors",
+    opts = require("plugins-options.nvim-highlight-colors")
+  }
 }

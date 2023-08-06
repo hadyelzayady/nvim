@@ -33,7 +33,7 @@ return {
       "┊",
     },
     style = {
-      "#38334e",
+      "#48334e",
 
     },
   },
@@ -50,7 +50,7 @@ return {
       "․",
     },
     style = {
-      vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("Whitespace")), "fg", "gui"),
+      "#20352a",
     },
   },
 }
