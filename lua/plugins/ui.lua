@@ -57,4 +57,15 @@ return {
 			require("config.keymaps").todo_comments()
 		end,
 	},
+	{
+		"folke/noice.nvim",
+		-- opts = require("plugins-options.noice"),
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+			"rcarriga/nvim-notify",
+		},
+		config = function(_, opts)
+			require("noice").setup(require("plugins-options.noice"))
+		end,
+	},
 }
