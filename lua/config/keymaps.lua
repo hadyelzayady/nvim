@@ -1,4 +1,4 @@
-local map = require('utils.functions').map
+local map = require("utils.functions").map
 
 -- map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 -- map("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -14,8 +14,8 @@ map("n", "<leader>wd", "<C-W>c", { desc = "Delete window" })
 map("n", "<leader>ws", "<C-W>s", { desc = "Split window below" })
 map("n", "<leader>wv", "<C-W>v", { desc = "Split window right" })
 vim.keymap.set("n", "<leader>wp", function()
-  local picked_window_id = require('window-picker').pick_window() or vim.api.nvim_get_current_win()
-  vim.api.nvim_set_current_win(picked_window_id)
+	local picked_window_id = require("window-picker").pick_window() or vim.api.nvim_get_current_win()
+	vim.api.nvim_set_current_win(picked_window_id)
 end, { desc = "Pick a window" })
 -- Don't yank on delete char
 map("n", "x", '"_x', { silent = true })
@@ -60,7 +60,6 @@ map("n", "<leader><tab>n", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 map("n", "<leader><tab>p", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
-
 -- files/find
 -- map("n", "<C-e>", ":lua require('telescope.builtin').oldfiles { only_cwd = true }<cr>", { desc = "Recent Files" })
 map("n", "<C-e>", "<cmd>FzfLua oldfiles<cr>", { desc = "Recent Files" })
@@ -74,9 +73,8 @@ map("n", "<leader>fr", "<cmd>FzfLua resume<cr>", { desc = "Resume find" })
 map("n", "<leader>sw", "<cmd>FzfLua grep_cword<cr>", { desc = "Search Current Word (project)" })
 map("n", "<leader>sb", "<cmd>FzfLua grep_curbuf<cr>", { desc = "Search Buffer" })
 map("n", "<leader>sp", "<cmd>FzfLua grep_project<cr>", { desc = "Search Project" })
-map({"n","v"}, "<leader>sv", "<cmd>FzfLua grep_visual<cr>", { desc = "Search Visual", noremap=true })
+map({ "n", "v" }, "<leader>sv", "<cmd>FzfLua grep_visual<cr>", { desc = "Search Visual", noremap = true })
 map("n", "<leader>sg", "<cmd>FzfLua live_grep_glob<cr>", { desc = "Grep" })
-
 
 -- quit/session/projects
 map("n", "<leader>qq", "<cmd>q<cr>", { desc = "Quit" })
@@ -96,8 +94,12 @@ map("n", "<leader>gU", "<cmd>Gin push<CR>", { desc = "Push" })
 map("n", "<leader>gh", ":DiffviewFileHistory %<CR>", { desc = "Buffer History" })
 map("v", "<leader>gh", ":'<,'>DiffviewFileHistory %<CR>", { desc = "Range Buffer History" })
 map("n", "<leader>gn", "<cmd>Neogit<CR>", { desc = "Neogit" })
-map("n", "<leader>ga", "<cmd>lua require('telescope').extensions.githubcoauthors.coauthors()<CR>",
-  { desc = "Co-authors" })
+map(
+	"n",
+	"<leader>ga",
+	"<cmd>lua require('telescope').extensions.githubcoauthors.coauthors()<CR>",
+	{ desc = "Co-authors" }
+)
 
 -- -- Debug
 map("n", "<leader>rd", "<cmd>DapContinue<CR>", { desc = "Debug" })
@@ -112,24 +114,17 @@ map("n", "<leader>jj", "<cmd>HopChar2<CR>", { desc = "word" })
 map("n", "<leader>h", "<cmd>UndotreeToggle<CR>", { desc = "history" })
 
 -- remap to open the Telescope refactoring menu in visual mode
-map(
-  "v",
-  "<leader>R",
-  "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>",
-  { noremap = true }
-)
+map("v", "<leader>R", "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>", { noremap = true })
 
 map("n", "<leader>mf", "<cmd>FzfLua filetypes<CR>", { desc = "File Types" })
 
 -- map("n", "<leader>uc", "<cmd>lua require('utils.toggle').toggle_conceal()<CR>", { desc = "Toggle Conceal" })
 -- map("n", "<leader>uc", "<cmd>lua require('utils.toggle').toggle_conceal()<CR>", { desc = "Toggle Conceal" })
 
-
 -- Lists
 map("n", "<leader>xt", "<cmd>lua require('utils.toggle').toggle_conceal()<CR>", { desc = "Toggle Conceal" })
 map("n", "<leader>xx", "<cmd>TroubleToggle document_diagnostics <CR>", { desc = "Document Diagnostics" })
 map("n", "<leader>xX", "<cmd>TroubleToggle workspace_diagnostics <CR>", { desc = "Workspace Diagnostics" })
-
 
 -- terminal
 map("n", "<leader>ts", ":ToggleTerm direction=horizontal<CR>", { desc = "Horizontal Terminal" })
@@ -143,257 +138,297 @@ map("n", "<leader>nc", "<cmd>TSContextToggle<cr>", { desc = "Context Toggle" })
 map("n", "<leader>nCp", "<cmd>CccPick<cr>", { desc = "Color Picker" })
 map("n", "<leader>nCt", "<cmd>CccConvert<cr>", { desc = "Color Convert" })
 
-
 local M = {}
 function M.oil()
-  map("n", "-", require("oil").open, { desc = "Open parent directory" })
+	map("n", "-", require("oil").open, { desc = "Open parent directory" })
 end
 function M.lsp_global_setup()
-  -- Global mappings.
-  -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-  local opts = { silent = true }
-  map('n', '<leader>ld', vim.diagnostic.open_float, opts)
-  map({ 'n', 'v' }, '<leader>la', "<cmd>FzfLua lsp_code_actions<cr>", { silent = true, desc = "Code Action" })
-  map('n', '<leader>ss', "<cmd>FzfLua lsp_document_symbols<cr>",
-    { silent = true, desc = "Document Symboles" })
-  map('n', '<leader>sS', "<cmd>FzfLua lsp_live_workspace_symbols<cr>",
-    { silent = true, desc = "Workspace Symboles" })
+	-- Global mappings.
+	-- See `:help vim.diagnostic.*` for documentation on any of the below functions
+	local opts = { silent = true }
+	map("n", "<leader>ld", vim.diagnostic.open_float, opts)
+	map({ "n", "v" }, "<leader>la", "<cmd>FzfLua lsp_code_actions<cr>", { silent = true, desc = "Code Action" })
+	map("n", "<leader>ss", "<cmd>FzfLua lsp_document_symbols<cr>", { silent = true, desc = "Document Symboles" })
+	map("n", "<leader>sS", "<cmd>FzfLua lsp_live_workspace_symbols<cr>", { silent = true, desc = "Workspace Symboles" })
 
-  map('n', '<leader>cs', "<cmd>AerialToggle<cr>", { silent = true, desc = "Symbole Outline" })
-  map('n', '<leader>cS', "<cmd>AerialNavToggle<cr>", { silent = true, desc = "Symbole Nav" })
+	map("n", "<leader>cs", "<cmd>AerialToggle<cr>", { silent = true, desc = "Symbole Outline" })
+	map("n", "<leader>cS", "<cmd>AerialNavToggle<cr>", { silent = true, desc = "Symbole Nav" })
 
-  map('n', '[d', vim.diagnostic.goto_prev, opts)
-  map('n', ']d', vim.diagnostic.goto_next, opts)
+	map("n", "[d", vim.diagnostic.goto_prev, opts)
+	map("n", "]d", vim.diagnostic.goto_next, opts)
 
+	map("n", "[e", function()
+		vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
+	end, opts)
+	map("n", "]e", function()
+		vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
+	end, opts)
 
-  map("n", "[e", function() vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR }) end, opts)
-  map("n", "]e", function() vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR }) end, opts)
+	map("n", "[w", function()
+		vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.WARN })
+	end, opts)
+	map("n", "]w", function()
+		vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.WARN })
+	end, opts)
 
-  map("n", "[w", function() vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.WARN }) end, opts)
-  map("n", "]w", function() vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.WARN }) end, opts)
+	map("n", "[i", function()
+		vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.INFO })
+	end, opts)
+	map("n", "]i", function()
+		vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.INFO })
+	end, opts)
 
-  map("n", "[i", function() vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.INFO }) end, opts)
-  map("n", "]i", function() vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.INFO }) end, opts)
-
-  map("n", "[h", function() vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.HINT }) end, opts)
-  map("n", "]h", function() vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.HINT }) end, opts)
+	map("n", "[h", function()
+		vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.HINT })
+	end, opts)
+	map("n", "]h", function()
+		vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.HINT })
+	end, opts)
 end
 
 function M.on_attach_setup(ev)
-  local opts = { buffer = ev.buf, silent = true }
-  map('n', 'gd', '<CMD>Glance definitions<CR>')
-  map('n', 'gr', '<CMD>Glance references<CR>')
-  map('n', 'gt', '<CMD>Glance type_definitions<CR>')
-  map('n', 'gI', '<CMD>Glance implementations<CR>')
+	local opts = { buffer = ev.buf, silent = true }
+	map("n", "gd", "<CMD>Glance definitions<CR>")
+	map("n", "gr", "<CMD>Glance references<CR>")
+	map("n", "gt", "<CMD>Glance type_definitions<CR>")
+	map("n", "gI", "<CMD>Glance implementations<CR>")
 
-  map('n', 'gD', vim.lsp.buf.declaration, opts)
-  -- map('n', 'K', vim.lsp.buf.hover, opts)
-  -- Setup keymaps
-  vim.keymap.set('n', 'K', function()
+	map("n", "gD", vim.lsp.buf.declaration, opts)
+	-- map('n', 'K', vim.lsp.buf.hover, opts)
+	-- Setup keymaps
+	vim.keymap.set("n", "K", function()
+		-- local ok, stats = pcall(require('ufo'))
+		-- if ok then
+		--   local winid = stats.peekFoldedLinesUnderCursor()
+		--   if not winid then
+		--     -- choose one of coc.nvim and nvim lsp
+		--     require("hover").hover()
+		--   end
+		--   else
+		vim.lsp.buf.hover()
+		-- end
+	end)
 
-    -- local ok, stats = pcall(require('ufo'))
-    -- if ok then
-    --   local winid = stats.peekFoldedLinesUnderCursor()
-    --   if not winid then
-    --     -- choose one of coc.nvim and nvim lsp
-    --     require("hover").hover()
-    --   end
-    --   else
-        vim.lsp.buf.hover()
-    -- end
-  end)
+	-- vim.keymap.set("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
 
-  -- vim.keymap.set("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
+	-- map('n', 'gi', vim.lsp.buf.implementation, opts)
+	map({ "n", "i" }, "<C-s>", vim.lsp.buf.signature_help, opts)
+	map("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts)
+	map("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, opts)
+	map("n", "<space>wl", function()
+		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+	end, opts)
+	vim.keymap.set({ "n", "v" }, "<leader>lf", function()
+		return require("plugins.lsp.format").format()
+	end, { silent = true, desc = "Format", expr = true })
 
-  -- map('n', 'gi', vim.lsp.buf.implementation, opts)
-  map({ 'n', 'i' }, '<C-s>', vim.lsp.buf.signature_help, opts)
-  map('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
-  map('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
-  map('n', '<space>wl', function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, opts)
-  vim.keymap.set({"n","v"}, '<leader>lf', function() return require('plugins.lsp.format').format() end,
-    { silent = true, desc = "Format", expr = true })
-
-  map('n', '<leader>lr', vim.lsp.buf.rename, opts)
-  local client = vim.lsp.get_client_by_id(ev.data.client_id)
-  if client.name == "tsserver" or client.name == "typescript-tools" then
-    vim.keymap.set("n", "<leader>co", "<cmd>TypescriptOrganizeImports<cr>",
-      { buffer = ev.buf, desc = "Organize Imports" })
-    vim.keymap.set("n", "<leader>cR", "<cmd>TypescriptRenameFile<cr>", { desc = "Rename File", buffer = ev.buf })
-    vim.keymap.set("n", "<leader>cf", "mF:%!eslint_d --stdin --fix-to-stdout --stdin-filename %<CR>`F",
-      { desc = "Fix All", buffer = ev.buf })
-    vim.keymap.set("v", "<leader>cf", ":!eslint_d --stdin --fix-to-stdout<CR>gv", { desc = "Fix", buffer = ev.buf })
-    vim.keymap.set("n", "<leader>cc", ":TypescriptRemoveUnused<cr>", { desc = "Clean Code", buffer = ev.buf })
-    vim.keymap.set("n", "<leader>ci", ":TypescriptAddMissingImports<cr>", { desc = "Add Imports", buffer = ev.buf })
-    return
-  end
-  if client.name == "vtsls" then
-    vim.keymap.set("n", "<leader>cR", "<cmd>VtsExec rename_file<cr>", { desc = "Rename File", buffer = ev.buf })
-    vim.keymap.set("n", "<leader>cf", "<cmd>EslintFixAll<cr>", { desc = "Fix All", buffer = ev.buf })
-    vim.keymap.set("n", "<leader>cc", ":VtsExec remove_unused<cr>", { desc = "Clean Code", buffer = ev.buf })
-    vim.keymap.set("n", "<leader>ci", ":VtsExec add_missing_imports<cr>", { desc = "Add Imports", buffer = ev.buf })
-    vim.keymap.set("n", "gR", ":VtsExec file_references<cr>", { desc = "Goto file references", buffer = ev.buf })
-    return
-  end
-  if client.name == "rust_analyzer" then
-    vim.keymap.set("n", "<leader>rr", "<cmd>RustRun<cr>", { desc = "Run", buffer = ev.buf })
-    vim.keymap.set("n", "<leader>cf", "<cmd>silent! !cargo fix --allow-dirty<cr>", { desc = "Fix All", buffer = ev.buf })
-    -- vim.keymap.set("n", "<leader>cc", ":VtsExec remove_unused<cr>", { desc = "Clean Code", buffer = ev.buf })
-    -- vim.keymap.set("n", "<leader>ci", ":VtsExec add_missing_imports<cr>", { desc = "Add Imports", buffer = ev.buf })
-    return
-  end
+	map("n", "<leader>lr", vim.lsp.buf.rename, opts)
+	local client = vim.lsp.get_client_by_id(ev.data.client_id)
+	if client.name == "tsserver" or client.name == "typescript-tools" then
+		vim.keymap.set(
+			"n",
+			"<leader>co",
+			"<cmd>TypescriptOrganizeImports<cr>",
+			{ buffer = ev.buf, desc = "Organize Imports" }
+		)
+		vim.keymap.set("n", "<leader>cR", "<cmd>TypescriptRenameFile<cr>", { desc = "Rename File", buffer = ev.buf })
+		vim.keymap.set(
+			"n",
+			"<leader>cf",
+			"mF:%!eslint_d --stdin --fix-to-stdout --stdin-filename %<CR>`F",
+			{ desc = "Fix All", buffer = ev.buf }
+		)
+		vim.keymap.set("v", "<leader>cf", ":!eslint_d --stdin --fix-to-stdout<CR>gv", { desc = "Fix", buffer = ev.buf })
+		vim.keymap.set("n", "<leader>cc", ":TypescriptRemoveUnused<cr>", { desc = "Clean Code", buffer = ev.buf })
+		vim.keymap.set("n", "<leader>ci", ":TypescriptAddMissingImports<cr>", { desc = "Add Imports", buffer = ev.buf })
+		return
+	end
+	if client.name == "vtsls" then
+		vim.keymap.set("n", "<leader>cR", "<cmd>VtsExec rename_file<cr>", { desc = "Rename File", buffer = ev.buf })
+		vim.keymap.set("n", "<leader>cf", "<cmd>EslintFixAll<cr>", { desc = "Fix All", buffer = ev.buf })
+		vim.keymap.set("n", "<leader>cc", ":VtsExec remove_unused<cr>", { desc = "Clean Code", buffer = ev.buf })
+		vim.keymap.set("n", "<leader>ci", ":VtsExec add_missing_imports<cr>", { desc = "Add Imports", buffer = ev.buf })
+		vim.keymap.set("n", "gR", ":VtsExec file_references<cr>", { desc = "Goto file references", buffer = ev.buf })
+		return
+	end
+	if client.name == "rust_analyzer" then
+		vim.keymap.set("n", "<leader>rr", "<cmd>RustRun<cr>", { desc = "Run", buffer = ev.buf })
+		vim.keymap.set(
+			"n",
+			"<leader>cf",
+			"<cmd>silent! !cargo fix --allow-dirty<cr>",
+			{ desc = "Fix All", buffer = ev.buf }
+		)
+		-- vim.keymap.set("n", "<leader>cc", ":VtsExec remove_unused<cr>", { desc = "Clean Code", buffer = ev.buf })
+		-- vim.keymap.set("n", "<leader>ci", ":VtsExec add_missing_imports<cr>", { desc = "Add Imports", buffer = ev.buf })
+		return
+	end
 end
 
 function M.hlslens_setup()
-  local kopts = { noremap = true, silent = true }
+	local kopts = { noremap = true, silent = true }
 
-  vim.api.nvim_set_keymap('n', 'n',
-    [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
-    kopts)
-  vim.api.nvim_set_keymap('n', 'N',
-    [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]],
-    kopts)
-  vim.api.nvim_set_keymap('n', '*', [[*<Cmd>lua require('hlslens').start()<CR>]], kopts)
-  vim.api.nvim_set_keymap('n', '#', [[#<Cmd>lua require('hlslens').start()<CR>]], kopts)
-  vim.api.nvim_set_keymap('n', 'g*', [[g*<Cmd>lua require('hlslens').start()<CR>]], kopts)
-  vim.api.nvim_set_keymap('n', 'g#', [[g#<Cmd>lua require('hlslens').start()<CR>]], kopts)
+	vim.api.nvim_set_keymap(
+		"n",
+		"n",
+		[[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
+		kopts
+	)
+	vim.api.nvim_set_keymap(
+		"n",
+		"N",
+		[[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]],
+		kopts
+	)
+	vim.api.nvim_set_keymap("n", "*", [[*<Cmd>lua require('hlslens').start()<CR>]], kopts)
+	vim.api.nvim_set_keymap("n", "#", [[#<Cmd>lua require('hlslens').start()<CR>]], kopts)
+	vim.api.nvim_set_keymap("n", "g*", [[g*<Cmd>lua require('hlslens').start()<CR>]], kopts)
+	vim.api.nvim_set_keymap("n", "g#", [[g#<Cmd>lua require('hlslens').start()<CR>]], kopts)
 
-  -- vim.api.nvim_set_keymap('n', '<Leader>l', '<Cmd>noh<CR>', kopts)
+	-- vim.api.nvim_set_keymap('n', '<Leader>l', '<Cmd>noh<CR>', kopts)
 end
 
 function M.goto_preview_setup()
-  local opts = { noremap = true, silent = true }
-  map('n', "gpd", "<cmd>lua require('goto-preview').goto_preview_definition()<CR>", opts)
-  map('n', "gpt", "<cmd>lua require('goto-preview').goto_preview_type_definition()<CR>", opts)
-  map('n', "gpi", "<cmd>lua require('goto-preview').goto_preview_implementation()<CR>", opts)
-  map('n', "gP", "<cmd>lua require('goto-preview').close_all_win()<CR>", opts)
-  map('n', "gpr", "<cmd>lua require('goto-preview').goto_preview_references()<CR>", opts)
+	local opts = { noremap = true, silent = true }
+	map("n", "gpd", "<cmd>lua require('goto-preview').goto_preview_definition()<CR>", opts)
+	map("n", "gpt", "<cmd>lua require('goto-preview').goto_preview_type_definition()<CR>", opts)
+	map("n", "gpi", "<cmd>lua require('goto-preview').goto_preview_implementation()<CR>", opts)
+	map("n", "gP", "<cmd>lua require('goto-preview').close_all_win()<CR>", opts)
+	map("n", "gpr", "<cmd>lua require('goto-preview').goto_preview_references()<CR>", opts)
 end
 
 function M.split_join_setup()
-  map('n', 'gs', require('treesj').toggle)
+	map("n", "gs", require("treesj").toggle)
 end
 
 function M.search_replace_setup()
-  local opts = {}
-  vim.api.nvim_set_keymap("v", "<C-r>", "<CMD>SearchReplaceSingleBufferVisualSelection<CR>", opts)
-  vim.api.nvim_set_keymap("v", "<C-s>", "<CMD>SearchReplaceWithinVisualSelection<CR>", opts)
-  vim.api.nvim_set_keymap("v", "<C-b>", "<CMD>SearchReplaceWithinVisualSelectionCWord<CR>", opts)
+	local opts = {}
+	vim.api.nvim_set_keymap("v", "<C-r>", "<CMD>SearchReplaceSingleBufferVisualSelection<CR>", opts)
+	vim.api.nvim_set_keymap("v", "<C-s>", "<CMD>SearchReplaceWithinVisualSelection<CR>", opts)
+	vim.api.nvim_set_keymap("v", "<C-b>", "<CMD>SearchReplaceWithinVisualSelectionCWord<CR>", opts)
 
-  vim.api.nvim_set_keymap("n", "<leader>srs", "<CMD>SearchReplaceSingleBufferSelections<CR>", opts)
-  vim.api.nvim_set_keymap("n", "<leader>sro", "<CMD>SearchReplaceSingleBufferOpen<CR>", opts)
-  vim.api.nvim_set_keymap("n", "<leader>srw", "<CMD>SearchReplaceSingleBufferCWord<CR>", opts)
-  vim.api.nvim_set_keymap("n", "<leader>srW", "<CMD>SearchReplaceSingleBufferCWORD<CR>", opts)
-  vim.api.nvim_set_keymap("n", "<leader>sre", "<CMD>SearchReplaceSingleBufferCExpr<CR>", opts)
-  vim.api.nvim_set_keymap("n", "<leader>srf", "<CMD>SearchReplaceSingleBufferCFile<CR>", opts)
+	vim.api.nvim_set_keymap("n", "<leader>srs", "<CMD>SearchReplaceSingleBufferSelections<CR>", opts)
+	vim.api.nvim_set_keymap("n", "<leader>sro", "<CMD>SearchReplaceSingleBufferOpen<CR>", opts)
+	vim.api.nvim_set_keymap("n", "<leader>srw", "<CMD>SearchReplaceSingleBufferCWord<CR>", opts)
+	vim.api.nvim_set_keymap("n", "<leader>srW", "<CMD>SearchReplaceSingleBufferCWORD<CR>", opts)
+	vim.api.nvim_set_keymap("n", "<leader>sre", "<CMD>SearchReplaceSingleBufferCExpr<CR>", opts)
+	vim.api.nvim_set_keymap("n", "<leader>srf", "<CMD>SearchReplaceSingleBufferCFile<CR>", opts)
 
-  vim.api.nvim_set_keymap("n", "<leader>srms", "<CMD>SearchReplaceMultiBufferSelections<CR>", opts)
-  vim.api.nvim_set_keymap("n", "<leader>srmo", "<CMD>SearchReplaceMultiBufferOpen<CR>", opts)
-  vim.api.nvim_set_keymap("n", "<leader>srmw", "<CMD>SearchReplaceMultiBufferCWord<CR>", opts)
-  vim.api.nvim_set_keymap("n", "<leader>srmW", "<CMD>SearchReplaceMultiBufferCWORD<CR>", opts)
-  vim.api.nvim_set_keymap("n", "<leader>srme", "<CMD>SearchReplaceMultiBufferCExpr<CR>", opts)
-  vim.api.nvim_set_keymap("n", "<leader>srmf", "<CMD>SearchReplaceMultiBufferCFile<CR>", opts)
+	vim.api.nvim_set_keymap("n", "<leader>srms", "<CMD>SearchReplaceMultiBufferSelections<CR>", opts)
+	vim.api.nvim_set_keymap("n", "<leader>srmo", "<CMD>SearchReplaceMultiBufferOpen<CR>", opts)
+	vim.api.nvim_set_keymap("n", "<leader>srmw", "<CMD>SearchReplaceMultiBufferCWord<CR>", opts)
+	vim.api.nvim_set_keymap("n", "<leader>srmW", "<CMD>SearchReplaceMultiBufferCWORD<CR>", opts)
+	vim.api.nvim_set_keymap("n", "<leader>srme", "<CMD>SearchReplaceMultiBufferCExpr<CR>", opts)
+	vim.api.nvim_set_keymap("n", "<leader>srmf", "<CMD>SearchReplaceMultiBufferCFile<CR>", opts)
 end
 
 function M.terminal_keymaps()
-  local opts = { buffer = 0 }
-  map('t', '<esc>', [[<C-\><C-n>]], opts)
-  map('t', 'jk', [[<C-\><C-n>]], opts)
-  map('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
-  map('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts)
-  map('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opts)
-  map('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opts)
-  map('t', '<C-w>', [[<C-\><C-n><C-w>]], opts)
+	local opts = { buffer = 0 }
+	map("t", "<esc>", [[<C-\><C-n>]], opts)
+	map("t", "jk", [[<C-\><C-n>]], opts)
+	map("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
+	map("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
+	map("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
+	map("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
+	map("t", "<C-w>", [[<C-\><C-n><C-w>]], opts)
 end
 
 function M.gitsigns()
-  map("n", "<leader>gb", ":Gitsigns blame_line<cr>", { desc = "Blame Current Line" })
-  map("n", "<leader>gB", ":Gitsigns toggle_current_line_blame<cr>",
-    { desc = "Blame Toggle Show Current Line" })
-  map("n", "<leader>gp", ":Gitsigns preview_hunk_inline<cr>", { desc = "Preview Hunk Inline" })
-  map("n", "<leader>gj", ":Gitsigns next_hunk<cr>", { desc = "Next Hunk" })
-  map("n", "<leader>gk", ":Gitsigns prev_hunk<cr>", { desc = "Prev Hunk" })
-  map("n", "]g", ":Gitsigns next_hunk<cr>", { desc = "Next Hunk" })
-  map("n", "[g", ":Gitsigns prev_hunk<cr>", { desc = "Prev Hunk" })
-  map("n", "<leader>gr", ":Gitsigns reset_hunk<cr>", { desc = "Reset Hunk", silent = true })
-  map("n", "<leader>gR", ":Gitsigns reset_buffer<cr>", { desc = "Reset Buffer" })
-  map("n", "<leader>gs", ":Gitsigns stage_hunk<cr>", { desc = "Stage Hunk" })
-  map("n", "<leader>gS", ":Gitsigns undo_stage_hunk<cr>", { desc = "UnStage Hunk" })
+	map("n", "<leader>gb", ":Gitsigns blame_line<cr>", { desc = "Blame Current Line" })
+	map("n", "<leader>gB", ":Gitsigns toggle_current_line_blame<cr>", { desc = "Blame Toggle Show Current Line" })
+	map("n", "<leader>gp", ":Gitsigns preview_hunk_inline<cr>", { desc = "Preview Hunk Inline" })
+	map("n", "<leader>gj", ":Gitsigns next_hunk<cr>", { desc = "Next Hunk" })
+	map("n", "<leader>gk", ":Gitsigns prev_hunk<cr>", { desc = "Prev Hunk" })
+	map("n", "]g", ":Gitsigns next_hunk<cr>", { desc = "Next Hunk" })
+	map("n", "[g", ":Gitsigns prev_hunk<cr>", { desc = "Prev Hunk" })
+	map("n", "<leader>gr", ":Gitsigns reset_hunk<cr>", { desc = "Reset Hunk", silent = true })
+	map("n", "<leader>gR", ":Gitsigns reset_buffer<cr>", { desc = "Reset Buffer" })
+	map("n", "<leader>gs", ":Gitsigns stage_hunk<cr>", { desc = "Stage Hunk" })
+	map("n", "<leader>gS", ":Gitsigns undo_stage_hunk<cr>", { desc = "UnStage Hunk" })
 end
 
-M.harpoon_keys={
-  {
-    "<leader>ja",
-    function()
-      require("harpoon.mark").add_file()
-    end,
-    desc = "Add File",
-  },
-  {
-    "<leader>jm",
-    function()
-      require("harpoon.ui").toggle_quick_menu()
-    end,
-    desc = "File Menu",
-  },
-  {
-    "<leader>jn",
-    function()
-      require("harpoon.ui").nav_next()
-    end,
-    desc = "Harpoon Next",
-  },
-  {
-    "<leader>jp",
-    function()
-      require("harpoon.ui").nav_prev()
-    end,
-    desc = "Harpoon Prev",
-  },
-  {
-    "<leader>1",
-    function()
-      require("harpoon.ui").nav_file(1)
-    end,
-    desc = "Harpoon 1",
-  },
-  {
-    "<leader>2",
-    function()
-      require("harpoon.ui").nav_file(2)
-    end,
-    desc = "Harpoon 2",
-  },
-  {
-    "<leader>3",
-    function()
-      require("harpoon.ui").nav_file(3)
-    end,
-    desc = "Harpoon 3",
-  },
-  {
-    "<leader>4",
-    function()
-      require("harpoon.ui").nav_file(4)
-    end,
-    desc = "Harpoon 4",
-  },
+M.harpoon_keys = {
+	{
+		"<leader>ja",
+		function()
+			require("harpoon.mark").add_file()
+		end,
+		desc = "Add File",
+	},
+	{
+		"<leader>jm",
+		function()
+			require("harpoon.ui").toggle_quick_menu()
+		end,
+		desc = "File Menu",
+	},
+	{
+		"<leader>jn",
+		function()
+			require("harpoon.ui").nav_next()
+		end,
+		desc = "Harpoon Next",
+	},
+	{
+		"<leader>jp",
+		function()
+			require("harpoon.ui").nav_prev()
+		end,
+		desc = "Harpoon Prev",
+	},
+	{
+		"<leader>1",
+		function()
+			require("harpoon.ui").nav_file(1)
+		end,
+		desc = "Harpoon 1",
+	},
+	{
+		"<leader>2",
+		function()
+			require("harpoon.ui").nav_file(2)
+		end,
+		desc = "Harpoon 2",
+	},
+	{
+		"<leader>3",
+		function()
+			require("harpoon.ui").nav_file(3)
+		end,
+		desc = "Harpoon 3",
+	},
+	{
+		"<leader>4",
+		function()
+			require("harpoon.ui").nav_file(4)
+		end,
+		desc = "Harpoon 4",
+	},
 }
 
 function M.codium()
-  map("i", "<C-g>", function()
-    return vim.fn["codeium#Accept"]()
-    end, { expr = true })
-  map("i", "<c-;>", function()
-    return vim.fn["codeium#CycleCompletions"](1)
-    end, { expr = true })
-  map("i", "<c-,>", function()
-    return vim.fn["codeium#CycleCompletions"](-1)
-  end, { expr = true })
-  map("i", "<c-c>", function()
-    return vim.fn["codeium#Clear"]()
-  end, { expr = true })
+	map("i", "<C-g>", function()
+		return vim.fn["codeium#Accept"]()
+	end, { expr = true })
+	map("i", "<c-;>", function()
+		return vim.fn["codeium#CycleCompletions"](1)
+	end, { expr = true })
+	map("i", "<c-,>", function()
+		return vim.fn["codeium#CycleCompletions"](-1)
+	end, { expr = true })
+	map("i", "<c-c>", function()
+		return vim.fn["codeium#Clear"]()
+	end, { expr = true })
+end
+
+function M.todo_comments()
+	map("n", "]t", function()
+		require("todo-comments").jump_next()
+	end, { desc = "Next todo comment" })
+
+	map("n", "[t", function()
+		require("todo-comments").jump_prev()
+	end, { desc = "Previous todo comment" })
 end
 
 return M

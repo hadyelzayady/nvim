@@ -12,9 +12,8 @@ return {
 		opts = require("plugins-options.dressing"),
 	},
 	{
-		-- TODO: To be removed after shellRaining/hlchunk hlchunk is fixed
 		"yaocccc/nvim-hlchunk",
-    enabled=false,
+		enabled = false,
 		config = function()
 			vim.cmd("source ~/.config/nvim/vimscript/hlchunk.vim")
 		end,
@@ -30,8 +29,32 @@ return {
 	{
 		"dhruvasagar/vim-zoom",
 	},
-  {
-    "brenoprata10/nvim-highlight-colors",
-    opts = require("plugins-options.nvim-highlight-colors")
-  }
+	{
+		"brenoprata10/nvim-highlight-colors",
+		opts = require("plugins-options.nvim-highlight-colors"),
+	},
+	{
+		"kevinhwang91/nvim-ufo",
+		dependencies = {
+			"kevinhwang91/promise-async",
+			"neovim/nvim-lspconfig",
+			"luukvbaal/statuscol.nvim",
+		},
+		opts = require("plugins-options.ufo").opts,
+		config = function(_, opts)
+			require("ufo").setup(opts)
+			vim.keymap.set("n", "zr", require("ufo").openFoldsExceptKinds)
+			vim.keymap.set("n", "zm", require("ufo").closeFoldsWith) -- closeAllFolds == closeFoldsWith(0)
+		end,
+	},
+	{
+		"folke/todo-comments.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		cmd = { "TodoTrouble", "TodoTelescope", "TodoQuickFix", "TodoLocList" },
+		opts = require("plugins-options.todo-comments"),
+		config = function(_, opts)
+			require("todo-comments").setup(opts)
+			require("config.keymaps").todo_comments()
+		end,
+	},
 }
