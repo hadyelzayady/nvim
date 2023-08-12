@@ -12,23 +12,9 @@ return {
 	},
 	{
 		"nvim-telescope/telescope.nvim",
-		dependencies = {
-			{
-				"nvim-telescope/telescope-fzf-native.nvim",
-				build = "make",
-				config = function()
-					require("telescope").load_extension("fzf")
-				end,
-			},
-			{
-				"cwebster2/github-coauthors.nvim",
-				config = function()
-					require("telescope").load_extension("githubcoauthors")
-				end,
-			},
-		},
+		dependencies = require("plugins-options.telescope").dependencies,
 		cmd = "Telescope",
-		opts = require("plugins-options.telescope"),
+		opts = require("plugins-options.telescope").opts,
 	},
 	{
 		"dnlhc/glance.nvim",
@@ -36,7 +22,6 @@ return {
 		opts = require("plugins-options.glance"),
 	},
 	{
-		-- peek line when writeing line number
 		"nacro90/numb.nvim",
 		opts = require("plugins-options.numb"),
 	},

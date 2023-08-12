@@ -122,9 +122,9 @@ map("n", "<leader>mf", "<cmd>FzfLua filetypes<CR>", { desc = "File Types" })
 -- map("n", "<leader>uc", "<cmd>lua require('utils.toggle').toggle_conceal()<CR>", { desc = "Toggle Conceal" })
 
 -- Lists
-map("n", "<leader>xt", "<cmd>lua require('utils.toggle').toggle_conceal()<CR>", { desc = "Toggle Conceal" })
 map("n", "<leader>xx", "<cmd>TroubleToggle document_diagnostics <CR>", { desc = "Document Diagnostics" })
 map("n", "<leader>xX", "<cmd>TroubleToggle workspace_diagnostics <CR>", { desc = "Workspace Diagnostics" })
+map("n", "<leader>xt", "<cmd>TodoTrouble<CR>", { desc = "Workspace Diagnostics" })
 
 -- terminal
 map("n", "<leader>ts", ":ToggleTerm direction=horizontal<CR>", { desc = "Horizontal Terminal" })
@@ -133,6 +133,7 @@ map("n", "<leader>tt", "<cmd>ToggleTerm direction=tab<CR>", { desc = "Tab Termin
 map("n", "<leader>tf", "<cmd>ToggleTerm direction=float<CR>", { desc = "Float Terminal" })
 
 -- toggle/reveal
+map("n", "<leader>n*", "<cmd>lua require('utils.toggle').toggle_conceal()<CR>", { desc = "Toggle Conceal" })
 map("n", "<leader>nr", "<cmd>Neotree reveal<cr>", { desc = "Reveal File" })
 map("n", "<leader>nc", "<cmd>TSContextToggle<cr>", { desc = "Context Toggle" })
 map("n", "<leader>nCp", "<cmd>CccPick<cr>", { desc = "Color Picker" })
