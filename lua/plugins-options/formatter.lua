@@ -31,7 +31,13 @@ return function()
       sh = {
         require("formatter.filetypes.sh").shfmt,
       },
+      python= {
+        require("formatter.filetypes.python").black,
+      },
 
+      json= {
+        require("formatter.filetypes.json").prettierd,
+      },
       ["*"] = {
         require("formatter.filetypes.any").remove_trailing_whitespace
       }

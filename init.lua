@@ -10,6 +10,6 @@ if not vim.loop.fs_stat(lazypath) then
 	})
 end
 vim.opt.rtp:prepend(lazypath)
-vim.cmd("source ~/.config/nvim/vimscript/vim-esearch.vim")
+vim.cmd("source ~/.config/nvim/vimscript/macroOnVisualSelection.vim")
 require("config")
 require("lazy").setup("plugins")

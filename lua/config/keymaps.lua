@@ -109,6 +109,8 @@ map("n", "<leader>ru", "<cmd>lua require('dapui').toggle()<CR>", { desc = "Toggl
 -- Jump
 map("n", "<leader>jl", "<cmd>HopLine<CR>", { desc = "Line" })
 map("n", "<leader>jj", "<cmd>HopChar2<CR>", { desc = "word" })
+map("n", "<c-,>", "<cmd>cnext<CR>", { desc = "Next Quickfix Item" })
+map("n", "<c-.>", "<cmd>cprevious<CR>", { desc = "Prev Quickfix Item" })
 
 --  History
 map("n", "<leader>h", "<cmd>UndotreeToggle<CR>", { desc = "history" })
