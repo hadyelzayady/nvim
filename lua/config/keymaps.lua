@@ -102,8 +102,8 @@ map(
 )
 
 -- -- Debug
-map("n", "<leader>rd", "<cmd>DapContinue<CR>", { desc = "Debug" })
-map("n", "<leader>rb", "<cmd>DapToggleBreakpoint<CR>", { desc = "Toggle Breakpoint" })
+map("n", "<leader>rd", "<cmd>lua require('dap').continue()<CR>", { desc = "Debug" })
+map("n", "<leader>rb", "<cmd>lua require('dap').toggle_breakpoint()<CR>", { desc = "Toggle Breakpoint" })
 map("n", "<leader>ru", "<cmd>lua require('dapui').toggle()<CR>", { desc = "Toggle Ui" })
 
 -- Jump
