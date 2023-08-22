@@ -23,5 +23,13 @@ return {
     opts = require("plugins-options.cmp").opts,
     config = require("plugins-options.cmp").config
   },
-  require("plugins.completion.luasnip")
+  require("plugins.completion.luasnip"),
+  {
+    "petertriho/cmp-git",
+    dependencies={
+      "nvim-lua/plenary.nvim"
+    },
+    config = require("plugins-options.cmp-git").config,
+    lazy=true
+  }
 }
