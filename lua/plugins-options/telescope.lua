@@ -7,12 +7,6 @@ M.dependencies = {
 			require("telescope").load_extension("fzf")
 		end,
 	},
-	{
-		"cwebster2/github-coauthors.nvim",
-		config = function()
-			require("telescope").load_extension("githubcoauthors")
-		end,
-	},
 }
 function M.opts()
 	local telescopeConfig = require("telescope.config")

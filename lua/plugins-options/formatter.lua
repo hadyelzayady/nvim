@@ -14,19 +14,19 @@ return function()
 			},
 			typescriptreact = {
 				require("formatter.filetypes.typescriptreact").prettierd,
-				require("formatter.filetypes.typescriptreact").eslint_d,
+				-- require("formatter.filetypes.typescriptreact").eslint_d,
 			},
 			javascriptreact = {
 				require("formatter.filetypes.typescriptreact").prettierd,
-				require("formatter.filetypes.typescriptreact").eslint_d,
+				-- require("formatter.filetypes.typescriptreact").eslint_d,
 			},
 			javascript = {
 				require("formatter.filetypes.typescriptreact").prettierd,
-				require("formatter.filetypes.typescriptreact").eslint_d,
+				-- require("formatter.filetypes.typescriptreact").eslint_d,
 			},
 			typescript = {
 				require("formatter.filetypes.typescriptreact").prettierd,
-				require("formatter.filetypes.typescriptreact").eslint_d,
+				-- require("formatter.filetypes.typescriptreact").eslint_d,
 			},
 			scss = {
 				require("formatter.filetypes.typescriptreact").prettierd,

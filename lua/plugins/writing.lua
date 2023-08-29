@@ -55,6 +55,17 @@ return {
 	{
 		"numToStr/Comment.nvim",
 		event = "VeryLazy",
-    opts= require("plugins-options.comment")
+		opts = require("plugins-options.comment"),
+	},
+	{
+		"saecki/crates.nvim",
+		event = { "BufRead Cargo.toml" },
+		requires = { { "nvim-lua/plenary.nvim" } },
+		config = function()
+			require("crates").setup()
+		end,
+	},
+	{
+		"windwp/nvim-ts-autotag",
 	},
 }

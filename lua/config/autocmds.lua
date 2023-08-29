@@ -4,9 +4,9 @@
 
 -- Highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
-    callback = function()
-      vim.highlight.on_yank({ timeout = 40 })
-    end,
+	callback = function()
+		vim.highlight.on_yank({ timeout = 40 })
+	end,
 })
 
 -- go to last loc when opening a buffer
@@ -22,6 +22,12 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 --})
 
 vim.cmd("au BufRead,BufNewFile .env* set filetype=sh")
-
+vim.api.nvim_create_autocmd("BufRead", {
+	group = vim.api.nvim_create_augroup("CmpSourceCargo", { clear = true }),
+	pattern = "Cargo.toml",
+	callback = function()
+		require("cmp").setup.buffer({ sources = { { name = "crates" } } })
+	end,
+})
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
 --vim.cmd('autocmd! TermOpen term://*toggleterm#* lua require("config.keymaps").terminal_keymaps()')

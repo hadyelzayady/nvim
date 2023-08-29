@@ -45,4 +45,12 @@ return {
 		"tpope/vim-fugitive",
 		cmd = "Git",
 	},
+	{
+		"cwebster2/github-coauthors.nvim",
+		lazy = true,
+		dependencies = { "nvim-telescope/telescope.nvim" },
+		config = function()
+			require("telescope").load_extension("githubcoauthors")
+		end,
+	},
 }
