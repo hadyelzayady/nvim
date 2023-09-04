@@ -53,4 +53,11 @@ return {
 			require("telescope").load_extension("githubcoauthors")
 		end,
 	},
+	{
+		"wintermute-cell/gitignore.nvim",
+		cmd = { "Gitignore" },
+		dependencies = {
+			"nvim-telescope/telescope.nvim", -- optional: for multi-select
+		},
+	},
 }

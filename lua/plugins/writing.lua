@@ -60,12 +60,20 @@ return {
 	{
 		"saecki/crates.nvim",
 		event = { "BufRead Cargo.toml" },
-		requires = { { "nvim-lua/plenary.nvim" } },
+		dependencies = { { "nvim-lua/plenary.nvim" } },
 		config = function()
 			require("crates").setup()
 		end,
 	},
 	{
 		"windwp/nvim-ts-autotag",
+	},
+	{
+		"kevinhwang91/nvim-fundo",
+		dependencies = "kevinhwang91/promise-async",
+		build = function()
+			require("fundo").install()
+		end,
+		config = require("plugins-options.fundo").config,
 	},
 }

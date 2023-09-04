@@ -67,7 +67,16 @@ map("n", "<leader>ff", "<cmd>lua require('utils.find').find_project_files()<cr>"
 map("n", "<leader>fb", "<cmd>FzfLua buffers<cr>", { desc = "Find Buffer" })
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 map("n", "<leader>fm", "<cmd>FzfLua marks<cr>", { desc = "marks" })
-map("n", "<leader>fr", "<cmd>FzfLua resume<cr>", { desc = "Resume find" })
+-- map("n", "<leader>fr", "<cmd>FzfLua resume<cr>", { desc = "Resume find" })
+
+map("n", "<leader>frf", "<Plug>CtrlSFPrompt")
+map("v", "<leader>frw", "<Plug>CtrlSFVwordPath", { desc = "Current Selected Word" })
+map("n", "<leader>frw", "<Plug>CtrlSFCwordPath", { desc = "Current word" })
+map("n", "<leader>frW", "<Plug>CtrlSFCCwordPath", { desc = "Current word (Exactly)" })
+map("n", "<leader>fr/", "<Plug>CtrlSFPwordPath", { desc = "Last search word" })
+map("n", "<leader>fro", ":CtrlSFOpen<CR>")
+map("n", "<leader>frt", ":CtrlSFToggle<CR>")
+-- map("i", "<leader>frt", "<Esc>:CtrlSFToggle<CR>")
 
 -- search
 map("n", "<leader>sw", "<cmd>FzfLua grep_cword<cr>", { desc = "Search Current Word (project)" })
@@ -84,6 +93,7 @@ map("n", "<leader>qp", "<cmd>lua require'telescope'.extensions.projects.projects
 map("n", "<leader>qs", "<cmd>Telescope persisted<cr>", { desc = "Find Session" })
 map("n", "<leader>qw", "<cmd>silent! wall<cr>", { desc = "Save All" })
 map("n", "<leader>qW", "<cmd>silent! w<cr>", { desc = "Save Current" })
+map("n", "<leader>qd", "<cmd>Veil<cr>", { desc = "Dashboard" })
 
 -- Git
 map("n", "<leader>gg", "<cmd>LazyGit<CR>", { desc = "Lazygit", silent = true })

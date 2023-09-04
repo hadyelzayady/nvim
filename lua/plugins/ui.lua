@@ -68,4 +68,13 @@ return {
 			require("noice").setup(require("plugins-options.noice"))
 		end,
 	},
+	{
+		"willothy/veil.nvim",
+		dependencies = {
+			"nvim-telescope/telescope.nvim",
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope-file-browser.nvim",
+		},
+		opts = require("plugins-options.veil").opts,
+	},
 }
