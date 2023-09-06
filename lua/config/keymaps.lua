@@ -152,6 +152,11 @@ map("n", "<leader>nc", "<cmd>TSContextToggle<cr>", { desc = "Context Toggle" })
 map("n", "<leader>nCp", "<cmd>CccPick<cr>", { desc = "Color Picker" })
 map("n", "<leader>nCt", "<cmd>CccConvert<cr>", { desc = "Color Convert" })
 
+-- prompt for a refactor to apply when the remap is triggered
+vim.keymap.set({ "n", "x" }, "<leader>cr", function()
+	require("refactoring").select_refactor()
+end)
+-- Note that not all refactor support both normal and visual mode
 local M = {}
 function M.oil()
 	map("n", "-", require("oil").open, { desc = "Open parent directory" })

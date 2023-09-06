@@ -44,4 +44,8 @@ return {
 			"neovim/nvim-lspconfig",
 		},
 	},
+	{
+		"williamboman/mason.nvim",
+		opts = require("plugins-options.mason"),
+	},
 }
