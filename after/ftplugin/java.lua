@@ -1,6 +1,5 @@
--- require("lspconfig").jdtls.setup({
--- 	cmd = { "jdtls" },
--- 	root_dir = function(fname)
--- 		return require("lspconfig").util.root_pattern("pom.xml", "gradle.build", ".git")(fname) or vim.fn.getcwd()
--- 	end,
--- })
+local config = {
+	cmd = { "/usr/local/bin/jdtls" },
+	root_dir = vim.fs.dirname(vim.fs.find({ "gradlew", ".git", "mvnw" }, { upward = true })[1]),
+}
+require("jdtls").start_or_attach(config)

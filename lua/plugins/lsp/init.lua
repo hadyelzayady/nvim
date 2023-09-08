@@ -48,4 +48,10 @@ return {
 		"williamboman/mason.nvim",
 		opts = require("plugins-options.mason"),
 	},
+	{
+		"mfussenegger/nvim-jdtls",
+		dependencies = {
+			"neovim/nvim-lspconfig",
+		},
+	},
 }

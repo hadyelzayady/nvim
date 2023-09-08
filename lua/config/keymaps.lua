@@ -450,4 +450,10 @@ function M.todo_comments()
 	end, { desc = "Previous todo comment" })
 end
 
+function M.rest_nvim_keymaps()
+	map({ "n", "v" }, "<leader>r", "<Plug>RestNvim", { desc = "Run Request", buffer = true })
+	map({ "n" }, "<leader>p", "<Plug>RestNvimPreview", { desc = "Preview The Curl Command", buffer = true })
+	map("n", "<leader>R", "<Plug>RestNvimLast", { desc = "Rerun The Last Request", buffer = true })
+end
+
 return M
