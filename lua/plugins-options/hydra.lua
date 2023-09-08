@@ -174,7 +174,7 @@ function M.dap_menu()
       { "H", function() dap_widgets.hover() end,     desc = "Hover Variables", },
       { "i", function() dap.step_into() end,         desc = "Step Into", },
       { "o", function() dap.step_over() end,         desc = "Step Over", },
-      { "p", function() dap.pause.toggle() end,      desc = "Pause", },
+      { "p", function() dap.pause() end,             desc = "Pause", },
       { "r", function() dap.repl.toggle() end,       desc = "Toggle REPL", },
       { "s", function() dap.continue() end,          desc = "Start", },
       { "t", function() dap.toggle_breakpoint() end, desc = "Toggle Breakpoint", },

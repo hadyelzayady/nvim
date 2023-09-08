@@ -3,6 +3,7 @@ return {
 		"mfussenegger/nvim-dap",
 		lazy = true,
 		dependencies = { "theHamsta/nvim-dap-virtual-text" },
+		config = require("plugins-options.dap").config,
 	},
 	{
 		"rcarriga/nvim-dap-ui",
