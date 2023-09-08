@@ -76,4 +76,8 @@ return {
 		},
 		config = require("plugins-options.hop").config,
 	},
+	{
+		"knubie/vim-kitty-navigator",
+		build = "cp ./*.py ~/.config/kitty/",
+	},
 }
