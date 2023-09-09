@@ -23,4 +23,8 @@ return {
 		opts = require("plugins-options.dap-virtual-text").opts,
 		lazy = true,
 	},
+	{
+		"metakirby5/codi.vim",
+		cmd = { "Codi", "CodiNew", "CodiSelect", "CodiExpand" },
+	},
 }
