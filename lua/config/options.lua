@@ -52,6 +52,7 @@ opt.linebreak = true
 
 opt.spell = true
 opt.spelllang = { "en_us" }
+opt.autochdir = true
 -- opt.grepprg="rg --vimgrep --smart-case --hidden"
 -- opt.grepformat="%f:%l:%c:%m"
 -- Fix markdown indentation settings

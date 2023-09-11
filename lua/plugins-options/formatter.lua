@@ -42,6 +42,9 @@ return function()
 			json = {
 				require("formatter.filetypes.json").prettierd,
 			},
+			html = {
+				require("formatter.filetypes.html").prettierd,
+			},
 			["*"] = {
 				require("formatter.filetypes.any").remove_trailing_whitespace,
 			},

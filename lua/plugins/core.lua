@@ -22,6 +22,9 @@ return {
 		build = ":TSUpdate",
 		event = "BufReadPost",
 		opts = require("plugins-options.treesitter"),
+		dependencies = {
+			"JoosepAlviste/nvim-ts-context-commentstring",
+		},
 		config = function(_, opts)
 			require("nvim-treesitter.configs").setup(opts)
 		end,

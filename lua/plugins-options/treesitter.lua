@@ -6,6 +6,9 @@ return {
 		enable_close_on_slash = true,
 		-- filetypes = { "html", "xml" },
 	},
+	context_commentstring = {
+		enable = true,
+	},
 	highlight = {
 		enable = true,
 		disable = function(lang, buf)
