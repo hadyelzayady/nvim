@@ -77,4 +77,8 @@ return {
 		},
 		opts = require("plugins-options.veil").opts,
 	},
+	{
+		"RRethy/vim-illuminate",
+		config = require("plugins-options.vim-illuminate").config,
+	},
 }

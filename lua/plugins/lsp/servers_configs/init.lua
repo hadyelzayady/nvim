@@ -14,6 +14,7 @@ function M.setup()
   require('plugins.lsp.servers_configs.csslsp').setup()
   require('plugins.lsp.servers_configs.sh').setup()
   require('plugins.lsp.servers_configs.python').setup()
+  require('plugins.lsp.servers_configs.toml').setup()
   -- require('plugins.lsp.servers_configs.markdown').setup()
 end
 
