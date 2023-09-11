@@ -36,4 +36,9 @@ return {
 			"nvim-telescope/telescope.nvim",
 		},
 	},
+	{
+		"notjedi/nvim-rooter.lua",
+		config = require("plugins-options.rooter").config,
+		-- cmd = { "RooterToggle" },
+	},
 }
