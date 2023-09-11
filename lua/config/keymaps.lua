@@ -127,7 +127,12 @@ map("n", "<c-.>", "<cmd>cprevious<CR>", { desc = "Prev Quickfix Item" })
 map("n", "<leader>h", "<cmd>UndotreeToggle<CR>", { desc = "history" })
 
 -- remap to open the Telescope refactoring menu in visual mode
-map("v", "<leader>R", "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>", { noremap = true })
+map(
+	"v",
+	"<leader>R",
+	"<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>",
+	{ desc = "Refactor", noremap = true }
+)
 
 map("n", "<leader>mf", "<cmd>FzfLua filetypes<CR>", { desc = "File Types" })
 
@@ -152,10 +157,10 @@ map("n", "<leader>nc", "<cmd>TSContextToggle<cr>", { desc = "Context Toggle" })
 map("n", "<leader>nCp", "<cmd>CccPick<cr>", { desc = "Color Picker" })
 map("n", "<leader>nCt", "<cmd>CccConvert<cr>", { desc = "Color Convert" })
 
--- prompt for a refactor to apply when the remap is triggered
-vim.keymap.set({ "n", "x" }, "<leader>cr", function()
-	require("refactoring").select_refactor()
-end)
+-- -- prompt for a refactor to apply when the remap is triggered
+-- vim.keymap.set({ "n", "x" }, "<leader>cr", function()
+-- 	require("refactoring").select_refactor()
+-- end)
 -- Note that not all refactor support both normal and visual mode
 local M = {}
 function M.oil()
