@@ -54,4 +54,7 @@ return {
 			"neovim/nvim-lspconfig",
 		},
 	},
+	{
+		"b0o/schemastore.nvim",
+	},
 }

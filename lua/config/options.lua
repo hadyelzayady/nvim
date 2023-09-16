@@ -63,6 +63,8 @@ vim.o.foldlevel = 10000 -- Using ufo provider need a large value, feel free to d
 vim.o.fillchars = [[foldopen:,foldclose:]]
 -- vim.o.foldcolumn = "1"
 
+
+vim.o.exrc = true
 -- disable language provider support (lua and vimscript plugins only)
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
