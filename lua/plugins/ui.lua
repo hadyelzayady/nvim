@@ -81,4 +81,9 @@ return {
 		"RRethy/vim-illuminate",
 		config = require("plugins-options.vim-illuminate").config,
 	},
+	{
+		"lewis6991/hover.nvim",
+		config = require("plugins-options.hover").config,
+	},
+	{ "tiagovla/scope.nvim" },
 }

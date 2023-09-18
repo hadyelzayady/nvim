@@ -20,13 +20,19 @@ return {
 	},
 	{
 		"mhartington/formatter.nvim",
+    enabled=false,
 		cmd = { "Format", "FormatWrite", "FormatWriteLock", "FormatLock" },
 		opts = require("plugins-options.formatter"),
-	},
-	{
-		"stevearc/aerial.nvim",
-		opts = require("plugins-options.aerial"),
-		lazy = true,
+  },
+  {
+    'stevearc/conform.nvim',
+    lazy=true,
+    opts = require("plugins-options.conform").opts
+  },
+  {
+    "stevearc/aerial.nvim",
+    opts = require("plugins-options.aerial"),
+    lazy = true,
 		cmd = { "AerialToggle", "AerialNavToggle" },
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",

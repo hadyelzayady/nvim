@@ -220,20 +220,20 @@ function M.on_attach_setup(ev)
 	map("n", "gD", vim.lsp.buf.declaration, opts)
 	-- map('n', 'K', vim.lsp.buf.hover, opts)
 	-- Setup keymaps
-	vim.keymap.set("n", "K", function()
-		-- local ok, stats = pcall(require('ufo'))
-		-- if ok then
-		--   local winid = stats.peekFoldedLinesUnderCursor()
-		--   if not winid then
-		--     -- choose one of coc.nvim and nvim lsp
-		--     require("hover").hover()
-		--   end
-		--   else
-		vim.lsp.buf.hover()
-		-- end
+	map("n", "K", function()
+		local ok, stats = pcall(require("ufo"))
+		if ok then
+			local winid = stats.peekFoldedLinesUnderCursor()
+			if not winid then
+				-- choose one of coc.nvim and nvim lsp
+				require("hover").hover()
+			end
+		else
+			require("hover").hover()
+		end
 	end)
 
-	-- vim.keymap.set("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
+	map("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
 
 	-- map('n', 'gi', vim.lsp.buf.implementation, opts)
 	map({ "n", "i" }, "<C-s>", vim.lsp.buf.signature_help, opts)
@@ -242,9 +242,7 @@ function M.on_attach_setup(ev)
 	map("n", "<space>wl", function()
 		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 	end, opts)
-	vim.keymap.set({ "n", "v" }, "<leader>lf", function()
-		return require("plugins.lsp.format").format()
-	end, { silent = true, desc = "Format", expr = true })
+	map({ "n", "v" }, "<leader>lf", ":Format<cr>", { silent = true, desc = "Format" })
 
 	map("n", "<leader>lr", vim.lsp.buf.rename, opts)
 	local client = vim.lsp.get_client_by_id(ev.data.client_id)
