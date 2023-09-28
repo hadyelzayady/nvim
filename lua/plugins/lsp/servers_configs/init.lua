@@ -1,9 +1,9 @@
 local M = {}
 
 function M.setup()
-	require("plugins.lsp.servers_configs.eslint").setup()
+	-- require("plugins.lsp.servers_configs.eslint").setup()
 	require("plugins.lsp.servers_configs.vtsls").setup()
-	-- require("plugins.lsp.servers_configs.biome").setup()
+	require("plugins.lsp.servers_configs.biome").setup()
 	-- require('plugins.lsp.servers_configs.rust').setup()
 	-- require('plugins.lsp.servers_configs.tsserver').setup()
 	require("plugins.lsp.servers_configs.json").setup()
@@ -16,6 +16,7 @@ function M.setup()
 	require("plugins.lsp.servers_configs.python").setup()
 	require("plugins.lsp.servers_configs.yaml").setup()
 	require("plugins.lsp.servers_configs.toml").setup()
+	require("plugins.lsp.servers_configs.clangd").setup()
 	-- require('plugins.lsp.servers_configs.markdown').setup()
 end
 

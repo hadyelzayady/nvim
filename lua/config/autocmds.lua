@@ -28,5 +28,22 @@ vim.api.nvim_create_autocmd("BufRead", {
 		require("cmp").setup.buffer({ sources = { { name = "crates" } } })
 	end,
 })
+
+
+vim.api.nvim_create_autocmd("BufWritePost", {
+	group = vim.api.nvim_create_augroup("sxhkd", { clear = true }),
+	pattern = "sxhkdrc",
+	callback = function()
+  vim.cmd("!pkill sxhkd && sxhkd &")
+	end,
+})
+
+-- vim.api.nvim_create_autocmd("BufWritePost", {
+-- 	group = vim.api.nvim_create_augroup("polybar", { clear = true }),
+-- 	pattern = "polybar/config.ini",
+-- 	callback = function()
+--   vim.cmd("!pkill polybar && polybar &")
+-- 	end,
+-- })
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
 --vim.cmd('autocmd! TermOpen term://*toggleterm#* lua require("config.keymaps").terminal_keymaps()')

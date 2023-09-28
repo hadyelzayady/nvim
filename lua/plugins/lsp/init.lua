@@ -63,4 +63,8 @@ return {
 	{
 		"b0o/schemastore.nvim",
 	},
+  {
+    "mfussenegger/nvim-lint",
+    config=require("plugins-options.nvim-lint").config
+  }
 }

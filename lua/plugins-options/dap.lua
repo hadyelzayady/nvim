@@ -10,6 +10,14 @@ function M.config()
 			command = "js-debug-adapter",
 		},
 	}
+	dap.adapters["bun"] = {
+		type = "server",
+		host = "localhost",
+		port = 6499,
+		executable = {
+			command = "bun",
+		},
+	}
 	for _, language in ipairs({ "typescript", "javascript" }) do
 		dap.configurations[language] = {
 			{
@@ -30,8 +38,14 @@ function M.config()
 				cwd = "${workspaceFolder}",
 				args = {},
 			},
-		}
-	end
+      {
+        type= "bun",
+        request= "attach",
+        name= "Attach to Bun",
+        url= "ws://localhost:6499/93x8wg3gvvu",
+      }
+    }
+  end
 end
 
 return M

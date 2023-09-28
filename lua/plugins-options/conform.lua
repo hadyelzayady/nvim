@@ -2,7 +2,7 @@ local M = {}
 
 local slow_format_filetypes = {}
 function M.opts()
-	local js_like_formatters = { "prettierd", "eslint_d" }
+	local js_like_formatters = {"biome"}
 	return {
 		-- Map of filetype to formatters
 		formatters_by_ft = {
@@ -16,7 +16,7 @@ function M.opts()
 			typescriptreact = js_like_formatters,
 			scss = { "prettierd" },
 			sh = { "shfmt" },
-			json = { "prettierd" },
+			json = { "biome" },
 			html = { "prettierd" },
 			-- Use the "*" filetype to run formatters on all files.
 			-- Note that if you use this, you may want to set lsp_fallback = "always"
@@ -26,7 +26,7 @@ function M.opts()
 		-- If this is set, Conform will run the formatter on save.
 		-- It will pass the table to conform.format().
 		format_on_save = function(bufnr)
-			if slow_format_filetypes[vim.bo[bufnr].filetype] then
+			if slow_format_filetypes[vim.bo[bufnr].filetype] or true then
 				return
 			end
 			local function on_format(err)

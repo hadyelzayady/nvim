@@ -157,6 +157,7 @@ map("n", "<leader>nc", "<cmd>TSContextToggle<cr>", { desc = "Context Toggle" })
 map("n", "<leader>nCp", "<cmd>CccPick<cr>", { desc = "Color Picker" })
 map("n", "<leader>nCt", "<cmd>CccConvert<cr>", { desc = "Color Convert" })
 
+map({ "n", "v" }, "<leader>lf", ":Format<cr>", { silent = true, desc = "Format" })
 -- -- prompt for a refactor to apply when the remap is triggered
 -- vim.keymap.set({ "n", "x" }, "<leader>cr", function()
 -- 	require("refactoring").select_refactor()
@@ -221,16 +222,16 @@ function M.on_attach_setup(ev)
 	-- map('n', 'K', vim.lsp.buf.hover, opts)
 	-- Setup keymaps
 	map("n", "K", function()
-		local ok, stats = pcall(require("ufo"))
-		if ok then
-			local winid = stats.peekFoldedLinesUnderCursor()
-			if not winid then
-				-- choose one of coc.nvim and nvim lsp
-				require("hover").hover()
-			end
-		else
+		-- local ok, stats = pcall(require("ufo"))
+		-- if ok then
+		-- 	local winid = stats.peekFoldedLinesUnderCursor()
+		-- 	if not winid then
+		-- 		-- choose one of coc.nvim and nvim lsp
+		-- 		require("hover").hover()
+		-- 	end
+		-- else
 			require("hover").hover()
-		end
+		-- end
 	end)
 
 	map("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
@@ -242,7 +243,6 @@ function M.on_attach_setup(ev)
 	map("n", "<space>wl", function()
 		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 	end, opts)
-	map({ "n", "v" }, "<leader>lf", ":Format<cr>", { silent = true, desc = "Format" })
 
 	map("n", "<leader>lr", vim.lsp.buf.rename, opts)
 	local client = vim.lsp.get_client_by_id(ev.data.client_id)
@@ -267,12 +267,14 @@ function M.on_attach_setup(ev)
 	end
 	if client.name == "vtsls" then
 		vim.keymap.set("n", "<leader>cR", "<cmd>VtsExec rename_file<cr>", { desc = "Rename File", buffer = ev.buf })
-		vim.keymap.set("n", "<leader>cf", "<cmd>EslintFixAll<cr>", { desc = "Fix All", buffer = ev.buf })
 		vim.keymap.set("n", "<leader>cc", ":VtsExec remove_unused<cr>", { desc = "Clean Code", buffer = ev.buf })
 		vim.keymap.set("n", "<leader>ci", ":VtsExec add_missing_imports<cr>", { desc = "Add Imports", buffer = ev.buf })
 		vim.keymap.set("n", "gR", ":VtsExec file_references<cr>", { desc = "Goto file references", buffer = ev.buf })
 		return
 	end
+  if client.name == 'biome' then
+		vim.keymap.set("n", "<leader>cf", "<cmd>silent! !biome check --apply %<cr>", { desc = "Fix All", buffer = ev.buf, silent=true })
+  end
 	if client.name == "rust_analyzer" then
 		vim.keymap.set("n", "<leader>rr", "<cmd>RustRun<cr>", { desc = "Run", buffer = ev.buf })
 		vim.keymap.set(

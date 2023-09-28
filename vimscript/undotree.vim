@@ -1,5 +1,5 @@
 if has("persistent_undo")
-   let target_path = expand('~/.undodir')
+   let target_path = expand('~/.local/state/nvim/undodir')
 
     " create the directory and any parent directories
     " if the location does not exist.

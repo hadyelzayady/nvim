@@ -2,7 +2,7 @@ local M = {}
 
 function M.setup()
 	require("lspconfig").vtsls.setup({
-		-- cmd = { "bunx", "vtsls", "--stdio" },
+		cmd = { "bunx", "vtsls", "--stdio" },
 		inlay_hints = { enabled = true },
 		-- cmd = { 'bunx', '--bun', 'typescript-language-server', '--stdio' },
 		settings = {

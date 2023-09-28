@@ -2,6 +2,7 @@ return {
 	{
 		"shellRaining/hlchunk.nvim",
 		event = { "UIEnter" },
+    enabled=false,
 		opts = require("plugins-options.hlchunk"),
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
@@ -12,14 +13,8 @@ return {
 		opts = require("plugins-options.dressing"),
 	},
 	{
-		"yaocccc/nvim-hlchunk",
-		enabled = false,
-		config = function()
-			vim.cmd("source ~/.config/nvim/vimscript/hlchunk.vim")
-		end,
-	},
-	{
 		"nvim-lualine/lualine.nvim",
+    enabled=false,
 		opts = require("plugins-options.lualine"),
 	},
 	{
@@ -31,10 +26,12 @@ return {
 	},
 	{
 		"brenoprata10/nvim-highlight-colors",
+    enabled=false,
 		opts = require("plugins-options.nvim-highlight-colors"),
 	},
 	{
 		"kevinhwang91/nvim-ufo",
+    enabled=false,
 		dependencies = {
 			"kevinhwang91/promise-async",
 			"neovim/nvim-lspconfig",
@@ -49,6 +46,7 @@ return {
 	},
 	{
 		"folke/todo-comments.nvim",
+    enabled=fase,
 		dependencies = { "nvim-lua/plenary.nvim" },
 		cmd = { "TodoTrouble", "TodoTelescope", "TodoQuickFix", "TodoLocList" },
 		opts = require("plugins-options.todo-comments"),
@@ -85,5 +83,10 @@ return {
 		"lewis6991/hover.nvim",
 		config = require("plugins-options.hover").config,
 	},
-	{ "tiagovla/scope.nvim" },
+	{
+    "tiagovla/scope.nvim",
+  },
+  {
+    "kovetskiy/sxhkd-vim"
+  }
 }

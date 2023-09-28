@@ -32,6 +32,7 @@ return {
 	{
 		"olimorris/persisted.nvim",
 		config = require("plugins-options.persisted").config,
+    enabled=false,
 		dependencies = {
 			"nvim-telescope/telescope.nvim",
 		},
