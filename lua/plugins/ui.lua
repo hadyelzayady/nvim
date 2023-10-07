@@ -2,7 +2,7 @@ return {
 	{
 		"shellRaining/hlchunk.nvim",
 		event = { "UIEnter" },
-    enabled=false,
+		enabled = false,
 		opts = require("plugins-options.hlchunk"),
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
@@ -14,7 +14,6 @@ return {
 	},
 	{
 		"nvim-lualine/lualine.nvim",
-    enabled=false,
 		opts = require("plugins-options.lualine"),
 	},
 	{
@@ -26,12 +25,12 @@ return {
 	},
 	{
 		"brenoprata10/nvim-highlight-colors",
-    enabled=false,
+		enabled = false,
 		opts = require("plugins-options.nvim-highlight-colors"),
 	},
 	{
 		"kevinhwang91/nvim-ufo",
-    enabled=false,
+		enabled = false,
 		dependencies = {
 			"kevinhwang91/promise-async",
 			"neovim/nvim-lspconfig",
@@ -46,7 +45,7 @@ return {
 	},
 	{
 		"folke/todo-comments.nvim",
-    enabled=fase,
+		enabled = fase,
 		dependencies = { "nvim-lua/plenary.nvim" },
 		cmd = { "TodoTrouble", "TodoTelescope", "TodoQuickFix", "TodoLocList" },
 		opts = require("plugins-options.todo-comments"),
@@ -84,9 +83,17 @@ return {
 		config = require("plugins-options.hover").config,
 	},
 	{
-    "tiagovla/scope.nvim",
-  },
-  {
-    "kovetskiy/sxhkd-vim"
-  }
+		"tiagovla/scope.nvim",
+	},
+	{
+		"kovetskiy/sxhkd-vim",
+	},
+	{
+		"chr4/nginx.vim",
+	},
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		opts = {},
+	},
 }

@@ -31,4 +31,10 @@ return {
 		"stevearc/overseer.nvim",
 		opts = {},
 	},
+	{
+		"leoluz/nvim-dap-go",
+		dependencies = { "nvim-dap" },
+		ft = { "go" },
+		config = require("plugins-options.dap-go").config,
+	},
 }

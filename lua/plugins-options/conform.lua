@@ -2,7 +2,7 @@ local M = {}
 
 local slow_format_filetypes = {}
 function M.opts()
-	local js_like_formatters = {"biome"}
+	local js_like_formatters = { "biome" }
 	return {
 		-- Map of filetype to formatters
 		formatters_by_ft = {
@@ -18,6 +18,7 @@ function M.opts()
 			sh = { "shfmt" },
 			json = { "biome" },
 			html = { "prettierd" },
+			go = { "gofmt", "goimports","golines" },
 			-- Use the "*" filetype to run formatters on all files.
 			-- Note that if you use this, you may want to set lsp_fallback = "always"
 			-- (see :help conform.format)

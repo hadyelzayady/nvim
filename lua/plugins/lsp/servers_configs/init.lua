@@ -17,6 +17,9 @@ function M.setup()
 	require("plugins.lsp.servers_configs.yaml").setup()
 	require("plugins.lsp.servers_configs.toml").setup()
 	require("plugins.lsp.servers_configs.clangd").setup()
+	require("plugins.lsp.servers_configs.go").setup()
+	require("plugins.lsp.servers_configs.docker").setup()
+	require("plugins.lsp.servers_configs.docker-compose").setup()
 	-- require('plugins.lsp.servers_configs.markdown').setup()
 end
 
