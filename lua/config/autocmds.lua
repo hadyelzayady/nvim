@@ -4,6 +4,7 @@ end
 
 -- Highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
+	group = augroup("hilight_on_yank"),
 	callback = function()
 		vim.highlight.on_yank({ timeout = 40 })
 	end,
@@ -22,7 +23,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 })
 
 vim.api.nvim_create_autocmd("BufRead", {
-	group = vim.api.nvim_create_augroup("CmpSourceCargo", { clear = true }),
+	group = augroup("CmpSourceCargo"),
 	pattern = "Cargo.toml",
 	callback = function()
 		require("cmp").setup.buffer({ sources = { { name = "crates" } } })
@@ -31,7 +32,7 @@ vim.api.nvim_create_autocmd("BufRead", {
 
 
 vim.api.nvim_create_autocmd("BufWritePost", {
-	group = vim.api.nvim_create_augroup("sxhkd", { clear = true }),
+	group = augroup("sxhkd"),
 	pattern = "sxhkdrc",
 	callback = function()
   vim.cmd("!pkill sxhkd && sxhkd &")
