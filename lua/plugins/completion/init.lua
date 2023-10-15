@@ -1,15 +1,16 @@
 return {
-	{
-		"Exafunction/codeium.vim",
-		event = { "InsertEnter" },
-		config = function()
+  {
+    "Exafunction/codeium.vim",
+    event = { "InsertEnter" },
+    config = function()
       require("config.keymaps").codium()
-		end,
-	},
+    end,
+  },
   {
     "hrsh7th/nvim-cmp",
+    enabled = false,
     event = "InsertEnter",
-    dependencies={
+    dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "petertriho/cmp-git",
@@ -26,10 +27,23 @@ return {
   require("plugins.completion.luasnip"),
   {
     "petertriho/cmp-git",
-    dependencies={
+    dependencies = {
       "nvim-lua/plenary.nvim"
     },
     config = require("plugins-options.cmp-git").config,
-    lazy=true
+    lazy = true
+  },
+  {
+    'ms-jpq/coq_nvim',
+    branch = 'coq',
+    config = require("plugins-options.coq").config(),
+    dependencies = {
+      { 'ms-jpq/coq.artifacts',  branch = 'artifacts' },
+      {
+        'ms-jpq/coq.thirdparty',
+        branch = '3p',
+        config = require("plugins-options.coq").config_3p,
+      },
+    }
   }
 }

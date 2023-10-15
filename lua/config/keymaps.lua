@@ -230,7 +230,7 @@ function M.on_attach_setup(ev)
 		-- 		require("hover").hover()
 		-- 	end
 		-- else
-			require("hover").hover()
+		require("hover").hover()
 		-- end
 	end)
 
@@ -272,9 +272,14 @@ function M.on_attach_setup(ev)
 		vim.keymap.set("n", "gR", ":VtsExec file_references<cr>", { desc = "Goto file references", buffer = ev.buf })
 		return
 	end
-  if client.name == 'biome' then
-		vim.keymap.set("n", "<leader>cf", "<cmd>silent! !biome check --apply %<cr>", { desc = "Fix All", buffer = ev.buf, silent=true })
-  end
+	if client.name == "biome" then
+		vim.keymap.set(
+			"n",
+			"<leader>cf",
+			"<cmd>silent! !biome check --apply %<cr>",
+			{ desc = "Fix All", buffer = ev.buf, silent = true }
+		)
+	end
 	if client.name == "rust_analyzer" then
 		vim.keymap.set("n", "<leader>rr", "<cmd>RustRun<cr>", { desc = "Run", buffer = ev.buf })
 		vim.keymap.set(
@@ -461,4 +466,9 @@ function M.rest_nvim_keymaps()
 	map("n", "<leader>R", "<Plug>RestNvimLast", { desc = "Rerun The Last Request", buffer = true })
 end
 
+function M.completion_keymaps()
+	-- vim.cmd("source ~/.config/nvim/lua/config/keymaps.vim")
+end
+
+map({"i","x"}, "<cr>", "<c-y>", { remap = false, expr = false, noremap=true })
 return M

@@ -1,7 +1,9 @@
 local M = {}
 
 function M.setup()
-	require("lspconfig").vtsls.setup({
+  local coq = require "coq" -- add this
+	require("lspconfig").vtsls.setup(
+  coq.lsp_ensure_capabilities({
 		cmd = { "bunx", "vtsls", "--stdio" },
 		inlay_hints = { enabled = true },
 		-- cmd = { 'bunx', '--bun', 'typescript-language-server', '--stdio' },
@@ -42,7 +44,7 @@ function M.setup()
 			-- client.handlers["textDocument/definition"] = function(x, y)
 			-- end
 		end,
-	})
+	}))
 end
 
 return M

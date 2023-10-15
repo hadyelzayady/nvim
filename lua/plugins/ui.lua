@@ -94,6 +94,11 @@ return {
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
-		opts = {},
+		opts = require("plugins-options.indent-blankline").opts,
+		config = require("plugins-options.indent-blankline").config,
+	},
+	{
+		"nvim-treesitter/nvim-treesitter-context",
+    config = require("plugins-options.treesitter-context").config
 	},
 }

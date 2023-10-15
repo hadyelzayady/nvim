@@ -31,7 +31,7 @@ capabilities.textDocument.foldingRange = {
 -- print(vim.inspect(capabilities))
 
 -- nvim-cmp
-M.capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+M.capabilities = capabilities
 
 M.capabilities.textDocument.completion.completionItem = {
 	documentationFormat = { "markdown", "plaintext" },
