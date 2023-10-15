@@ -470,5 +470,4 @@ function M.completion_keymaps()
 	-- vim.cmd("source ~/.config/nvim/lua/config/keymaps.vim")
 end
 
-map({"i","x"}, "<cr>", "<c-y>", { remap = false, expr = false, noremap=true })
 return M

@@ -25,7 +25,6 @@ return {
 	},
 	{
 		"brenoprata10/nvim-highlight-colors",
-		enabled = false,
 		opts = require("plugins-options.nvim-highlight-colors"),
 	},
 	{
@@ -94,7 +93,6 @@ return {
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
-		opts = require("plugins-options.indent-blankline").opts,
 		config = require("plugins-options.indent-blankline").config,
 	},
 	{

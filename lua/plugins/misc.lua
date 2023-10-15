@@ -11,4 +11,8 @@ return {
 		"subnut/nvim-ghost.nvim",
 		cmd = { "GhostTextStart" },
 	},
+	{
+		"uga-rosa/ccc.nvim",
+    opts=require("plugins-options.cccpick"),
+	},
 }
