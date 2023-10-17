@@ -142,7 +142,8 @@ map("n", "<leader>mf", "<cmd>FzfLua filetypes<CR>", { desc = "File Types" })
 -- Lists
 map("n", "<leader>xx", "<cmd>TroubleToggle document_diagnostics <CR>", { desc = "Document Diagnostics" })
 map("n", "<leader>xX", "<cmd>TroubleToggle workspace_diagnostics <CR>", { desc = "Workspace Diagnostics" })
-map("n", "<leader>xt", "<cmd>TodoTrouble<CR>", { desc = "Workspace Diagnostics" })
+map("n", "<leader>xt", "<cmd>TodoTrouble keywords=TODO<CR>", { desc = "Todo Comments" })
+map("n", "<leader>xf", "<cmd>TodoTrouble keywords=FIX<CR>", { desc = "Fix Comments" })
 
 -- terminal
 map("n", "<leader>ts", ":ToggleTerm direction=horizontal<CR>", { desc = "Horizontal Terminal" })
