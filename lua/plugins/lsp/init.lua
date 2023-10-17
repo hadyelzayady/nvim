@@ -20,19 +20,19 @@ return {
 	},
 	{
 		"mhartington/formatter.nvim",
-    enabled=false,
+		enabled = false,
 		cmd = { "Format", "FormatWrite", "FormatWriteLock", "FormatLock" },
 		opts = require("plugins-options.formatter"),
-  },
-  {
-    'stevearc/conform.nvim',
-    lazy=true,
-    opts = require("plugins-options.conform").opts
-  },
-  {
-    "stevearc/aerial.nvim",
-    opts = require("plugins-options.aerial"),
-    lazy = true,
+	},
+	{
+		"stevearc/conform.nvim",
+		lazy = true,
+		opts = require("plugins-options.conform").opts,
+	},
+	{
+		"stevearc/aerial.nvim",
+		opts = require("plugins-options.aerial"),
+		lazy = true,
 		cmd = { "AerialToggle", "AerialNavToggle" },
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
@@ -41,6 +41,7 @@ return {
 	},
 	{
 		"roobert/action-hints.nvim",
+		enabled = false,
 		config = require("plugins-options.action-hints").config,
 	},
 	{
@@ -63,8 +64,8 @@ return {
 	{
 		"b0o/schemastore.nvim",
 	},
-  {
-    "mfussenegger/nvim-lint",
-    config=require("plugins-options.nvim-lint").config
-  }
+	{
+		"mfussenegger/nvim-lint",
+		config = require("plugins-options.nvim-lint").config,
+	},
 }

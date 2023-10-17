@@ -61,7 +61,7 @@ vim.g.markdown_recommended_style = 0
 -- vim.g.did_load_filetypes = 1
 vim.o.foldlevel = 10000 -- Using ufo provider need a large value, feel free to decrease the value
 vim.o.fillchars = [[foldopen:,foldclose:]]
--- vim.o.foldcolumn = "1"
+vim.o.foldcolumn = "1"
 
 
 vim.o.exrc = true
@@ -73,3 +73,22 @@ vim.g.loaded_python_provider = 0
 vim.g.loaded_python3_provider = 0
 vim.g.loaded_netrw = 0
 vim.g.loaded_netrwPlugin = 0
+
+local fn = vim.fn
+local fc = vim.opt.fillchars:get()
+local function get_fold(lnum)
+	if fn.foldlevel(lnum) <= fn.foldlevel(lnum - 1) then return ' ' end
+	return fn.foldclosed(lnum) == -1 and fc.foldopen or fc.foldclose
+end
+
+_G.get_statuscol = function()
+  if vim.opt_local.signcolumn:get() == 'yes' or vim.opt_local.signcolumn:get() == 'auto' then
+    return "%s%l%= " .. get_fold(vim.v.lnum) .. " "
+  else
+    return ""
+  end
+end
+
+opt.foldmethod = "expr"
+opt.foldexpr = "nvim_treesitter#foldexpr()"
+opt.statuscolumn = "%!v:lua.get_statuscol()"
