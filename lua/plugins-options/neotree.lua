@@ -1,6 +1,6 @@
 ---@param args FileMovedArgs
 local function on_file_remove(args)
-  require("plugins.lsp.rename").rename({old_name= args.source, new_name= args.destination})
+  require("plugins.lsp.rename").rename_file({old_name= args.source, new_name= args.destination})
 end
 
 

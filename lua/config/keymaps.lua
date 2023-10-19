@@ -177,8 +177,8 @@ function M.lsp_global_setup()
 	map("n", "<leader>ss", "<cmd>FzfLua lsp_document_symbols<cr>", { silent = true, desc = "Document Symboles" })
 	map("n", "<leader>sS", "<cmd>FzfLua lsp_live_workspace_symbols<cr>", { silent = true, desc = "Workspace Symboles" })
 
-	map("n", "<leader>cs", "<cmd>AerialToggle<cr>", { silent = true, desc = "Symbole Outline" })
-	map("n", "<leader>cS", "<cmd>AerialNavToggle<cr>", { silent = true, desc = "Symbole Nav" })
+	map("n", "<leader>cS", "<cmd>AerialToggle<cr>", { silent = true, desc = "Symbole Outline" })
+	map("n", "<leader>cs", "<cmd>AerialNavToggle<cr>", { silent = true, desc = "Symbole Nav" })
 
 	map("n", "[d", vim.diagnostic.goto_prev, opts)
 	map("n", "]d", vim.diagnostic.goto_next, opts)
@@ -214,12 +214,14 @@ end
 
 function M.on_attach_setup(ev)
 	local opts = { buffer = ev.buf, silent = true }
-	map("n", "gd", "<CMD>Glance definitions<CR>")
-	map("n", "gr", "<CMD>Glance references<CR>")
-	map("n", "gt", "<CMD>Glance type_definitions<CR>")
-	map("n", "gI", "<CMD>Glance implementations<CR>")
+	map("n", "gd", require("plugins.lsp.navigation").goto_definition)
+	map("n", "gD", require("plugins.lsp.navigation").goto_declaration)
+	map("n", "gr", require("plugins.lsp.navigation").goto_references)
+	map("n", "gt", require("plugins.lsp.navigation").goto_type_definition)
+	map("n", "gI", require("plugins.lsp.navigation").goto_implementations)
+	map("n", "<leader>li", require("plugins.lsp.navigation").goto_incoming_calls)
+	map("n", "<leader>lo", require("plugins.lsp.navigation").goto_outgoing_calls)
 
-	map("n", "gD", vim.lsp.buf.declaration, opts)
 	-- map('n', 'K', vim.lsp.buf.hover, opts)
 	-- Setup keymaps
 	map("n", "K", function()
@@ -270,7 +272,12 @@ function M.on_attach_setup(ev)
 		vim.keymap.set("n", "<leader>cR", "<cmd>VtsExec rename_file<cr>", { desc = "Rename File", buffer = ev.buf })
 		vim.keymap.set("n", "<leader>cc", ":VtsExec remove_unused<cr>", { desc = "Clean Code", buffer = ev.buf })
 		vim.keymap.set("n", "<leader>ci", ":VtsExec add_missing_imports<cr>", { desc = "Add Imports", buffer = ev.buf })
-		vim.keymap.set("n", "gR", ":VtsExec file_references<cr>", { desc = "Goto file references", buffer = ev.buf })
+		vim.keymap.set(
+			"n",
+			"gR",
+			require("plugins.lsp.navigation").goto_file_references,
+			{ desc = "Goto file references", buffer = ev.buf }
+		)
 		return
 	end
 	if client.name == "biome" then

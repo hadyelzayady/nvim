@@ -41,6 +41,7 @@ function M.setup()
 		capabilities = require("plugins.lsp.servers_configs").capabilities,
 		on_attach = function(client, buffer)
 			client.server_capabilities.documentFormattingProvider = nil
+      client.server_capabilities.semanticTokensProvider = nil
 			-- client.handlers["textDocument/definition"] = function(x, y)
 			-- end
 		end,

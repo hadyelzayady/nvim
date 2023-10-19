@@ -47,7 +47,7 @@ local function match_file_operation_filter(filter, name, type)
 end
 
 local M={}
-function M.rename(data)
+function M.rename_file(data)
   local stat = vim.loop.fs_stat(data.new_name)
   if not stat then
     return
