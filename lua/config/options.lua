@@ -20,7 +20,6 @@ opt.confirm = true -- Confirm to save changes before exiting modified buffer
 opt.mouse = "a" -- Enable mouse mode
 opt.scrolloff = 4 -- Lines of context
 -- opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
-opt.shortmess:append({ W = true, I = true, c = true })
 opt.sidescrolloff = 8 -- Columns of context
 opt.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
 
@@ -37,8 +36,6 @@ opt.undolevels = 10000
 opt.updatetime = 200 -- Save swap file and trigger CursorHold
 -- opt.wildmode = "longest:full,full" -- Command-line completion mode
 opt.winminwidth = 5 -- Minimum window width
-opt.splitkeep = "cursor"
-opt.wrap = true -- wrap long line
 
 opt.spell = true
 opt.spelllang = { "en_us" }
@@ -48,7 +45,7 @@ opt.spelllang = { "en_us" }
 opt.breakindent   = true    -- Indent wrapped lines to match line start
 opt.cursorline    = true    -- Highlight current line
 opt.linebreak     = true    -- Wrap long lines at 'breakat' (if 'wrap' is set)
-opt.number        = true    -- Show line numbers
+opt.number = true -- Print line number
 opt.relativenumber = true -- Relative line numbers
 opt.splitbelow    = true    -- Horizontal splits will be below
 opt.splitright    = true    -- Vertical splits will be to the right
@@ -56,7 +53,7 @@ opt.termguicolors = true    -- Enable gui colors
 
 opt.ruler         = false   -- Don't show cursor position in command line
 opt.showmode      = false   -- Don't show mode in command line
-opt.wrap          = false   -- Display long lines as just one line
+opt.wrap          = true   -- Display long lines as just one line
 
 opt.signcolumn    = 'yes'   -- Always show sign column (otherwise it will shift text)
 opt.fillchars     = 'eob: ' -- Don't show `~` outside of buffer

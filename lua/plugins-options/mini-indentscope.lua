@@ -11,7 +11,7 @@ function M.config()
       -- next and total step numbers, returns wait time (in ms). See
       -- |MiniIndentscope.gen_animation| for builtin options. To disable
       -- animation, use `require('mini.indentscope').gen_animation.none()`.
-      -- animation = --<function: implements constant 20ms between steps>,
+      animation = require('mini.indentscope').gen_animation.none(), --<function: implements constant 20ms between steps>,
 
       -- Symbol priority. Increase to display on top of more symbols.
       priority = 2,

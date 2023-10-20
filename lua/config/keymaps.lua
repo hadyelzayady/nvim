@@ -7,6 +7,8 @@ map("v", "X", '"_X', { silent = true })
 map("v", "p", '"_dP', { silent = true })
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
 
+map({ "n", "x" }, "j", [[v:count == 0 ? 'gj' : 'j']], { expr = true })
+map({ "n", "x" }, "k", [[v:count == 0 ? 'gk' : 'k']], { expr = true })
 
 map("n", "<C-e>", "<cmd>FzfLua oldfiles<cr>", { desc = "Recent Files" })
 map("n", "<leader>ff", "<cmd>lua require('utils.find').find_project_files()<cr>", { desc = "Find File" })
@@ -188,8 +190,6 @@ function M.goto_preview_setup()
 	map("n", "gP", "<cmd>lua require('goto-preview').close_all_win()<CR>", opts)
 	map("n", "gpr", "<cmd>FzfLua lsp_references<CR>", opts)
 end
-
-
 
 function M.gitsigns()
 	map("n", "<leader>gb", ":Gitsigns blame_line<cr>", { desc = "Blame Current Line" })
