@@ -1,18 +1,7 @@
 return {
-	{
-		"echasnovski/mini.bufremove",
-    -- stylua: ignore
-    keys = {
-      { "<leader>d", function() require("mini.bufremove").delete(0, false) end, desc = "Delete Buffer" },
-      { "<leader>D", function() require("mini.bufremove").delete(0, true) end,  desc = "Delete Buffer (Force)" },
-    },
-	},
-	{
-		"subnut/nvim-ghost.nvim",
-		cmd = { "GhostTextStart" },
-	},
-	{
-		"uga-rosa/ccc.nvim",
-    opts=require("plugins-options.cccpick"),
-	},
+  {
+    'echasnovski/mini.misc',
+    version = false,
+    config=require("plugins-options.mini-misc").config
+  }
 }
