@@ -28,5 +28,9 @@ return{
     'echasnovski/mini.comment',
     version = false,
     config = require("plugins-options.mini-comment").config
+  },
+  {
+    "max397574/better-escape.nvim",
+    config=require("plugins-options.better-escape").config,
   }
 }
