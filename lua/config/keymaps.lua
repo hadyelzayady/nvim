@@ -15,7 +15,6 @@ map("n", "<leader>ff", "<cmd>lua require('utils.find').find_project_files()<cr>"
 map("n", "<leader>fb", "<cmd>FzfLua buffers<cr>", { desc = "Find Buffer" })
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 map("n", "<leader>fm", "<cmd>FzfLua marks<cr>", { desc = "marks" })
--- map("n", "<leader>fr", "<cmd>FzfLua resume<cr>", { desc = "Resume find" })
 
 map("n", "<leader>frf", "<Plug>CtrlSFPrompt")
 map("v", "<leader>frw", "<Plug>CtrlSFVwordPath", { desc = "Current Selected Word" })
@@ -24,8 +23,12 @@ map("n", "<leader>frW", "<Plug>CtrlSFCCwordPath", { desc = "Current word (Exactl
 map("n", "<leader>fr/", "<Plug>CtrlSFPwordPath", { desc = "Last search word" })
 map("n", "<leader>fro", ":CtrlSFOpen<CR>")
 map("n", "<leader>frt", ":CtrlSFToggle<CR>")
--- map("i", "<leader>frt", "<Esc>:CtrlSFToggle<CR>")
 
+-- Tab
+map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
+map("n", "<leader><tab>n", "<cmd>tabnext<cr>", { desc = "Next Tab" })
+map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
+map("n", "<leader><tab>p", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 -- search
 map("n", "<leader>sw", "<cmd>FzfLua grep_cword<cr>", { desc = "Search Current Word (project)" })
 map("n", "<leader>sb", "<cmd>FzfLua grep_curbuf<cr>", { desc = "Search Buffer" })
@@ -51,7 +54,7 @@ map("n", "<leader>gu", "<cmd>Gin pull<CR>", { desc = "Pull" })
 map("n", "<leader>gU", "<cmd>Gin push<CR>", { desc = "Push" })
 map("n", "<leader>gh", ":DiffviewFileHistory %<CR>", { desc = "Buffer History" })
 map("v", "<leader>gh", ":'<,'>DiffviewFileHistory %<CR>", { desc = "Range Buffer History" })
-map("n", "<leader>gn", "<cmd>Neogit<CR>", { desc = "Neogit" })
+map("n", "<leader>gn", "<cmd>Git<CR>", { desc = "Neogit" })
 map(
 	"n",
 	"<leader>ga",
@@ -64,22 +67,11 @@ map("n", "<leader>rd", "<cmd>lua require('dap').continue()<CR>", { desc = "Debug
 map("n", "<leader>rb", "<cmd>lua require('dap').toggle_breakpoint()<CR>", { desc = "Toggle Breakpoint" })
 map("n", "<leader>ru", "<cmd>lua require('dapui').toggle()<CR>", { desc = "Toggle Ui" })
 
--- Jump
--- map("n", "<leader>jl", "<cmd>HopLine<CR>", { desc = "Line" })
--- map("n", "<leader>jj", "<cmd>HopChar2<CR>", { desc = "word" })
 map("n", "<c-,>", "<cmd>cnext<CR>", { desc = "Next Quickfix Item" })
 map("n", "<c-.>", "<cmd>cprevious<CR>", { desc = "Prev Quickfix Item" })
 
 --  History
 map("n", "<leader>h", "<cmd>UndotreeToggle<CR>", { desc = "history" })
-
--- remap to open the Telescope refactoring menu in visual mode
--- map(
--- 	"v",
--- 	"<leader>R",
--- 	"<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>",
--- 	{ desc = "Refactor", noremap = true }
--- )
 
 map({ "n", "v" }, "<leader>lf", require("plugins.lsp.operations").format, { silent = true, desc = "Format" })
 
@@ -140,23 +132,8 @@ function M.on_attach_setup(ev)
 	map("n", "gI", require("plugins.lsp.operations").goto_implementations)
 	map("n", "<leader>li", require("plugins.lsp.operations").goto_incoming_calls)
 	map("n", "<leader>lo", require("plugins.lsp.operations").goto_outgoing_calls)
-
-	-- map('n', 'K', vim.lsp.buf.hover, opts)
-	-- Setup keymaps
 	map("n", "K", require("plugins.lsp.operations").hover)
-
-	-- map("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
-
-	-- map('n', 'gi', vim.lsp.buf.implementation, opts)
-	-- map({ "n", "i" }, "<C-s>", vim.lsp.buf.signature_help, opts)
-	-- map("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts)
-	-- map("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, opts)
-	-- map("n", "<space>wl", function()
-	-- 	print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-	-- end, opts)
-
 	map("n", "<leader>lr", require("plugins.lsp.operations").rename, opts)
-	local client = vim.lsp.get_client_by_id(ev.data.client_id)
 end
 
 function M.hlslens_setup()
