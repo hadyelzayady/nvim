@@ -134,6 +134,7 @@ function M.on_attach_setup(ev)
 	map("n", "<leader>lo", require("plugins.lsp.operations").goto_outgoing_calls)
 	map("n", "K", require("plugins.lsp.operations").hover)
 	map("n", "<leader>lr", require("plugins.lsp.operations").rename, opts)
+	map("n", "<leader>lR", require("plugins.lsp.operations").rename_file, opts)
 end
 
 function M.hlslens_setup()
@@ -212,5 +213,4 @@ function M.rest_nvim_keymaps()
 	map({ "n" }, "<leader>p", "<Plug>RestNvimPreview", { desc = "Preview The Curl Command", buffer = true })
 	map("n", "<leader>R", "<Plug>RestNvimLast", { desc = "Rerun The Last Request", buffer = true })
 end
-
 return M

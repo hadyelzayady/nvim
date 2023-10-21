@@ -14,12 +14,12 @@ end
 function M.goto_import_references() end
 
 function M.goto_file_references()
-	local clients = require("plugins.lsp.utils").get_buffer_attached_lsp()
+	local clients = require("utils.lsp").get_buffer_attached_lsp()
 	if #clients > 0 then
 		for _, client in ipairs(clients) do
 			if client == "vtsls" then
 				require("vtsls").commands.file_references()
-        break
+				break
 			end
 		end
 	end
@@ -38,14 +38,23 @@ function M.goto_declaration()
 end
 
 function M.format()
-	require("conform").format({ async = true, lsp_fallback = true})
+	require("conform").format({ async = true, lsp_fallback = true })
 end
 function M.hover()
-
 	vim.lsp.buf.hover()
 end
 function M.rename()
-
 	vim.lsp.buf.rename()
+end
+function M.rename_file()
+	local clients = require("utils.lsp").get_buffer_attached_lsp()
+	if #clients > 0 then
+		for _, client in ipairs(clients) do
+			if client == "typescript-tools" then
+				vim.cmd("TSToolsRenameFile")
+				break
+			end
+		end
+	end
 end
 return M
