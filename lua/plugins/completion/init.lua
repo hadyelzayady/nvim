@@ -32,6 +32,14 @@ return {
 		},
 	},
 	{
+		"petertriho/cmp-git",
+		dependencies = {
+			"hrsh7th/nvim-cmp",
+			"nvim-lua/plenary.nvim",
+		},
+		config = require("plugins-options.completion.cmp-git").config,
+	},
+	{
 		"davidsierradz/cmp-conventionalcommits",
 		lazy = true,
 		dependencies = {

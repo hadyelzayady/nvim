@@ -55,12 +55,7 @@ map("n", "<leader>gU", "<cmd>Gin push<CR>", { desc = "Push" })
 map("n", "<leader>gh", ":DiffviewFileHistory %<CR>", { desc = "Buffer History" })
 map("v", "<leader>gh", ":'<,'>DiffviewFileHistory %<CR>", { desc = "Range Buffer History" })
 map("n", "<leader>gn", "<cmd>Git<CR>", { desc = "Neogit" })
-map(
-	"n",
-	"<leader>ga",
-	"<cmd>lua require('telescope').extensions.githubcoauthors.coauthors()<CR>",
-	{ desc = "Co-authors" }
-)
+map("n", "<leader>ga", require("utils.git").list,{ desc = "Co-authors" })
 
 -- -- Debug
 map("n", "<leader>rd", "<cmd>lua require('dap').continue()<CR>", { desc = "Debug" })
