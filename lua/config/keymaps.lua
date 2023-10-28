@@ -69,6 +69,7 @@ map("n", "<leader>ru", "<cmd>lua require('dapui').toggle()<CR>", { desc = "Toggl
 
 map("n", "<c-,>", "<cmd>cnext<CR>", { desc = "Next Quickfix Item" })
 map("n", "<c-.>", "<cmd>cprevious<CR>", { desc = "Prev Quickfix Item" })
+map("n", "<c-q>", "<cmd>cclose<CR>", { desc = "Close Quickfix" })
 
 --  History
 map("n", "<leader>h", "<cmd>UndotreeToggle<CR>", { desc = "history" })

@@ -17,4 +17,8 @@ return {
 		"sindrets/diffview.nvim",
 		config = require("plugins-options.diffview").config,
 	},
+	{
+		"lewis6991/gitsigns.nvim",
+		config = require("plugins-options.gitsigns").config,
+	},
 }

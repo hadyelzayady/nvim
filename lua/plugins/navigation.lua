@@ -14,7 +14,7 @@ return {
 	{
 		"ibhagwan/fzf-lua",
 		-- optional for icon support
-		cmd = { "FzfLua" },
+		-- cmd = { "FzfLua" },
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = require("plugins-options.fzf-lua").config,
 	},
