@@ -1,6 +1,7 @@
 local M = {}
 function M.config(_, opts)
 	require("typescript-tools").setup({
+		capabilities = require("plugins-options.lsp.servers-configs").capabilities,
 		settings = {
 			-- spawn additional tsserver instance to calculate diagnostics on it
 			separate_diagnostic_server = true,

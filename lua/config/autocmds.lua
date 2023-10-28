@@ -9,3 +9,11 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.highlight.on_yank({ timeout = 40 })
 	end,
 })
+
+-- vim.api.nvim_create_autocmd("InsertEnter", {
+-- 	group = vim.api.nvim_create_augroup("CmpSourceNpm", { clear = true }),
+-- 	pattern = "package.json",
+-- 	callback = function()
+-- 		require("cmp").setup.buffer({ sources = { { name = "npm" } } })
+-- 	end,
+-- })

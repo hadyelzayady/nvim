@@ -1,5 +1,9 @@
 return {
 	{
+		"sindrets/diffview.nvim",
+		config = require("plugins-options.diffview").config,
+	},
+	{
 		"tpope/vim-fugitive",
 	},
 	{
@@ -11,6 +15,6 @@ return {
 	},
 	{
 		"sindrets/diffview.nvim",
-    config=require("plugins-options.diffview").config,
+		config = require("plugins-options.diffview").config,
 	},
 }

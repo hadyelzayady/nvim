@@ -1,10 +1,43 @@
 return {
 	{
-		"echasnovski/mini.completion",
-		version = false,
-		config = require("plugins-options.completion.mini-completion").config,
+		"hrsh7th/nvim-cmp",
+		config = require("plugins-options.completion.cmp").config,
+		event = "InsertEnter",
+		dependencies = {
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-calc",
+			"saadparwaiz1/cmp_luasnip",
+		},
 	},
-
+	{
+		"petertriho/cmp-git",
+		lazy = true,
+		ft = { "gitcommit" },
+		dependencies = {
+			"hrsh7th/nvim-cmp",
+		},
+	},
+	{
+		"David-Kunz/cmp-npm",
+		-- lazy = true,
+		-- ft = "json",
+		config = function()
+			require("cmp-npm").setup({})
+		end,
+		dependencies = {
+			"hrsh7th/nvim-cmp",
+			"nvim-lua/plenary.nvim",
+		},
+	},
+	{
+		"davidsierradz/cmp-conventionalcommits",
+		lazy = true,
+		dependencies = {
+			"hrsh7th/nvim-cmp",
+		},
+	},
 	{
 		"Exafunction/codeium.vim",
 		event = { "InsertEnter" },
@@ -14,7 +47,6 @@ return {
 	},
 	{
 		"L3MON4D3/LuaSnip",
-		enabled = false,
 		version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
 		build = "make install_jsregexp",
 		dependencies = {
@@ -49,8 +81,5 @@ return {
 			},
 		},
 		config = require("plugins-options.completion.luasnip").config,
-	},
-	{
-		"mfussenegger/nvim-lsp-compl",
 	},
 }
