@@ -4,6 +4,8 @@ function M.setup()
 	require("plugins-options.lsp.servers-configs.lua").setup()
 	require("plugins-options.lsp.servers-configs.docker").setup()
 	require("plugins-options.lsp.servers-configs.docker-compose").setup()
+	require("plugins-options.lsp.servers-configs.csslsp").setup()
+	require("plugins-options.lsp.servers-configs.cssmodules").setup()
 end
 
 M.capabilities = require("cmp_nvim_lsp").default_capabilities()

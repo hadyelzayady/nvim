@@ -57,4 +57,49 @@ function M.rename_file()
 		end
 	end
 end
+
+function M.addMissingImports()
+	local clients = require("utils.lsp").get_buffer_attached_lsp()
+	if #clients > 0 then
+		for _, client in ipairs(clients) do
+			if client == "typescript-tools" then
+				vim.cmd("TSToolsAddMissingImports")
+				break
+			end
+		end
+	end
+end
+function M.removeUnusedImports()
+	local clients = require("utils.lsp").get_buffer_attached_lsp()
+	if #clients > 0 then
+		for _, client in ipairs(clients) do
+			if client == "typescript-tools" then
+				vim.cmd("TSToolsRemoveUnusedImports")
+				break
+			end
+		end
+	end
+end
+function M.removeUnused()
+	local clients = require("utils.lsp").get_buffer_attached_lsp()
+	if #clients > 0 then
+		for _, client in ipairs(clients) do
+			if client == "typescript-tools" then
+				vim.cmd("TSToolsRemoveUnused")
+				break
+			end
+		end
+	end
+end
+function M.fixAll()
+	local clients = require("utils.lsp").get_buffer_attached_lsp()
+	if #clients > 0 then
+		for _, client in ipairs(clients) do
+			if client == "typescript-tools" then
+				vim.cmd("TSToolsFixAll")
+				break
+			end
+		end
+	end
+end
 return M

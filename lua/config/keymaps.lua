@@ -131,6 +131,9 @@ function M.on_attach_setup(ev)
 	map("n", "K", require("plugins.lsp.operations").hover)
 	map("n", "<leader>lr", require("plugins.lsp.operations").rename, opts)
 	map("n", "<leader>lR", require("plugins.lsp.operations").rename_file, opts)
+	map("n", "<leader>cf", require("plugins.lsp.operations").fixAll, opts)
+	map("n", "<leader>cc", require("plugins.lsp.operations").removeUnused, opts)
+	map("n", "<leader>ci", require("plugins.lsp.operations").addMissingImports, opts)
 end
 
 function M.hlslens_setup()
