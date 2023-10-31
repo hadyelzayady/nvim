@@ -95,9 +95,9 @@ function M.config()
 				["ctrl-u"] = "unix-line-discard",
 				["ctrl-f"] = "half-page-down",
 				["ctrl-b"] = "half-page-up",
-				["ctrl-a"] = "beginning-of-line",
+				-- ["ctrl-a"] = "beginning-of-line",
 				["ctrl-e"] = "end-of-line",
-				["alt-a"] = "toggle-all",
+				["ctrl-a"] = "toggle-all",
 				-- Only valid with fzf previewers (bat/cat/git/etc)
 				["f3"] = "toggle-preview-wrap",
 				["f4"] = "toggle-preview",
@@ -123,7 +123,7 @@ function M.config()
 				["ctrl-s"] = actions.file_split,
 				["ctrl-v"] = actions.file_vsplit,
 				["ctrl-t"] = actions.file_tabedit,
-				["alt-q"] = actions.file_sel_to_qf,
+				["ctrl-q"] = actions.file_sel_to_qf,
 				["alt-l"] = actions.file_sel_to_ll,
 			},
 			buffers = {
@@ -258,7 +258,7 @@ function M.config()
 			-- uncomment if you wish to force display of the cwd as part of the
 			-- query prompt string (fzf.vim style), header line or both
 			-- cwd_header = true,
-			cwd_prompt = true,
+			cwd_prompt = false,
 			cwd_prompt_shorten_len = 32, -- shorten prompt beyond this length
 			cwd_prompt_shorten_val = 1, -- shortened path parts length
 			actions = {
@@ -269,6 +269,9 @@ function M.config()
 				["ctrl-y"] = function(selected)
 					print(selected[1])
 				end,
+			},
+			fzf_opts = {
+				["--history"] = vim.fn.stdpath("data") .. "/fzf-lua-files-history",
 			},
 		},
 		git = {
@@ -340,10 +343,13 @@ function M.config()
 			},
 			branches = {
 				prompt = "Branches❯ ",
-				cmd = "git branch --all --color",
+				cmd = "git branch --sort=-committerdate --all --color",
 				preview = "git log --graph --pretty=oneline --abbrev-commit --color {1}",
 				actions = {
 					["default"] = actions.git_switch,
+					["ctrl-t"] = function(state)
+						os.execute("git checkout --track " .. state[1])
+					end,
 				},
 			},
 			stash = {
@@ -406,6 +412,10 @@ function M.config()
 				-- this action toggles between 'grep' and 'live_grep'
 				["ctrl-g"] = { actions.grep_lgrep },
 			},
+			fzf_opts = {
+				["--history"] = vim.fn.stdpath("data") .. "/fzf-lua-grep-history",
+			},
+
 			no_header = false, -- hide grep|cwd header?
 			no_header_i = false, -- hide interactive header?
 		},
@@ -419,7 +429,7 @@ function M.config()
 			prompt = "History❯ ",
 			cwd_only = true,
 			stat_file = true, -- verify files exist on disk
-			include_current_session = false, -- include bufs from current session
+			include_current_session = true, -- include bufs from current session
 		},
 		buffers = {
 			prompt = "Buffers❯ ",
@@ -453,6 +463,7 @@ function M.config()
 				-- hide tabnr
 				["--delimiter"] = "'[\\):]'",
 				["--with-nth"] = "2..",
+				["--history"] = vim.fn.stdpath("data") .. "/fzf-lua-files-history",
 			},
 		},
 		lines = {

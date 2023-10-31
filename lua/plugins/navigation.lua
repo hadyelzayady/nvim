@@ -33,8 +33,8 @@ return {
 		"nvim-neo-tree/neo-tree.nvim",
 		cmd = { "NeoTree" },
 		keys = {
-			{ "<leader>e", "<cmd>Neotree reveal=true toggle=true<cr>", desc = "File Explorer Reveal" },
-			{ "<leader>E", "<cmd>Neotree toggle=true<cr>", desc = "File Explorer" },
+			{ "<leader>e", "<cmd>Neotree reveal=true toggle=true<cr>", desc = "File Explorer" },
+			{ "<leader>E", "<cmd>Neotree reveal<cr>", desc = "File Explorer Reveal" },
 		},
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -72,5 +72,27 @@ return {
     { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
     { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
   },
+	},
+	{
+		"kevinhwang91/nvim-bqf",
+		ft = "qf",
+		dependencies = {
+			{
+				"junegunn/fzf",
+				run = function()
+					vim.fn["fzf#install"]()
+				end,
+			},
+		},
+	},
+	{
+		"folke/trouble.nvim",
+		cmd = { "Trouble", "TroubleToggle" },
+		-- opts = require("plugins-options.trouble"),
+	},
+	{
+		"dnlhc/glance.nvim",
+		cmd = { "Glance" },
+		-- opts = require("plugins-options.glance"),
 	},
 }

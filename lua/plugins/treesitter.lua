@@ -5,7 +5,6 @@ return {
 		config = require("plugins-options.treesitter").config,
 		dependencies = {
 			"JoosepAlviste/nvim-ts-context-commentstring",
-			"nvim-treesitter/nvim-treesitter-context",
 		},
 	},
 }

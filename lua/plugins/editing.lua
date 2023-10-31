@@ -2,7 +2,7 @@ return {
 	{
 		"echasnovski/mini.ai",
 		version = false,
-    event = "VeryLazy",
+		event = "VeryLazy",
 		dependencies = {
 			{
 				"nvim-treesitter/nvim-treesitter-textobjects",
@@ -42,5 +42,26 @@ return {
 	{
 		"max397574/better-escape.nvim",
 		config = require("plugins-options.better-escape").config,
+	},
+
+	{
+		"smjonas/live-command.nvim",
+		enabled = false,
+		-- live-command supports semantic versioning via tags
+		-- tag = "1.*",
+		config = function()
+			require("live-command").setup({
+				commands = {
+					Norm = { cmd = "norm" },
+				},
+			})
+		end,
+	},
+	{
+		"mbbill/undotree",
+		cmd = { "UndotreeFocus", "UndotreeHide", "UndotreeShow", "UndotreeToggle" },
+		config = function()
+			vim.cmd("source ~/.config/nvim/vimscript/undotree.vim")
+		end,
 	},
 }
