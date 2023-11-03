@@ -1,5 +1,10 @@
 local map = require("utils.functions").map
 
+map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
+map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
+map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
+map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
+
 map("n", "x", '"_x', { silent = true })
 map("n", "X", '"_X', { silent = true })
 map("v", "x", '"_x', { silent = true })
@@ -55,7 +60,7 @@ map("n", "<leader>gU", "<cmd>Gin push<CR>", { desc = "Push" })
 map("n", "<leader>gh", ":DiffviewFileHistory %<CR>", { desc = "Buffer History" })
 map("v", "<leader>gh", ":'<,'>DiffviewFileHistory %<CR>", { desc = "Range Buffer History" })
 map("n", "<leader>gn", "<cmd>Git<CR>", { desc = "Neogit" })
-map("n", "<leader>ga", require("utils.git").list,{ desc = "Co-authors" })
+map("n", "<leader>ga", require("utils.git").list, { desc = "Co-authors" })
 
 -- -- Debug
 map("n", "<leader>rd", "<cmd>lua require('dap').continue()<CR>", { desc = "Debug" })
@@ -134,6 +139,7 @@ function M.on_attach_setup(ev)
 	map("n", "<leader>cf", require("plugins.lsp.operations").fixAll, opts)
 	map("n", "<leader>cc", require("plugins.lsp.operations").removeUnused, opts)
 	map("n", "<leader>ci", require("plugins.lsp.operations").addMissingImports, opts)
+	map({ "n", "i" }, "<C-s>", vim.lsp.buf.signature_help, opts)
 end
 
 function M.hlslens_setup()

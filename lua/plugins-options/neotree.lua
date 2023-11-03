@@ -28,11 +28,64 @@ local diff_files = function(state)
 	end
 end
 local function on_file_remove(args)
-	print("hh")
 	require("plugins.lsp.rename_file").rename_file({ old_name = args.source, new_name = args.destination })
 end
 
 M.opts = {
+	add_blank_line_at_top = false, -- Add a blank line at the top of the tree.
+	auto_clean_after_session_restore = true, -- Automatically clean up broken neo-tree buffers saved in sessions
+	close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
+
+	sources = {
+		"filesystem",
+		"git_status",
+		"buffers",
+	},
+
+	open_files_do_not_replace_types = { "terminal", "trouble", "qf" }, -- when opening files, do not use windows containing these filetypes or buftypes
+	source_selector = {
+		winbar = true, -- toggle to show selector on winbar
+		statusline = false, -- toggle to show selector on statusline
+		show_scrolled_off_parent_node = false, -- this will replace the tabs with the parent path
+		-- of the top visible node when scrolled down.
+		sources = {
+			{ source = "filesystem" },
+			{ source = "git_status" },
+			{ source = "buffers" },
+			{ source = "document_symbols" },
+		},
+		content_layout = "start", -- only with `tabs_layout` = "equal", "focus"
+		--                start  : |/ 裡 bufname     \/...
+		--                end    : |/     裡 bufname \/...
+		--                center : |/   裡 bufname   \/...
+		tabs_layout = "equal", -- start, end, center, equal, focus
+		--             start  : |/  a  \/  b  \/  c  \            |
+		--             end    : |            /  a  \/  b  \/  c  \|
+		--             center : |      /  a  \/  b  \/  c  \      |
+		--             equal  : |/    a    \/    b    \/    c    \|
+		--             active : |/  focused tab    \/  b  \/  c  \|
+		truncation_character = "…", -- character to use when truncating the tab label
+		tabs_min_width = nil, -- nil | int: if int padding is added based on `content_layout`
+		tabs_max_width = nil, -- this will truncate text even if `text_trunc_to_fit = false`
+		padding = 0, -- can be int or table
+		-- padding = { left = 2, right = 0 },
+		-- separator = "▕", -- can be string or table, see below
+		separator = { left = "▏", right = "▕" },
+		-- separator = { left = "/", right = "\\", override = nil },     -- |/  a  \/  b  \/  c  \...
+		-- separator = { left = "/", right = "\\", override = "right" }, -- |/  a  \  b  \  c  \...
+		-- separator = { left = "/", right = "\\", override = "left" },  -- |/  a  /  b  /  c  /...
+		-- separator = { left = "/", right = "\\", override = "active" },-- |/  a  / b:active \  c  \...
+		-- separator = "|",                                              -- ||  a  |  b  |  c  |...
+		separator_active = nil, -- set separators around the active tab. nil falls back to `source_selector.separator`
+		show_separator_on_edge = false,
+		--                       true  : |/    a    \/    b    \/    c    \|
+		--                       false : |     a    \/    b    \/    c     |
+		highlight_tab = "NeoTreeTabInactive",
+		highlight_tab_active = "NeoTreeTabActive",
+		highlight_background = "NeoTreeTabInactive",
+		highlight_separator = "NeoTreeTabSeparatorInactive",
+		highlight_separator_active = "NeoTreeTabSeparatorActive",
+	},
 	close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
 	popup_border_style = "rounded",
 	enable_git_status = true,
@@ -125,7 +178,16 @@ M.opts = {
 	-- A list of functions, each representing a global custom command
 	-- that will be available in all sources (if not overridden in `opts[source_name].commands`)
 	-- see `:h neo-tree-custom-commands-global`
-	commands = {},
+	commands = {
+		git_diff_file = function(state)
+			local node = state.tree:get_node()
+			local file = node:get_id()
+			vim.cmd("DiffviewOpen -- " .. file)
+		end,
+		git_diff = function()
+			vim.cmd("DiffviewOpen")
+		end,
+	},
 	window = {
 		position = "left",
 		width = 40,
@@ -188,6 +250,7 @@ M.opts = {
 	},
 	nesting_rules = {},
 	filesystem = {
+		display_name = " Files",
 		filtered_items = {
 			visible = false, -- when true, they will just be displayed differently than normal items
 			hide_dotfiles = true,
@@ -202,6 +265,7 @@ M.opts = {
 			},
 			always_show = { -- remains visible even if other settings would normally hide it
 				--".gitignored",
+				".env.development.local",
 			},
 			never_show = { -- remains hidden even if visible is toggled to true, this overrides always_show
 				--".DS_Store",
@@ -271,6 +335,41 @@ M.opts = {
 				vim.api.nvim_input(": " .. path .. "<Home>")
 			end,
 		}, -- Add a custom command or override a global one using the same function name
+		components = {
+			-- harpoon_index = function(config, node)
+			-- 	local Marked = require("harpoon.mark")
+			-- 	local path = node:get_id()
+			-- 	local succuss, index = pcall(Marked.get_index_of, path)
+			-- 	if succuss and index and index > 0 then
+			-- 		return {
+			-- 			text = string.format(" ⥤ %d", index), -- <-- Add your favorite harpoon like arrow here
+			-- 			highlight = config.highlight or "NeoTreeDirectoryIcon",
+			-- 		}
+			-- 	else
+			-- 		return {}
+			-- 	end
+			-- end,
+		},
+		renderers = {
+			file = {
+				{ "indent" },
+				{ "icon" },
+				{
+					"container",
+					content = {
+						{
+							"name",
+							zindex = 10,
+						},
+						{ "clipboard", zindex = 10 },
+						-- { "harpoon_index", zindex = 10 }, --> This is what actually adds the component in where you want it
+						{ "modified", zindex = 20, align = "right" },
+						{ "diagnostics", zindex = 20, align = "right" },
+						{ "git_status", zindex = 20, align = "right" },
+					},
+				},
+			},
+		},
 	},
 	buffers = {
 		follow_current_file = {
@@ -313,7 +412,19 @@ M.opts = {
 				["on"] = { "order_by_name", nowait = false },
 				["os"] = { "order_by_size", nowait = false },
 				["ot"] = { "order_by_type", nowait = false },
+				["d"] = "git_diff_file",
+				["D"] = "git_diff",
 			},
+		},
+	},
+	event_handlers = {
+		{
+			event = "file_renamed",
+			handler = on_file_remove,
+		},
+		{
+			event = "file_moved",
+			handler = on_file_remove,
 		},
 	},
 }

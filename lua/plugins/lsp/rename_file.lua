@@ -61,7 +61,7 @@ function M.rename_file(data)
 				client.server_capabilities,
 				"workspace",
 				"fileOperations",
-				"didRename",
+				"willRename",
 				"filters"
 			) or {}
 			print(vim.inspect(filters))
@@ -70,10 +70,14 @@ function M.rename_file(data)
 					match_file_operation_filter(filter, data.old_name, type)
 					and match_file_operation_filter(filter, data.new_name, type)
 				then
-					client.notify(
-						"workspace/didRenameFiles",
+					local success, resp = pcall(
+						client.request_sync,
+						"workspace/willRenameFiles",
 						{ files = { { oldUri = uri_from_path(data.old_name), newUri = uri_from_path(data.new_name) } } }
 					)
+					print("apply_workspace_edit")
+					print(vim.inspect(resp.result))
+					vim.lsp.util.apply_workspace_edit(resp.result, client.offset_encoding)
 				end
 			end
 		end

@@ -1,16 +1,16 @@
 local function augroup(name)
 	return vim.api.nvim_create_augroup("lazyvim_" .. name, { clear = true })
 end
-
+local autocmd = vim.api.nvim_create_autocmd
 -- Highlight on yank
-vim.api.nvim_create_autocmd("TextYankPost", {
+autocmd("TextYankPost", {
 	group = augroup("hilight_on_yank"),
 	callback = function()
 		vim.highlight.on_yank({ timeout = 40 })
 	end,
 })
 -- go to last loc when opening a buffer
-vim.api.nvim_create_autocmd("BufReadPost", {
+autocmd("BufReadPost", {
 	group = augroup("last_loc"),
 	callback = function()
 		local mark = vim.api.nvim_buf_get_mark(0, '"')
@@ -20,8 +20,27 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 		end
 	end,
 })
-
--- vim.api.nvim_create_autocmd("InsertEnter", {
+-- 5. Update neotree when closin the git client.
+autocmd("TermClose", {
+	pattern = { "*lazygit", "*gitui" },
+	desc = "Refresh Neo-Tree git when closing lazygit/gitui",
+	callback = function()
+		local manager_avail, manager = pcall(require, "neo-tree.sources.manager")
+		if manager_avail then
+			for _, source in ipairs({
+				"filesystem",
+				"git_status",
+				"document_symbols",
+			}) do
+				local module = "neo-tree.sources." .. source
+				if package.loaded[module] then
+					manager.refresh(require(module).name)
+				end
+			end
+		end
+	end,
+})
+-- autocmd("InsertEnter", {
 -- 	group = vim.api.nvim_create_augroup("CmpSourceNpm", { clear = true }),
 -- 	pattern = "package.json",
 -- 	callback = function()

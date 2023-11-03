@@ -77,7 +77,7 @@ opt.pumheight = 10 -- Make popup menu smaller
 opt.winblend = 10 -- Make floating windows slightly transparent
 
 -- opt.listchars = 'extends:.,precedes:.,nbsp:␣' -- Define which helper symbols to show
-opt.listchars = "tab:| ,extends:›,precedes:‹,nbsp:·,trail:·"
+opt.listchars = "space:·,tab:->"
 opt.list = true -- Show some helper symbols
 
 -- Enable syntax highlighing if it wasn't already (as it is time consuming)
