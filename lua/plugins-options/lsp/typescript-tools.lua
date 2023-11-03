@@ -43,5 +43,20 @@ function M.config(_, opts)
 			disable_member_code_lens = true,
 		},
 	})
+	require("lspconfig")["typescript-tools"].setup({
+		filetypes = {
+			"javascript",
+			"js",
+			"jsx",
+			"ts",
+			"tsx",
+			"typescript",
+			"javascriptreact",
+			"javascript.jsx",
+			"typescript",
+			"typescriptreact",
+			"typescript.tsx",
+		},
+	})
 end
 return M

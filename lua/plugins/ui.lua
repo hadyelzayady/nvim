@@ -27,5 +27,8 @@ return {
   {
     'stevearc/dressing.nvim',
     config = require("plugins-options.dressing").config
-  }
+  },
+	{
+		"dhruvasagar/vim-zoom",
+	},
 }

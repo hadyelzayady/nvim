@@ -1,6 +1,6 @@
 local M = {}
 function M.goto_definition()
-	vim.lsp.buf.definition()
+	vim.cmd("Glance definitions")
 end
 function M.goto_references()
 	vim.lsp.buf.references()
@@ -97,7 +97,9 @@ function M.fixAll()
 		for _, client in ipairs(clients) do
 			if client == "typescript-tools" then
 				vim.cmd("TSToolsFixAll")
-				break
+			end
+			if client == "eslint" then
+				vim.cmd("EslintFixAll")
 			end
 		end
 	end

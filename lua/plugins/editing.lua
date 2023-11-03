@@ -43,4 +43,11 @@ return {
 		"max397574/better-escape.nvim",
 		config = require("plugins-options.better-escape").config,
 	},
+	{
+		"mbbill/undotree",
+		cmd = { "UndotreeFocus", "UndotreeHide", "UndotreeShow", "UndotreeToggle" },
+		config = function()
+			vim.cmd("source ~/.config/nvim/vimscript/undotree.vim")
+		end,
+	},
 }
