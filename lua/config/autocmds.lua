@@ -10,7 +10,7 @@ autocmd("TextYankPost", {
 		vim.highlight.on_yank({ timeout = 40 })
 	end,
 })
--- vim.api.nvim_create_autocmd("InsertEnter", {
+
 autocmd("BufReadPost", {
 	group = augroup("last_loc"),
 	callback = function()
@@ -41,6 +41,17 @@ autocmd("TermClose", {
 		end
 	end,
 })
+autocmd("BufReadPost", {
+	group = augroup("diff_colorscheme"),
+	callback = function()
+		-- if vim.api.nvim_win_get_option(0, "diff") then
+		-- 	vim.cmd([[colorscheme tokyonight-night]])
+		-- else
+		-- 	vim.cmd([[colorscheme tokyonight-night]])
+		-- end
+	end,
+})
+
 -- autocmd("InsertEnter", {
 -- 	group = vim.api.nvim_create_augroup("CmpSourceNpm", { clear = true }),
 -- 	pattern = "package.json",

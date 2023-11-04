@@ -59,7 +59,7 @@ map("n", "<leader>gu", "<cmd>Gin pull<CR>", { desc = "Pull" })
 map("n", "<leader>gU", "<cmd>Gin push<CR>", { desc = "Push" })
 map("n", "<leader>gh", ":DiffviewFileHistory %<CR>", { desc = "Buffer History" })
 map("v", "<leader>gh", ":'<,'>DiffviewFileHistory %<CR>", { desc = "Range Buffer History" })
-map("n", "<leader>gn", "<cmd>Git<CR>", { desc = "Neogit" })
+map("n", "<leader>gn", "<cmd>Neogit<CR>", { desc = "Neogit" })
 map("n", "<leader>ga", require("utils.git").list, { desc = "Co-authors" })
 
 -- -- Debug
@@ -76,8 +76,12 @@ map("n", "<leader>h", "<cmd>UndotreeToggle<CR>", { desc = "history" })
 
 map({ "n", "v" }, "<leader>lf", require("plugins.lsp.operations").format, { silent = true, desc = "Format" })
 
+-- lists
+map("n", "<leader>xx", "<cmd>TroubleToggle document_diagnostics<cr> ", { silent = true, desc = "Format" })
+map("n", "<leader>xX", "<cmd>TroubleToggle workspace_diagnostics<cr> ", { silent = true, desc = "Format" })
 -- toggle misc
 map("n", "<leader>nc", "<cmd>TSContextToggle<CR>", { desc = "Context" })
+map("n", "<leader>nh", "<cmd>CccHighlighterToggle<CR>", { desc = "Color Highlight" })
 
 local M = {}
 function M.oil()

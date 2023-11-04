@@ -95,4 +95,11 @@ return {
 		cmd = { "Glance" },
 		-- opts = require("plugins-options.glance"),
 	},
+	{
+		"chrishrb/gx.nvim",
+		event = { "BufEnter" },
+		keys = { "gx" },
+		dependencies = { "nvim-lua/plenary.nvim" },
+		config = require("plugins-options.gx").config,
+	},
 }
