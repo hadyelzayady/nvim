@@ -2,7 +2,7 @@ local M = {}
 function M.config(_, opts)
 	-- Setup language servers.
 	require("config.keymaps").lsp_global_setup()
-	require("plugins-options.lsp.diagnostics").setup()
+	-- require("plugins-options.lsp.diagnostics").setup()
 
 	require("plugins-options.lsp.servers-configs").setup()
 	-- Use LspAttach autocommand to only map the following keys

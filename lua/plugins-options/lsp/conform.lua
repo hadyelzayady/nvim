@@ -13,6 +13,7 @@ function M.config(_, opts)
 			typescriptreact = js_like_formatters,
 			json = js_like_formatters,
 			cpp = { "clang_format" },
+			sh = { "shfmt" },
 			["*"] = { "trim_whitespace" },
 		},
 	})

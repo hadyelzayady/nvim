@@ -41,21 +41,19 @@ autocmd("TermClose", {
 		end
 	end,
 })
-autocmd("BufReadPost", {
-	group = augroup("diff_colorscheme"),
+
+autocmd("BufWritePost", {
+	group = augroup("sxhkd"),
+	pattern = { "*sxhkdrc" },
 	callback = function()
-		-- if vim.api.nvim_win_get_option(0, "diff") then
-		-- 	vim.cmd([[colorscheme tokyonight-night]])
-		-- else
-		-- 	vim.cmd([[colorscheme tokyonight-night]])
-		-- end
+		vim.cmd("silent! !pkill -USR1 sxhkd")
 	end,
 })
 
--- autocmd("InsertEnter", {
--- 	group = vim.api.nvim_create_augroup("CmpSourceNpm", { clear = true }),
--- 	pattern = "package.json",
--- 	callback = function()
--- 		require("cmp").setup.buffer({ sources = { { name = "npm" } } })
--- 	end,
--- })
+autocmd("BufWritePost", {
+	group = augroup("bar"),
+	pattern = { "bar.sh" },
+	callback = function()
+		vim.cmd("silent! !pkill bar || bar & disown")
+	end,
+})

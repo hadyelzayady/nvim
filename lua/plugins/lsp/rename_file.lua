@@ -48,13 +48,12 @@ end
 
 local M = {}
 function M.rename_file(data)
-	print("rename_file", data.old_name, data.new_name)
 	local stat = vim.loop.fs_stat(data.new_name)
 	if not stat then
 		return
 	end
 	local type = ({ file = "file", directory = "folder" })[stat.type]
-	local clients = vim.lsp.get_active_clients({})
+	local clients = vim.lsp.get_clients({})
 	for _, client in ipairs(clients) do
 		if check_folders_contains(client.workspace_folders, data.old_name) then
 			local filters = vim.tbl_get(
@@ -64,7 +63,6 @@ function M.rename_file(data)
 				"didRename",
 				"filters"
 			) or {}
-			print(vim.inspect(filters))
 			for _, filter in pairs(filters) do
 				if
 					match_file_operation_filter(filter, data.old_name, type)
