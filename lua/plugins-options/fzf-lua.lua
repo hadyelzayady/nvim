@@ -347,6 +347,9 @@ function M.config()
 				preview = "git log --graph --pretty=oneline --abbrev-commit --color {1}",
 				actions = {
 					["default"] = actions.git_switch,
+					["ctrl-d"] = function(state)
+						vim.cmd("DiffviewOpen " .. state[1])
+					end,
 					["ctrl-t"] = function(state)
 						os.execute("git checkout --track " .. state[1])
 					end,

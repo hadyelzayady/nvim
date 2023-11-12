@@ -5,8 +5,14 @@ return {
 		config = require("plugins-options.treesitter").config,
 		dependencies = {
 			"JoosepAlviste/nvim-ts-context-commentstring",
-			"nvim-treesitter/nvim-treesitter-context",
 			"windwp/nvim-ts-autotag",
+		},
+		{
+			"nvim-treesitter/nvim-treesitter-context",
+			dependencies = {
+				"nvim-treesitter/nvim-treesitter",
+			},
+			config = require("plugins-options.treesitter-context").config,
 		},
 	},
 }

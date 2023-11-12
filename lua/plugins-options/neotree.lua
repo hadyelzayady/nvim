@@ -34,7 +34,6 @@ end
 M.opts = {
 	add_blank_line_at_top = false, -- Add a blank line at the top of the tree.
 	auto_clean_after_session_restore = true, -- Automatically clean up broken neo-tree buffers saved in sessions
-	close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
 
 	sources = {
 		"filesystem",
