@@ -7,12 +7,12 @@ return {
 			"JoosepAlviste/nvim-ts-context-commentstring",
 			"windwp/nvim-ts-autotag",
 		},
-		{
-			"nvim-treesitter/nvim-treesitter-context",
-			dependencies = {
-				"nvim-treesitter/nvim-treesitter",
-			},
-			config = require("plugins-options.treesitter-context").config,
+	},
+	{
+		"nvim-treesitter/nvim-treesitter-context",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
 		},
+		config = require("plugins-options.treesitter-context").config,
 	},
 }

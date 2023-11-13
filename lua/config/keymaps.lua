@@ -53,7 +53,8 @@ map("n", "<leader>qd", "<cmd>Veil<cr>", { desc = "Dashboard" })
 
 -- Git
 map("n", "<leader>gg", "<cmd>LazyGit<CR>", { desc = "Lazygit", silent = true })
-map("n", "<leader>gd", ":DiffviewOpen -- %<cr>", { desc = "Diff file" })
+map("n", "<leader>gd", ":DiffviewOpen<cr>", { desc = "Diff" })
+map("n", "<leader>gD", ":DiffviewOpen -- %<cr>", { desc = "Diff file" })
 map("n", "<leader>gc", "<cmd>FzfLua git_branches<CR>", { desc = "Checkout Branch" })
 map("n", "<leader>gu", "<cmd>Gin pull<CR>", { desc = "Pull" })
 map("n", "<leader>gU", "<cmd>Gin push<CR>", { desc = "Push" })
