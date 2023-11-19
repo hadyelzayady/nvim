@@ -42,23 +42,6 @@ return {
 		},
 	},
 	{
-		"hinell/lsp-timeout.nvim",
-		dependencies = { "neovim/nvim-lspconfig" },
-		enabled = false,
-		config = function()
-			vim.g.lspTimeoutConfig = {
-				stopTimeout = 1000 * 60 * 2, -- ms, timeout before stopping all LSPs
-				startTimeout = 0, -- ms, timeout before restart
-				silent = false, -- true to suppress notifications
-				filetypes = {
-					ignore = { -- filetypes to ignore; empty by default
-						-- lsp-timeout is disabled completely
-					}, -- for these filetypes
-				},
-			}
-		end,
-	},
-	{
 		"mfussenegger/nvim-jdtls",
 		dependencies = { "folke/which-key.nvim" },
 		ft = "java",
