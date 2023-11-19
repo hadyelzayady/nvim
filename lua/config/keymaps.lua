@@ -84,6 +84,11 @@ map("n", "<leader>xX", "<cmd>TroubleToggle workspace_diagnostics<cr> ", { silent
 map("n", "<leader>nc", "<cmd>TSContextToggle<CR>", { desc = "Context" })
 map("n", "<leader>nh", "<cmd>CccHighlighterToggle<CR>", { desc = "Color Highlight" })
 
+-- refactor
+map({ "n", "x" }, "<leader>cr", function()
+	require("refactoring").select_refactor()
+end, { desc = "Refactor" })
+
 local M = {}
 function M.oil()
 	map("n", "-", require("oil").open, { desc = "Open parent directory" })

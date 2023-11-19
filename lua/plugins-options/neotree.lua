@@ -32,6 +32,9 @@ local function on_file_remove(args)
 end
 
 M.opts = {
+	hide_root_node = false, -- Hide the root node.
+	retain_hidden_root_indent = true, -- IF the root node is hidden, keep the indentation anyhow.
+	-- This is needed if you use expanders because they render in the indent.
 	add_blank_line_at_top = false, -- Add a blank line at the top of the tree.
 	auto_clean_after_session_restore = true, -- Automatically clean up broken neo-tree buffers saved in sessions
 
@@ -41,11 +44,10 @@ M.opts = {
 		"buffers",
 	},
 
-	open_files_do_not_replace_types = { "terminal", "trouble", "qf" }, -- when opening files, do not use windows containing these filetypes or buftypes
 	source_selector = {
 		winbar = true, -- toggle to show selector on winbar
 		statusline = false, -- toggle to show selector on statusline
-		show_scrolled_off_parent_node = false, -- this will replace the tabs with the parent path
+		show_scrolled_off_parent_node = true, -- this will replace the tabs with the parent path
 		-- of the top visible node when scrolled down.
 		sources = {
 			{ source = "filesystem" },

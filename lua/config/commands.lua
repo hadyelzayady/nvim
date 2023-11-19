@@ -5,3 +5,5 @@ vim.api.nvim_create_user_command("DiffBuf", function(args)
 		vim.cmd("windo diffoff")
 	end
 end, { range = true })
+
+vim.cmd("com -bar W exe 'w !sudo tee >/dev/null %:p:S' | setl nomod")

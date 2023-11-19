@@ -14,6 +14,7 @@ return {
 	},
 	{
 		"stevearc/conform.nvim",
+		keys = { "<space>f" },
 		config = require("plugins-options.lsp.conform").config,
 	},
 	{
@@ -24,6 +25,7 @@ return {
 	{
 		"stevearc/aerial.nvim",
 		config = require("plugins-options.lsp.aerial").config,
+		cmd = { "AerialToggle", "AerialNavToggle" },
 		-- Optional dependencies
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
@@ -33,6 +35,7 @@ return {
 	{
 		"hinell/lsp-timeout.nvim",
 		dependencies = { "neovim/nvim-lspconfig" },
+		enabled = false,
 		config = function()
 			vim.g.lspTimeoutConfig = {
 				stopTimeout = 1000 * 60 * 2, -- ms, timeout before stopping all LSPs
