@@ -35,6 +35,6 @@ return {
 			"nvim-lua/plenary.nvim",
 			"sindrets/diffview.nvim",
 		},
-		opts = require("plugins-options.neogit"),
+		config = require("plugins-options.neogit").config,
 	},
 }

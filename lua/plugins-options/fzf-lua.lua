@@ -123,7 +123,7 @@ function M.config()
 				["ctrl-s"] = actions.file_split,
 				["ctrl-v"] = actions.file_vsplit,
 				["ctrl-t"] = actions.file_tabedit,
-				["alt-q"] = actions.file_sel_to_qf,
+				["ctrl-q"] = actions.file_sel_to_qf,
 				["alt-l"] = actions.file_sel_to_ll,
 			},
 			buffers = {
@@ -483,7 +483,7 @@ function M.config()
 			-- actions inherit from 'actions.buffers' and merge
 			actions = {
 				["default"] = actions.buf_edit_or_qf,
-				["alt-q"] = actions.buf_sel_to_qf,
+				["ctrl-q"] = actions.buf_sel_to_qf,
 				["alt-l"] = actions.buf_sel_to_ll,
 			},
 		},
@@ -503,7 +503,7 @@ function M.config()
 			-- actions inherit from 'actions.buffers' and merge
 			actions = {
 				["default"] = actions.buf_edit_or_qf,
-				["alt-q"] = actions.buf_sel_to_qf,
+				["ctrl-q"] = actions.buf_sel_to_qf,
 				["alt-l"] = actions.buf_sel_to_ll,
 			},
 		},

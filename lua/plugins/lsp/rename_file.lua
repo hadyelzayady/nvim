@@ -48,7 +48,6 @@ end
 
 local M = {}
 function M.rename_file(data)
-	print("rename_file", data.old_name, data.new_name)
 	local stat = vim.loop.fs_stat(data.new_name)
 	if not stat then
 		return

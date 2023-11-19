@@ -17,7 +17,6 @@ function M.temp()
       actions = {
           ['ctrl-x'] = {
               function(selected)
-                print("deleting:", selected[1])
                 -- uncomment to enable deletion
                 -- vim.fn.delete(selected[1])
               end,

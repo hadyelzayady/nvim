@@ -83,6 +83,11 @@ map("n", "<leader>xX", "<cmd>TroubleToggle workspace_diagnostics<cr> ", { silent
 map("n", "<leader>nc", "<cmd>TSContextToggle<CR>", { desc = "Context" })
 map("n", "<leader>nh", "<cmd>CccHighlighterToggle<CR>", { desc = "Color Highlight" })
 
+-- -- Debug
+map("n", "<leader>rd", "<cmd>lua require('dap').continue()<CR>", { desc = "Debug" })
+map("n", "<leader>rb", "<cmd>lua require('dap').toggle_breakpoint()<CR>", { desc = "Toggle Breakpoint" })
+map("n", "<leader>ru", "<cmd>lua require('dapui').toggle()<CR>", { desc = "Toggle Ui" })
+
 local M = {}
 function M.oil()
 	map("n", "-", require("oil").open, { desc = "Open parent directory" })
