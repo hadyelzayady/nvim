@@ -23,6 +23,7 @@ return {
 	},
 	{
 		"stevearc/conform.nvim",
+		keys = { "<space>f" },
 		config = require("plugins-options.lsp.conform").config,
 	},
 	{
@@ -33,6 +34,7 @@ return {
 	{
 		"stevearc/aerial.nvim",
 		config = require("plugins-options.lsp.aerial").config,
+		cmd = { "AerialToggle", "AerialNavToggle" },
 		-- Optional dependencies
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",

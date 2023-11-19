@@ -45,6 +45,8 @@ function M.config()
 			"NeogitCommitPopup--allow-empty",
 			"NeogitRevertPopup--no-edit",
 		},
+		-- Set to false if you want to be responsible for creating _ALL_ keymappings
+		use_default_keymaps = true,
 		-- Neogit refreshes its internal state after specific events, which can be expensive depending on the repository size.
 		-- Disabling `auto_refresh` will make it so you have to manually refresh the status after you open it.
 		auto_refresh = true,
@@ -65,10 +67,10 @@ function M.config()
 			recent_commit_count = 10,
 		},
 		commit_editor = {
-			kind = "split",
+			kind = "auto",
 		},
 		commit_select_view = {
-			kind = "split",
+			kind = "tab",
 		},
 		commit_view = {
 			kind = "vsplit",
@@ -78,16 +80,16 @@ function M.config()
 			kind = "tab",
 		},
 		rebase_editor = {
-			kind = "split",
+			kind = "auto",
 		},
 		reflog_view = {
 			kind = "tab",
 		},
 		merge_editor = {
-			kind = "split",
+			kind = "auto",
 		},
 		tag_editor = {
-			kind = "split",
+			kind = "auto",
 		},
 		preview_buffer = {
 			kind = "split",

@@ -53,7 +53,8 @@ map("n", "<leader>qd", "<cmd>Veil<cr>", { desc = "Dashboard" })
 
 -- Git
 map("n", "<leader>gg", "<cmd>LazyGit<CR>", { desc = "Lazygit", silent = true })
-map("n", "<leader>gd", ":DiffviewOpen -- %<cr>", { desc = "Diff file" })
+map("n", "<leader>gd", ":DiffviewOpen<cr>", { desc = "Diff" })
+map("n", "<leader>gD", ":DiffviewOpen -- %<cr>", { desc = "Diff file" })
 map("n", "<leader>gc", "<cmd>FzfLua git_branches<CR>", { desc = "Checkout Branch" })
 map("n", "<leader>gu", "<cmd>Gin pull<CR>", { desc = "Pull" })
 map("n", "<leader>gU", "<cmd>Gin push<CR>", { desc = "Push" })
@@ -87,6 +88,11 @@ map("n", "<leader>nh", "<cmd>CccHighlighterToggle<CR>", { desc = "Color Highligh
 map("n", "<leader>rd", "<cmd>lua require('dap').continue()<CR>", { desc = "Debug" })
 map("n", "<leader>rb", "<cmd>lua require('dap').toggle_breakpoint()<CR>", { desc = "Toggle Breakpoint" })
 map("n", "<leader>ru", "<cmd>lua require('dapui').toggle()<CR>", { desc = "Toggle Ui" })
+
+-- refactor
+map({ "n", "x" }, "<leader>cr", function()
+	require("refactoring").select_refactor()
+end, { desc = "Refactor" })
 
 local M = {}
 function M.oil()

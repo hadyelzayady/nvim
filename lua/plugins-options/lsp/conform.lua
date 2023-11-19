@@ -18,6 +18,7 @@ function M.config(_, opts)
 			html = { "prettierd" },
 
 			cpp = { "clang_format" },
+			sh = { "shfmt" },
 			["*"] = { "trim_whitespace" },
 		},
 	})

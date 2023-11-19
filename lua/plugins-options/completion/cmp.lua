@@ -47,7 +47,7 @@ function M.config()
 			["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 		}),
 		sources = cmp.config.sources({
-			{ name = "nvim_lsp" },
+			{ name = "nvim_lsp", max_item_count = 200 },
 			{ name = "luasnip" }, -- For luasnip users.
 			{ name = "calc" },
 			{ name = "path" },
@@ -70,6 +70,13 @@ function M.config()
 		sources = cmp.config.sources({
 			{ name = "git" }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
 		}, {
+			{ name = "buffer" },
+			{ name = "luasnip" },
+		}),
+	})
+	cmp.setup.filetype("sql", {
+		sources = cmp.config.sources({
+			{ name = "vim-dadbod-completion" },
 			{ name = "buffer" },
 			{ name = "luasnip" },
 		}),

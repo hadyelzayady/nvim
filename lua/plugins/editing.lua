@@ -50,4 +50,12 @@ return {
 			vim.cmd("source ~/.config/nvim/vimscript/undotree.vim")
 		end,
 	},
+	{
+		"ThePrimeagen/refactoring.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+		},
+		config = require("plugins-options.refactoring").config,
+	},
 }

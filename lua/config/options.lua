@@ -76,6 +76,7 @@ opt.pumblend = 10 -- Make builtin completion menus slightly transparent
 opt.pumheight = 10 -- Make popup menu smaller
 opt.winblend = 10 -- Make floating windows slightly transparent
 
+opt.path = opt.path + "/home/hady/.local/bin/scripts/"
 -- opt.listchars = 'extends:.,precedes:.,nbsp:␣' -- Define which helper symbols to show
 opt.listchars = "tab:| ,extends:›,precedes:‹,nbsp:·,trail:·"
 opt.list = true -- Show some helper symbols

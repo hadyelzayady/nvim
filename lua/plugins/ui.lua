@@ -41,5 +41,6 @@ return {
 	{
 		"uga-rosa/ccc.nvim",
 		config = require("plugins-options.ccc").config,
+		cmd = { "CccConvert", "CccPick", "CccHighlighterToggle" },
 	},
 }
