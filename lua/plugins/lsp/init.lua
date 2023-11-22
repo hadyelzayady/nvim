@@ -203,6 +203,7 @@ return {
 	},
 	{
 		"zeioth/garbage-day.nvim",
+    enabled=false,
 		opts = {
 			aggressive_mode = false,
 			excluded_lsp_clients = {

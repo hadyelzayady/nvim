@@ -104,4 +104,17 @@ function M.fixAll()
 		end
 	end
 end
+
+function M.file_references()
+	local clients = require("utils.lsp").get_buffer_attached_lsp()
+	if #clients > 0 then
+		for _, client in ipairs(clients) do
+			if client == "typescript-tools" then
+				local success, resp =
+					pcall(client.request_sync, "fileReferences", { file = vim.api.nvim_buf_get_name(0) })
+				return
+			end
+		end
+	end
+end
 return M
