@@ -49,4 +49,18 @@ return {
 			}
 		end,
 	},
+	{
+		"zeioth/garbage-day.nvim",
+		opts = {
+			aggressive_mode = false,
+			excluded_lsp_clients = {
+				"jdtls",
+			},
+			grace_period = (60 * 5),
+			wakeup_delay = 3000,
+			notifications = false,
+			retries = 5,
+			timeout = 200,
+		},
+	},
 }
