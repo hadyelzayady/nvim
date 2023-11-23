@@ -58,4 +58,7 @@ return {
 		},
 		config = require("plugins-options.refactoring").config,
 	},
+	{
+		"JoosepAlviste/nvim-ts-context-commentstring",
+	},
 }
