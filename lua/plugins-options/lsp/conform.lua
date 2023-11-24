@@ -14,6 +14,8 @@ function M.config(_, opts)
 			json = js_like_formatters,
 			cpp = { "clang_format" },
 			sh = { "shfmt" },
+			proto = { "buf" },
+
 			["*"] = { "trim_whitespace" },
 		},
 	})

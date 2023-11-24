@@ -94,7 +94,7 @@ vim.g.markdown_recommended_style = 0
 -- vim.g.did_load_filetypes = 1
 vim.o.foldlevel = 10000 -- Using ufo provider need a large value, feel free to decrease the value
 vim.o.fillchars = [[foldopen:,foldclose:]]
-vim.o.foldcolumn = "1"
+-- vim.o.foldcolumn = "1"
 
 vim.o.exrc = true
 -- disable language provider support (lua and vimscript plugins only)
@@ -128,6 +128,6 @@ _G.get_statuscol = function()
 	end
 end
 
-opt.foldmethod = "expr"
-opt.foldexpr = "nvim_treesitter#foldexpr()"
+opt.foldmethod = "indent"
+-- opt.foldexpr = "nvim_treesitter#foldexpr()"
 -- opt.statuscolumn = "%!v:lua.get_statuscol()"

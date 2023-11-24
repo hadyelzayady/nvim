@@ -5,7 +5,11 @@ return {
 		priority = 1000,
 		opts = {},
 		config = function()
-			require("tokyonight").setup()
+			require("tokyonight").setup({
+				on_colors = function(colors)
+					colors.border = "#565f89"
+				end,
+			})
 			vim.cmd([[colorscheme tokyonight-night]])
 			vim.cmd("hi DiffAdd guifg=#26ac3c guibg=#303030 gui=reverse cterm=reverse")
 			vim.cmd("hi DiffChange guifg=#2b97b4 guibg=#303030 gui=reverse cterm=reverse")
