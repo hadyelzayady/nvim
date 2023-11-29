@@ -57,3 +57,9 @@ autocmd("BufWritePost", {
 		vim.cmd("silent! !pkill bar || bar & disown")
 	end,
 })
+-- autocmd("TermOpen", {
+-- 	pattern = { "term://*" },
+-- 	callback = function()
+-- 		-- require("config.keymaps").terminal_keymap()
+-- 	end,
+-- })

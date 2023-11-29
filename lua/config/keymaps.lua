@@ -52,7 +52,8 @@ map("n", "<leader>qW", "<cmd>silent! w<cr>", { desc = "Save Current" })
 map("n", "<leader>qd", "<cmd>Veil<cr>", { desc = "Dashboard" })
 
 -- Git
-map("n", "<leader>gg", "<cmd>LazyGit<CR>", { desc = "Lazygit", silent = true })
+map("n", "<leader>gg", "<cmd>Lazygit<CR>", { desc = "Lazygit", silent = true })
+map("n", "<leader>gG", "<cmd>Gitui<CR>", { desc = "Gitui", silent = true })
 map("n", "<leader>gd", ":DiffviewOpen<cr>", { desc = "Diff" })
 map("n", "<leader>gD", ":DiffviewOpen -- %<cr>", { desc = "Diff file" })
 map("n", "<leader>gc", "<cmd>FzfLua git_branches<CR>", { desc = "Checkout Branch" })
@@ -236,5 +237,25 @@ function M.rest_nvim_keymaps()
 	map({ "n", "v" }, "<leader>r", "<Plug>RestNvim", { desc = "Run Request", buffer = true })
 	map({ "n" }, "<leader>p", "<Plug>RestNvimPreview", { desc = "Preview The Curl Command", buffer = true })
 	map("n", "<leader>R", "<Plug>RestNvimLast", { desc = "Rerun The Last Request", buffer = true })
+end
+
+function M.terminal_keymap()
+	local opts = { buffer = 0 }
+	vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
+	vim.keymap.set("t", "jk", [[<C-\><C-n>]], opts)
+	vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
+	vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
+	vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
+	vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
+	vim.keymap.set("t", "<C-w>", [[<C-\><C-n><C-w>]], opts)
+end
+
+function M.bufremove()
+	map("n", "<leader>d", function()
+		MiniBufremove.delete(0)
+	end, { desc = "Delete Buffer" })
+	map("n", "<leader>D", function()
+		MiniBufremove.delete(0, true)
+	end, { desc = "Force Delete Buffer" })
 end
 return M

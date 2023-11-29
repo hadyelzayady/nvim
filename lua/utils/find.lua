@@ -1,5 +1,24 @@
 local M = {}
 
+local FilesPicker = {}
+FilesPicker.toggle = function(_, opts)
+	FilesPicker.pick(opts)
+end
+FilesPicker.pick = function(opts)
+	opts = opts or {}
+	opts.debug = false
+	opts.cmd = opts.cmd or "fd --color=never --type f --hidden --follow --no-ignore"
+	opts.actions = {
+		["ctrl-g"] = FilesPicker.toggle,
+	}
+	if opts.cmd:match("%s+%-%-no%-ignore$") then
+		opts.cmd = opts.cmd:gsub("%s+%-%-no%-ignore$", "")
+	else
+		opts.cmd = opts.cmd .. " --no-ignore"
+	end
+
+	require("fzf-lua").files(opts)
+end
 function M.find_project_files()
   vim.cmd("FzfLua files")
   -- require "telescope.builtin".git_files({ show_untracked = true })
@@ -13,17 +32,17 @@ function M.find_project_files()
 end
 
 function M.temp()
-  require 'fzf-lua'.fzf_exec("ls", {
-      actions = {
-          ['ctrl-x'] = {
-              function(selected)
-                -- uncomment to enable deletion
-                -- vim.fn.delete(selected[1])
-              end,
-              require 'fzf-lua'.actions.resume
-          }
-      }
-  })
+	require("fzf-lua").fzf_exec("ls", {
+		actions = {
+			["ctrl-x"] = {
+				function(selected)
+					-- uncomment to enable deletion
+					-- vim.fn.delete(selected[1])
+				end,
+				require("fzf-lua").actions.resume,
+			},
+		},
+	})
 end
 
 return M

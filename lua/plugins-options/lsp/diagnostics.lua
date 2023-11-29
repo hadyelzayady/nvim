@@ -2,12 +2,10 @@ local M = {}
 
 function M.setup()
 	vim.diagnostic.config({
-		diagnostics = {
-			underline = true,
-			update_in_insert = true,
-			virtual_text = { spacing = 4, prefix = "●" },
-			severity_sort = true,
-		},
+		underline = true,
+		update_in_insert = true,
+		virtual_text = { spacing = 4, prefix = "●" },
+		severity_sort = true,
 	})
 
 	-- -- Create a custom namespace. This will aggregate signs from all other

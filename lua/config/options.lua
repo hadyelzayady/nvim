@@ -82,9 +82,9 @@ opt.listchars = "tab:| ,extends:›,precedes:‹,nbsp:·,trail:·"
 opt.list = true -- Show some helper symbols
 
 -- Enable syntax highlighing if it wasn't already (as it is time consuming)
-if vim.fn.exists("syntax_on") ~= 1 then
-	vim.cmd([[syntax enable]])
-end
+-- if vim.fn.exists("syntax_on") ~= 1 then
+-- 	vim.cmd([[syntax enable]])
+-- end
 -- opt.autochdir = true
 -- opt.grepprg="rg --vimgrep --smart-case --hidden"
 -- opt.grepformat="%f:%l:%c:%m"
@@ -128,6 +128,6 @@ _G.get_statuscol = function()
 	end
 end
 
-opt.foldmethod = "expr"
-opt.foldexpr = "nvim_treesitter#foldexpr()"
+opt.foldmethod = "indent"
+-- opt.foldexpr = "nvim_treesitter#foldexpr()"
 -- opt.statuscolumn = "%!v:lua.get_statuscol()"

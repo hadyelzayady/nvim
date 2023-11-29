@@ -1,4 +1,5 @@
 local M = {}
+
 function M.config()
 	local actions = require("fzf-lua.actions")
 	local fzf = require("fzf-lua")
