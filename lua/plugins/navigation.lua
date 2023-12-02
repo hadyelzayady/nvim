@@ -97,7 +97,6 @@ return {
 	},
 	{
 		"chrishrb/gx.nvim",
-		event = { "BufEnter" },
 		keys = { "gx" },
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = require("plugins-options.gx").config,
@@ -108,6 +107,17 @@ return {
 		config = function()
 			vim.g.matchup_matchparen_deferred = 1 -- work async
 			vim.g.matchup_matchparen_offscreen = {} -- disable status bar icon
+			vim.g.matchup_matchpref = {
+				typescriptreact = {
+					tagnameonly = 1,
+				},
+				javacriptreact = {
+					tagnameonly = 1,
+				},
+				html = {
+					tagnameonly = 1,
+				},
+			}
 		end,
 	},
 }

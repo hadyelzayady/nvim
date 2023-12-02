@@ -47,4 +47,8 @@ return {
 		config = require("plugins-options.ccc").config,
 		cmd = { "CccConvert", "CccPick", "CccHighlighterToggle" },
 	},
+	{
+		"kevinhwang91/nvim-hlslens",
+		config = require("plugins-options.hlslens").config,
+	},
 }

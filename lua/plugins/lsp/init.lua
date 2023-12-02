@@ -5,6 +5,7 @@ return {
 	},
 	{
 		"pmizio/typescript-tools.nvim",
+		ft = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
 		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
 		config = require("plugins-options.lsp.typescript-tools").config,
 	},
@@ -34,6 +35,7 @@ return {
 	},
 	{
 		"zeioth/garbage-day.nvim",
+    enabled=false,
 		opts = {
 			aggressive_mode = false,
 			excluded_lsp_clients = {
