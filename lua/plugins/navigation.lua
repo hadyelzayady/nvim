@@ -87,7 +87,7 @@ return {
 	},
 	{
 		"folke/trouble.nvim",
-		cmd = { "Trouble", "TroubleToggle" },
+		cmd = { "Trouble", "TroubleToggle", "TroubleClose" },
 		-- opts = require("plugins-options.trouble"),
 	},
 	{

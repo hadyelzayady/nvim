@@ -51,6 +51,10 @@ map("n", "<leader>qw", "<cmd>silent! wall<cr>", { desc = "Save All" })
 map("n", "<leader>qW", "<cmd>silent! w<cr>", { desc = "Save Current" })
 map("n", "<leader>qd", "<cmd>Veil<cr>", { desc = "Dashboard" })
 
+-- Pickers
+map("n", "<leader>pc", "<cmd>CccPick<CR>", { desc = "Color Picker", silent = true })
+map("n", "<leader>pt", "<cmd>FzfLua filetypes<CR>", { desc = "Filetype Picker", silent = true })
+
 -- Git
 map("n", "<leader>gg", "<cmd>Lazygit<CR>", { desc = "Lazygit", silent = true })
 map("n", "<leader>gG", "<cmd>Gitui<CR>", { desc = "Gitui", silent = true })
@@ -71,7 +75,11 @@ map("n", "<leader>ru", "<cmd>lua require('dapui').toggle()<CR>", { desc = "Toggl
 
 map("n", "<c-,>", "<cmd>cnext<CR>", { desc = "Next Quickfix Item" })
 map("n", "<c-.>", "<cmd>cprevious<CR>", { desc = "Prev Quickfix Item" })
-map("n", "<c-q>", "<cmd>cclose<CR>", { desc = "Close Quickfix" })
+map("n", "<c-q>", function()
+	vim.cmd("cclose")
+	vim.cmd("TroubleClose")
+	vim.cmd("silent! lua require('neogit').close()")
+end, { desc = "Close Common Splits" })
 
 --  History
 map("n", "<leader>h", "<cmd>UndotreeToggle<CR>", { desc = "history" })
