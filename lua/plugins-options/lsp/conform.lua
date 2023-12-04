@@ -18,6 +18,8 @@ function M.config(_, opts)
 
 			cpp = { "clang_format" },
 			sh = { "shfmt" },
+			proto = { "buf" },
+
 			["*"] = { "trim_whitespace" },
 		},
 	})

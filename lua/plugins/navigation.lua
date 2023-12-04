@@ -97,7 +97,6 @@ return {
 	},
 	{
 		"chrishrb/gx.nvim",
-		event = { "BufEnter" },
 		keys = { "gx" },
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = require("plugins-options.gx").config,

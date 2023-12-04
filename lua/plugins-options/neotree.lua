@@ -188,6 +188,20 @@ M.opts = {
 		git_diff = function()
 			vim.cmd("DiffviewOpen")
 		end,
+		copy_absolute_path_to_system_clipboard = function(state)
+			local node = state.tree:get_node()
+			local path = node:get_id()
+			-- macOs: open file in default application in the background.
+			-- Probably you need to adapt the Linux recipe for manage path with spaces. I don't have a mac to try.
+			os.execute("echo " .. path .. " | xclip -selection clipboard")
+		end,
+		paste_from_system_clipboard = function(state)
+			local file_path = require("utils.functions").os_capture("xclip -o -selection clipboard")
+			local node = state.tree:get_node()
+			local parent_path = node:get_parent_id()
+			os.execute("cp -rf " .. '"' .. file_path .. '"' .. " " .. node.path)
+			vim.cmd("Neotree show")
+		end,
 	},
 	window = {
 		position = "left",
@@ -234,6 +248,8 @@ M.opts = {
 			["x"] = "cut_to_clipboard",
 			["p"] = "paste_from_clipboard",
 			["c"] = "copy", -- takes text input for destination, also accepts the optional config.show_path option like "add":
+			["<space>cc"] = "copy_absolute_path_to_system_clipboard",
+			["<space>p"] = "paste_from_system_clipboard",
 			-- ["c"] = {
 			--  "copy",
 			--  config = {
@@ -350,6 +366,14 @@ M.opts = {
 			-- 		return {}
 			-- 	end
 			-- end,
+			name = function(config, node, state)
+				local components = require("neo-tree.sources.common.components")
+				local name = components.name(config, node, state)
+				if node:get_depth() == 1 then
+					name.text = vim.fs.basename(vim.loop.cwd() or "")
+				end
+				return name
+			end,
 		},
 		renderers = {
 			file = {
