@@ -1,12 +1,3 @@
-local function extend_or_override(config, custom, ...)
-	if type(custom) == "function" then
-		config = custom(config, ...) or config
-	elseif custom then
-		config = vim.tbl_deep_extend("force", config, custom) --[[@as table]]
-	end
-	return config
-end
-
 return {
 	{
 		"neovim/nvim-lspconfig",
@@ -62,5 +53,8 @@ return {
 			retries = 5,
 			timeout = 200,
 		},
+	},
+	{
+		"b0o/schemastore.nvim",
 	},
 }
