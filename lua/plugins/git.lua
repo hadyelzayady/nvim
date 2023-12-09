@@ -2,6 +2,15 @@ return {
 	{
 		"sindrets/diffview.nvim",
 		config = require("plugins-options.diffview").config,
+		cmd = {
+			"DiffviewClose",
+			"DiffviewFileHistory",
+			"DiffviewFocusFiles",
+			"DiffviewLog",
+			"DiffviewOpen",
+			"DiffviewRefresh",
+			"DiffviewToggleFiles",
+		},
 	},
 	{
 		"tpope/vim-fugitive",
@@ -12,10 +21,6 @@ return {
 		dependencies = {
 			"vim-denops/denops.vim",
 		},
-	},
-	{
-		"sindrets/diffview.nvim",
-		config = require("plugins-options.diffview").config,
 	},
 	{
 		"lewis6991/gitsigns.nvim",
