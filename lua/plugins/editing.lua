@@ -73,4 +73,8 @@ return {
 	{
 		"JoosepAlviste/nvim-ts-context-commentstring",
 	},
+	{
+		"mg979/vim-visual-multi",
+		branch = "master",
+	},
 }
