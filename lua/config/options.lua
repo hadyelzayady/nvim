@@ -40,7 +40,7 @@ opt.spell = true
 opt.spelllang = { "en_us" }
 
 -- Appearance
-opt.breakindent = true -- Indent wrapped lines to match line start
+--opt.breakindent = true -- Indent wrapped lines to match line start
 opt.cursorline = true -- Highlight current line
 opt.linebreak = true -- Wrap long lines at 'breakat' (if 'wrap' is set)
 opt.number = true -- Print line number
