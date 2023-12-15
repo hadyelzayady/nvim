@@ -12,6 +12,7 @@ function M.config(_, opts)
 			typescript = js_like_formatters,
 			typescriptreact = js_like_formatters,
 			json = js_like_formatters,
+			jsonc = js_like_formatters,
 			scss = { "prettierd" },
 			css = { "prettierd" },
 			html = { "prettierd" },

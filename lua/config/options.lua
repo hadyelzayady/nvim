@@ -81,6 +81,7 @@ opt.path = opt.path + "/home/hady/.local/bin/scripts/"
 opt.listchars = "tab:| ,space:.,extends:›,precedes:‹,nbsp:·,trail:·"
 opt.list = true -- Show some helper symbols
 
+-- vim.cmd("set nospell")
 -- Enable syntax highlighing if it wasn't already (as it is time consuming)
 -- if vim.fn.exists("syntax_on") ~= 1 then
 -- 	vim.cmd([[syntax enable]])

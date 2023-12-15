@@ -57,6 +57,13 @@ autocmd("BufWritePost", {
 		vim.cmd("silent! !pkill bar || bar & disown")
 	end,
 })
+-- autocmd("OptionSet", {
+-- 	group = augroup("diff"),
+-- 	pattern = "diff",
+-- 	callback = function()
+-- 		-- vim.cmd("set listchars+=space:\ ")
+-- 	end,
+-- })
 -- autocmd("TermOpen", {
 -- 	pattern = { "term://*" },
 -- 	callback = function()
