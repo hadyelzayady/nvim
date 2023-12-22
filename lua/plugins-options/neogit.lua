@@ -30,9 +30,9 @@ function M.config()
 		},
 		-- Allows a different telescope sorter. Defaults to 'fuzzy_with_index_bias'. The example below will use the native fzf
 		-- sorter instead. By default, this function returns `nil`.
-		telescope_sorter = function()
-			return require("telescope").extensions.fzf.native_fzf_sorter()
-		end,
+		-- telescope_sorter = function()
+		-- 	return require("telescope").extensions.fzf.native_fzf_sorter()
+		-- end,
 		-- Persist the values of switches/options within and across sessions
 		remember_settings = true,
 		-- Scope persisted settings on a per-project basis
