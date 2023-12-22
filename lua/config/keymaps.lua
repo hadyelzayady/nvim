@@ -61,6 +61,8 @@ map("n", "<leader>gU", "<cmd>Gin push<CR>", { desc = "Push" })
 map("n", "<leader>gh", ":DiffviewFileHistory %<CR>", { desc = "Buffer History" })
 map("v", "<leader>gh", ":'<,'>DiffviewFileHistory %<CR>", { desc = "Range Buffer History" })
 map("n", "<leader>gn", "<cmd>Neogit<CR>", { desc = "Neogit" })
+map("n", "<leader>gts", "<cmd>lua require('tinygit').searchFileHistory()<CR>", { desc = "Search File History" })
+map("n", "<leader>gtf", "<cmd>lua require('tinygit').functionHistory()<CR>", { desc = "Function History" })
 map("n", "<leader>ga", require("utils.git").list, { desc = "Co-authors" })
 
 -- -- Debug

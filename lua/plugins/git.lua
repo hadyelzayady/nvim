@@ -42,4 +42,12 @@ return {
 		},
 		config = require("plugins-options.neogit").config,
 	},
+	{
+		"chrisgrieser/nvim-tinygit",
+		ft = { "gitrebase", "gitcommit" }, -- so ftplugins are loaded
+		dependencies = {
+			"stevearc/dressing.nvim",
+			"rcarriga/nvim-notify", -- optional, but recommended
+		},
+	},
 }
