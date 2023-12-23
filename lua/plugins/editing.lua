@@ -81,4 +81,8 @@ return {
 			{ "ga.", "<cmd>TextCaseOpenTelescope<CR>", mode = { "n", "v" }, desc = "Telescope" },
 		},
 	},
+	{
+		"gaelph/logsitter.nvim",
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+	},
 }

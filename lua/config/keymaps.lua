@@ -91,6 +91,7 @@ map({ "n", "x" }, "<leader>cr", function()
 	require("refactoring").select_refactor()
 end, { desc = "Refactor" })
 
+map("n", "<leader>lg", "<cmd>lua require('logsitter').log()<cr>", { desc = "Log" })
 local M = {}
 function M.oil()
 	map("n", "-", require("oil").open, { desc = "Open parent directory" })
