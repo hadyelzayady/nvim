@@ -8,6 +8,7 @@ return {
 			require("tokyonight").setup({
 				on_colors = function(colors)
 					colors.border = "#565f89"
+          colors.bg_visual = "#53003c"
 				end,
 			})
 			vim.cmd([[colorscheme tokyonight-night]])

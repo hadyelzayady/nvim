@@ -15,6 +15,7 @@ function M.config(_, opts)
 			cpp = { "clang_format" },
 			sh = { "shfmt" },
 			proto = { "buf" },
+			toml = { "taplo" },
 
 			["*"] = { "trim_whitespace" },
 		},

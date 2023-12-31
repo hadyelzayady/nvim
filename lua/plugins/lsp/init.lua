@@ -35,7 +35,7 @@ return {
 	},
 	{
 		"zeioth/garbage-day.nvim",
-    enabled=false,
+		enabled = false,
 		opts = {
 			aggressive_mode = false,
 			excluded_lsp_clients = {
@@ -47,5 +47,16 @@ return {
 			retries = 5,
 			timeout = 200,
 		},
+	},
+	{
+		"simrat39/rust-tools.nvim",
+		ft = "rust",
+		dependencies = "neovim/nvim-lspconfig",
+		config = require("plugins-options.lsp.rust-tools").config,
+	},
+	{
+		"saecki/crates.nvim",
+		ft = { "toml" },
+		config = require("plugins-options.lsp.crates").config,
 	},
 }
