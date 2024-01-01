@@ -249,7 +249,7 @@ function M.config()
 			-- otherwise auto-detect prioritizes `fd`:`rg`:`find`
 			-- default options are controlled by 'fd|rg|find|_opts'
 			-- NOTE: 'find -printf' requires GNU find
-			-- cmd            = "find . -type f -printf '%P\n'",
+			cmd = "command cat <(fre --sorted) <(fd -t d --color=never --type f --hidden --follow --exclude .git) <(fd -t d . ~)",
 			find_opts = [[-type f -not -path '*/\.git/*' -printf '%P\n']],
 			rg_opts = "--color=never --files --hidden --follow -g '!.git'",
 			fd_opts = "--color=never --type f --hidden --follow --exclude .git",
@@ -264,7 +264,11 @@ function M.config()
 			actions = {
 				-- inherits from 'actions.files', here we can override
 				-- or set bind to 'false' to disable a default action
-				["default"] = actions.file_edit,
+				["default"] = function(selected, opts)
+					print(vim.inspect(selected))
+					vim.cmd("silent! !fre --add " .. selected[1])
+					fzf.actions.file_edit(selected, opts)
+				end,
 				-- custom actions are available too
 				["ctrl-y"] = function(selected)
 					print(selected[1])
@@ -433,6 +437,12 @@ function M.config()
 			cwd_only = true,
 			stat_file = true, -- verify files exist on disk
 			include_current_session = true, -- include bufs from current session
+			actions = {
+				["default"] = function(selected, opts)
+					vim.cmd("silent! !fre --add " .. selected[1])
+					fzf.actions.file_edit(selected, opts)
+				end,
+			},
 		},
 		buffers = {
 			prompt = "Buffers❯ ",
