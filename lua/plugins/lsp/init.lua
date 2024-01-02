@@ -58,4 +58,15 @@ return {
 	{
 		"b0o/schemastore.nvim",
 	},
+	{
+		"simrat39/rust-tools.nvim",
+		ft = "rust",
+		dependencies = "neovim/nvim-lspconfig",
+		config = require("plugins-options.lsp.rust-tools").config,
+	},
+	{
+		"saecki/crates.nvim",
+		ft = { "toml" },
+		config = require("plugins-options.lsp.crates").config,
+	},
 }

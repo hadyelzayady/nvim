@@ -8,9 +8,9 @@ function M.setup()
 		severity_sort = true,
 	})
 
-	-- -- Create a custom namespace. This will aggregate signs from all other
-	-- -- namespaces and only show the one with the highest severity on a
-	-- -- given line
+	-- Create a custom namespace. This will aggregate signs from all other
+	-- namespaces and only show the one with the highest severity on a
+	-- given line
 	-- local ns = vim.api.nvim_create_namespace("my_namespace")
 	-- -- Get a reference to the original signs handler
 	-- local orig_signs_handler = vim.diagnostic.handlers.signs

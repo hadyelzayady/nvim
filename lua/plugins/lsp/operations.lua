@@ -110,9 +110,22 @@ function M.fixAll()
 		for _, client in ipairs(clients) do
 			if client == "typescript-tools" then
 				vim.cmd("TSToolsFixAll")
+				return
 			end
 			if client == "eslint" then
 				vim.cmd("EslintFixAll")
+				return
+			end
+			if client == "rust_analyzer" then
+				require("utils.functions").os_capture("cargo fix --allow-dirty")
+				vim.cmd("e")
+				M.format()
+				-- vim.lsp.buf.code_action({
+				-- 	filter = function(a)
+				-- 		return a.isPreferred
+				-- 	end,
+				-- 	apply = true,
+				-- })
 			end
 		end
 	end
