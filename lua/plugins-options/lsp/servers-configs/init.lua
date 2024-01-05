@@ -9,6 +9,7 @@ function M.setup()
 	require("plugins-options.lsp.servers-configs.tailwindcss").setup()
 	require("plugins-options.lsp.servers-configs.sh").setup()
 	require("plugins-options.lsp.servers-configs.bufls").setup()
+	require("plugins-options.lsp.servers-configs.json").setup()
 	-- require("plugins-options.lsp.servers-configs.eslint").setup()
 end
 

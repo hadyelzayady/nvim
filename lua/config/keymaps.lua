@@ -269,4 +269,20 @@ function M.bufremove()
 		MiniBufremove.delete(0, true)
 	end, { desc = "Force Delete Buffer" })
 end
+
+function M.packages_file_keymaps(operations)
+	map("n", "<leader>Ps", operations.show, { desc = "Show" })
+	map("n", "<leader>Ph", operations.hide, { desc = "Hide" })
+	map("n", "<leader>Pt", operations.toggle, { desc = "Toggle" })
+	if operations.update then
+		map("n", "<leader>Pu", operations.update, { desc = "Update Package" })
+	end
+	if operations.delete then
+		map("n", "<leader>Pd", operations.delete, { desc = "Delete Package" })
+	end
+	if operations.install then
+		map("n", "<leader>Pi", operations.install, { desc = "Install Package" })
+	end
+	map("n", "<leader>Pv", operations.version, { desc = "Show Versions" })
+end
 return M

@@ -60,12 +60,17 @@ return {
 	{
 		"saecki/crates.nvim",
 		ft = { "toml" },
-		config = require("plugins-options.lsp.crates").config,
+		config = require("plugins-options.crates").config,
 	},
 	{
 		"j-hui/fidget.nvim",
 		opts = {
 			-- options
 		},
+	},
+	{
+		"vuki656/package-info.nvim",
+		dependencies = { "MunifTanjim/nui.nvim" },
+		config = require("plugins-options.package-info").config,
 	},
 }

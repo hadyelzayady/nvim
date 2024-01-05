@@ -70,6 +70,7 @@
   "nvim-web-devicons": { "branch": "master", "commit": "3e24abe1ae66532135cec911562f553fe247cb56" },
   "nxwm": { "branch": "v0.0", "commit": "5f68c8b76f573b621c33958bc6e5a3bd56aa62e4" },
   "oil.nvim": { "branch": "master", "commit": "a128e6f75c6a71b7b9ac7ea663949a5209771cd5" },
+  "package-info.nvim": { "branch": "master", "commit": "18f8126dd8e65b2e21804c9107785af4abbb5bfc" },
   "plenary.nvim": { "branch": "master", "commit": "55d9fe89e33efd26f532ef20223e5f9430c8b0c0" },
   "refactoring.nvim": { "branch": "master", "commit": "28c5a33a0c489eb559396d9424b042ccfdb03b14" },
   "rest.nvim": { "branch": "main", "commit": "84e81a19ab24ccf05c9233d34d4dfce61c233abe" },
