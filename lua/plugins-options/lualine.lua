@@ -26,7 +26,6 @@ function M.config()
 			lualine_c = { "filename" },
 			lualine_x = {
 				"vim.fn['zoom#statusline']()",
-				require("lsp-progress").progress,
 				"encoding",
 				"fileformat",
 				"filetype",

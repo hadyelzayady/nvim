@@ -53,10 +53,9 @@ return {
 		"b0o/schemastore.nvim",
 	},
 	{
-		"simrat39/rust-tools.nvim",
-		ft = "rust",
-		dependencies = "neovim/nvim-lspconfig",
-		config = require("plugins-options.lsp.rust-tools").config,
+		"mrcjkb/rustaceanvim",
+		version = "^3", -- Recommended
+		ft = { "rust" },
 	},
 	{
 		"saecki/crates.nvim",
