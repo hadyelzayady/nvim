@@ -63,4 +63,10 @@ return {
 		ft = { "toml" },
 		config = require("plugins-options.lsp.crates").config,
 	},
+	{
+		"j-hui/fidget.nvim",
+		opts = {
+			-- options
+		},
+	},
 }
