@@ -249,7 +249,7 @@ function M.config()
 			-- otherwise auto-detect prioritizes `fd`:`rg`:`find`
 			-- default options are controlled by 'fd|rg|find|_opts'
 			-- NOTE: 'find -printf' requires GNU find
-			cmd = "command cat <(fre --sorted) <(fd -t d --color=never --type f --hidden --follow --exclude .git) <(fd -t d . ~)",
+			-- cmd = "command cat <(fre --sorted) <(fd -t d --color=never --type f --hidden --follow --exclude .git) <(fd -t d . ~)",
 			find_opts = [[-type f -not -path '*/\.git/*' -printf '%P\n']],
 			rg_opts = "--color=never --files --hidden --follow -g '!.git'",
 			fd_opts = "--color=never --type f --hidden --follow --exclude .git",

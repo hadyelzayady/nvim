@@ -13,6 +13,16 @@ return {
 		cmd = { "SudaRead", "SudaWrite" },
 	},
 	{
+		"akinsho/toggleterm.nvim",
+		version = "*",
+		config = require("plugins-options.toggleterm").config,
+	},
+	{
+		"echasnovski/mini.bufremove",
+		version = false,
+		config = require("plugins-options.mini-bufremove").config,
+	},
+	{
 		"iamcco/markdown-preview.nvim",
 		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
 		ft = { "markdown" },

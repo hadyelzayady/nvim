@@ -53,6 +53,7 @@ function M.config()
 			{ name = "path" },
 		}, {
 			{ name = "buffer" },
+			{ name = "npm", keyword_length = 4 },
 		}),
 	}
 

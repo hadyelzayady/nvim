@@ -7,6 +7,7 @@ return {
 		"pmizio/typescript-tools.nvim",
 		ft = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
 		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+		ft = { "javascript", "typescript", "typescriptreact", "javascriptreact" },
 		config = require("plugins-options.lsp.typescript-tools").config,
 	},
 	{
@@ -47,6 +48,9 @@ return {
 			retries = 5,
 			timeout = 200,
 		},
+	},
+	{
+		"b0o/schemastore.nvim",
 	},
 	{
 		"simrat39/rust-tools.nvim",

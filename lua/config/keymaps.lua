@@ -51,8 +51,13 @@ map("n", "<leader>qw", "<cmd>silent! wall<cr>", { desc = "Save All" })
 map("n", "<leader>qW", "<cmd>silent! w<cr>", { desc = "Save Current" })
 map("n", "<leader>qd", "<cmd>Veil<cr>", { desc = "Dashboard" })
 
+-- Pickers
+map("n", "<leader>pc", "<cmd>CccPick<CR>", { desc = "Color Picker", silent = true })
+map("n", "<leader>pt", "<cmd>FzfLua filetypes<CR>", { desc = "Filetype Picker", silent = true })
+
 -- Git
-map("n", "<leader>gg", "<cmd>LazyGit<CR>", { desc = "Lazygit", silent = true })
+map("n", "<leader>gg", "<cmd>Lazygit<CR>", { desc = "Lazygit", silent = true })
+map("n", "<leader>gG", "<cmd>Gitui<CR>", { desc = "Gitui", silent = true })
 map("n", "<leader>gd", ":DiffviewOpen<cr>", { desc = "Diff" })
 map("n", "<leader>gD", ":DiffviewOpen -- %<cr>", { desc = "Diff file" })
 map("n", "<leader>gc", "<cmd>FzfLua git_branches<CR>", { desc = "Checkout Branch" })
@@ -72,7 +77,11 @@ map("n", "<leader>ru", "<cmd>lua require('dapui').toggle()<CR>", { desc = "Toggl
 
 map("n", "<c-,>", "<cmd>cnext<CR>", { desc = "Next Quickfix Item" })
 map("n", "<c-.>", "<cmd>cprevious<CR>", { desc = "Prev Quickfix Item" })
-map("n", "<c-q>", "<cmd>cclose<CR>", { desc = "Close Quickfix" })
+map("n", "<c-q>", function()
+	vim.cmd("cclose")
+	vim.cmd("TroubleClose")
+	vim.cmd("silent! lua require('neogit').close()")
+end, { desc = "Close Common Splits" })
 
 --  History
 map("n", "<leader>h", "<cmd>UndotreeToggle<CR>", { desc = "history" })
@@ -85,6 +94,11 @@ map("n", "<leader>xX", "<cmd>TroubleToggle workspace_diagnostics<cr> ", { silent
 -- toggle misc
 map("n", "<leader>nc", "<cmd>TSContextToggle<CR>", { desc = "Context" })
 map("n", "<leader>nh", "<cmd>CccHighlighterToggle<CR>", { desc = "Color Highlight" })
+
+-- -- Debug
+map("n", "<leader>rd", "<cmd>lua require('dap').continue()<CR>", { desc = "Debug" })
+map("n", "<leader>rb", "<cmd>lua require('dap').toggle_breakpoint()<CR>", { desc = "Toggle Breakpoint" })
+map("n", "<leader>ru", "<cmd>lua require('dapui').toggle()<CR>", { desc = "Toggle Ui" })
 
 -- refactor
 map({ "n", "x" }, "<leader>cr", function()
@@ -145,6 +159,7 @@ function M.on_attach_setup(ev)
 	map("n", "gd", require("plugins.lsp.operations").goto_definition)
 	map("n", "gD", require("plugins.lsp.operations").goto_declaration)
 	map("n", "gr", require("plugins.lsp.operations").goto_references)
+	map("n", "gR", require("plugins.lsp.operations").goto_file_references)
 	map("n", "gt", require("plugins.lsp.operations").goto_type_definition)
 	map("n", "gI", require("plugins.lsp.operations").goto_implementations)
 	map("n", "<leader>li", require("plugins.lsp.operations").goto_incoming_calls)
@@ -233,5 +248,25 @@ function M.rest_nvim_keymaps()
 	map({ "n", "v" }, "<leader>r", "<Plug>RestNvim", { desc = "Run Request", buffer = true })
 	map({ "n" }, "<leader>p", "<Plug>RestNvimPreview", { desc = "Preview The Curl Command", buffer = true })
 	map("n", "<leader>R", "<Plug>RestNvimLast", { desc = "Rerun The Last Request", buffer = true })
+end
+
+function M.terminal_keymap()
+	local opts = { buffer = 0 }
+	vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
+	vim.keymap.set("t", "jk", [[<C-\><C-n>]], opts)
+	vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
+	vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
+	vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
+	vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
+	vim.keymap.set("t", "<C-w>", [[<C-\><C-n><C-w>]], opts)
+end
+
+function M.bufremove()
+	map("n", "<leader>d", function()
+		MiniBufremove.delete(0)
+	end, { desc = "Delete Buffer" })
+	map("n", "<leader>D", function()
+		MiniBufremove.delete(0, true)
+	end, { desc = "Force Delete Buffer" })
 end
 return M

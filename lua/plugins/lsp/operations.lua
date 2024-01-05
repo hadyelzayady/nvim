@@ -11,7 +11,19 @@ end
 function M.goto_implementations()
 	vim.lsp.buf.implementation()
 end
-function M.goto_import_references() end
+function M.goto_import_references()
+	vim.lsp.buf.references(nil, {
+		on_list = function(options)
+			local items = options.items
+			local uniqueFiles = require("utils.functions").removeDuplicates(items, function(item)
+				return item.filename
+			end)
+			options.items = uniqueFiles
+			vim.fn.setqflist({}, " ", options)
+			vim.api.nvim_command("copen")
+		end,
+	})
+end
 
 function M.goto_file_references()
 	local clients = require("utils.lsp").get_buffer_attached_lsp()
@@ -19,7 +31,7 @@ function M.goto_file_references()
 		for _, client in ipairs(clients) do
 			if client == "vtsls" then
 				require("vtsls").commands.file_references()
-				break
+				return
 			end
 		end
 	end
@@ -113,6 +125,19 @@ function M.fixAll()
 				-- 	end,
 				-- 	apply = true,
 				-- })
+			end
+		end
+	end
+end
+
+function M.file_references()
+	local clients = require("utils.lsp").get_buffer_attached_lsp()
+	if #clients > 0 then
+		for _, client in ipairs(clients) do
+			if client == "typescript-tools" then
+				local success, resp =
+					pcall(client.request_sync, "fileReferences", { file = vim.api.nvim_buf_get_name(0) })
+				return
 			end
 		end
 	end
