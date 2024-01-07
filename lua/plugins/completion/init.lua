@@ -9,6 +9,7 @@ return {
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-calc",
 			"saadparwaiz1/cmp_luasnip",
+			"David-Kunz/cmp-npm",
 		},
 	},
 	{
@@ -22,12 +23,11 @@ return {
 	{
 		"David-Kunz/cmp-npm",
 		-- lazy = true,
-		-- ft = "json",
+		ft = "json",
 		config = function()
 			require("cmp-npm").setup({})
 		end,
 		dependencies = {
-			"hrsh7th/nvim-cmp",
 			"nvim-lua/plenary.nvim",
 		},
 	},

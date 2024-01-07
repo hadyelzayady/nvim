@@ -8,9 +8,9 @@ function M.setup()
 	require("plugins-options.lsp.servers-configs.cssmodules").setup()
 	require("plugins-options.lsp.servers-configs.tailwindcss").setup()
 	require("plugins-options.lsp.servers-configs.sh").setup()
+	require("plugins-options.lsp.servers-configs.bufls").setup()
 	require("plugins-options.lsp.servers-configs.json").setup()
-	require("plugins-options.lsp.servers-configs.eslint").setup()
-	-- require("plugins-options.lsp.servers-configs.biome").setup()
+	-- require("plugins-options.lsp.servers-configs.eslint").setup()
 end
 
 M.capabilities = require("cmp_nvim_lsp").default_capabilities()

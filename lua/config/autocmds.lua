@@ -57,16 +57,13 @@ autocmd("BufWritePost", {
 		vim.cmd("silent! !pkill bar || bar & disown")
 	end,
 })
--- autocmd("OptionSet", {
--- 	group = augroup("diff"),
--- 	pattern = "diff",
--- 	callback = function()
--- 		-- vim.cmd("set listchars+=space:\ ")
--- 	end,
--- })
--- autocmd("TermOpen", {
--- 	pattern = { "term://*" },
--- 	callback = function()
--- 		-- require("config.keymaps").terminal_keymap()
--- 	end,
--- })
+autocmd("BufReadPre", {
+	group = augroup("specific_files_keys"),
+	pattern = { "Cargo.toml", "package.json" },
+	callback = function(opt)
+    local packages_files_operations= require("utils.packages_files_operations");
+		require("config.keymaps").packages_file_keymaps(
+		 packages_files_operations[packages_files_operations.filename_to_key[opt.file]]
+		)
+	end,
+})

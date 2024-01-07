@@ -24,7 +24,12 @@ function M.config()
 			lualine_a = { "mode" },
 			lualine_b = { "branch", "diff", "diagnostics" },
 			lualine_c = { "filename" },
-			lualine_x = { "vim.fn['zoom#statusline']()",require("lsp-progress").progress, "encoding", "fileformat", "filetype" },
+			lualine_x = {
+				"vim.fn['zoom#statusline']()",
+				"encoding",
+				"fileformat",
+				"filetype",
+			},
 			lualine_y = { "progress" },
 			lualine_z = { "location" },
 		},

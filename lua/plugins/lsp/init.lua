@@ -59,14 +59,24 @@ return {
 		"b0o/schemastore.nvim",
 	},
 	{
-		"simrat39/rust-tools.nvim",
-		ft = "rust",
-		dependencies = "neovim/nvim-lspconfig",
-		config = require("plugins-options.lsp.rust-tools").config,
+		"mrcjkb/rustaceanvim",
+		version = "^3", -- Recommended
+		ft = { "rust" },
 	},
 	{
 		"saecki/crates.nvim",
 		ft = { "toml" },
-		config = require("plugins-options.lsp.crates").config,
+		config = require("plugins-options.crates").config,
+	},
+	{
+		"j-hui/fidget.nvim",
+		opts = {
+			-- options
+		},
+	},
+	{
+		"vuki656/package-info.nvim",
+		dependencies = { "MunifTanjim/nui.nvim" },
+		config = require("plugins-options.package-info").config,
 	},
 }
