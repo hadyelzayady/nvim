@@ -78,7 +78,7 @@ opt.winblend = 10 -- Make floating windows slightly transparent
 
 opt.path = opt.path + "/home/hady/.local/bin/scripts/"
 -- opt.listchars = 'extends:.,precedes:.,nbsp:␣' -- Define which helper symbols to show
-opt.listchars = "tab:| ,space:.,extends:›,precedes:‹,nbsp:·,trail:·"
+opt.listchars = "tab:| ,extends:›,precedes:‹,nbsp:·,trail:·"
 opt.list = true -- Show some helper symbols
 
 -- vim.cmd("set nospell")
