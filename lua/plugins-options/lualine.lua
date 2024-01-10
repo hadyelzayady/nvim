@@ -26,7 +26,15 @@ function M.config()
 			lualine_c = { "filename" },
 			lualine_x = {
 				"vim.fn['zoom#statusline']()",
-				"encoding",
+				{
+					function()
+						local attach_clients = require("utils.lsp").get_buffer_attached_lsp()
+						if #attach_clients > 0 then
+							return "LSP(" .. #attach_clients .. ")"
+						end
+            return ""
+					end,
+				},
 				"fileformat",
 				"filetype",
 			},

@@ -22,6 +22,12 @@ end
 function M.get_current_buffer_file_path()
 	return vim.api.nvim_buf_get_name(0)
 end
+
+function M.get_filename_from_path(file_path)
+	local plenary = require("plenary")
+	local normalized_path = plenary.path:new(file_path):normalize()
+	return vim.fn.fnamemodify(normalized_path, ":t")
+end
 function M.removeDuplicates(tbl, by)
 	local result = {}
 	local seen = {}
