@@ -106,6 +106,12 @@ map({ "n", "x" }, "<leader>cr", function()
 end, { desc = "Refactor" })
 
 map("n", "<leader>lg", "<cmd>lua require('logsitter').log()<cr>", { desc = "Log" })
+
+
+-- map("n", "<leader>Se", function() require("scissors").editSnippet() end)
+-- --visual mode prefills the selection as body.
+-- map({ "n", "x" }, "<leader>Sa", function() require("scissors").addNewSnippet() end)
+
 local M = {}
 function M.oil()
 	map("n", "-", require("oil").open, { desc = "Open parent directory" })

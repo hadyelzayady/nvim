@@ -62,8 +62,9 @@ autocmd("BufReadPre", {
 	pattern = { "Cargo.toml", "package.json" },
 	callback = function(opt)
     local packages_files_operations= require("utils.packages_files_operations");
+    local filename  = require("utils.functions").get_filename_from_path(opt.file)
 		require("config.keymaps").packages_file_keymaps(
-		 packages_files_operations[packages_files_operations.filename_to_key[opt.file]]
+		 packages_files_operations[packages_files_operations.filename_to_key[filename]]
 		)
 	end,
 })
