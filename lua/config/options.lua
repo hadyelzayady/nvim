@@ -117,18 +117,18 @@ local function get_fold(lnum)
 end
 
 _G.get_statuscol = function()
-  print(vim.bo.filetype)
+	print(vim.bo.filetype)
 	if
 		(vim.opt_local.signcolumn:get() == "yes" or vim.opt_local.signcolumn:get() == "auto")
 		and vim.bo.filetype ~= "neo-tree"
 	then
-    print("set" .. vim.bo.filetype)
+		print("set" .. vim.bo.filetype)
 		return "%s%r%= " .. get_fold(vim.v.lnum) .. " "
 	else
 		return ""
 	end
 end
-
+vim.filetype.add({ extension = { mdx = "mdx" } })
 opt.foldmethod = "indent"
 -- opt.foldexpr = "nvim_treesitter#foldexpr()"
 -- opt.statuscolumn = "%!v:lua.get_statuscol()"
