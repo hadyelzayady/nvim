@@ -28,6 +28,7 @@ function M.get_filename_from_path(file_path)
 	local normalized_path = plenary.path:new(file_path):normalize()
 	return vim.fn.fnamemodify(normalized_path, ":t")
 end
+
 function M.removeDuplicates(tbl, by)
 	local result = {}
 	local seen = {}
