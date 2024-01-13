@@ -8,7 +8,7 @@ return {
 			require("tokyonight").setup({
 				on_colors = function(colors)
 					colors.border = "#565f89"
-          colors.bg_visual = "#53003c"
+					colors.bg_visual = "#53003c"
 				end,
 			})
 			vim.cmd([[colorscheme tokyonight-night]])
@@ -51,5 +51,9 @@ return {
 	{
 		"kevinhwang91/nvim-hlslens",
 		config = require("plugins-options.hlslens").config,
+	},
+	{
+		"3rd/image.nvim",
+		config = require("plugins-options.image").config,
 	},
 }

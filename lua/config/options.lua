@@ -9,7 +9,7 @@ opt.clipboard = "unnamedplus" -- Sync with system clipboard
 opt.pumblend = 10 -- Popup blend(transparency)
 opt.pumheight = 10 -- Maximum number of entries in a popup
 
-opt.conceallevel = 0 -- Hide * markup for bold and italic
+opt.conceallevel = 2 -- Hide * markup for bold and italic
 opt.confirm = true -- Confirm to save changes before exiting modified buffer
 -- opt.formatoptions = "jcroqlnt" -- tcqj
 -- opt.grepformat = "%f:%l:%c:%m"
