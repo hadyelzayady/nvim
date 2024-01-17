@@ -7,7 +7,7 @@ function M.config()
 			make_global = { "setup_auto_root" },
 		}
 	)
-	MiniMisc.setup_auto_root()
+	-- require("mini.misc").setup_auto_root()
 end
 
 return M

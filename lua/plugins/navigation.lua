@@ -31,15 +31,17 @@ return {
 	},
 	{
 		"nvim-neo-tree/neo-tree.nvim",
-		cmd = { "NeoTree" },
-		keys = {
-			{ "<leader>e", "<cmd>Neotree reveal=true toggle=true<cr>", desc = "File Explorer" },
-			{ "<leader>E", "<cmd>Neotree reveal<cr>", desc = "File Explorer Reveal" },
-		},
+		branch = "v3.x",
+		-- cmd = { "NeoTree" },
+		-- keys = {
+		-- 	{ "<leader>e", "<cmd>Neotree reveal=true toggle=true<cr>", desc = "File Explorer" },
+		-- 	{ "<leader>E", "<cmd>Neotree reveal<cr>", desc = "File Explorer Reveal" },
+		-- },
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
 			"MunifTanjim/nui.nvim",
+			"3rd/image.nvim",
 		},
 		opts = require("plugins-options.neotree").opts,
 	},

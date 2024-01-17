@@ -29,6 +29,10 @@ map("n", "<leader>fr/", "<Plug>CtrlSFPwordPath", { desc = "Last search word" })
 map("n", "<leader>fro", ":CtrlSFOpen<CR>")
 map("n", "<leader>frt", ":CtrlSFToggle<CR>")
 
+-- neotree (file explorer)
+map("n", "<leader>e", "<cmd>Neotree reveal=true toggle=true<cr>", { desc = "File Explorer" })
+
+map("n", "<leader>E", "<cmd>Neotree reveal<cr>", { desc = "File Explorer Reveal" })
 -- Tab
 map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
 map("n", "<leader><tab>n", "<cmd>tabnext<cr>", { desc = "Next Tab" })
@@ -46,7 +50,7 @@ map("n", "<leader>qq", "<cmd>q<cr>", { desc = "Quit" })
 map("n", "<leader>qQ", "<cmd>qa<cr>", { desc = "Quit all" })
 map("n", "<leader>Q", "<cmd>silent! qa!<cr>", { desc = "Force Quit all" })
 map("n", "<leader>qp", "<cmd>lua require'telescope'.extensions.projects.projects{}<cr>", { desc = "Find Project" })
-map("n", "<leader>qs", "<cmd>Telescope persisted<cr>", { desc = "Find Session" })
+map("n", "<leader>qs", "<cmd>Telescope possession list<cr>", { desc = "Find Session" })
 map("n", "<leader>qw", "<cmd>silent! wall<cr>", { desc = "Save All" })
 map("n", "<leader>qW", "<cmd>silent! w<cr>", { desc = "Save Current" })
 map("n", "<leader>qd", "<cmd>Veil<cr>", { desc = "Dashboard" })
@@ -106,7 +110,6 @@ map({ "n", "x" }, "<leader>cr", function()
 end, { desc = "Refactor" })
 
 map("n", "<leader>lg", "<cmd>lua require('logsitter').log()<cr>", { desc = "Log" })
-
 
 -- map("n", "<leader>Se", function() require("scissors").editSnippet() end)
 -- --visual mode prefills the selection as body.

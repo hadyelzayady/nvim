@@ -8,15 +8,14 @@ return {
 			require("tokyonight").setup({
 				on_colors = function(colors)
 					colors.border = "#565f89"
-          colors.bg_visual = "#53003c"
+					colors.bg_visual = "#53003c"
 				end,
 			})
 			vim.cmd([[colorscheme tokyonight-night]])
-			vim.cmd("hi DiffAdd guifg=#26963c guibg=#000000 gui=reverse cterm=reverse")
-			vim.cmd("hi DiffChange guifg=#2b97b4 guibg=#303030 gui=reverse cterm=reverse")
-			vim.cmd("hi DiffDelete guifg=#c94300 guibg=#303030 gui=reverse cterm=reverse")
-			vim.cmd("hi DiffText guifg=#e99200 guibg=#303030 gui=reverse cterm=reverse")
-			vim.cmd("hi Visual ctermbg=NONE ctermfg=117  cterm=REVERSE guibg=NONE guifg=#87d7ff gui=REVERSE")
+			-- vim.cmd("hi DiffAdd guifg=#26ac3c guibg=#303030 gui=reverse cterm=reverse")
+			-- vim.cmd("hi DiffChange guifg=#2b97b4 guibg=#303030 gui=reverse cterm=reverse")
+			-- vim.cmd("hi DiffDelete guifg=#c94300 guibg=#303030 gui=reverse cterm=reverse")
+			-- vim.cmd("hi DiffText guifg=#e99200 guibg=#303030 gui=reverse cterm=reverse")
 		end,
 	},
 	{
@@ -52,5 +51,9 @@ return {
 	{
 		"kevinhwang91/nvim-hlslens",
 		config = require("plugins-options.hlslens").config,
+	},
+	{
+		"3rd/image.nvim",
+		config = require("plugins-options.image").config,
 	},
 }
