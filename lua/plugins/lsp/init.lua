@@ -5,7 +5,6 @@ return {
 	},
 	{
 		"pmizio/typescript-tools.nvim",
-		ft = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
 		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
 		ft = { "javascript", "typescript", "typescriptreact", "javascriptreact" },
 		config = require("plugins-options.lsp.typescript-tools").config,
@@ -37,6 +36,7 @@ return {
 	{
 		"mfussenegger/nvim-jdtls",
 		ft = "java",
+		enabled = false,
 		config = require("plugins-options.lsp.servers-configs.jdtls").config,
 		opts = require("plugins-options.lsp.servers-configs.jdtls").opts,
 	},
@@ -78,5 +78,18 @@ return {
 		"vuki656/package-info.nvim",
 		dependencies = { "MunifTanjim/nui.nvim" },
 		config = require("plugins-options.package-info").config,
+	},
+	{
+		"nvim-java/nvim-java",
+		ft = { "java" },
+		config = require("plugins-options.lsp.java").config,
+		dependencies = {
+			"nvim-java/lua-async-await",
+			"nvim-java/nvim-java-core",
+			"nvim-java/nvim-java-test",
+			"nvim-java/nvim-java-dap",
+			"MunifTanjim/nui.nvim",
+			"mfussenegger/nvim-dap",
+		},
 	},
 }

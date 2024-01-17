@@ -1,6 +1,6 @@
 local M = {}
 function M.config(_, opts)
-	local js_like_formatters = { "prettierd" }
+	local js_like_formatters = { { "biome", "prettierd" } }
 	require("conform").setup({
 		formatters_by_ft = {
 			lua = { "stylua" },
@@ -23,6 +23,15 @@ function M.config(_, opts)
 			toml = { "taplo" },
 
 			["*"] = { "trim_whitespace" },
+		},
+		formatters = {
+			biome = {
+				condition = function()
+					local plenary = require("plenary")
+					local biome_path = plenary.path:new(vim.loop.cwd() .. "/biome.json")
+					return biome_path:exists()
+				end,
+			},
 		},
 	})
 end
