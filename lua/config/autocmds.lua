@@ -57,6 +57,7 @@ autocmd("BufWritePost", {
 		vim.cmd("silent! !pkill bar || bar & disown")
 	end,
 })
+
 autocmd("BufReadPre", {
 	group = augroup("specific_files_keys"),
 	pattern = { "Cargo.toml", "package.json" },
