@@ -43,4 +43,8 @@ return {
 			"rcarriga/nvim-notify", -- optional, but recommended
 		},
 	},
+	{
+		"ThePrimeagen/git-worktree.nvim",
+		config = require("plugins-options.git-worktree").config,
+	},
 }
