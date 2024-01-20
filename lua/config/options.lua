@@ -81,10 +81,11 @@ opt.path = opt.path + "/home/hady/.local/bin/scripts/"
 opt.listchars = "tab:| ,extends:›,precedes:‹"
 opt.list = true -- Show some helper symbols
 
+-- vim.cmd("set nospell")
 -- Enable syntax highlighing if it wasn't already (as it is time consuming)
-if vim.fn.exists("syntax_on") ~= 1 then
-	vim.cmd([[syntax enable]])
-end
+-- if vim.fn.exists("syntax_on") ~= 1 then
+-- 	vim.cmd([[syntax enable]])
+-- end
 -- opt.autochdir = true
 -- opt.grepprg="rg --vimgrep --smart-case --hidden"
 -- opt.grepformat="%f:%l:%c:%m"
@@ -94,7 +95,7 @@ vim.g.markdown_recommended_style = 0
 -- vim.g.did_load_filetypes = 1
 vim.o.foldlevel = 10000 -- Using ufo provider need a large value, feel free to decrease the value
 vim.o.fillchars = [[foldopen:,foldclose:]]
--- vim.o.foldcolumn = "1"
+vim.o.foldcolumn = "0"
 
 vim.o.exrc = true
 -- disable language provider support (lua and vimscript plugins only)
@@ -116,18 +117,18 @@ local function get_fold(lnum)
 end
 
 _G.get_statuscol = function()
-  print(vim.bo.filetype)
+	print(vim.bo.filetype)
 	if
 		(vim.opt_local.signcolumn:get() == "yes" or vim.opt_local.signcolumn:get() == "auto")
 		and vim.bo.filetype ~= "neo-tree"
 	then
-    print("set" .. vim.bo.filetype)
+		print("set" .. vim.bo.filetype)
 		return "%s%r%= " .. get_fold(vim.v.lnum) .. " "
 	else
 		return ""
 	end
 end
-
+vim.filetype.add({ extension = { mdx = "mdx" } })
 opt.foldmethod = "indent"
 -- opt.foldexpr = "nvim_treesitter#foldexpr()"
 -- opt.statuscolumn = "%!v:lua.get_statuscol()"

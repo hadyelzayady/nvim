@@ -9,9 +9,7 @@ return {
 	},
 	{
 		"nvim-treesitter/nvim-treesitter-context",
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
-		},
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		config = require("plugins-options.treesitter-context").config,
 	},
 }

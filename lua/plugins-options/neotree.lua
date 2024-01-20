@@ -95,10 +95,10 @@ M.opts = {
 			local path = node:get_id()
 			-- macOs: open file in default application in the background.
 			-- Probably you need to adapt the Linux recipe for manage path with spaces. I don't have a mac to try.
-			os.execute("echo " .. path .. " | xclip -selection clipboard")
+			os.execute("echo " .. path .. " | pbcopy")
 		end,
 		paste_from_system_clipboard = function(state)
-			local file_path = require("utils.functions").os_capture("xclip -o -selection clipboard")
+			local file_path = require("utils.functions").os_capture("pbpaste")
 			local node = state.tree:get_node()
 			local parent_path = node:get_parent_id()
 			os.execute("cp -rf " .. '"' .. file_path .. '"' .. " " .. node.path)
@@ -125,7 +125,7 @@ M.opts = {
 			--               -- the current file is changed while the tree is open.
 			leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
 		},
-		group_empty_dirs = false, -- when true, empty folders will be grouped together
+		group_empty_dirs = true, -- when true, empty folders will be grouped together
 		hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
 		-- in whatever position is specified in window.position
 		-- "open_current",  -- netrw disabled, opening a directory opens within the

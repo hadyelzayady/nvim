@@ -29,4 +29,18 @@ function M.get_filename_from_path(file_path)
 	return vim.fn.fnamemodify(normalized_path, ":t")
 end
 
+function M.removeDuplicates(tbl, by)
+	local result = {}
+	local seen = {}
+
+	for _, value in ipairs(tbl) do
+		local byValue = by(value)
+		if not seen[byValue] then
+			table.insert(result, value)
+			seen[byValue] = true
+		end
+	end
+
+	return result
+end
 return M

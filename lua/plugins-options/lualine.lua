@@ -23,7 +23,15 @@ function M.config()
 		sections = {
 			lualine_a = { "mode" },
 			lualine_b = { "branch", "diff", "diagnostics" },
-			lualine_c = { "filename" },
+			lualine_c = {
+				"filename",
+				{
+					function()
+						local package_info = require("package-info")
+						return package_info.get_status()
+					end,
+				},
+			},
 			lualine_x = {
 				"vim.fn['zoom#statusline']()",
 				{
@@ -32,7 +40,7 @@ function M.config()
 						if #attach_clients > 0 then
 							return "LSP(" .. #attach_clients .. ")"
 						end
-            return ""
+						return ""
 					end,
 				},
 				"fileformat",

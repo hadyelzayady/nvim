@@ -33,8 +33,13 @@ function M.goto_file_references()
 				require("vtsls").commands.file_references()
 				return
 			end
+			if client == "typescript-tools" then
+				vim.cmd("TSToolsFileReferences")
+				return
+			end
 		end
 	end
+	-- workaround
 end
 
 function M.goto_incoming_calls()
