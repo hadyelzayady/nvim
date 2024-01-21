@@ -73,6 +73,8 @@ map("n", "<leader>gn", "<cmd>Neogit<CR>", { desc = "Neogit" })
 map("n", "<leader>gts", "<cmd>lua require('tinygit').searchFileHistory()<CR>", { desc = "Search File History" })
 map("n", "<leader>gtf", "<cmd>lua require('tinygit').functionHistory()<CR>", { desc = "Function History" })
 map("n", "<leader>ga", require("utils.git").list, { desc = "Co-authors" })
+map("n", "<leader>gw", "<cmd>Telescope git_worktree git_worktrees<cr>", { desc = "List Worktree" })
+map("n", "<leader>gW", "<cmd>Telescope git_worktree create_git_worktree<cr>", { desc = "Create Worktree" })
 
 -- -- Debug
 map("n", "<leader>rd", "<cmd>lua require('dap').continue()<CR>", { desc = "Debug" })
