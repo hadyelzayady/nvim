@@ -6,6 +6,8 @@ function M.config()
     -- Delay (in ms) between when cursor moved and when highlighting appeared
     delay = 100,
   })
+  vim.cmd("hi! MiniCursorwordCurrent guifg=NONE guibg=NONE gui=NONE cterm=NONE")
+
 end
 
 return M
