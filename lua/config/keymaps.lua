@@ -45,6 +45,10 @@ map("n", "<leader>sp", "<cmd>FzfLua grep_project<cr>", { desc = "Search Project"
 map({ "n", "v" }, "<leader>sv", "<cmd>FzfLua grep_visual<cr>", { desc = "Search Visual", noremap = true })
 map("n", "<leader>sg", "<cmd>FzfLua live_grep_glob<cr>", { desc = "Grep" })
 map("n", "*", ":keepjumps normal! mi*`i<CR>")
+map("n", "<leader>sq", function()
+	vim.cmd('g//caddexpr expand("%") . ":" . line(".") . ":" . getline(".")')
+	vim.cmd("copen")
+end, { desc = "Send Matched Lines to Quickfix" })
 -- quit/session/projects
 map("n", "<leader>qq", "<cmd>q<cr>", { desc = "Quit" })
 map("n", "<leader>qQ", "<cmd>qa<cr>", { desc = "Quit all" })

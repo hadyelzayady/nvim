@@ -8,10 +8,6 @@ function M.setup()
 		severity_sort = true,
 	})
 
-	for name, icon in pairs(require("utils.ui-components").icons.diagnostics) do
-		name = "DiagnosticSign" .. name
-		vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
-	end
 	-- Create a custom namespace. This will aggregate signs from all other
 	-- namespaces and only show the one with the highest severity on a
 	-- given line

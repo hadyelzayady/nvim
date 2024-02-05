@@ -44,6 +44,7 @@ return {
 			"3rd/image.nvim",
 		},
 		opts = require("plugins-options.neotree").opts,
+		config = require("plugins-options.neotree").config,
 	},
 	-- {
 	-- 	"antosha417/nvim-lsp-file-operations",
@@ -99,9 +100,13 @@ return {
 	},
 	{
 		"chrishrb/gx.nvim",
-		keys = { "gx" },
+		keys = { { "gx", "<cmd>Browse<cr>", mode = { "n", "x" } } },
+		cmd = { "Browse" },
+		init = function()
+			vim.g.netrw_nogx = 1 -- disable netrw gx
+		end,
 		dependencies = { "nvim-lua/plenary.nvim" },
-		config = require("plugins-options.gx").config,
+    config = require("plugins-options.gx").config,
 	},
 	{
 		"andymass/vim-matchup",

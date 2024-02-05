@@ -50,7 +50,6 @@ function M.config(_, opts)
 			additional_vim_regex_highlighting = false,
 		},
 	})
-	local ft_to_parser = require("nvim-treesitter.parsers").filetype_to_parsername
-	ft_to_parser.mdx = "markdown"
+	vim.treesitter.language.register("markdown", "mdx")
 end
 return M
