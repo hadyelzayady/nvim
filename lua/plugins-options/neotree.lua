@@ -101,7 +101,7 @@ M.opts = {
 			local file_path = require("utils.functions").os_capture("pbpaste")
 			local node = state.tree:get_node()
 			local parent_path = node:get_parent_id()
-			os.execute("cp -rf " .. '"' .. file_path .. '"' .. " " .. node.path)
+			os.execute("cp -rf " .. '"' .. file_path .. '"' .. " " .. node.path .. "/")
 			vim.cmd("Neotree show")
 		end,
 	},
@@ -138,6 +138,7 @@ M.opts = {
 				["<space>i"] = "run_command",
 				["<space>D"] = diff_files,
 				["<space>o"] = "system_open",
+				["<space>p"] = "paste_from_system_clipboard",
 				["P"] = { "toggle_preview", config = { use_float = true, use_image_nvim = true } },
 			},
 		},

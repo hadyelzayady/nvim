@@ -34,7 +34,7 @@ return {
 				["<leader>x"] = { name = "+diagnostics/quickfix" },
 				["<leader>l"] = { name = "+lsp" },
 				["<leader>m"] = { name = "+Misc" },
-				C = {
+				["<leader>C"] = {
 					name = "ChatGPT",
 					c = { "<cmd>ChatGPT<CR>", "ChatGPT" },
 					C = { "<cmd>ChatGPTCompleteCode<CR>", "Complete Code", noremap = true },

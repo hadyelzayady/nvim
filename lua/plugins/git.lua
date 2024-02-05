@@ -48,8 +48,9 @@ return {
 		config = require("plugins-options.git-worktree").config,
 	},
 	{
-	  "akinsho/git-conflict.nvim",
-	  version = "*",
-	  config = require("plugins-options.git-conflict").config,
+		"akinsho/git-conflict.nvim",
+		version = "*",
+		enabled = false,
+		config = require("plugins-options.git-conflict").config,
 	},
 }
