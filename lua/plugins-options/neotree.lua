@@ -235,4 +235,8 @@ M.opts = {
 	},
 }
 
+function M.config(_, opts)
+	require("neo-tree").setup(opts)
+end
+
 return M

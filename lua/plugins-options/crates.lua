@@ -2,7 +2,13 @@ local M = {}
 
 function M.config(_, opts)
 	local crates = require("crates")
-	crates.setup(opts)
+	crates.setup({
+		src = {
+			cmp = {
+				enabled = true,
+			},
+		},
+	})
 	require("cmp").setup.buffer({
 		sources = { { name = "crates" } },
 	})

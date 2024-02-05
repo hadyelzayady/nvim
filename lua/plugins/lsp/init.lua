@@ -61,7 +61,8 @@ return {
 	{
 		"mrcjkb/rustaceanvim",
 		version = "^3", -- Recommended
-		ft = { "rust" },
+    -- enabled=false,
+		-- ft = { "rust" },
 	},
 	{
 		"saecki/crates.nvim",
