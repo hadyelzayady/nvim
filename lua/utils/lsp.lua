@@ -1,3 +1,4 @@
+require("utils.string")
 local M = {}
 function M.get_buffer_attached_lsp()
 	local bufnr = vim.api.nvim_get_current_buf()
@@ -8,4 +9,5 @@ function M.get_buffer_attached_lsp()
 	end
 	return c
 end
+
 return M

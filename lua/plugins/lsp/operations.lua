@@ -1,5 +1,14 @@
 local M = {}
 function M.goto_definition()
+	local clients = require("utils.lsp").get_buffer_attached_lsp()
+	if #clients > 0 then
+		for _, client in ipairs(clients) do
+			if client == "yamlls" then
+        vim.lsp.buf.definition();
+				return
+			end
+		end
+	end
 	vim.cmd("Glance definitions")
 end
 function M.goto_references()
