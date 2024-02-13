@@ -8,4 +8,5 @@ function M.get_buffer_attached_lsp()
 	end
 	return c
 end
+
 return M

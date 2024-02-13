@@ -185,6 +185,7 @@ function M.on_attach_setup(ev)
 	map("n", "<leader>lR", require("plugins.lsp.operations").rename_file, opts)
 	map("n", "<leader>cf", require("plugins.lsp.operations").fixAll, opts)
 	map("n", "<leader>cc", require("plugins.lsp.operations").removeUnused, opts)
+	map("n", "<leader>cC", require("plugins.lsp.operations").removeUnusedImports, opts)
 	map("n", "<leader>ci", require("plugins.lsp.operations").addMissingImports, opts)
 	map({ "n", "i" }, "<C-s>", vim.lsp.buf.signature_help, opts)
 end

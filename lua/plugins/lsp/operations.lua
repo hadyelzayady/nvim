@@ -1,5 +1,14 @@
 local M = {}
 function M.goto_definition()
+	local clients = require("utils.lsp").get_buffer_attached_lsp()
+	if #clients > 0 then
+		for _, client in ipairs(clients) do
+			if client == "yamlls" then
+				vim.lsp.buf.definition()
+				return
+			end
+		end
+	end
 	vim.cmd("Glance definitions")
 end
 function M.goto_references()
@@ -69,7 +78,7 @@ function M.rename_file()
 		for _, client in ipairs(clients) do
 			if client == "typescript-tools" then
 				vim.cmd("TSToolsRenameFile")
-				break
+				return
 			end
 		end
 	end
@@ -81,11 +90,11 @@ function M.addMissingImports()
 		for _, client in ipairs(clients) do
 			if client == "typescript-tools" then
 				vim.cmd("TSToolsAddMissingImports")
-				return;
+				return
 			end
 			if client == "vtsls" then
 				vim.cmd("VtsExec add_missing_imports")
-				return;
+				return
 			end
 		end
 	end
@@ -96,6 +105,10 @@ function M.removeUnusedImports()
 		for _, client in ipairs(clients) do
 			if client == "typescript-tools" then
 				vim.cmd("TSToolsRemoveUnusedImports")
+				break
+			end
+			if client == "vtsls" then
+				require("vtsls").commands.remove_unused_imports()
 				break
 			end
 		end
@@ -109,9 +122,14 @@ function M.removeUnused()
 				vim.cmd("TSToolsRemoveUnused")
 				break
 			end
+			if client == "vtsls" then
+				require("vtsls").commands.remove_unused()
+				break
+			end
 		end
 	end
 end
+
 function M.fixAll()
 	local clients = require("utils.lsp").get_buffer_attached_lsp()
 	if #clients > 0 then

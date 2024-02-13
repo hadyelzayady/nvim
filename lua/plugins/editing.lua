@@ -67,4 +67,9 @@ return {
         press Tab to switch between «cursor» and «extend» mode
     --]]
 	},
+	{
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		config = require("plugins-options.nvim-autopairs").config,
+	},
 }

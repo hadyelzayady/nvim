@@ -5,30 +5,18 @@ return {
 	{
 		"xiantang/darcula-dark.nvim",
 		priority = 1000,
+		enabled = false,
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
 		},
 		config = function()
-			-- require("tokyonight").setup({
-			--
-			-- 	dim_inactive = true, -- dims inactive windows
-			-- 	on_colors = function(colors)
-			-- 		colors.border = "#565f89"
-			-- 		colors.bg_visual = "#53003c"
-			-- 	end,
-			-- })
 			vim.cmd([[colorscheme darcula-dark]])
-			-- vim.cmd("hi DiffAdd guifg=#26ac3c guibg=#303030 gui=reverse cterm=reverse")
-			-- vim.cmd("hi DiffChange guifg=#2b97b4 guibg=#303030 gui=reverse cterm=reverse")
-			-- vim.cmd("hi DiffDelete guifg=#c94300 guibg=#303030 gui=reverse cterm=reverse")
-			-- vim.cmd("hi DiffText guifg=#e99200 guibg=#303030 gui=reverse cterm=reverse")
 		end,
 	},
 	{
 		"folke/tokyonight.nvim",
 		lazy = false,
 		priority = 1000,
-		enabled = false,
 		opts = {},
 		config = function()
 			require("tokyonight").setup({
