@@ -131,7 +131,7 @@ function M.lsp_global_setup()
 	-- Global mappings.
 	-- See `:help vim.diagnostic.*` for documentation on any of the below functions
 	local opts = { silent = true }
-	map("n", "<leader>ld", vim.diagnostic.open_float, opts)
+	map("n", "<leader>ld", vim.diagnostic.open_float, {silent=true, desc="Show Diagnostic"})
 	map({ "n", "v" }, "<leader>la", "<cmd>FzfLua lsp_code_actions<cr>", { silent = true, desc = "Code Action" })
 	map("n", "<leader>ss", "<cmd>FzfLua lsp_document_symbols<cr>", { silent = true, desc = "Document Symboles" })
 	map("n", "<leader>sS", "<cmd>FzfLua lsp_live_workspace_symbols<cr>", { silent = true, desc = "Workspace Symboles" })

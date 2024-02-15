@@ -1,19 +1,50 @@
 return {
 	{
-		"ms-jpq/coq_nvim",
-		config = require("plugins-options.completion.coq").config,
-		branch = "coq",
+		"hrsh7th/nvim-cmp",
+		config = require("plugins-options.completion.cmp").config,
+		event = "InsertEnter",
+		dependencies = {
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-calc",
+			"saadparwaiz1/cmp_luasnip",
+			"David-Kunz/cmp-npm",
+		},
 	},
 	{
-		"ms-jpq/coq.artifacts",
-		branch = "artifacts",
-		dependencies = { "ms-jpq/coq_nvim" },
+		"petertriho/cmp-git",
+		lazy = true,
+		ft = { "gitcommit" },
+		dependencies = {
+			"hrsh7th/nvim-cmp",
+		},
 	},
 	{
-		"ms-jpq/coq.thirdparty",
-		branch = "3p",
-		config = require("plugins-options.completion.coq").thirdparty,
-		dependencies = { "ms-jpq/coq_nvim" },
+		"David-Kunz/cmp-npm",
+		-- lazy = true,
+		ft = "json",
+		config = function()
+			require("cmp-npm").setup({})
+		end,
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+	},
+	{
+		"petertriho/cmp-git",
+		dependencies = {
+			"hrsh7th/nvim-cmp",
+			"nvim-lua/plenary.nvim",
+		},
+		config = require("plugins-options.completion.cmp-git").config,
+	},
+	{
+		"davidsierradz/cmp-conventionalcommits",
+		lazy = true,
+		dependencies = {
+			"hrsh7th/nvim-cmp",
+		},
 	},
 	{
 		"Exafunction/codeium.vim",

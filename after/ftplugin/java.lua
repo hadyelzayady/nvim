@@ -14,6 +14,9 @@ local workspace_root_dir = nvim_dir .. "/workspace/"
 local workspace_dir = workspace_root_dir .. project_name
 
 local on_attach = function(client, bufnr)
+	if client.server_capabilities.inlayHintProvider then
+		vim.lsp.buf.inlay_hint(bufnr, true)
+	end
 	client.server_capabilities.semanticTokensProvider = nil
 	-- lsp.on_attach(client, bufnr)
 	-- lsp.navic_attach_and_setup(client, bufnr)
@@ -162,8 +165,7 @@ local config = {
 }
 -- This starts a new client & server,
 -- or attaches to an existing client & server depending on the `root_dir`.
-local coq = require "coq" -- add this
-require("jdtls").start_or_attach(coq.lsp_ensure_capabilities(config))
+require("jdtls").start_or_attach(config)
 -- require('wlsample.airline')
 
 local wk = require("which-key")
@@ -207,13 +209,13 @@ wk.register({
 	},
 })
 
-local dap = require('dap')
+local dap = require("dap")
 dap.configurations.java = {
-  {
-    type = 'java';
-    request = 'attach';
-    name = "Debug (Attach) - Remote";
-    hostName = "127.0.0.1";
-    port = 5005;
-  },
+	{
+		type = "java",
+		request = "attach",
+		name = "Debug (Attach) - Remote",
+		hostName = "127.0.0.1",
+		port = 5005,
+	},
 }

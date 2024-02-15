@@ -46,6 +46,7 @@ function M.config()
 					["<space>D"] = neotree_utils.diff_files,
 					["<space>o"] = "system_open",
 					["<space>cc"] = "copy_absolute_path_to_system_clipboard",
+					["<space>p"] = "paste_from_system_clipboard",
 					["P"] = { "toggle_preview", config = { use_float = true, use_image_nvim = true } },
 				},
 			},
