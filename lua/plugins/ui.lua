@@ -59,6 +59,7 @@ return {
 	},
 	{
 		"kevinhwang91/nvim-hlslens",
+		event = "VeryLazy",
 		config = require("plugins-options.hlslens").config,
 	},
 	{
@@ -69,6 +70,7 @@ return {
 
 		"echasnovski/mini.indentscope",
 		version = false,
+		event = "VeryLazy",
 		config = require("plugins-options.mini-indentscope").config,
 	},
 }

@@ -7,6 +7,7 @@ return {
 	{
 		"nvim-neo-tree/neo-tree.nvim",
 		branch = "v3.x",
+		event = "VeryLazy",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
@@ -14,16 +15,6 @@ return {
 			"3rd/image.nvim",
 		},
 		config = require("plugins-options.neotree").config,
-	},
-	{
-		"antosha417/nvim-lsp-file-operations",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-neo-tree/neo-tree.nvim",
-		},
-		config = function()
-			require("lsp-file-operations").setup()
-		end,
 	},
 	{
 		"ibhagwan/fzf-lua",

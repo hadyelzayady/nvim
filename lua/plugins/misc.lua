@@ -7,11 +7,13 @@ return {
 	{
 		"echasnovski/mini.bufremove",
 		version = false,
+		event = "VeryLazy",
 		config = require("plugins-options.mini-bufremove").config,
 	},
 	{
 		"akinsho/toggleterm.nvim",
 		version = "*",
+		event = "VeryLazy",
 		config = require("plugins-options.toggleterm").config,
 	},
 }

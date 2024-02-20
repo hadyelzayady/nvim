@@ -29,15 +29,18 @@ return {
 	{
 		"echasnovski/mini.splitjoin",
 		version = false,
+		keys = { "gs" },
 		config = require("plugins-options.mini-splitjoin").config,
 	},
 	{
 		"max397574/better-escape.nvim",
+		event = "VeryLazy",
 		config = require("plugins-options.better-escape").config,
 	},
 	{
 		"echasnovski/mini.comment",
 		version = false,
+		keys = { "gc" },
 		config = require("plugins-options.mini-comment").config,
 	},
 	{

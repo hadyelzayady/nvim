@@ -13,10 +13,12 @@ local java_debug_jar = fn.stdpath("data") .. "/mason/packages/java-debug-adapter
 local workspace_root_dir = nvim_dir .. "/workspace/"
 local workspace_dir = workspace_root_dir .. project_name
 
+local jdtls = require("jdtls")
+local extendedClientCapabilities = jdtls.extendedClientCapabilities
+extendedClientCapabilities.onCompletionItemSelectedCommand = "editor.action.triggerParameterHints"
+
 local on_attach = function(client, bufnr)
-	if client.server_capabilities.inlayHintProvider then
-		vim.lsp.buf.inlay_hint(bufnr, true)
-	end
+	vim.lsp.inlay_hint.enable(0, true)
 	client.server_capabilities.semanticTokensProvider = nil
 	-- lsp.on_attach(client, bufnr)
 	-- lsp.navic_attach_and_setup(client, bufnr)
@@ -98,6 +100,11 @@ local config = {
 	settings = {
 		["java.settings.url"] = java_settings_url,
 		java = {
+			-- inlayHints = {
+			-- 	parameterNames = {
+			-- 		enabled = "all",
+			-- 	},
+			-- },
 			configuration = {
 				-- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
 				-- And search for `interface RuntimeOption`
@@ -150,6 +157,7 @@ local config = {
 	--
 	-- If you don't plan on using the debugger or other eclipse.jdt.ls plugins you can remove this
 	init_options = {
+		extendedClientCapabilities = extendedClientCapabilities,
 		bundles = {
 			get_java_debug_jar(),
 		},

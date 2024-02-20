@@ -14,9 +14,11 @@ return {
 	},
 	{
 		"tpope/vim-fugitive",
+		event = "VeryLazy",
 	},
 	{
 		"lewis6991/gitsigns.nvim",
+		event = "VeryLazy",
 		config = require("plugins-options.gitsigns").config,
 	},
 	{
@@ -31,6 +33,7 @@ return {
 	{
 		"ThePrimeagen/git-worktree.nvim",
 		config = require("plugins-options.git-worktree").config,
+		event = "VeryLazy",
 		dependencies = { "nvim-telescope/telescope.nvim" },
 	},
 }

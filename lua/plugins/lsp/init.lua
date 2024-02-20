@@ -1,6 +1,7 @@
 return {
 	{
 		"neovim/nvim-lspconfig",
+		event = "VeryLazy",
 		config = require("plugins-options.lsp.lspconfig").config,
 	},
 	{
@@ -10,6 +11,7 @@ return {
 	},
 	{
 		"williamboman/mason.nvim",
+		cmd = { "Mason", "MasonUpdate", "MasonInstall" },
 		config = require("plugins-options.lsp.mason").config,
 	},
 	{
@@ -74,6 +76,7 @@ return {
 	{
 		"vuki656/package-info.nvim",
 		dependencies = { "MunifTanjim/nui.nvim" },
+		event = "VeryLazy",
 		config = require("plugins-options.package-info").config,
 	},
 	-- {
@@ -89,4 +92,15 @@ return {
 	-- 		"mfussenegger/nvim-dap",
 	-- 	},
 	-- },
+	{
+		"antosha417/nvim-lsp-file-operations",
+		event = "VeryLazy",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-neo-tree/neo-tree.nvim",
+		},
+		config = function()
+			require("lsp-file-operations").setup()
+		end,
+	},
 }
