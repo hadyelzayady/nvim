@@ -11,7 +11,6 @@ return {
 	},
 	{
 		"williamboman/mason.nvim",
-		cmd = { "Mason", "MasonUpdate", "MasonInstall" },
 		config = require("plugins-options.lsp.mason").config,
 	},
 	{

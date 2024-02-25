@@ -18,7 +18,9 @@ local extendedClientCapabilities = jdtls.extendedClientCapabilities
 extendedClientCapabilities.onCompletionItemSelectedCommand = "editor.action.triggerParameterHints"
 
 local on_attach = function(client, bufnr)
-	vim.lsp.inlay_hint.enable(0, true)
+	if client.server_capabilities.inlayHintProvider then
+		vim.lsp.inlay_hint.enable(0, true)
+	end
 	client.server_capabilities.semanticTokensProvider = nil
 	-- lsp.on_attach(client, bufnr)
 	-- lsp.navic_attach_and_setup(client, bufnr)

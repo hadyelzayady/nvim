@@ -50,6 +50,7 @@ return {
 	},
 	{
 		"stevearc/dressing.nvim",
+		event = "VeryLazy",
 		config = require("plugins-options.dressing").config,
 	},
 	{
@@ -64,6 +65,7 @@ return {
 	},
 	{
 		"3rd/image.nvim",
+		enabled = false,
 		config = require("plugins-options.image").config,
 	},
 	{

@@ -40,7 +40,7 @@ return {
 	{
 		"echasnovski/mini.comment",
 		version = false,
-		keys = { "gc" },
+		keys = { { "gc", mode = { "n", "v" } } },
 		config = require("plugins-options.mini-comment").config,
 	},
 	{
