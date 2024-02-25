@@ -90,7 +90,7 @@ return {
 	},
 	{
 		"gaelph/logsitter.nvim",
-		keys = { "<space>lg" },
+		event = "VeryLazy",
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 	},
 }
