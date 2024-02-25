@@ -110,4 +110,9 @@ return {
 			vim.fn.system("cp", { "pass_keys.py", "~/.config/kitty" })
 		end,
 	},
+	{
+		"andymass/vim-matchup",
+		event = "VeryLazy",
+		config = require("plugins-options.matchup").config,
+  }
 }

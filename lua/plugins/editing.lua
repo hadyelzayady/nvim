@@ -54,6 +54,14 @@ return {
 		end,
 	},
 	{
+		"ThePrimeagen/refactoring.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+		},
+		config = require("plugins-options.refactoring").config,
+	},
+	{
 		"mg979/vim-visual-multi",
 		branch = "master",
 		keys = { "<C-n>" },
@@ -79,5 +87,10 @@ return {
 		"echasnovski/mini.surround",
 		version = false,
 		config = require("plugins-options.mini-surround").config,
+	},
+	{
+		"gaelph/logsitter.nvim",
+		keys = { "<space>lg" },
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
 	},
 }
