@@ -102,4 +102,8 @@ return {
 			require("lsp-file-operations").setup()
 		end,
 	},
+	{
+		"VidocqH/lsp-lens.nvim",
+		config = require("plugins-options.lsp.lsp-lens").config,
+	},
 }

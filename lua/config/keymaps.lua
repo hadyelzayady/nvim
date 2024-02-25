@@ -131,7 +131,7 @@ function M.lsp_global_setup()
 	-- Global mappings.
 	-- See `:help vim.diagnostic.*` for documentation on any of the below functions
 	local opts = { silent = true }
-	map("n", "<leader>ld", vim.diagnostic.open_float, {silent=true, desc="Show Diagnostic"})
+	map("n", "<leader>ld", vim.diagnostic.open_float, { silent = true, desc = "Show Diagnostic" })
 	map({ "n", "v" }, "<leader>la", "<cmd>FzfLua lsp_code_actions<cr>", { silent = true, desc = "Code Action" })
 	map("n", "<leader>ss", "<cmd>FzfLua lsp_document_symbols<cr>", { silent = true, desc = "Document Symboles" })
 	map("n", "<leader>sS", "<cmd>FzfLua lsp_live_workspace_symbols<cr>", { silent = true, desc = "Workspace Symboles" })
@@ -187,6 +187,18 @@ function M.on_attach_setup(ev)
 	map("n", "<leader>cc", require("plugins.lsp.operations").removeUnused, opts)
 	map("n", "<leader>cC", require("plugins.lsp.operations").removeUnusedImports, opts)
 	map("n", "<leader>ci", require("plugins.lsp.operations").addMissingImports, opts)
+	map(
+		"n",
+		"<leader>lth",
+		require('plugins.lsp.operations').toggle_inlay_hints,
+		{ desc = "Toggle Inlayhints", silent = true }
+	)
+	map(
+		"n",
+		"<leader>ltl",
+	   "<cmd>LspLensToggle<cr>",
+		{ desc = "Toggle function hints", silent = true }
+	)
 	map({ "n", "i" }, "<C-s>", vim.lsp.buf.signature_help, opts)
 end
 
@@ -289,17 +301,17 @@ end
 
 function M.packages_file_keymaps(operations)
 	map("n", "<leader>Ps", operations.show, { desc = "Show", buffer = true })
-	map("n", "<leader>Ph", operations.hide, { desc = "Hide", buffer=true })
-	map("n", "<leader>Pt", operations.toggle, { desc = "Toggle", buffer=true })
+	map("n", "<leader>Ph", operations.hide, { desc = "Hide", buffer = true })
+	map("n", "<leader>Pt", operations.toggle, { desc = "Toggle", buffer = true })
 	if operations.update then
-		map("n", "<leader>Pu", operations.update, { desc = "Update Package", buffer=true })
+		map("n", "<leader>Pu", operations.update, { desc = "Update Package", buffer = true })
 	end
 	if operations.delete then
-		map("n", "<leader>Pd", operations.delete, { desc = "Delete Package", buffer=true })
+		map("n", "<leader>Pd", operations.delete, { desc = "Delete Package", buffer = true })
 	end
 	if operations.install then
-		map("n", "<leader>Pi", operations.install, { desc = "Install Package", buffer=true })
+		map("n", "<leader>Pi", operations.install, { desc = "Install Package", buffer = true })
 	end
-	map("n", "<leader>Pv", operations.version, { desc = "Show Versions", buffer=true })
+	map("n", "<leader>Pv", operations.version, { desc = "Show Versions", buffer = true })
 end
 return M
