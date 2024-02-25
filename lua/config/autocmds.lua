@@ -23,9 +23,9 @@ autocmd("BufReadPost", {
 })
 -- 5. Update neotree when closin the git client.
 autocmd("TermClose", {
-	pattern = { "*lazygit", "*gitui" },
+	pattern = { "**lazygit**", "**gitui**" },
 	desc = "Refresh Neo-Tree git when closing lazygit/gitui",
-	callback = function()
+	callback = function(c)
 		local manager_avail, manager = pcall(require, "neo-tree.sources.manager")
 		if manager_avail then
 			for _, source in ipairs({
