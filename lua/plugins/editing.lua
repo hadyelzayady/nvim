@@ -75,4 +75,9 @@ return {
 		event = "InsertEnter",
 		config = require("plugins-options.nvim-autopairs").config,
 	},
+	{
+		"echasnovski/mini.surround",
+		version = false,
+		config = require("plugins-options.mini-surround").config,
+	},
 }
