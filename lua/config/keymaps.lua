@@ -190,15 +190,10 @@ function M.on_attach_setup(ev)
 	map(
 		"n",
 		"<leader>lth",
-		require('plugins.lsp.operations').toggle_inlay_hints,
+		require("plugins.lsp.operations").toggle_inlay_hints,
 		{ desc = "Toggle Inlayhints", silent = true }
 	)
-	map(
-		"n",
-		"<leader>ltl",
-	   "<cmd>LspLensToggle<cr>",
-		{ desc = "Toggle function hints", silent = true }
-	)
+	map("n", "<leader>ltl", "<cmd>LspLensToggle<cr>", { desc = "Toggle function hints", silent = true })
 	map({ "n", "i" }, "<C-s>", vim.lsp.buf.signature_help, opts)
 end
 
@@ -313,5 +308,16 @@ function M.packages_file_keymaps(operations)
 		map("n", "<leader>Pi", operations.install, { desc = "Install Package", buffer = true })
 	end
 	map("n", "<leader>Pv", operations.version, { desc = "Show Versions", buffer = true })
+end
+
+function M.harpoon()
+	local harpoon = require("harpoon")
+	map("n", "<leader>ja", function()
+		harpoon:list():append()
+	end)
+	vim.keymap.set("n", "<leader>jj", function()
+		harpoon.ui:toggle_quick_menu(harpoon:list())
+	end)
+
 end
 return M

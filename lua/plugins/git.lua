@@ -36,4 +36,16 @@ return {
 		event = "VeryLazy",
 		dependencies = { "nvim-telescope/telescope.nvim" },
 	},
+	{
+		"pwntester/octo.nvim",
+		event = "VeryLazy",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"ibhagwan/fzf-lua",
+			"nvim-tree/nvim-web-devicons",
+		},
+		config = function()
+			require("octo").setup()
+		end,
+	},
 }

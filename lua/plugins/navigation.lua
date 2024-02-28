@@ -114,5 +114,12 @@ return {
 		"andymass/vim-matchup",
 		event = "VeryLazy",
 		config = require("plugins-options.matchup").config,
-  }
+	},
+	{
+		"ThePrimeagen/harpoon",
+		branch = "harpoon2",
+		event = "VeryLazy",
+		config = require("plugins-options.harpoon").config,
+		dependencies = { "nvim-lua/plenary.nvim" },
+	},
 }
