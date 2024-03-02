@@ -16,4 +16,8 @@ return {
 		event = "VeryLazy",
 		config = require("plugins-options.toggleterm").config,
 	},
+	{
+		"lambdalisue/suda.vim",
+		cmd = { "SudaRead", "SudaWrite" },
+	},
 }

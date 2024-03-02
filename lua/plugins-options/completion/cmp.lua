@@ -54,6 +54,7 @@ function M.config()
 		}, {
 			{ name = "buffer" },
 			{ name = "npm" },
+			{ name = "calc" },
 		}),
 	}
 
