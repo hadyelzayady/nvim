@@ -7,6 +7,7 @@ opt.splitbelow = true -- Horizontal splits will be below
 opt.splitright = true -- Vertical splits will be to the right
 opt.termguicolors = true -- Enable gui colors
 opt.signcolumn = "auto:1-3" -- Always show sign column (otherwise it will shift text)
+opt.conceallevel = 1 -- Always show sign column (otherwise it will shift text)
 
 opt.mouse = "a" -- Enable mouse mode
 opt.scrolloff = 4 -- Lines of context
