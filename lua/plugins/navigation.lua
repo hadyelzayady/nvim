@@ -122,4 +122,10 @@ return {
 		config = require("plugins-options.harpoon").config,
 		dependencies = { "nvim-lua/plenary.nvim" },
 	},
+	{
+		"cbochs/grapple.nvim",
+		event = "VeryLazy",
+		config = require("plugins-options.grapple").config,
+		dependencies = { "nvim-telescope/telescope.nvim" },
+	},
 }

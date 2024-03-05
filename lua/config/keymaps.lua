@@ -82,9 +82,9 @@ map("n", "<leader>gw", "<cmd>Telescope git_worktree git_worktrees<cr>", { desc =
 map("n", "<leader>gW", "<cmd>Telescope git_worktree create_git_worktree<cr>", { desc = "Create Worktree" })
 
 -- -- Debug
-map("n", "<leader>rd", "<cmd>lua require('dap').continue()<CR>", { desc = "Debug" })
-map("n", "<leader>rb", "<cmd>lua require('dap').toggle_breakpoint()<CR>", { desc = "Toggle Breakpoint" })
-map("n", "<leader>ru", "<cmd>lua require('dapui').toggle()<CR>", { desc = "Toggle Ui" })
+-- map("n", "<leader>rd", "<cmd>lua require('dap').continue()<CR>", { desc = "Debug" })
+-- map("n", "<leader>rb", "<cmd>lua require('dap').toggle_breakpoint()<CR>", { desc = "Toggle Breakpoint" })
+-- map("n", "<leader>ru", "<cmd>lua require('dapui').toggle()<CR>", { desc = "Toggle Ui" })
 
 map("n", "<c-,>", "<cmd>cnext<CR>", { desc = "Next Quickfix Item" })
 map("n", "<c-.>", "<cmd>cprevious<CR>", { desc = "Prev Quickfix Item" })
@@ -105,11 +105,6 @@ map("n", "<leader>xX", "<cmd>TroubleToggle workspace_diagnostics<cr> ", { silent
 -- toggle misc
 map("n", "<leader>nc", "<cmd>TSContextToggle<CR>", { desc = "Context" })
 map("n", "<leader>nh", "<cmd>CccHighlighterToggle<CR>", { desc = "Color Highlight" })
-
--- -- Debug
-map("n", "<leader>rd", "<cmd>lua require('dap').continue()<CR>", { desc = "Debug" })
-map("n", "<leader>rb", "<cmd>lua require('dap').toggle_breakpoint()<CR>", { desc = "Toggle Breakpoint" })
-map("n", "<leader>ru", "<cmd>lua require('dapui').toggle()<CR>", { desc = "Toggle Ui" })
 
 -- refactor
 map({ "n", "x" }, "<leader>cr", function()
@@ -318,6 +313,80 @@ function M.harpoon()
 	vim.keymap.set("n", "<leader>jj", function()
 		harpoon.ui:toggle_quick_menu(harpoon:list())
 	end)
+end
 
+function M.grapple()
+	-- Lua
+	vim.keymap.set("n", "<leader>m", require("grapple").toggle)
+	vim.keymap.set("n", "<leader>M", require("grapple").toggle_tags)
+
+	-- User command
+	vim.keymap.set("n", "<leader>1", "<cmd>Grapple select index=1<cr>")
+	vim.keymap.set("n", "<leader>2", "<cmd>Grapple select index=2<cr>")
+	vim.keymap.set("n", "<leader>3", "<cmd>Grapple select index=3<cr>")
+end
+---@param config {args?:string[]|fun():string[]?}
+local function get_args(config)
+	local args = type(config.args) == "function" and (config.args() or {}) or config.args or {}
+	config = vim.deepcopy(config)
+	---@cast args string[]
+	config.args = function()
+		local new_args = vim.fn.input("Run with args: ", table.concat(args, " ")) --[[@as string]]
+		return vim.split(vim.fn.expand(new_args) --[[@as string]], " ")
+	end
+	return config
+end
+function M.dap()
+	map("n", "<leader>rB", function()
+		require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
+	end, { desc = "Breakpoint Condition" })
+	map("n", "<leader>rb", function()
+		require("dap").toggle_breakpoint()
+	end, { desc = "Toggle Breakpoint" })
+	map("n", "<leader>rc", function()
+		require("dap").continue()
+	end, { desc = "Continue" })
+	map("n", "<leader>ra", function()
+		require("dap").continue({ before = get_args })
+	end, { desc = "Run with Args" })
+	map("n", "<leader>rC", function()
+		require("dap").run_to_cursor()
+	end, { desc = "Run to Cursor" })
+	map("n", "<leader>rg", function()
+		require("dap").goto_()
+	end, { desc = "Go to line (no execute)" })
+	map("n", "<leader>ri", function()
+		require("dap").step_into()
+	end, { desc = "Step Into" })
+	map("n", "<leader>rj", function()
+		require("dap").down()
+	end, { desc = "Down" })
+	map("n", "<leader>rk", function()
+		require("dap").up()
+	end, { desc = "Up" })
+	map("n", "<leader>rl", function()
+		require("dap").run_last()
+	end, { desc = "Run Last" })
+	map("n", "<leader>ro", function()
+		require("dap").step_out()
+	end, { desc = "Step Out" })
+	map("n", "<leader>rO", function()
+		require("dap").step_over()
+	end, { desc = "Step Over" })
+	map("n", "<leader>rp", function()
+		require("dap").pause()
+	end, { desc = "Pause" })
+	map("n", "<leader>rr", function()
+		require("dap").repl.toggle()
+	end, { desc = "Toggle REPL" })
+	map("n", "<leader>rs", function()
+		require("dap").session()
+	end, { desc = "Session" })
+	map("n", "<leader>rt", function()
+		require("dap").terminate()
+	end, { desc = "Terminate" })
+	map("n", "<leader>rw", function()
+		require("dap.ui.widgets").hover()
+	end, { desc = "Widgets" })
 end
 return M
