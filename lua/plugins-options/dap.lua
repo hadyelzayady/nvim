@@ -2,6 +2,33 @@ local M = {}
 
 function M.config()
 	local dap = require("dap")
+	local dap_icons = require("utils.ui-components").icons.debug
+	vim.api.nvim_set_hl(0, "DapBreakpoint", { ctermbg = 0, fg = "#993939", bg = "" })
+	vim.api.nvim_set_hl(0, "DapLogPoint", { ctermbg = 0, fg = "#61afef", bg = "" })
+	vim.api.nvim_set_hl(0, "DapStopped", { ctermbg = 0, fg = "#98c379", bg = "" })
+
+	vim.fn.sign_define(
+		"DapBreakpoint",
+		{ text = dap_icons.breakpoint, texthl = "DapBreakpoint", linehl = "", numhl = "" }
+	)
+	vim.fn.sign_define("DapBreakpointCondition", {
+		text = dap_icons.breakpoint_condition,
+		texthl = "DapBreakpoint",
+		linehl = "",
+		numhl = "",
+	})
+	vim.fn.sign_define(
+		"DapBreakpointRejected",
+		{ text = "", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
+	)
+	vim.fn.sign_define(
+		"DapLogPoint",
+		{ text = dap_icons.breakpoint_logpoint, texthl = "DapLogPoint", linehl = "DapLogPoint", numhl = "DapLogPoint" }
+	)
+	vim.fn.sign_define(
+		"DapStopped",
+		{ text = dap_icons.stopped, texthl = "DapStopped", linehl = "DapStopped", numhl = "DapStopped" }
+	)
 	dap.configurations.java = {
 		{
 			type = "java",
@@ -19,6 +46,7 @@ function M.config()
 			command = "js-debug-adapter",
 		},
 	}
+  require("config.keymaps").dap()
 	for _, language in ipairs({ "typescript", "javascript" }) do
 		dap.configurations[language] = {
 			{

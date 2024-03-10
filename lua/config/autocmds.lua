@@ -21,24 +21,37 @@ autocmd("BufReadPost", {
 		end
 	end,
 })
+
+local function refresh_neotree()
+	local manager_avail, manager = pcall(require, "neo-tree.sources.manager")
+	if manager_avail then
+		for _, source in ipairs({
+			"filesystem",
+			"git_status",
+			"document_symbols",
+		}) do
+			local module = "neo-tree.sources." .. source
+			if package.loaded[module] then
+				manager.refresh(require(module).name)
+			end
+		end
+	end
+end
 -- 5. Update neotree when closin the git client.
 autocmd("TermClose", {
 	pattern = { "**lazygit**", "**gitui**" },
 	desc = "Refresh Neo-Tree git when closing lazygit/gitui",
-	callback = function(c)
-		local manager_avail, manager = pcall(require, "neo-tree.sources.manager")
-		if manager_avail then
-			for _, source in ipairs({
-				"filesystem",
-				"git_status",
-				"document_symbols",
-			}) do
-				local module = "neo-tree.sources." .. source
-				if package.loaded[module] then
-					manager.refresh(require(module).name)
-				end
-			end
-		end
+	callback = function()
+		refresh_neotree()
+	end,
+})
+
+autocmd("BufLeave", {
+	pattern = { "NeogitStatus" },
+	desc = "Refresh Neo-Tree git when closing Neogit",
+	callback = function()
+    print('refresh neotree neogit')
+		refresh_neotree()
 	end,
 })
 

@@ -140,7 +140,7 @@ function M.fixAll()
 			if client == "eslint" then
 				vim.cmd("EslintFixAll")
 			end
-			if client == "rust_analyzer" then
+			if client == "rust-analyzer" then
 				require("utils.functions").os_capture("cargo fix --allow-dirty")
 				vim.cmd("e")
 				M.format()

@@ -4,9 +4,7 @@ function M.config()
 	local neotree_utils = require("utils.neotree")
 	require("neo-tree").setup({
 		filesystem = {
-			-- "open_current"
-			-- "open_current",
-			-- "disabled",
+			hide_root_node = true, -- Hide the root node.
 			hijack_netrw_behavior = "disabled",
 			commands = {
 				copy_absolute_path_to_system_clipboard = neotree_utils.copy_absolute_path_to_system_clipboard,
@@ -65,7 +63,6 @@ function M.config()
 			},
 		},
 		default_component_configs = {
-
 			git_status = {
 				symbols = {
 					-- Change type
