@@ -22,7 +22,15 @@ function M.config()
 		},
 		sections = {
 			lualine_a = { "mode" },
-			lualine_b = { "branch", "diff", "diagnostics" },
+			lualine_b = {
+				{
+					require("grapple").statusline,
+					cond = require("grapple").exists,
+				},
+				"branch",
+				"diff",
+				"diagnostics",
+			},
 			lualine_c = {
 				"filename",
 				{

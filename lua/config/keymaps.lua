@@ -318,6 +318,13 @@ function M.harpoon()
 	vim.keymap.set("n", "<leader>jj", function()
 		harpoon.ui:toggle_quick_menu(harpoon:list())
 	end)
+end
 
+function M.grapple()
+	map("n", "<leader>m", require("grapple").toggle)
+	map("n", "<leader>M", require("grapple").toggle_tags)
+	map("n", "<leader>1", "<cmd>Grapple select index=1<cr>")
+	map("n", "<leader>2", "<cmd>Grapple select index=2<cr>")
+	map("n", "<leader>3", "<cmd>Grapple select index=3<cr>")
 end
 return M
