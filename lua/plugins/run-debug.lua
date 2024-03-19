@@ -8,7 +8,7 @@ return {
 	},
 	{
 		"rcarriga/nvim-dap-ui",
-		dependencies = { "mfussenegger/nvim-dap" },
+		dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
 		event = "VeryLazy",
 		config = require("plugins-options.dap-ui").config,
 		lazy = true,

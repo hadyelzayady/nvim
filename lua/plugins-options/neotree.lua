@@ -4,6 +4,49 @@ function M.config()
 	local neotree_utils = require("utils.neotree")
 	require("neo-tree").setup({
 		filesystem = {
+			components = {
+				-- harpoon_index = function(config, node)
+				-- 	local Marked = require("harpoon.mark")
+				-- 	local path = node:get_id()
+				-- 	local succuss, index = pcall(Marked.get_index_of, path)
+				-- 	if succuss and index and index > 0 then
+				-- 		return {
+				-- 			text = string.format(" ⥤ %d", index), -- <-- Add your favorite harpoon like arrow here
+				-- 			highlight = config.highlight or "NeoTreeDirectoryIcon",
+				-- 		}
+				-- 	else
+				-- 		return {}
+				-- 	end
+				-- end,
+				name = function(config, node, state)
+					local components = require("neo-tree.sources.common.components")
+					local name = components.name(config, node, state)
+					if node:get_depth() == 1 then
+						name.text = vim.fs.basename(vim.loop.cwd() or "")
+					end
+					return name
+				end,
+			},
+			renderers = {
+				file = {
+					{ "indent" },
+					{ "icon" },
+					{
+						"container",
+						content = {
+							{
+								"name",
+								zindex = 10,
+							},
+							{ "clipboard", zindex = 10 },
+							-- { "harpoon_index", zindex = 10 }, --> This is what actually adds the component in where you want it
+							{ "modified", zindex = 20, align = "right" },
+							{ "diagnostics", zindex = 20, align = "right" },
+							{ "git_status", zindex = 20, align = "right" },
+						},
+					},
+				},
+			},
 			hide_root_node = true, -- Hide the root node.
 			hijack_netrw_behavior = "disabled",
 			commands = {

@@ -50,7 +50,6 @@ autocmd("BufLeave", {
 	pattern = { "NeogitStatus" },
 	desc = "Refresh Neo-Tree git when closing Neogit",
 	callback = function()
-    print('refresh neotree neogit')
 		refresh_neotree()
 	end,
 })
