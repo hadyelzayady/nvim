@@ -74,6 +74,7 @@
   "package-info.nvim": { "branch": "master", "commit": "45acce5b12ce824332d8000cc2c91805b6710446" },
   "plenary.nvim": { "branch": "master", "commit": "f7adfc4b3f4f91aab6caebf42b3682945fbc35be" },
   "pomo.nvim": { "branch": "main", "commit": "5304d5692ad049ada5cfd70f1d66a704a6ec4971" },
+  "possession.nvim": { "branch": "master", "commit": "4665ceec10991e040b7117582e62cc5edd3c964f" },
   "refactoring.nvim": { "branch": "master", "commit": "d2786877c91aa409c824f27b4ce8a9f560dda60a" },
   "rustaceanvim": { "branch": "master", "commit": "b0548ff58d34caa220f8806c518fedb6453fc48e" },
   "schemastore.nvim": { "branch": "main", "commit": "4d798fd5b692c8fce77268aba8f6f926b0c9f835" },

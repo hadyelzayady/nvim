@@ -9,9 +9,11 @@ function M.config()
 		-- logfile = false,
 		-- prompt_no_cr = false,
 		autosave = {
-			current = true, -- or fun(name): boolean
-			tmp = false, -- or fun(): boolean
-			tmp_name = "tmp", -- or fun(): string
+			current = false, -- or fun(name): boolean
+			tmp = true, -- or fun(): boolean
+			tmp_name = function()
+				return vim.fs.basename(vim.loop.cwd() or "")
+			end, -- or fun(): string
 			on_load = true,
 			on_quit = true,
 		},
