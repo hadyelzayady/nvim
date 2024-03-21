@@ -311,7 +311,8 @@ function M.harpoon()
 		harpoon:list():append()
 	end)
 	vim.keymap.set("n", "<leader>jj", function()
-		harpoon.ui:toggle_quick_menu(harpoon:list())
+		-- harpoon.ui:toggle_quick_menu(harpoon:list())
+		vim.cmd("Telescope grapple tags")
 	end)
 end
 
