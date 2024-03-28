@@ -29,15 +29,15 @@ function M.config()
 		"DapStopped",
 		{ text = dap_icons.stopped, texthl = "DapStopped", linehl = "DapStopped", numhl = "DapStopped" }
 	)
-	dap.configurations.java = {
-		{
-			type = "java",
-			request = "attach",
-			name = "Debug (Attach) - Remote",
-			hostName = "127.0.0.1",
-			port = 5005,
-		},
-	}
+	-- dap.configurations.java = {
+	-- 	{
+	-- 		type = "java",
+	-- 		request = "attach",
+	-- 		name = "Debug (Attach) - Remote",
+	-- 		hostName = "127.0.0.1",
+	-- 		port = 5005,
+	-- 	},
+	-- }
 	dap.adapters["pwa-node"] = {
 		type = "server",
 		host = "localhost",

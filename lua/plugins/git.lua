@@ -39,6 +39,7 @@ return {
 	{
 		"pwntester/octo.nvim",
 		event = "VeryLazy",
+		enabled = false,
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"ibhagwan/fzf-lua",

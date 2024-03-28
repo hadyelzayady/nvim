@@ -13,6 +13,10 @@ return {
 			vim.cmd([[colorscheme darcula-dark]])
 		end,
 	},
+	-- Install without configuration
+	{ "projekt0n/github-nvim-theme" },
+	{ "miikanissi/modus-themes.nvim", priority = 1000 },
+	{ "briones-gabriel/darcula-solid.nvim", dependencies = "rktjmp/lush.nvim" },
 	{
 		"folke/tokyonight.nvim",
 		lazy = false,
@@ -74,5 +78,15 @@ return {
 		version = false,
 		event = "VeryLazy",
 		config = require("plugins-options.mini-indentscope").config,
+	},
+	{
+		"lukas-reineke/headlines.nvim",
+		dependencies = "nvim-treesitter/nvim-treesitter",
+		config = true, -- or `opts = {}`
+	},
+	{
+		"kevinhwang91/nvim-ufo",
+		dependencies = "kevinhwang91/promise-async",
+		config = require("plugins-options.nvim-ufo").config,
 	},
 }

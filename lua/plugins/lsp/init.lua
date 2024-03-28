@@ -104,5 +104,6 @@ return {
 	{
 		"VidocqH/lsp-lens.nvim",
 		config = require("plugins-options.lsp.lsp-lens").config,
+		enabled = false,
 	},
 }
