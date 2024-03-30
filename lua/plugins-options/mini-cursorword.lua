@@ -4,7 +4,7 @@ function M.config()
 		-- No need to copy this inside `setup()`. Will be used automatically.
 		{
 			-- Delay (in ms) between when cursor moved and when highlighting appeared
-			delay = 100,
+			delay = 300,
 		}
 	)
 	vim.cmd("hi! MiniCursorwordCurrent guifg=NONE guibg=NONE gui=NONE cterm=NONE")
