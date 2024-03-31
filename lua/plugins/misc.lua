@@ -48,4 +48,10 @@ return {
 			end, { desc = "Delete Session" })
 		end,
 	},
+	{
+		"echasnovski/mini.cursorword",
+		version = false,
+		event = "VeryLazy",
+		config = require("plugins-options.mini-cursorword").config,
+	},
 }
