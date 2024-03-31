@@ -390,4 +390,10 @@ function M.dap()
 		require("dap.ui.widgets").hover()
 	end, { desc = "Widgets" })
 end
+
+function M.dapui()
+	map("n", "<leader>rU", function()
+		require("dapui").toggle()
+	end, { desc = "Toggle UI" })
+end
 return M

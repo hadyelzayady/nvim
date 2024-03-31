@@ -37,6 +37,7 @@ return {
 		"mfussenegger/nvim-jdtls",
 		ft = "java",
 		enabled = true,
+		dependencies = { "mfussenegger/nvim-dap" },
 		-- config = require("plugins-options.lsp.servers-configs.jdtls").config,
 		-- opts = require("plugins-options.lsp.servers-configs.jdtls").opts,
 	},

@@ -10,7 +10,7 @@ local rule_dir = nvim_dir .. "/rule/"
 local java_settings_url = rule_dir .. "settings.prefs"
 local java_format_style_rule = rule_dir .. "eclipse-java-google-style.xml"
 local java_debug_jar = fn.stdpath("data") .. "/mason/packages/java-debug-adapter/extension/server/*.jar"
-local workspace_root_dir =home_dir .. "/.java/workspace"
+local workspace_root_dir = home_dir .. "/.java/workspace"
 local workspace_dir = workspace_root_dir .. project_name
 
 local jdtls = require("jdtls")
@@ -18,10 +18,10 @@ local extendedClientCapabilities = jdtls.extendedClientCapabilities
 extendedClientCapabilities.onCompletionItemSelectedCommand = "editor.action.triggerParameterHints"
 
 local on_attach = function(client, bufnr)
-	if client.server_capabilities.inlayHintProvider then
-		vim.lsp.inlay_hint.enable(0, true)
-	end
-	client.server_capabilities.semanticTokensProvider = nil
+	-- if client.server_capabilities.inlayHintProvider then
+	-- 	vim.lsp.inlay_hint.enable(0, true)
+	-- end
+	-- client.server_capabilities.semanticTokensProvider = nil
 	-- lsp.on_attach(client, bufnr)
 	-- lsp.navic_attach_and_setup(client, bufnr)
 
@@ -152,7 +152,7 @@ local config = {
 	},
 
 	-- Language server `initializationOptions`
-	-- You need to extend the `bundles` with paths to jar files
+	-- You need to extend the `undles` with paths to jar files
 	-- if you want to use additional eclipse.jdt.ls plugins.
 	--
 	-- See https://github.com/mfussenegger/nvim-jdtls#java-debug-installation
@@ -218,7 +218,6 @@ wk.register({
 		},
 	},
 })
-
 local dap = require("dap")
 dap.configurations.java = {
 	{

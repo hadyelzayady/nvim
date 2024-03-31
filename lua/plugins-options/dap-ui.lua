@@ -13,6 +13,7 @@ function M.config(_, opts)
 	dap.listeners.before.event_exited["dapui_config"] = function()
 		dapui.close()
 	end
+	require("config.keymaps").dapui()
 end
 
 return M

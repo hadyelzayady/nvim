@@ -1,10 +1,13 @@
 return {
 	{
 		"mfussenegger/nvim-dap",
-		lazy = true,
 		dependencies = { "theHamsta/nvim-dap-virtual-text" },
 		event = "VeryLazy",
 		config = require("plugins-options.dap").config,
+	},
+	{
+		"theHamsta/nvim-dap-virtual-text",
+		config = require("plugins-options.dap-virtual-text").config,
 	},
 	{
 		"rcarriga/nvim-dap-ui",
