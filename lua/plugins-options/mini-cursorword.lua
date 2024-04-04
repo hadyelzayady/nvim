@@ -7,7 +7,8 @@ function M.config()
 			delay = 300,
 		}
 	)
-	vim.cmd("hi! MiniCursorwordCurrent guifg=NONE guibg=NONE gui=NONE cterm=NONE")
+	vim.cmd("hi! MiniCursorwordCurrent gui=underline guibg=NONE")
+	vim.cmd("hi! MiniCursorword gui=underline guibg=NONE")
 end
 
 return M

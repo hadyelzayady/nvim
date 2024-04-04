@@ -67,7 +67,10 @@ function M.format()
 	require("conform").format({ async = true, lsp_fallback = true })
 end
 function M.hover()
-	vim.lsp.buf.hover()
+	local winid = require("ufo").peekFoldedLinesUnderCursor()
+	if not winid then
+		vim.lsp.buf.hover()
+	end
 end
 function M.rename()
 	vim.lsp.buf.rename()
