@@ -43,7 +43,7 @@ return {
 		dependencies = {
 			{
 				"junegunn/fzf",
-				run = function()
+				build = function()
 					vim.fn["fzf#install"]()
 				end,
 			},
@@ -130,5 +130,21 @@ return {
 		},
 		event = "VeryLazy",
 		config = require("plugins-options.grapple").config,
+	},
+	{
+		"nvim-telescope/telescope.nvim",
+		dependencies = {
+			"Myzel394/jsonfly.nvim",
+		},
+    config = require("plugins-options.telescope").config,
+		keys = {
+			{
+				"<leader>js",
+				"<cmd>Telescope jsonfly<cr>",
+				desc = "Open json(fly)",
+				ft = { "json" },
+				mode = "n",
+			},
+		},
 	},
 }

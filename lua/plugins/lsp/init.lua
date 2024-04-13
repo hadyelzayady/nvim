@@ -107,4 +107,9 @@ return {
 		config = require("plugins-options.lsp.lsp-lens").config,
 		enabled = false,
 	},
+	{
+		"luckasRanarison/tailwind-tools.nvim",
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		config = require("plugins-options.lsp.tailwind-tools").config,
+	},
 }

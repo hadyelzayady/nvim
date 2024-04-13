@@ -14,6 +14,7 @@ opt.scrolloff = 4 -- Lines of context
 
 opt.confirm = true -- Confirm to save changes before exiting modified buffer
 
+opt.undofile = true
 opt.undolevels = 10000
 
 opt.expandtab = true -- Use spaces instead of tabs

@@ -6,7 +6,7 @@ function M.setup()
 	require("plugins-options.lsp.servers-configs.docker-compose").setup()
 	require("plugins-options.lsp.servers-configs.csslsp").setup()
 	require("plugins-options.lsp.servers-configs.cssmodules").setup()
-	-- require("plugins-options.lsp.servers-configs.tailwindcss").setup()
+	require("plugins-options.lsp.servers-configs.tailwindcss").setup()
 	require("plugins-options.lsp.servers-configs.sh").setup()
 	require("plugins-options.lsp.servers-configs.bufls").setup()
 	require("plugins-options.lsp.servers-configs.json").setup()
@@ -18,7 +18,7 @@ end
 M.capabilities = require("cmp_nvim_lsp").default_capabilities()
 M.capabilities.textDocument.foldingRange = {
 	dynamicRegistration = false,
-	lineFoldingOnly = true,
+	lineFoldingOnly = false,
 }
 M.capabilities.textDocument.completion.completionItem = {
 	documentationFormat = { "markdown", "plaintext" },

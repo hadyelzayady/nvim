@@ -38,12 +38,6 @@ return {
 		config = require("plugins-options.better-escape").config,
 	},
 	{
-		"echasnovski/mini.comment",
-		version = false,
-		keys = { { "gc", mode = { "n", "v" } } },
-		config = require("plugins-options.mini-comment").config,
-	},
-	{
 		"JoosepAlviste/nvim-ts-context-commentstring",
 	},
 	{

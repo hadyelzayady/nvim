@@ -60,13 +60,13 @@ function M.config()
 				jumpBot = "]",
 			},
 		},
-	-- provider_selector = function(bufnr, filetype, buftype)
-		-- 	-- if you prefer treesitter provider rather than lsp,
-		-- 	return ftMap[filetype] or {'treesitter', 'indent'}
-		-- 	-- return ftMap[filetype]
-		--
-		-- 	-- refer to ./doc/example.lua for detail
-		-- end,
+		provider_selector = function(bufnr, filetype, buftype)
+			-- if you prefer treesitter provider rather than lsp,
+			return { "treesitter", "indent" }
+			-- return ftMap[filetype]
+
+			-- refer to ./doc/example.lua for detail
+		end,
 	})
 
 	return M
