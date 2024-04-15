@@ -19,6 +19,11 @@ M.icons = {
 		staged = "",
 		conflict = "",
 	},
+	folder = {
+		opened = "",
+		closed = "",
+		empty = "",
+	},
 	kinds = {
 		Array = " ",
 		Boolean = " ",

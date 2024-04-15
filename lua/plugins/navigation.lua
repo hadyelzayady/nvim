@@ -64,6 +64,9 @@ return {
 			"-",
 		},
 		dependencies = { "nvim-tree/nvim-web-devicons" },
+		opts = {
+			delete_to_trash = true,
+		},
 		config = function(_, opts)
 			require("oil").setup(opts)
 			require("config.keymaps").oil()
@@ -136,7 +139,7 @@ return {
 		dependencies = {
 			"Myzel394/jsonfly.nvim",
 		},
-    config = require("plugins-options.telescope").config,
+		config = require("plugins-options.telescope").config,
 		keys = {
 			{
 				"<leader>js",
