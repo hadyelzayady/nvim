@@ -1,5 +1,5 @@
 local function augroup(name)
-	return vim.api.nvim_create_augroup("lazyvim_" .. name, { clear = true })
+	return vim.api.nvim_create_augroup("hady_" .. name, { clear = true })
 end
 
 local autocmd = vim.api.nvim_create_autocmd
@@ -66,5 +66,11 @@ autocmd("BufReadPre", {
 		require("config.keymaps").packages_file_keymaps(
 			packages_files_operations[packages_files_operations.filename_to_key[filename]]
 		)
+	end,
+})
+
+autocmd("DiagnosticChanged", {
+	callback = function()
+		require("incline").refresh()
 	end,
 })
