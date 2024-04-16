@@ -2,8 +2,14 @@ local M = {}
 
 function M.config()
 	local neotree_utils = require("utils.neotree")
+	local icons = require("utils.ui-components").icons
 	require("neo-tree").setup({
 		filesystem = {
+			follow_current_file = {
+				enabled = false, -- This will find and focus the file in the active buffer every time
+				--               -- the current file is changed while the tree is open.
+				leave_dirs_open = true, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
+			},
 			components = {
 				-- harpoon_index = function(config, node)
 				-- 	local Marked = require("harpoon.mark")
@@ -106,27 +112,36 @@ function M.config()
 			},
 		},
 		default_component_configs = {
+			icon = {
+				folder_closed = icons.folder.closed,
+				folder_open = icons.folder.opened,
+				folder_empty = icons.folder.empty,
+				-- The next two settings are only a fallback, if you use nvim-web-devicons and configure default icons there
+				-- then these will never be used.
+				default = "*",
+				highlight = "NeoTreeFileIcon",
+			},
 			git_status = {
 				symbols = {
 					-- Change type
-					added = require("utils.ui-components").icons.git.added,
-					deleted = require("utils.ui-components").icons.git.deleted,
-					modified = require("utils.ui-components").icons.git.modified,
-					renamed = require("utils.ui-components").icons.git.renamed,
+					added = icons.git.added,
+					deleted = icons.git.deleted,
+					modified = icons.git.modified,
+					renamed = icons.git.renamed,
 					-- Status type
-					untracked = require("utils.ui-components").icons.git.untracked,
-					ignored = require("utils.ui-components").icons.git.ignored,
-					unstaged = require("utils.ui-components").icons.git.unstaged,
-					staged = require("utils.ui-components").icons.git.staged,
-					conflict = require("utils.ui-components").icons.git.conflict,
+					untracked = icons.git.untracked,
+					ignored = icons.git.ignored,
+					unstaged = icons.git.unstaged,
+					staged = icons.git.staged,
+					conflict = icons.git.conflict,
 				},
 			},
 			diagnostics = {
 				symbols = {
-					hint = require("utils.ui-components").icons.diagnostics.Hint,
-					info = require("utils.ui-components").icons.diagnostics.Info,
-					warn = require("utils.ui-components").icons.diagnostics.Warn,
-					error = require("utils.ui-components").icons.diagnostics.Error,
+					hint = icons.diagnostics.Hint,
+					info = icons.diagnostics.Info,
+					warn = icons.diagnostics.Warn,
+					error = icons.diagnostics.Error,
 				},
 				highlights = {
 					hint = "DiagnosticSignHint",

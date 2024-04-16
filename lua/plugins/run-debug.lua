@@ -23,6 +23,7 @@ return {
 			"nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",
 			"nvim-neotest/neotest-jest",
+			"rcasia/neotest-java",
 		},
 		config = require("plugins-options.neotest").config,
 	},
