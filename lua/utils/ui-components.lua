@@ -3,9 +3,13 @@ local M = {}
 M.icons = {
 	diagnostics = {
 		Error = " ",
+		ERROR = " ",
 		Warn = " ",
+		WARN = " ",
 		Hint = "󰛩",
+		HINT = "󰛩",
 		Info = " ",
+		INFO = " ",
 	},
 	git = {
 		added = " ",
