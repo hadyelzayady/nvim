@@ -28,9 +28,6 @@ local handler = function(virtText, lnum, endLnum, width, truncate)
 	return newVirtText
 end
 local ftMap = {
-	vim = "indent",
-	python = { "indent" },
-	git = "",
 	["neo-tree"] = "",
 }
 function M.config()
@@ -61,11 +58,7 @@ function M.config()
 			},
 		},
 		provider_selector = function(bufnr, filetype, buftype)
-			-- if you prefer treesitter provider rather than lsp,
-			return { "treesitter", "indent" }
-			-- return ftMap[filetype]
-
-			-- refer to ./doc/example.lua for detail
+			return ftMap[filetype] or { "treesitter", "indent" }
 		end,
 	})
 

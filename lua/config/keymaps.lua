@@ -413,7 +413,11 @@ function M.neotest()
 	map("n", "<leader>rta", function()
 		require("neotest").run.attach()
 	end, { desc = "Attach Nearest Test" })
-	map("n", "<leader>rto","<cmd>Neotest output-panel<cr>" , { desc = "Show Output Panel" })
-	map("n", "<leader>rtO","<cmd>Neotest output<cr>" , { desc = "Show Output" })
+	map("n", "<leader>rto", "<cmd>Neotest output-panel<cr>", { desc = "Show Output Panel" })
+	map("n", "<leader>rtO", "<cmd>Neotest output<cr>", { desc = "Show Output" })
+end
+
+function M.window_picker()
+	map("n", "<leader>w", require("window-picker").pick_window, { desc = "Show Output" })
 end
 return M

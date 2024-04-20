@@ -17,7 +17,7 @@ local function on_attach(client, bufnr)
 			desc = "Enable inlay hints",
 			buffer = bufnr,
 			callback = function()
-				vim.lsp.inlay_hint.enable(bufnr, false)
+				vim.lsp.inlay_hint.enable(false)
 			end,
 		})
 		-- vim.api.nvim_create_autocmd("InsertLeave", {

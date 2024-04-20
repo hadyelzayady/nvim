@@ -56,6 +56,7 @@ return {
 		version = "2.*",
 		config = function()
 			require("window-picker").setup()
+      require("config.keymaps").window_picker()
 		end,
 	},
 	{
