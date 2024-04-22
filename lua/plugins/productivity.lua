@@ -1,6 +1,7 @@
 return {
 	{
 		"epwalsh/obsidian.nvim",
+		enabled = false,
 		version = "*", -- recommended, use latest release instead of latest commit
 		-- lazy = true,
 		-- ft = "markdown",
@@ -32,6 +33,7 @@ return {
 		"epwalsh/pomo.nvim",
 		version = "*", -- Recommended, use latest release instead of latest commit
 		lazy = true,
+		enabled = false,
 		cmd = { "TimerStart", "TimerRepeat" },
 		opts = {
 			-- See below for full list of options 👇
@@ -39,5 +41,6 @@ return {
 	},
 	{
 		"bullets-vim/bullets.vim",
+		ft = { "markdown", "text" },
 	},
 }

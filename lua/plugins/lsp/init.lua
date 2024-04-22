@@ -12,6 +12,7 @@ return {
 	{
 		"williamboman/mason.nvim",
 		config = require("plugins-options.lsp.mason").config,
+		event = "VeryLazy",
 	},
 	{
 		"stevearc/conform.nvim",
@@ -71,6 +72,8 @@ return {
 	},
 	{
 		"j-hui/fidget.nvim",
+		version = "^1.4.1",
+		config = true,
 	},
 	{
 		"vuki656/package-info.nvim",

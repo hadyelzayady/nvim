@@ -18,13 +18,13 @@ function M.config()
 		--- @param node userdata tree-sitter node identified as variable definition of reference (see `:h tsnode`)
 		--- @param options nvim_dap_virtual_text_options Current options for nvim-dap-virtual-text
 		--- @return string|nil A text how the virtual text should be displayed or nil, if this variable shouldn't be displayed
-		display_callback = function(variable, buf, stackframe, node, options)
-			if options.virt_text_pos == "inline" then
-				return " = " .. variable.value
-			else
-				return variable.name .. " = " .. variable.value
-			end
-		end,
+		-- display_callback = function(variable, buf, stackframe, node, options)
+		-- 	if options.virt_text_pos == "inline" then
+		-- 		return " = " .. variable.value:sub(1, utf8.offset(value, 20 - n_ellipsis + 1) - 1) .. ellipsis
+		-- 	else
+		-- 		return variable.name .. " = " .. variable.value
+		-- 	end
+		-- end,
 		-- position of virtual text, see `:h nvim_buf_set_extmark()`, default tries to inline the virtual text. Use 'eol' to set to end of line
 		virt_text_pos = vim.fn.has("nvim-0.10") == 1 and "inline" or "eol",
 

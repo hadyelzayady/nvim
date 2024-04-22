@@ -27,7 +27,7 @@ function M.config()
 					require("grapple").statusline,
 					cond = require("grapple").exists,
 				},
-				"branch",
+				"git_prompt_string",
 				"diff",
 				"diagnostics",
 			},

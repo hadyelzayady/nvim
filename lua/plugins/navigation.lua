@@ -56,7 +56,7 @@ return {
 		version = "2.*",
 		config = function()
 			require("window-picker").setup()
-      require("config.keymaps").window_picker()
+			require("config.keymaps").window_picker()
 		end,
 	},
 	{
@@ -132,18 +132,20 @@ return {
 			{ "nvim-tree/nvim-web-devicons", lazy = true },
 			{ "nvim-telescope/telescope.nvim" },
 		},
-		event = "VeryLazy",
+		cmd = { "Grapple" },
 		config = require("plugins-options.grapple").config,
 	},
 	{
 		"nvim-telescope/telescope.nvim",
-		dependencies = {
-			"Myzel394/jsonfly.nvim",
-		},
 		config = require("plugins-options.telescope").config,
+		event = "VeryLazy",
+	},
+	{
+		"Myzel394/jsonfly.nvim",
+		config = require("plugins-options.jsonfly").config,
 		keys = {
 			{
-				"<leader>js",
+				"<leader>sj",
 				"<cmd>Telescope jsonfly<cr>",
 				desc = "Open json(fly)",
 				ft = { "json" },

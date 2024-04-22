@@ -14,9 +14,20 @@ return {
 		end,
 	},
 	-- Install without configuration
-	{ "projekt0n/github-nvim-theme" },
-	{ "miikanissi/modus-themes.nvim", priority = 1000 },
-	{ "briones-gabriel/darcula-solid.nvim", dependencies = "rktjmp/lush.nvim" },
+	{
+		"projekt0n/github-nvim-theme",
+		enabled = false,
+	},
+	{
+		"miikanissi/modus-themes.nvim",
+		priority = 1000,
+		enabled = false,
+	},
+	{
+		"briones-gabriel/darcula-solid.nvim",
+		dependencies = "rktjmp/lush.nvim",
+		enabled = false,
+	},
 	{
 		"folke/tokyonight.nvim",
 		lazy = false,
