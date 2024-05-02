@@ -264,9 +264,7 @@ function M.todo_comments()
 end
 
 function M.rest_nvim_keymaps()
-	map({ "n", "v" }, "<leader>r", "<Plug>RestNvim", { desc = "Run Request", buffer = true })
-	map({ "n" }, "<leader>p", "<Plug>RestNvimPreview", { desc = "Preview The Curl Command", buffer = true })
-	map("n", "<leader>R", "<Plug>RestNvimLast", { desc = "Rerun The Last Request", buffer = true })
+	map({ "n", "v" }, "<leader>r", "<cmd>Rest run<cr>", { desc = "Run Request", buffer = true })
 end
 
 function M.terminal_keymap()

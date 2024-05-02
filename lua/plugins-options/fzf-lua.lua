@@ -31,6 +31,10 @@ function M.config()
 			cwd_prompt = false,
 			cwd_prompt_shorten_len = 32, -- shorten prompt beyond this length
 			cwd_prompt_shorten_val = 1, -- shortened path parts length
+			-- path_shorten   = 1,              -- 'true' or number, shorten path?
+			-- Uncomment for custom vscode-like formatter where the filename is first:
+			-- e.g. "fzf-lua/previewer/fzf.lua" => "fzf.lua previewer/fzf-lua"
+			formatter      = "path.filename_first",
 			actions = {
 				["default"] = function(selected, opts)
 					vim.cmd("silent! !fre --add " .. selected[1])

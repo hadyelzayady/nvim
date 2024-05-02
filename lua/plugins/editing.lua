@@ -87,4 +87,8 @@ return {
 		event = "VeryLazy",
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 	},
+	{
+		"tpope/vim-repeat",
+		event = "VeryLazy",
+	},
 }

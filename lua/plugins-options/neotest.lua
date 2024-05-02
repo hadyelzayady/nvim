@@ -3,6 +3,7 @@ local M = {}
 function M.config(_, opts)
 	require("neotest").setup({
 		adapters = {
+      require('rustaceanvim.neotest'),
 			require("neotest-java")({
 				ignore_wrapper = false, -- whether to ignore maven/gradle wrapper
 				-- junit_jar = "~/.m2/repository/org",

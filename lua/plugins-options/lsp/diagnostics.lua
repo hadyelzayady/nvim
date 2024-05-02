@@ -29,6 +29,7 @@ function M.setup()
 		},
 		-- Disable signs in the gutter.
 		signs = false,
+		update_in_insert = true,
 	})
 end
 return M
