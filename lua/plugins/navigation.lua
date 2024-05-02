@@ -153,4 +153,8 @@ return {
 			},
 		},
 	},
+	{
+		"ggandor/leap.nvim",
+    config = require("plugins-options.leap").config,
+	},
 }

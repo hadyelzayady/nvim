@@ -63,7 +63,7 @@ end
 M.capabilities = require("cmp_nvim_lsp").default_capabilities()
 M.capabilities.textDocument.foldingRange = {
 	dynamicRegistration = false,
-	lineFoldingOnly = false,
+	lineFoldingOnly = true,
 }
 M.capabilities.textDocument.completion.completionItem = {
 	documentationFormat = { "markdown", "plaintext" },

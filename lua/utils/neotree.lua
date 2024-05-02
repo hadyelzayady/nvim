@@ -1,4 +1,5 @@
 local M = {}
+local p_path = require("plenary.path")
 
 function M.on_file_remove(args)
 	require("plugins.lsp.rename_file").rename_file({ old_name = args.source, new_name = args.destination })
@@ -16,17 +17,25 @@ end
 function M.copy_absolute_path_to_system_clipboard(state)
 	local node = state.tree:get_node()
 	local path = node:get_id()
-	-- macOs: open file in default application in the background.
-	-- Probably you need to adapt the Linux recipe for manage path with spaces. I don't have a mac to try.
-	os.execute("echo " .. path .. " | pbcopy")
+	local cmd = "echo " .. path .. " | xclip -i -selection clipboard"
+	os.execute(cmd)
 end
 
 function M.paste_from_system_clipboard(state)
-	local file_path = require("utils.functions").os_capture("pbpaste")
+	local file_path = require("utils.functions").os_capture("xclip -o")
+  if file_path == nil then
+    os.execute("copyq-paste-image " .. "")
+    
+  end
+	local path = p_path:new(file_path)
 	local node = state.tree:get_node()
-	local parent_path = node:get_parent_id()
-	os.execute("cp -rf " .. '"' .. file_path .. '"' .. " " .. node.path)
-	vim.cmd("Neotree show")
+	if p_path.is_absolute(path) then
+		os.execute("cp -rf " .. '"' .. file_path .. '"' .. " " .. node.path)
+		vim.cmd("Neotree show")
+		return
+	end
+	-- local parent_path = node:get_parent_id()
+	-- os.execute("cp -rf " .. '"' .. file_path .. '"' .. " " .. node.path)
 end
 
 function M.diff_files(state)
