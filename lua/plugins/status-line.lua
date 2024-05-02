@@ -2,9 +2,10 @@ return {
 	{
 		"nvim-lualine/lualine.nvim",
 		priority = 1000,
+    event="VeryLazy",
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
-			"mikesmithgh/git-prompt-string-lualine.nvim",
+			-- "mikesmithgh/git-prompt-string-lualine.nvim",
 		},
 		config = require("plugins-options.lualine").config,
 	},
@@ -14,7 +15,7 @@ return {
 	},
 	{
 		"mikesmithgh/git-prompt-string-lualine.nvim",
-		enabled = true,
+		enabled = false,
 		lazy = true,
 	},
 }

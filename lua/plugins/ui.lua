@@ -45,7 +45,7 @@ return {
 			vim.cmd([[colorscheme tokyonight-night]])
 			vim.cmd("hi DiffAdd guibg=#1f572c")
 			vim.cmd("hi DiffChange guibg=#13401f")
-			vim.cmd("hi DiffText guibg=#1f7d2c")
+			vim.cmd("hi DiffText guibg=#4d2a41")
 		end,
 	},
 

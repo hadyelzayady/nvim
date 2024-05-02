@@ -33,7 +33,8 @@ function M.config()
 				" ",
 				guibg = "#44406e",
 			}
-			return { { get_diagnostic_label() }, { buffer } }
+			-- return { { get_diagnostic_label() }, { buffer } }
+			return {{ buffer } }
 		end,
 	})
 end

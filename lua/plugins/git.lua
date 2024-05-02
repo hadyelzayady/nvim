@@ -57,4 +57,7 @@ return {
 			require("blame").setup()
 		end,
 	},
+  {
+    "whiteinge/diffconflicts"
+  }
 }

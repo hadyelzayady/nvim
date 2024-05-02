@@ -28,7 +28,7 @@ opt.linebreak = true -- Wrap long lines at 'breakat' (if 'wrap' is set)
 opt.smartindent = true -- Make indenting smart
 
 opt.cursorline = true -- Highlight current line
-opt.spell = true
+opt.spell = false
 opt.spelllang = { "en_us" }
 
 opt.completeopt = "menuone,noinsert,noselect" -- Customize completions

@@ -6,7 +6,8 @@ function M.config()
 	-- If the lsp setup is taken over by other plugin, it is the same to call the counterpart setup function
 	require("lspconfig").vtsls.setup({ --[[ your custom server config here ]]
 		on_attach = function(client)
-			client.server_capabilities.semanticTokensProvider = nil
+			client.server_capabilities.semanticTokensProvider = false
+      client.server_capabilities.documentHighlightProvider=false
 			-- vim.lsp.inlay_hint.enable(0, true)
 		end,
 		settings = {

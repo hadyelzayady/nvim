@@ -69,8 +69,8 @@ autocmd("BufReadPre", {
 	end,
 })
 
-autocmd("DiagnosticChanged", {
-	callback = function()
-		require("incline").refresh()
-	end,
-})
+-- autocmd("DiagnosticChanged", {
+-- 	callback = function()
+-- 		require("incline").refresh()
+-- 	end,
+-- })
