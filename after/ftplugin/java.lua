@@ -1,223 +1,215 @@
--- If you started neovim within `~/dev/xy/project-1` this would resolve to `project-1`
-local fn = vim.fn
-local project_name = fn.fnamemodify(fn.getcwd(), ":p:h:t")
-
-local home_dir = os.getenv("HOME")
-local jabba_jdk_dir = home_dir .. "/.jabba/jdk/"
-local jdk8_dir = jabba_jdk_dir .. "1.8.0/Contents/Home"
-local nvim_dir = home_dir .. "/.config/nvim"
-local rule_dir = nvim_dir .. "/rule/"
-local java_settings_url = rule_dir .. "settings.prefs"
-local java_format_style_rule = rule_dir .. "eclipse-java-google-style.xml"
-local java_debug_jar = fn.stdpath("data") .. "/mason/packages/java-debug-adapter/extension/server/*.jar"
-local workspace_root_dir = home_dir .. "/.java/workspace"
-local workspace_dir = workspace_root_dir .. project_name
-
 local jdtls = require("jdtls")
-local extendedClientCapabilities = jdtls.extendedClientCapabilities
-extendedClientCapabilities.onCompletionItemSelectedCommand = "editor.action.triggerParameterHints"
+local jdtls_dap = require("jdtls.dap")
+local jdtls_setup = require("jdtls.setup")
+local home = os.getenv("HOME")
 
-local on_attach = function(client, bufnr)
-	-- if client.server_capabilities.inlayHintProvider then
-	-- 	vim.lsp.inlay_hint.enable(0, true)
-	-- end
-	-- client.server_capabilities.semanticTokensProvider = nil
-	-- lsp.on_attach(client, bufnr)
-	-- lsp.navic_attach_and_setup(client, bufnr)
+local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }
+local root_dir = jdtls_setup.find_root(root_markers)
 
-	-- With `hotcodereplace = 'auto' the debug adapter will try to apply code changes
-	-- you make during a debug session immediately.
-	-- Remove the option if you do not want that.
-	require("jdtls").setup_dap({ hotcodereplace = "auto" })
-	require("jdtls.setup").add_commands()
-	require("jdtls.dap").setup_dap_main_class_configs()
+local project_name = vim.fn.fnamemodify(root_dir, ":p:h:t")
+local workspace_dir = home .. "/.cache/jdtls/workspace" .. project_name
+
+-- 💀
+local path_to_mason_packages = home .. "/.local/share/nvim/mason/packages"
+-- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                       ^^^^^^^^^^^^^^
+
+local path_to_jdtls = path_to_mason_packages .. "/jdtls"
+local path_to_jdebug = path_to_mason_packages .. "/java-debug-adapter"
+local path_to_jtest = path_to_mason_packages .. "/java-test"
+
+local path_to_config = path_to_jdtls .. "/config_mac"
+local lombok_path = path_to_jdtls .. "/lombok.jar"
+
+-- 💀
+local path_to_jar = path_to_jdtls .. vim.fn.glob("/plugins/org.eclipse.equinox.launcher_*.jar", true)
+-- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                       ^^^^^^^^^^^^^^
+
+local bundles = {
+	vim.fn.glob(path_to_jdebug .. "/extension/server/com.microsoft.java.debug.plugin-*.jar", true),
+}
+
+vim.list_extend(bundles, vim.split(vim.fn.glob(path_to_jtest .. "/extension/server/*.jar", true), "\n"))
+
+-- LSP settings for Java.
+local on_attach = function(_, bufnr)
+	jdtls.setup_dap({ hotcodereplace = "auto" })
+	jdtls_dap.setup_dap_main_class_configs()
+	jdtls_setup.add_commands()
+
+	-- Create a command `:Format` local to the LSP buffer
+	vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
+		vim.lsp.buf.format()
+	end, { desc = "Format current buffer with LSP" })
+
+	-- require("lsp_signature").on_attach({
+	-- 	bind = true,
+	-- 	padding = "",
+	-- 	handler_opts = {
+	-- 		border = "rounded",
+	-- 	},
+	-- 	hint_prefix = "󱄑 ",
+	-- }, bufnr)
+
+	-- NOTE: comment out if you don't use Lspsaga
+	-- require("lspsaga").init_lsp_saga()
 end
 
-local is_file_exist = function(path)
-	local f = io.open(path, "r")
-	return f ~= nil and io.close(f)
-end
+local capabilities = {
+	workspace = {
+		configuration = true,
+	},
+	textDocument = {
+		completion = {
+			completionItem = {
+				snippetSupport = true,
+			},
+		},
+	},
+}
 
-local get_lombok_javaagent = function()
-	local lombok_dir = home_dir .. "/.m2/repository/org/projectlombok/lombok/"
-	local lombok_versions = io.popen('ls -1 "' .. lombok_dir .. '" | sort -r')
-	if lombok_versions ~= nil then
-		local lb_i, lb_versions = 0, {}
-		for lb_version in lombok_versions:lines() do
-			lb_i = lb_i + 1
-			lb_versions[lb_i] = lb_version
-		end
-		lombok_versions:close()
-		if next(lb_versions) ~= nil then
-			local lombok_jar = fn.expand(string.format("%s%s/*.jar", lombok_dir, lb_versions[1]))
-			if is_file_exist(lombok_jar) then
-				return string.format("--jvm-arg=-javaagent:%s", lombok_jar)
-			end
-		end
-	end
-	return ""
-end
+local config = {
+	flags = {
+		allow_incremental_sync = true,
+	},
+}
 
-local get_java_debug_jar = function()
-	local jdj_full_path = fn.expand(java_debug_jar)
-	if is_file_exist(jdj_full_path) then
-		return jdj_full_path
-	end
-	return ""
-end
+config.cmd = {
+	--
+	-- 				-- 💀
+	path_to_jdtls .. "/jdtls", -- or '/path/to/java17_or_newer/bin/java'
+	-- depends on if `java` is in your $PATH env variable and if it points to the right version.
 
-local get_cmd = function()
-	local cmd = {
+	"-Declipse.application=org.eclipse.jdt.ls.core.id1",
+	"-Dosgi.bundles.defaultStartLevel=4",
+	"-Declipse.product=org.eclipse.jdt.ls.core.product",
+	"-Dlog.protocol=true",
+	"-Dlog.level=ALL",
+	"-Xmx1g",
+	"--jvm-arg=-javaagent:" .. lombok_path,
+	"--add-modules=ALL-SYSTEM",
+	"--add-opens",
+	"java.base/java.util=ALL-UNNAMED",
+	"--add-opens",
+	"java.base/java.lang=ALL-UNNAMED",
 
-		-- 💀
-		"jdtls",
-	}
+	-- 💀
+	"-jar",
+	path_to_jar,
+	-- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                       ^^^^^^^^^^^^^^
+	-- Must point to the                                                     Change this to
+	-- eclipse.jdt.ls installation                                           the actual version
 
-	local lombok_javaagent = get_lombok_javaagent()
-	if lombok_javaagent ~= "" then
-		table.insert(cmd, lombok_javaagent)
-	end
+	-- 💀
+	"-configuration",
+	path_to_config,
+	-- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^        ^^^^^^
+	-- Must point to the                      Change to one of `linux`, `win` or `mac`
+	-- eclipse.jdt.ls installation            Depending on your system.
 
 	-- 💀
 	-- See `data directory configuration` section in the README
-	table.insert(cmd, "-data")
-	table.insert(cmd, workspace_dir)
+	"-data",
+	workspace_dir,
+}
 
-	return cmd
+config.settings = {
+	java = {
+		references = {
+			includeDecompiledSources = true,
+		},
+		format = {
+			enabled = true,
+			-- settings = {
+			-- 	url = vim.fn.stdpath("config") .. "/lang_servers/intellij-java-google-style.xml",
+			-- 	profile = "GoogleStyle",
+			-- },
+		},
+		eclipse = {
+			downloadSources = true,
+		},
+		maven = {
+			downloadSources = true,
+		},
+		signatureHelp = { enabled = true },
+		contentProvider = { preferred = "fernflower" },
+		-- eclipse = {
+		-- 	downloadSources = true,
+		-- },
+		-- implementationsCodeLens = {
+		-- 	enabled = true,
+		-- },
+		completion = {
+			favoriteStaticMembers = {
+				"org.hamcrest.MatcherAssert.assertThat",
+				"org.hamcrest.Matchers.*",
+				"org.hamcrest.CoreMatchers.*",
+				"org.junit.jupiter.api.Assertions.*",
+				"java.util.Objects.requireNonNull",
+				"java.util.Objects.requireNonNullElse",
+				"org.mockito.Mockito.*",
+			},
+			filteredTypes = {
+				"com.sun.*",
+				"io.micrometer.shaded.*",
+				"java.awt.*",
+				"jdk.*",
+				"sun.*",
+			},
+			importOrder = {
+				"java",
+				"javax",
+				"com",
+				"org",
+			},
+		},
+		sources = {
+			organizeImports = {
+				starThreshold = 9999,
+				staticStarThreshold = 9999,
+			},
+		},
+		codeGeneration = {
+			toString = {
+				template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
+				-- flags = {
+				-- 	allow_incremental_sync = true,
+				-- },
+			},
+			useBlocks = true,
+		},
+		-- configuration = {
+		--     runtimes = {
+		--         {
+		--             name = "java-17-openjdk",
+		--             path = "/usr/lib/jvm/default-runtime/bin/java"
+		--         }
+		--     }
+		-- }
+		-- project = {
+		-- 	referencedLibraries = {
+		-- 		"**/lib/*.jar",
+		-- 	},
+		-- },
+	},
+}
+
+config.on_attach = on_attach
+config.capabilities = capabilities
+config.on_init = function(client, _)
+	client.notify("workspace/didChangeConfiguration", { settings = config.settings })
 end
 
--- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
--- Watch out for the 💀, it indicates that you must adjust something.
-local config = {
-	cmd = get_cmd(),
+local extendedClientCapabilities = require("jdtls").extendedClientCapabilities
+extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 
-	-- 💀
-	-- This is the default if not provided, you can remove it. Or adjust as needed.
-	-- One dedicated LSP server & client will be started per unique root_dir
-	root_dir = require("jdtls.setup").find_root({ ".git", "mvnw", "gradlew" }),
-
-	-- Here you can configure eclipse.jdt.ls specific settings
-	-- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
-	-- for a list of options
-	settings = {
-		["java.settings.url"] = java_settings_url,
-		java = {
-			-- inlayHints = {
-			-- 	parameterNames = {
-			-- 		enabled = "all",
-			-- 	},
-			-- },
-			configuration = {
-				-- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
-				-- And search for `interface RuntimeOption`
-				-- The `name` is NOT arbitrary, but must match one of the elements from `enum ExecutionEnvironment` in the link above
-				runtimes = {
-					{
-						name = "JavaSE-1.8",
-						path = jdk8_dir,
-					},
-				},
-			},
-			codeGeneration = {
-				hashCodeEquals = {
-					useInstanceof = true,
-					useJava7Objects = true,
-				},
-				toString = {
-					codeStyle = "STRING_BUILDER_CHAINED",
-				},
-				useBlocks = true,
-			},
-			contentProvider = { preferred = "fernflower" },
-			implementationsCodeLens = {
-				enabled = true,
-			},
-			referencesCodeLens = {
-				enabled = true,
-			},
-			signatureHelp = { enabled = true },
-			sources = {
-				organizeImports = {
-					starThreshold = 9999,
-					staticStarThreshold = 9999,
-				},
-			},
-			format = {
-				settings = {
-					url = java_format_style_rule,
-					profile = "GoogleStyle",
-				},
-			},
-		},
-	},
-
-	-- Language server `initializationOptions`
-	-- You need to extend the `undles` with paths to jar files
-	-- if you want to use additional eclipse.jdt.ls plugins.
-	--
-	-- See https://github.com/mfussenegger/nvim-jdtls#java-debug-installation
-	--
-	-- If you don't plan on using the debugger or other eclipse.jdt.ls plugins you can remove this
-	init_options = {
-		extendedClientCapabilities = extendedClientCapabilities,
-		bundles = {
-			get_java_debug_jar(),
-		},
-	},
-
-	capabilities = require("plugins-options.lsp.servers-configs").capabilities,
-	flags = {
-		allow_incremental_sync = true,
-		debounce_text_changes = 150,
-		server_side_fuzzy_completion = true,
-	},
-	["on_attach"] = on_attach,
+config.init_options = {
+	bundles = bundles,
+	extendedClientCapabilities = extendedClientCapabilities,
 }
--- This starts a new client & server,
--- or attaches to an existing client & server depending on the `root_dir`.
+
+-- Start Server
 require("jdtls").start_or_attach(config)
--- require('wlsample.airline')
 
-local wk = require("which-key")
-wk.register({
-	["<A-CR>"] = {
-		"<Esc><Cmd>lua vim.lsp.buf.range_code_action()<CR>",
-		"Range code action",
-	},
-	c = {
-		rv = {
-			'<Esc><Cmd>lua require("jdtls").extract_variable(true)<CR>',
-			"Extract variable",
-		},
-		rc = {
-			'<Esc><Cmd>lua require("jdtls").extract_constant(true)<CR>',
-			"Extract constant",
-		},
-		rm = {
-			'<Esc><Cmd>lua require("jdtls").extract_method(true)<CR>',
-			"Extract method",
-		},
-	},
-}, {
-	mode = "v",
-})
-
-wk.register({
-	["<A-o>"] = {
-		'<Cmd>lua require("jdtls").organize_imports()<CR>',
-		"Organize imports",
-	},
-	c = {
-		rv = {
-			'<Cmd>lua require("jdtls").extract_variable()<CR>',
-			"Extract variable",
-		},
-		rc = {
-			'<Cmd>lua require("jdtls").extract_constant()<CR>',
-			"Extract constant",
-		},
-	},
-})
 local dap = require("dap")
 dap.configurations.java = {
 	{
@@ -228,3 +220,5 @@ dap.configurations.java = {
 		port = 5005,
 	},
 }
+-- Set Java Specific Keymaps
+-- require("jdtls.keymaps")

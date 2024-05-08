@@ -46,7 +46,8 @@ function M.config()
 			command = "js-debug-adapter",
 		},
 	}
-  require("config.keymaps").dap()
+
+	require("config.keymaps").dap()
 	for _, language in ipairs({ "typescript", "javascript" }) do
 		dap.configurations[language] = {
 			{
