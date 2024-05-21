@@ -1,4 +1,4 @@
--- vim.loader.enable()
+-- -- vim.loader.enable()
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
@@ -10,12 +10,12 @@ if not vim.loop.fs_stat(lazypath) then
 		lazypath,
 	})
 end
-
--- Example for configuring Neovim to load user-installed installed Lua rocks:
--- package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?/init.lua;"
--- package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua;"
-
+--
+-- -- Example for configuring Neovim to load user-installed installed Lua rocks:
+-- -- package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?/init.lua;"
+-- -- package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua;"
+--
 vim.opt.rtp:prepend(lazypath)
-vim.cmd("source ~/.config/nvim/vimscript/macroOnVisualSelection.vim")
+-- vim.cmd("source ~/.config/nvim/vimscript/macroOnVisualSelection.vim")
 require("config")
 require("lazy").setup("plugins")

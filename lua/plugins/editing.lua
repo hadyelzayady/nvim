@@ -1,5 +1,16 @@
 return {
 	{
+		"max397574/better-escape.nvim",
+		config = require("plugins-options.better-escape").config,
+	},
+
+	{
+		"echasnovski/mini.surround",
+		version = false,
+		config = require("plugins-options.mini-surround").config,
+		keys = { "s" },
+	},
+	{
 		"johmsalas/text-case.nvim",
 		dependencies = { "nvim-telescope/telescope.nvim" },
 		config = function()
@@ -7,25 +18,23 @@ return {
 			require("telescope").load_extension("textcase")
 		end,
 		keys = {
-			{ "ga" },
-			{ "ga.", "<cmd>TextCaseOpenTelescope<CR>", mode = { "n", "v" }, desc = "Telescope" },
+			"ga", -- Default invocation prefix
+			{ "ga.", "<cmd>TextCaseOpenTelescope<CR>", mode = { "n", "x" }, desc = "Telescope" },
 		},
-	},
-	{
-		"echasnovski/mini.ai",
-		version = false,
-		event = "VeryLazy",
-		dependencies = {
-			{
-				"nvim-treesitter/nvim-treesitter-textobjects",
-				init = function()
-					-- no need to load the plugin, since we only need its queries
-					require("lazy.core.loader").disable_rtp_plugin("nvim-treesitter-textobjects")
-				end,
-			},
+		cmd = {
+			-- NOTE: The Subs command name can be customized via the option "substitude_command_name"
+			"Subs",
+			"TextCaseOpenTelescope",
+			"TextCaseOpenTelescopeQuickChange",
+			"TextCaseOpenTelescopeLSPChange",
+			"TextCaseStartReplacingCommand",
 		},
-		config = require("plugins-options.mini-ai").config,
+		-- If you want to use the interactive feature of the `Subs` command right away, text-case.nvim
+		-- has to be loaded on startup. Otherwise, the interactive feature of the `Subs` will only be
+		-- available after the first executing of it or after a keymap of text-case.nvim has been used.
+		lazy = false,
 	},
+
 	{
 		"echasnovski/mini.splitjoin",
 		version = false,
@@ -33,27 +42,9 @@ return {
 		config = require("plugins-options.mini-splitjoin").config,
 	},
 	{
-		"max397574/better-escape.nvim",
-		event = "VeryLazy",
-		config = require("plugins-options.better-escape").config,
-	},
-	{
-		"JoosepAlviste/nvim-ts-context-commentstring",
-	},
-	{
-		"mbbill/undotree",
-		cmd = { "UndotreeFocus", "UndotreeHide", "UndotreeShow", "UndotreeToggle" },
-		config = function()
-			vim.cmd("source ~/.config/nvim/vimscript/undotree.vim")
-		end,
-	},
-	{
-		"ThePrimeagen/refactoring.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-treesitter/nvim-treesitter",
-		},
-		config = require("plugins-options.refactoring").config,
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		config = require("plugins-options.nvim-autopairs").config,
 	},
 	{
 		"mg979/vim-visual-multi",
@@ -73,22 +64,24 @@ return {
     --]]
 	},
 	{
-		"windwp/nvim-autopairs",
-		event = "InsertEnter",
-		config = require("plugins-options.nvim-autopairs").config,
-	},
-	{
-		"echasnovski/mini.surround",
+		"echasnovski/mini.ai",
 		version = false,
-		config = require("plugins-options.mini-surround").config,
+		event = "VeryLazy",
+		dependencies = {
+			{
+				"nvim-treesitter/nvim-treesitter-textobjects",
+				init = function()
+					-- no need to load the plugin, since we only need its queries
+					require("lazy.core.loader").disable_rtp_plugin("nvim-treesitter-textobjects")
+				end,
+			},
+		},
+		config = require("plugins-options.mini-ai").config,
 	},
 	{
-		"gaelph/logsitter.nvim",
+		"folke/ts-comments.nvim",
+		opts = {},
 		event = "VeryLazy",
-		dependencies = { "nvim-treesitter/nvim-treesitter" },
-	},
-	{
-		"tpope/vim-repeat",
-		event = "VeryLazy",
+		enabled = vim.fn.has("nvim-0.10.0") == 1,
 	},
 }

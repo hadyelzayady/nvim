@@ -22,53 +22,53 @@ autocmd("BufReadPost", {
 	end,
 })
 
-local function refresh_neotree()
-	local manager_avail, manager = pcall(require, "neo-tree.sources.manager")
-	if manager_avail then
-		for _, source in ipairs({
-			"filesystem",
-			"git_status",
-			"document_symbols",
-		}) do
-			local module = "neo-tree.sources." .. source
-			if package.loaded[module] then
-				manager.refresh(require(module).name)
-			end
-		end
-	end
-end
--- 5. Update neotree when closin the git client.
-autocmd("TermClose", {
-	pattern = { "**lazygit**", "**gitui**" },
-	desc = "Refresh Neo-Tree git when closing lazygit/gitui",
-	callback = function()
-		refresh_neotree()
-	end,
-})
-
-autocmd("BufLeave", {
-	pattern = { "NeogitStatus" },
-	desc = "Refresh Neo-Tree git when closing Neogit",
-	callback = function()
-		refresh_neotree()
-	end,
-})
-
-autocmd("BufReadPre", {
-	group = augroup("specific_files_keys"),
-	pattern = { "Cargo.toml", "package.json" },
-	callback = function(opt)
-		if not vim.opt.diff then
-			return
-		end
-		local packages_files_operations = require("utils.packages_files_operations")
-		local filename = require("utils.functions").get_filename_from_path(opt.file)
-		require("config.keymaps").packages_file_keymaps(
-			packages_files_operations[packages_files_operations.filename_to_key[filename]]
-		)
-	end,
-})
-
+-- local function refresh_neotree()
+-- 	local manager_avail, manager = pcall(require, "neo-tree.sources.manager")
+-- 	if manager_avail then
+-- 		for _, source in ipairs({
+-- 			"filesystem",
+-- 			"git_status",
+-- 			"document_symbols",
+-- 		}) do
+-- 			local module = "neo-tree.sources." .. source
+-- 			if package.loaded[module] then
+-- 				manager.refresh(require(module).name)
+-- 			end
+-- 		end
+-- 	end
+-- end
+-- -- 5. Update neotree when closin the git client.
+-- autocmd("TermClose", {
+-- 	pattern = { "**lazygit**", "**gitui**" },
+-- 	desc = "Refresh Neo-Tree git when closing lazygit/gitui",
+-- 	callback = function()
+-- 		refresh_neotree()
+-- 	end,
+-- })
+--
+-- autocmd("BufLeave", {
+-- 	pattern = { "NeogitStatus" },
+-- 	desc = "Refresh Neo-Tree git when closing Neogit",
+-- 	callback = function()
+-- 		refresh_neotree()
+-- 	end,
+-- })
+--
+-- autocmd("BufReadPre", {
+-- 	group = augroup("specific_files_keys"),
+-- 	pattern = { "Cargo.toml", "package.json" },
+-- 	callback = function(opt)
+-- 		if not vim.opt.diff then
+-- 			return
+-- 		end
+-- 		local packages_files_operations = require("utils.packages_files_operations")
+-- 		local filename = require("utils.functions").get_filename_from_path(opt.file)
+-- 		require("config.keymaps").packages_file_keymaps(
+-- 			packages_files_operations[packages_files_operations.filename_to_key[filename]]
+-- 		)
+-- 	end,
+-- })
+--
 -- autocmd("DiagnosticChanged", {
 -- 	callback = function()
 -- 		require("incline").refresh()

@@ -33,34 +33,34 @@ end
 
 function M.setup()
 	-- require("vtsls").setup()
-	require("plugins-options.lsp.servers-configs.lua").setup()
-	require("plugins-options.lsp.servers-configs.docker").setup()
-	require("plugins-options.lsp.servers-configs.docker-compose").setup()
+	-- require("plugins-options.lsp.servers-configs.lua").setup()
+	-- require("plugins-options.lsp.servers-configs.docker").setup()
+	-- require("plugins-options.lsp.servers-configs.docker-compose").setup()
 	require("plugins-options.lsp.servers-configs.csslsp").setup()
 	require("plugins-options.lsp.servers-configs.cssmodules").setup()
 	-- require("plugins-options.lsp.servers-configs.tailwindcss").setup()
-	require("plugins-options.lsp.servers-configs.sh").setup()
-	require("plugins-options.lsp.servers-configs.bufls").setup()
+	-- require("plugins-options.lsp.servers-configs.sh").setup()
+	-- require("plugins-options.lsp.servers-configs.bufls").setup()
 	require("plugins-options.lsp.servers-configs.json").setup()
 	require("plugins-options.lsp.servers-configs.eslint").setup()
 	require("plugins-options.lsp.servers-configs.biome").setup()
-	require("plugins-options.lsp.servers-configs.yaml").setup()
-	vim.api.nvim_create_autocmd("LspAttach", {
-		desc = "Configure LSP keymaps",
-		callback = function(args)
-			local client = vim.lsp.get_client_by_id(args.data.client_id)
-
-			-- I don't think this can happen but it's a wild world out there.
-			if not client then
-				return
-			end
-
-			on_attach(client, args.buf)
-		end,
-	})
+	-- require("plugins-options.lsp.servers-configs.yaml").setup()
+	-- vim.api.nvim_create_autocmd("LspAttach", {
+	-- 	desc = "Configure LSP keymaps",
+	-- 	callback = function(args)
+	-- 		local client = vim.lsp.get_client_by_id(args.data.client_id)
+	--
+	-- 		-- I don't think this can happen but it's a wild world out there.
+	-- 		if not client then
+	-- 			return
+	-- 		end
+	--
+	-- 		on_attach(client, args.buf)
+	-- 	end,
+	-- })
 end
 
-M.capabilities = require("cmp_nvim_lsp").default_capabilities()
+M.capabilities = vim.lsp.protocol.make_client_capabilities()
 M.capabilities.textDocument.foldingRange = {
 	dynamicRegistration = false,
 	lineFoldingOnly = true,

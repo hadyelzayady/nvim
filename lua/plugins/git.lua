@@ -24,59 +24,62 @@ return {
 	{
 		"TimUntersberger/neogit",
 		cmd = "Neogit",
-		branch = "nightly",
+		branch = "master",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"sindrets/diffview.nvim",
 		},
 		config = require("plugins-options.neogit").config,
 	},
+	-- {
+	-- 	"ThePrimeagen/git-worktree.nvim",
+	-- 	config = require("plugins-options.git-worktree").config,
+	-- 	event = "VeryLazy",
+	-- 	dependencies = { "nvim-telescope/telescope.nvim" },
+	-- },
+	-- {
+	-- 	"pwntester/octo.nvim",
+	-- 	event = "VeryLazy",
+	-- 	enabled = false,
+	-- 	dependencies = {
+	-- 		"nvim-lua/plenary.nvim",
+	-- 		"ibhagwan/fzf-lua",
+	-- 		"nvim-tree/nvim-web-devicons",
+	-- 	},
+	-- 	config = function()
+	-- 		require("octo").setup()
+	-- 	end,
+	-- },
+	-- {
+	-- 	"FabijanZulj/blame.nvim",
+	-- 	cmd = { "BlameToggle" },
+	-- 	config = function()
+	-- 		require("blame").setup()
+	-- 	end,
+	-- },
 	{
-		"ThePrimeagen/git-worktree.nvim",
-		config = require("plugins-options.git-worktree").config,
-		event = "VeryLazy",
-		dependencies = { "nvim-telescope/telescope.nvim" },
+		"whiteinge/diffconflicts",
+		cmd = { "DiffConflicts", "DiffConflictsShowHistory", "DiffConflictsWithHistory" },
 	},
-	{
-		"pwntester/octo.nvim",
-		event = "VeryLazy",
-		enabled = false,
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"ibhagwan/fzf-lua",
-			"nvim-tree/nvim-web-devicons",
-		},
-		config = function()
-			require("octo").setup()
-		end,
-	},
-	{
-		"FabijanZulj/blame.nvim",
-		cmd = { "BlameToggle" },
-		config = function()
-			require("blame").setup()
-		end,
-	},
-  {
-    "whiteinge/diffconflicts"
-  },
-	{
-		"SuperBo/fugit2.nvim",
-		opts = {
-			width = 70,
-		},
-		dependencies = {
-			"MunifTanjim/nui.nvim",
-			"nvim-tree/nvim-web-devicons",
-			"nvim-lua/plenary.nvim",
-			{
-				"chrisgrieser/nvim-tinygit", -- optional: for Github PR view
-				dependencies = { "stevearc/dressing.nvim" },
-			},
-		},
-		cmd = { "Fugit2", "Fugit2Diff", "Fugit2Graph" },
-		keys = {
-			{ "<leader>F", mode = "n", "<cmd>Fugit2<cr>" },
-		},
-	},
+	-- {
+	-- 	"SuperBo/fugit2.nvim",
+	-- 	opts = {
+	-- 		libgit2_path = "/usr/local/opt/libgit2/lib/libgit2.dylib",
+	-- 		width = 100,
+	-- 		heigt = 300,
+	-- 	},
+	-- 	dependencies = {
+	-- 		"MunifTanjim/nui.nvim",
+	-- 		"nvim-tree/nvim-web-devicons",
+	-- 		"nvim-lua/plenary.nvim",
+	-- 		{
+	-- 			"chrisgrieser/nvim-tinygit", -- optional: for Github PR view
+	-- 			dependencies = { "stevearc/dressing.nvim" },
+	-- 		},
+	-- 	},
+	-- 	cmd = { "Fugit2", "Fugit2Diff", "Fugit2Graph" },
+	-- 	keys = {
+	-- 		{ "<leader>F", mode = "n", "<cmd>Fugit2<cr>" },
+	-- 	},
+	-- },
 }

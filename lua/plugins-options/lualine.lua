@@ -23,12 +23,12 @@ function M.config()
 		sections = {
 			lualine_a = { "mode" },
 			lualine_b = {
-				{
-					require("grapple").statusline,
-					cond = require("grapple").exists,
-				},
+				-- {
+				-- 	require("grapple").statusline,
+				-- 	cond = require("grapple").exists,
+				-- },
 				-- "git_prompt_string",
-        "branch",
+				"branch",
 				"diff",
 				"diagnostics",
 			},
@@ -42,19 +42,6 @@ function M.config()
 				},
 			},
 			lualine_x = {
-				function()
-					local ok, pomo = pcall(require, "pomo")
-					if not ok then
-						return ""
-					end
-
-					local timer = pomo.get_first_to_finish()
-					if timer == nil then
-						return ""
-					end
-
-					return "󰄉 " .. tostring(timer)
-				end,
 				"vim.fn['zoom#statusline']()",
 				{
 					function()

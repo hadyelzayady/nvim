@@ -12,8 +12,8 @@ map("v", "X", '"_X', { silent = true })
 map("v", "p", '"_dP', { silent = true })
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
 
-map({ "n", "x" }, "j", [[v:count == 0 ? 'gj' : 'j']], { expr = true })
-map({ "n", "x" }, "k", [[v:count == 0 ? 'gk' : 'k']], { expr = true })
+-- map({ "n", "x" }, "j", [[v:count == 0 ? 'gj' : 'j']], { expr = true })
+-- map({ "n", "x" }, "k", [[v:count == 0 ? 'gk' : 'k']], { expr = true })
 
 map("n", "<C-e>", "<cmd>FzfLua oldfiles<cr>", { desc = "Recent Files" })
 map("n", "<leader>ff", "<cmd>lua require('utils.find').find_project_files()<cr>", { desc = "Find File" })
@@ -22,14 +22,14 @@ map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 map("n", "<leader>fm", "<cmd>FzfLua marks<cr>", { desc = "marks" })
 map("n", "<leader>ft", "<cmd>FzfLua filetypes<cr>", { desc = "file types" })
 
-map("n", "<leader>frf", "<Plug>CtrlSFPrompt")
-map("v", "<leader>frw", "<Plug>CtrlSFVwordPath", { desc = "Current Selected Word" })
-map("n", "<leader>frw", "<Plug>CtrlSFCwordPath", { desc = "Current word" })
-map("n", "<leader>frW", "<Plug>CtrlSFCCwordPath", { desc = "Current word (Exactly)" })
-map("n", "<leader>fr/", "<Plug>CtrlSFPwordPath", { desc = "Last search word" })
-map("n", "<leader>fro", ":CtrlSFOpen<CR>")
-map("n", "<leader>frt", ":CtrlSFToggle<CR>")
-
+-- map("n", "<leader>frf", "<Plug>CtrlSFPrompt")
+-- map("v", "<leader>frw", "<Plug>CtrlSFVwordPath", { desc = "Current Selected Word" })
+-- map("n", "<leader>frw", "<Plug>CtrlSFCwordPath", { desc = "Current word" })
+-- map("n", "<leader>frW", "<Plug>CtrlSFCCwordPath", { desc = "Current word (Exactly)" })
+-- map("n", "<leader>fr/", "<Plug>CtrlSFPwordPath", { desc = "Last search word" })
+-- map("n", "<leader>fro", ":CtrlSFOpen<CR>")
+-- map("n", "<leader>frt", ":CtrlSFToggle<CR>")
+--
 -- neotree (file explorer)
 map("n", "<leader>e", "<cmd>Neotree reveal=true toggle=true<cr>", { desc = "File Explorer" })
 
@@ -55,31 +55,31 @@ map("n", "<leader>qq", "<cmd>q<cr>", { desc = "Quit" })
 map("n", "<leader>qQ", "<cmd>qa<cr>", { desc = "Quit all" })
 map("n", "<leader>Q", "<cmd>silent! qa!<cr>", { desc = "Force Quit all" })
 map("n", "<leader>qp", "<cmd>lua require'telescope'.extensions.projects.projects{}<cr>", { desc = "Find Project" })
-map("n", "<leader>qs", "<cmd>Telescope possession list<cr>", { desc = "Find Session" })
+-- map("n", "<leader>qs", "<cmd>Telescope possession list<cr>", { desc = "Find Session" })
 map("n", "<leader>qw", "<cmd>silent! wall<cr>", { desc = "Save All" })
 map("n", "<leader>qW", "<cmd>silent! w<cr>", { desc = "Save Current" })
-map("n", "<leader>qd", "<cmd>Veil<cr>", { desc = "Dashboard" })
+-- map("n", "<leader>qd", "<cmd>Veil<cr>", { desc = "Dashboard" })
 
 -- Pickers
-map("n", "<leader>pc", "<cmd>CccPick<CR>", { desc = "Color Picker", silent = true })
-map("n", "<leader>pt", "<cmd>FzfLua filetypes<CR>", { desc = "Filetype Picker", silent = true })
+-- map("n", "<leader>pc", "<cmd>CccPick<CR>", { desc = "Color Picker", silent = true })
+-- map("n", "<leader>pt", "<cmd>FzfLua filetypes<CR>", { desc = "Filetype Picker", silent = true })
 
 -- Git
 map("n", "<leader>gg", "<cmd>Lazygit<CR>", { desc = "Lazygit", silent = true })
-map("n", "<leader>gG", "<cmd>Gitui<CR>", { desc = "Gitui", silent = true })
+-- map("n", "<leader>gG", "<cmd>Gitui<CR>", { desc = "Gitui", silent = true })
 map("n", "<leader>gd", ":DiffviewOpen<cr>", { desc = "Diff" })
 map("n", "<leader>gD", ":DiffviewOpen -- %<cr>", { desc = "Diff file" })
 map("n", "<leader>gc", "<cmd>FzfLua git_branches<CR>", { desc = "Checkout Branch" })
-map("n", "<leader>gu", "<cmd>Gin pull<CR>", { desc = "Pull" })
-map("n", "<leader>gU", "<cmd>Gin push<CR>", { desc = "Push" })
+-- map("n", "<leader>gu", "<cmd>Gin pull<CR>", { desc = "Pull" })
+-- map("n", "<leader>gU", "<cmd>Gin push<CR>", { desc = "Push" })
 map("n", "<leader>gh", ":DiffviewFileHistory %<CR>", { desc = "Buffer History" })
 map("v", "<leader>gh", ":'<,'>DiffviewFileHistory %<CR>", { desc = "Range Buffer History" })
 map("n", "<leader>gn", "<cmd>Neogit<CR>", { desc = "Neogit" })
-map("n", "<leader>gts", "<cmd>lua require('tinygit').searchFileHistory()<CR>", { desc = "Search File History" })
-map("n", "<leader>gtf", "<cmd>lua require('tinygit').functionHistory()<CR>", { desc = "Function History" })
+-- map("n", "<leader>gts", "<cmd>lua require('tinygit').searchFileHistory()<CR>", { desc = "Search File History" })
+-- map("n", "<leader>gtf", "<cmd>lua require('tinygit').functionHistory()<CR>", { desc = "Function History" })
 map("n", "<leader>ga", require("utils.git").list, { desc = "Co-authors" })
-map("n", "<leader>gw", "<cmd>Telescope git_worktree git_worktrees<cr>", { desc = "List Worktree" })
-map("n", "<leader>gW", "<cmd>Telescope git_worktree create_git_worktree<cr>", { desc = "Create Worktree" })
+-- map("n", "<leader>gw", "<cmd>Telescope git_worktree git_worktrees<cr>", { desc = "List Worktree" })
+-- map("n", "<leader>gW", "<cmd>Telescope git_worktree create_git_worktree<cr>", { desc = "Create Worktree" })
 
 -- -- Debug
 -- map("n", "<leader>rd", "<cmd>lua require('dap').continue()<CR>", { desc = "Debug" })
@@ -95,23 +95,23 @@ map("n", "<c-q>", function()
 end, { desc = "Close Common Splits" })
 
 --  History
-map("n", "<leader>h", "<cmd>UndotreeToggle<CR>", { desc = "history" })
+-- map("n", "<leader>h", "<cmd>UndotreeToggle<CR>", { desc = "history" })
 
-map({ "n", "v" }, "<leader>lf", require("plugins.lsp.operations").format, { silent = true, desc = "Format" })
+map({ "n", "v" }, "<leader>lf", require("utils.lsp.operations").format, { silent = true, desc = "Format" })
 
 -- lists
 map("n", "<leader>xx", "<cmd>TroubleToggle document_diagnostics<cr> ", { silent = true, desc = "Format" })
 map("n", "<leader>xX", "<cmd>TroubleToggle workspace_diagnostics<cr> ", { silent = true, desc = "Format" })
--- toggle misc
+-- -- toggle misc
 map("n", "<leader>nc", "<cmd>TSContextToggle<CR>", { desc = "Context" })
-map("n", "<leader>nh", "<cmd>CccHighlighterToggle<CR>", { desc = "Color Highlight" })
+-- map("n", "<leader>nh", "<cmd>CccHighlighterToggle<CR>", { desc = "Color Highlight" })
 
 -- refactor
-map({ "n", "x" }, "<leader>cr", function()
-	require("refactoring").select_refactor()
-end, { desc = "Refactor" })
+-- map({ "n", "x" }, "<leader>cr", function()
+-- 	require("refactoring").select_refactor()
+-- end, { desc = "Refactor" })
 
-map("n", "<leader>lg", "<cmd>lua require('logsitter').log()<cr>", { desc = "Log" })
+-- map("n", "<leader>lg", "<cmd>lua require('logsitter').log()<cr>", { desc = "Log" })
 
 -- map("n", "<leader>Se", function() require("scissors").editSnippet() end)
 -- --visual mode prefills the selection as body.
@@ -126,16 +126,12 @@ function M.lsp_global_setup()
 	-- Global mappings.
 	-- See `:help vim.diagnostic.*` for documentation on any of the below functions
 	local opts = { silent = true }
-	map("n", "<leader>ld", vim.diagnostic.open_float, { silent = true, desc = "Show Diagnostic" })
 	map({ "n", "v" }, "<leader>la", "<cmd>FzfLua lsp_code_actions<cr>", { silent = true, desc = "Code Action" })
 	map("n", "<leader>ss", "<cmd>FzfLua lsp_document_symbols<cr>", { silent = true, desc = "Document Symboles" })
 	map("n", "<leader>sS", "<cmd>FzfLua lsp_live_workspace_symbols<cr>", { silent = true, desc = "Workspace Symboles" })
 
 	map("n", "<leader>cS", "<cmd>AerialToggle<cr>", { silent = true, desc = "Symbole Outline" })
 	map("n", "<leader>cs", "<cmd>AerialNavToggle<cr>", { silent = true, desc = "Symbole Nav" })
-
-	map("n", "[d", vim.diagnostic.goto_prev, opts)
-	map("n", "]d", vim.diagnostic.goto_next, opts)
 
 	map("n", "[e", function()
 		vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
@@ -167,25 +163,25 @@ function M.lsp_global_setup()
 end
 function M.on_attach_setup(ev)
 	local opts = { silent = true }
-	map("n", "gd", require("plugins.lsp.operations").goto_definition, { desc = "Goto Definition" })
-	map("n", "gD", require("plugins.lsp.operations").goto_declaration)
-	map("n", "gr", require("plugins.lsp.operations").goto_references)
-	map("n", "gR", require("plugins.lsp.operations").goto_file_references)
-	map("n", "gt", require("plugins.lsp.operations").goto_type_definition)
-	map("n", "gI", require("plugins.lsp.operations").goto_implementations)
-	map("n", "<leader>li", require("plugins.lsp.operations").goto_incoming_calls)
-	map("n", "<leader>lo", require("plugins.lsp.operations").goto_outgoing_calls)
-	map("n", "K", require("plugins.lsp.operations").hover)
-	map("n", "<leader>lr", require("plugins.lsp.operations").rename, opts)
-	map("n", "<leader>lR", require("plugins.lsp.operations").rename_file, opts)
-	map("n", "<leader>cf", require("plugins.lsp.operations").fixAll, opts)
-	map("n", "<leader>cc", require("plugins.lsp.operations").removeUnused, opts)
-	map("n", "<leader>cC", require("plugins.lsp.operations").removeUnusedImports, opts)
-	map("n", "<leader>ci", require("plugins.lsp.operations").addMissingImports, opts)
+	map("n", "gd", require("utils.lsp.operations").goto_definition, { desc = "Goto Definition" })
+	map("n", "gD", require("utils.lsp.operations").goto_declaration)
+	map("n", "gr", require("utils.lsp.operations").goto_references)
+	map("n", "gR", require("utils.lsp.operations").goto_file_references)
+	map("n", "gt", require("utils.lsp.operations").goto_type_definition)
+	map("n", "gI", require("utils.lsp.operations").goto_implementations)
+	map("n", "<leader>li", require("utils.lsp.operations").goto_incoming_calls)
+	map("n", "<leader>lo", require("utils.lsp.operations").goto_outgoing_calls)
+	-- map("n", "K", require("plugins.lsp.operations").hover)
+	map("n", "<leader>lr", require("utils.lsp.operations").rename, opts)
+	map("n", "<leader>lR", require("utils.lsp.operations").rename_file, opts)
+	map("n", "<leader>cf", require("utils.lsp.operations").fixAll, opts)
+	map("n", "<leader>cc", require("utils.lsp.operations").removeUnused, opts)
+	map("n", "<leader>cC", require("utils.lsp.operations").removeUnusedImports, opts)
+	map("n", "<leader>ci", require("utils.lsp.operations").addMissingImports, opts)
 	map(
 		"n",
 		"<leader>lth",
-		require("plugins.lsp.operations").toggle_inlay_hints,
+		require("utils.lsp.operations").toggle_inlay_hints,
 		{ desc = "Toggle Inlayhints", silent = true }
 	)
 	map("n", "<leader>ltl", "<cmd>LspLensToggle<cr>", { desc = "Toggle function hints", silent = true })

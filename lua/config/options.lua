@@ -5,11 +5,11 @@ opt.clipboard = "unnamedplus" -- Sync with system clipboard
 opt.number = true -- Print line number
 opt.splitbelow = true -- Horizontal splits will be below
 opt.splitright = true -- Vertical splits will be to the right
-opt.termguicolors = true -- Enable gui colors
+-- opt.termguicolors = true -- Enable gui colors
 opt.signcolumn = "auto:1-3" -- Always show sign column (otherwise it will shift text)
-opt.conceallevel = 1 -- Always show sign column (otherwise it will shift text)
+-- opt.conceallevel = 1 -- Always show sign column (otherwise it will shift text)
 
-opt.mouse = "a" -- Enable mouse mode
+-- opt.mouse = "a" -- Enable mouse mode
 opt.scrolloff = 4 -- Lines of context
 
 opt.confirm = true -- Confirm to save changes before exiting modified buffer
@@ -28,7 +28,7 @@ opt.linebreak = true -- Wrap long lines at 'breakat' (if 'wrap' is set)
 opt.smartindent = true -- Make indenting smart
 
 opt.cursorline = true -- Highlight current line
-opt.spell = false
+opt.spell = true
 opt.spelllang = { "en_us" }
 
 opt.completeopt = "menuone,noinsert,noselect" -- Customize completions
@@ -52,4 +52,5 @@ vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decr
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 
+vim.cmd("syntax off")
 vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep:│,foldclose:]]

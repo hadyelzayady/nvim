@@ -1,6 +1,11 @@
 local M = {}
 function M.config(_, opts)
 	require("typescript-tools").setup({
+		on_attach = function(client)
+			client.server_capabilities.semanticTokensProvider = nil
+			client.server_capabilities.documentHighlightProvider = nil
+			-- vim.lsp.inlay_hint.enable(0, true)
+		end,
 		-- capabilities = require("plugins-options.lsp.servers-configs").capabilities,
 		settings = {
 			-- spawn additional tsserver instance to calculate diagnostics on it
@@ -39,7 +44,7 @@ function M.config(_, opts)
 			-- CodeLens
 			-- WARNING: Experimental feature also in VSCode, because it might hit performance of server.
 			-- possible values: ("off"|"all"|"implementations_only"|"references_only")
-			code_lens = "on",
+			code_lens = "off",
 			-- by default code lenses are displayed on all referencable values and for some of you it can
 			-- be too much this option reduce count of them by removing member references from lenses
 			disable_member_code_lens = true,
@@ -52,8 +57,7 @@ function M.config(_, opts)
 			},
 		},
 	})
-	local coq = require("coq") -- add this
-	require("lspconfig")["typescript-tools"].setup(coq.lsp_ensure_capabilities({
+	require("lspconfig")["typescript-tools"].setup({
 		filetypes = {
 			"javascript",
 			"js",
@@ -67,6 +71,6 @@ function M.config(_, opts)
 			"typescriptreact",
 			"typescript.tsx",
 		},
-	}))
+	})
 end
 return M
