@@ -13,7 +13,8 @@ function M.goto_definition()
 	vim.cmd("Glance definitions")
 end
 function M.goto_references()
-	vim.lsp.buf.references()
+  vim.cmd("Trouble lsp_references")
+	-- vim.lsp.buf.references()
 end
 function M.goto_type_definition()
 	vim.lsp.buf.type_definition()

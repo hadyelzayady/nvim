@@ -22,38 +22,49 @@ autocmd("BufReadPost", {
 	end,
 })
 
--- local function refresh_neotree()
--- 	local manager_avail, manager = pcall(require, "neo-tree.sources.manager")
--- 	if manager_avail then
--- 		for _, source in ipairs({
--- 			"filesystem",
--- 			"git_status",
--- 			"document_symbols",
--- 		}) do
--- 			local module = "neo-tree.sources." .. source
--- 			if package.loaded[module] then
--- 				manager.refresh(require(module).name)
--- 			end
--- 		end
--- 	end
+local function refresh_neotree()
+	local manager_avail, manager = pcall(require, "neo-tree.sources.manager")
+	if manager_avail then
+		for _, source in ipairs({
+			"filesystem",
+			"git_status",
+			"document_symbols",
+		}) do
+			local module = "neo-tree.sources." .. source
+			if package.loaded[module] then
+				manager.refresh(require(module).name)
+			end
+		end
+	end
+end
+-- 5. Update neotree when closin the git client.
+autocmd("TermClose", {
+	pattern = { "**lazygit**", "**gitui**" },
+	desc = "Refresh Neo-Tree git when closing lazygit/gitui",
+	callback = function()
+		refresh_neotree()
+	end,
+})
+--
+autocmd("BufLeave", {
+	pattern = { "NeogitStatus" },
+	desc = "Refresh Neo-Tree git when closing Neogit",
+	callback = function()
+		refresh_neotree()
+	end,
+})
+-- local M = {}
+-- M.diff_mode = function()
+-- 	print("hhhhhhh")
+-- 	vim.diagnostic.enable(false, { bufnr = 0 })
 -- end
--- -- 5. Update neotree when closin the git client.
--- autocmd("TermClose", {
--- 	pattern = { "**lazygit**", "**gitui**" },
--- 	desc = "Refresh Neo-Tree git when closing lazygit/gitui",
--- 	callback = function()
--- 		refresh_neotree()
--- 	end,
--- })
+-- M.no_diff_mode = function()
+-- 	print("wwwwwww")
+-- 	vim.diagnostic.enable(false, { bufnr = 0 })
+-- end
 --
--- autocmd("BufLeave", {
--- 	pattern = { "NeogitStatus" },
--- 	desc = "Refresh Neo-Tree git when closing Neogit",
--- 	callback = function()
--- 		refresh_neotree()
--- 	end,
--- })
---
+-- vim.cmd([[autocmd! OptionSet diff lua require("config.autocmds").diff_mode() ]])
+-- vim.cmd([[autocmd! OptionSet nodiff lua require("config.autocmds").no_diff_mode() ]])
 -- autocmd("BufReadPre", {
 -- 	group = augroup("specific_files_keys"),
 -- 	pattern = { "Cargo.toml", "package.json" },
@@ -74,3 +85,4 @@ autocmd("BufReadPost", {
 -- 		require("incline").refresh()
 -- 	end,
 -- })
+return M

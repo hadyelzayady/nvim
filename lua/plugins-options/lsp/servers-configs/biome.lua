@@ -1,8 +1,7 @@
 local M = {}
 
 function M.setup()
-	local coq = require("coq") -- add this
-	require("lspconfig").biome.setup(coq.lsp_ensure_capabilities({
+	require("lspconfig").biome.setup({
 		cmd = { "npx", "biome", "lsp-proxy" },
 		on_attach = function(client)
 			local plenary = require("plenary")
@@ -13,7 +12,7 @@ function M.setup()
 			end
 		end,
 		capabilities = require("plugins-options.lsp.servers-configs").capabilities,
-	}))
+	})
 end
 
 return M

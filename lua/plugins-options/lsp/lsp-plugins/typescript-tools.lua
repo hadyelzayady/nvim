@@ -2,8 +2,8 @@ local M = {}
 function M.config(_, opts)
 	require("typescript-tools").setup({
 		on_attach = function(client)
-			client.server_capabilities.semanticTokensProvider = false
-			client.server_capabilities.documentHighlightProvider = false
+			client.server_capabilities.semanticTokensProvider = nil
+			client.server_capabilities.documentHighlightProvider = nil
 			-- vim.lsp.inlay_hint.enable(0, true)
 		end,
 		-- capabilities = require("plugins-options.lsp.servers-configs").capabilities,
@@ -57,7 +57,7 @@ function M.config(_, opts)
 			},
 		},
 	})
-	require("lspconfig")["typescript-tools"].setup(require("coq").lsp_ensure_capabilities({
+	require("lspconfig")["typescript-tools"].setup({
 		filetypes = {
 			"javascript",
 			"js",
@@ -73,10 +73,10 @@ function M.config(_, opts)
 		},
 
 		on_attach = function(client)
-			client.server_capabilities.semanticTokensProvider = false
-			client.server_capabilities.documentHighlightProvider = false
+			client.server_capabilities.semanticTokensProvider = nil
+			client.server_capabilities.documentHighlightProvider = nil
 			-- vim.lsp.inlay_hint.enable(0, true)
 		end,
-	}))
+	})
 end
 return M
