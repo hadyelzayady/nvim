@@ -91,14 +91,14 @@ return {
 	{
 		"echasnovski/mini.bufremove",
 		version = false,
-		event = "VeryLazy",
+    keys={{"<space>d","<space>D"}},
 		config = require("plugins-options.mini-bufremove").config,
 	},
 
 	{
 		"nvim-neo-tree/neo-tree.nvim",
 		branch = "v3.x",
-		event = "VeryLazy",
+    cmd={"Neotree"},
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
@@ -106,5 +106,10 @@ return {
 			"3rd/image.nvim",
 		},
 		config = require("plugins-options.neotree").config,
+	},
+	{
+		"dnlhc/glance.nvim",
+		cmd = { "Glance" },
+		-- opts = require("plugins-options.glance"),
 	},
 }

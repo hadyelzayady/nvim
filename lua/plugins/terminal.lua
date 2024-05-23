@@ -2,7 +2,7 @@ return {
 	{
 		"akinsho/toggleterm.nvim",
 		version = "*",
-		event = "VeryLazy",
+    cmd={"ToggleTerm","Lazygit"},
 		config = require("plugins-options.toggleterm").config,
 	},
 }

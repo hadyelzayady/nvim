@@ -3,9 +3,6 @@ return {
 		"neovim/nvim-lspconfig",
 		event = "VeryLazy",
 		config = require("plugins-options.lsp.lspconfig").config,
-		dependencies = {
-			"dnlhc/glance.nvim",
-		},
 	},
 	{
 		"pmizio/typescript-tools.nvim",
@@ -27,6 +24,7 @@ return {
 
 	{
 		"b0o/schemastore.nvim",
+    ft={"json","yaml"}
 	},
 	{
 		"stevearc/aerial.nvim",
