@@ -63,7 +63,9 @@ map("n", "<leader>qW", "<cmd>silent! w<cr>", { desc = "Save Current" })
 -- Pickers
 -- map("n", "<leader>pc", "<cmd>CccPick<CR>", { desc = "Color Picker", silent = true })
 -- map("n", "<leader>pt", "<cmd>FzfLua filetypes<CR>", { desc = "Filetype Picker", silent = true })
-
+map("n", "<leader>to", function()
+	vim.o.scrolloff = 999 - vim.o.scrolloff
+end)
 -- Git
 map("n", "<leader>gg", "<cmd>Lazygit<CR>", { desc = "Lazygit", silent = true })
 -- map("n", "<leader>gG", "<cmd>Gitui<CR>", { desc = "Gitui", silent = true })
