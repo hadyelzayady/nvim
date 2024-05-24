@@ -28,6 +28,7 @@ opt.linebreak = true -- Wrap long lines at 'breakat' (if 'wrap' is set)
 opt.smartindent = true -- Make indenting smart
 
 opt.cursorline = true -- Highlight current line
+opt.cursorlineopt = "number" -- Highlight current line
 opt.spell = true
 opt.spelllang = { "en_us" }
 
