@@ -9,49 +9,7 @@ return {
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-calc",
 			"saadparwaiz1/cmp_luasnip",
-			"David-Kunz/cmp-npm",
 		},
-	},
-	{
-		"petertriho/cmp-git",
-		lazy = true,
-		ft = { "gitcommit" },
-		dependencies = {
-			"hrsh7th/nvim-cmp",
-		},
-	},
-	{
-		"David-Kunz/cmp-npm",
-		-- lazy = true,
-		ft = "json",
-		config = function()
-			require("cmp-npm").setup({})
-		end,
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
-	},
-	{
-		"petertriho/cmp-git",
-		dependencies = {
-			"hrsh7th/nvim-cmp",
-			"nvim-lua/plenary.nvim",
-		},
-		config = require("plugins-options.completion.cmp-git").config,
-	},
-	{
-		"davidsierradz/cmp-conventionalcommits",
-		lazy = true,
-		dependencies = {
-			"hrsh7th/nvim-cmp",
-		},
-	},
-	{
-		"Exafunction/codeium.vim",
-		event = { "InsertEnter" },
-		config = function()
-			require("config.keymaps").codium()
-		end,
 	},
 	{
 		"L3MON4D3/LuaSnip",
@@ -89,23 +47,5 @@ return {
 			},
 		},
 		config = require("plugins-options.completion.luasnip").config,
-	},
-	{
-		"jackMort/ChatGPT.nvim",
-		config = function()
-			require("chatgpt").setup()
-		end,
-		cmd = {
-			"ChatGPT",
-			"ChatGPTActAs",
-			"ChatGPTCompleteCode",
-			"ChatGPTEditWithInstructions",
-			"ChatGPTRun",
-		},
-		dependencies = {
-			"MunifTanjim/nui.nvim",
-			"nvim-lua/plenary.nvim",
-			"nvim-telescope/telescope.nvim",
-		},
 	},
 }

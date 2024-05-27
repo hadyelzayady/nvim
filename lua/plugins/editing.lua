@@ -1,59 +1,41 @@
 return {
 	{
-		"johmsalas/text-case.nvim",
-		dependencies = { "nvim-telescope/telescope.nvim" },
-		config = function()
-			require("textcase").setup({})
-			require("telescope").load_extension("textcase")
-		end,
-		keys = {
-			{ "ga" },
-			{ "ga.", "<cmd>TextCaseOpenTelescope<CR>", mode = { "n", "v" }, desc = "Telescope" },
-		},
+		"folke/ts-comments.nvim",
+		enabled = vim.fn.has("nvim-0.10.0") == 1,
+		opts = {},
+		event = "VeryLazy",
+	},
+
+	{
+		"max397574/better-escape.nvim",
+		config = require("plugins-options.better-escape").config,
+		event = "InsertEnter",
+	},
+
+	{
+		"echasnovski/mini.surround",
+		version = false,
+		config = require("plugins-options.mini-surround").config,
+		keys = { "s" },
 	},
 	{
-		"echasnovski/mini.ai",
-		version = false,
-		event = "VeryLazy",
-		dependencies = {
-			{
-				"nvim-treesitter/nvim-treesitter-textobjects",
-				init = function()
-					-- no need to load the plugin, since we only need its queries
-					require("lazy.core.loader").disable_rtp_plugin("nvim-treesitter-textobjects")
-				end,
-			},
-		},
-		config = require("plugins-options.mini-ai").config,
+		"johmsalas/text-case.nvim",
+		dependencies = { "nvim-telescope/telescope.nvim" },
+		config = require("plugins-options.text-case").config,
+		keys = { "ga", },
+		cmd = { "Subs", "TextCaseOpenTelescope", "TextCaseOpenTelescopeQuickChange", "TextCaseOpenTelescopeLSPChange", "TextCaseStartReplacingCommand", },
 	},
+
 	{
 		"echasnovski/mini.splitjoin",
 		version = false,
-		keys = { "gs" },
+		keys = { "gs","gS","gJ" },
 		config = require("plugins-options.mini-splitjoin").config,
 	},
 	{
-		"max397574/better-escape.nvim",
-		event = "VeryLazy",
-		config = require("plugins-options.better-escape").config,
-	},
-	{
-		"JoosepAlviste/nvim-ts-context-commentstring",
-	},
-	{
-		"mbbill/undotree",
-		cmd = { "UndotreeFocus", "UndotreeHide", "UndotreeShow", "UndotreeToggle" },
-		config = function()
-			vim.cmd("source ~/.config/nvim/vimscript/undotree.vim")
-		end,
-	},
-	{
-		"ThePrimeagen/refactoring.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-treesitter/nvim-treesitter",
-		},
-		config = require("plugins-options.refactoring").config,
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		config = require("plugins-options.nvim-autopairs").config,
 	},
 	{
 		"mg979/vim-visual-multi",
@@ -73,22 +55,18 @@ return {
     --]]
 	},
 	{
-		"windwp/nvim-autopairs",
-		event = "InsertEnter",
-		config = require("plugins-options.nvim-autopairs").config,
-	},
-	{
-		"echasnovski/mini.surround",
+		"echasnovski/mini.ai",
 		version = false,
-		config = require("plugins-options.mini-surround").config,
-	},
-	{
-		"gaelph/logsitter.nvim",
 		event = "VeryLazy",
-		dependencies = { "nvim-treesitter/nvim-treesitter" },
-	},
-	{
-		"tpope/vim-repeat",
-		event = "VeryLazy",
+		dependencies = {
+			{
+				"nvim-treesitter/nvim-treesitter-textobjects",
+				init = function()
+					-- no need to load the plugin, since we only need its queries
+					require("lazy.core.loader").disable_rtp_plugin("nvim-treesitter-textobjects")
+				end,
+			},
+		},
+		config = require("plugins-options.mini-ai").config,
 	},
 }

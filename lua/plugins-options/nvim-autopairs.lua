@@ -6,8 +6,6 @@ function M.config()
 
 	npairs.setup({ map_bs = false, map_cr = false, enable_check_bracket_line = true })
 
-	vim.g.coq_settings = { keymap = { recommended = false } }
-
 	-- these mappings are coq recommended mappings unrelated to nvim-autopairs
 	remap("i", "<esc>", [[pumvisible() ? "<c-e><esc>" : "<esc>"]], { expr = true, noremap = true })
 	remap("i", "<c-c>", [[pumvisible() ? "<c-e><c-c>" : "<c-c>"]], { expr = true, noremap = true })

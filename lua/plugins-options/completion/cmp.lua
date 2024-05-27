@@ -53,36 +53,34 @@ function M.config()
 			{ name = "path" },
 		}, {
 			{ name = "buffer" },
-			{ name = "npm" },
-			{ name = "calc" },
 		}),
 	}
 
 	cmp.setup(opts)
 
-	cmp.setup.filetype("gitcommit", {
-		sources = cmp.config.sources({
-			{ name = "git" }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
-		}, {
-			{ name = "buffer" },
-			{ name = "luasnip" },
-		}),
-	})
-	cmp.setup.filetype("NeogitCommitMessage", {
-		sources = cmp.config.sources({
-			{ name = "git" }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
-		}, {
-			{ name = "buffer" },
-			{ name = "luasnip" },
-		}),
-	})
-	cmp.setup.filetype("sql", {
-		sources = cmp.config.sources({
-			{ name = "vim-dadbod-completion" },
-			{ name = "buffer" },
-			{ name = "luasnip" },
-		}),
-	})
+	-- cmp.setup.filetype("gitcommit", {
+	-- 	sources = cmp.config.sources({
+	-- 		{ name = "git" }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
+	-- 	}, {
+	-- 		{ name = "buffer" },
+	-- 		{ name = "luasnip" },
+	-- 	}),
+	-- })
+	-- cmp.setup.filetype("NeogitCommitMessage", {
+	-- 	sources = cmp.config.sources({
+	-- 		{ name = "git" }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
+	-- 	}, {
+	-- 		{ name = "buffer" },
+	-- 		{ name = "luasnip" },
+	-- 	}),
+	-- })
+	-- cmp.setup.filetype("sql", {
+	-- 	sources = cmp.config.sources({
+	-- 		{ name = "vim-dadbod-completion" },
+	-- 		{ name = "buffer" },
+	-- 		{ name = "luasnip" },
+	-- 	}),
+	-- })
 end
 
 return M

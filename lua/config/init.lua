@@ -1,7 +1,5 @@
--- TODO autoclose buffer plugin
 require("config.options")
-require("config.globals")
-require("config.commands")
-require("config.keymaps")
-require("config.autocmds")
+require("config.diagnostics")
 require("config.ui")
+require("config.commands")
+require("config.keymaps").setup()

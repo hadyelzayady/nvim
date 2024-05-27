@@ -16,6 +16,5 @@ end
 -- package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua;"
 
 vim.opt.rtp:prepend(lazypath)
-vim.cmd("source ~/.config/nvim/vimscript/macroOnVisualSelection.vim")
 require("config")
 require("lazy").setup("plugins")
