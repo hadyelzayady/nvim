@@ -1,5 +1,9 @@
 local M = {}
 function M.goto_definition()
+  if vim.bo.filetype == "yaml"then
+				vim.lsp.buf.definition()
+				return
+  end
 	vim.cmd("Glance definitions")
 end
 function M.goto_references()

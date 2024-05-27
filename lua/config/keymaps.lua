@@ -11,13 +11,14 @@ function M.setup()
 
 	map("n", "<leader>h", "<cmd>nohlsearch<CR>", { desc = "Clear search highlights" })
 	-- resize
-	map("n", "<C-S-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
-	map("n", "<C-S-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
-	map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
-	map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
+	map("n", "<m-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
+	map("n", "<m-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
+	map("n", "<m-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
+	map("n", "<m-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 	-- end resize
 	--
 	-- navigation
+
 	map("n", "<leader>E", "<cmd>NvimTreeFindFile<CR>", { desc = "NvimTree Find File Toggle" })
 	map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle NvimTree" })
 	map("n", "<c-,>", "<cmd>cnext<CR>", { desc = "Next Quickfix Item" })
@@ -94,11 +95,27 @@ function M.setup()
 	map("n", "<leader>qW", "<cmd>silent! w<cr>", { desc = "Save Current" })
 	-- end quit/session/projects
 
+	-- format
+	map({ "n", "v" }, "<leader>lf", require("utils.lsp.operations").format, { silent = true, desc = "Format" })
 	M.lsp()
 end
 
 function M.lsp()
 	local opts = { silent = true }
+
+	map("n", "[w", function()
+		vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.WARN })
+	end, opts)
+	map("n", "]w", function()
+		vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.WARN })
+	end, opts)
+	map("n", "[e", function()
+		vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
+	end, opts)
+	map("n", "]e", function()
+		vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
+	end, opts)
+
 	map("n", "gd", require("utils.lsp.operations").goto_definition, { desc = "Goto Definition" })
 	map("n", "gD", require("utils.lsp.operations").goto_declaration)
 	map("n", "gr", require("utils.lsp.operations").goto_references)

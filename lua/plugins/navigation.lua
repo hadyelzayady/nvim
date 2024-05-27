@@ -56,6 +56,7 @@ return {
 	},
 	{
 		"dnlhc/glance.nvim",
+    config=require("plugins-options.glance").config,
 		cmd = { "Glance" },
 	},
 	{

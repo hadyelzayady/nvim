@@ -25,7 +25,7 @@ opt.scrolloff = 4 -- Lines of context
 opt.confirm = true -- Confirm to save changes before exiting modified buffer
 
 opt.undofile = true
-opt.undodir="/home/hady/.undodir"
+opt.undodir = vim.fn.expand("~/.undodir")
 opt.undolevels = 10000
 
 opt.expandtab = true -- Use spaces instead of tabs
@@ -54,7 +54,7 @@ opt.list = true
 opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep:│,foldclose:]]
 vim.cmd("syntax off")
 
-opt.cmdheight = 0
+-- opt.cmdheight = 0
 -- fold
 opt.foldcolumn = "1" -- '0' is not bad
 opt.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value

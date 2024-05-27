@@ -1,4 +1,4 @@
-local map = require('utils.functions').map
+local map = vim.keymap.set
 
 map("n", "<leader>t", function()
     vim.cmd("cclose")
