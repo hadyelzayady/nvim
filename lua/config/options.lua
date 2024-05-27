@@ -25,6 +25,7 @@ opt.scrolloff = 4 -- Lines of context
 opt.confirm = true -- Confirm to save changes before exiting modified buffer
 
 opt.undofile = true
+opt.undodir="/home/hady/.undodir"
 opt.undolevels = 10000
 
 opt.expandtab = true -- Use spaces instead of tabs
@@ -47,7 +48,7 @@ opt.completeopt = "menuone,noinsert,noselect" -- Customize completions
 opt.smartcase = true -- Don't ignore case when searching if pattern has upper case
 opt.ignorecase = true -- Ignore case when searching (use `\C` to force not doing that)
 
-opt.listchars = "tab:| ,lead:-,trail:-,extends:›,precedes:‹"
+opt.listchars = "tab:| ,lead:.,trail:-,extends:›,precedes:‹"
 opt.list = true
 
 opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep:│,foldclose:]]

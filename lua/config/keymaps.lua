@@ -18,7 +18,7 @@ function M.setup()
 	-- end resize
 	--
 	-- navigation
-	map("n", "<leader>E", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "NvimTree Find File Toggle" })
+	map("n", "<leader>E", "<cmd>NvimTreeFindFile<CR>", { desc = "NvimTree Find File Toggle" })
 	map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle NvimTree" })
 	map("n", "<c-,>", "<cmd>cnext<CR>", { desc = "Next Quickfix Item" })
 	map("n", "<c-.>", "<cmd>cprevious<CR>", { desc = "Prev Quickfix Item" })
