@@ -23,11 +23,13 @@ autocmd("BufReadPost", {
 })
 
 -- Function to disable diagnostics in diff mode
-local function disable_diagnostics_in_diff()
+local function diff_mode_changes()
 	if vim.wo.diff then
+    vim.cmd("highlight Folded guibg=clear")
 		vim.diagnostic.enable(false)
 	else
 		vim.diagnostic.enable(true)
+    vim.cmd("highlight Folded guibg=#3b4261")
 	end
 end
 
@@ -35,7 +37,7 @@ end
 autocmd({ "BufEnter", "BufWinEnter" }, {
 	group = augroup("diff_diagnostics"),
 	callback = function()
-		disable_diagnostics_in_diff()
+		diff_mode_changes()
 	end,
 })
 
@@ -44,6 +46,6 @@ autocmd("OptionSet", {
 	group = augroup("diff_diagnostics"),
 	pattern = "diff",
 	callback = function()
-		disable_diagnostics_in_diff()
+		diff_mode_changes()
 	end,
 })

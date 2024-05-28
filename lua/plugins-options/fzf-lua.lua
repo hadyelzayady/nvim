@@ -47,6 +47,12 @@ function M.config()
 					["default"] = actions.git_switch,
 					["ctrl-x"] = { fn = actions.git_branch_del, reload = true },
 					["ctrl-a"] = { fn = actions.git_branch_add, field_index = "{q}", reload = true },
+					["ctrl-d"] = function(state)
+						vim.cmd("DiffviewOpen " .. state[1])
+					end,
+					["ctrl-t"] = function(state)
+						os.execute("git checkout --track " .. state[1])
+					end,
 				},
 				-- If you wish to add branch and switch immediately
 				-- cmd_add  = { "git", "checkout", "-b" },

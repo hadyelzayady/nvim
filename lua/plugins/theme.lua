@@ -79,9 +79,10 @@ return {
 				end,
 			})
 			vim.cmd([[colorscheme tokyonight-night]])
-			vim.cmd("highlight DiffAdd guibg=#002C2C guifg=#00FF00") -- Green for added lines
-			vim.cmd("highlight DiffChange guibg=#003747 guifg=#FFA500") -- Orange for changed lines
-			vim.cmd("highlight DiffDelete guibg=#2C002C guifg=#FF0000") -- Red for removed lines		end,
+			vim.cmd("highlight DiffAdd guibg=#0d4f3d") -- Green for added lines
+			vim.cmd("highlight DiffChange guibg=#524a07") -- Orange for changed lines
+			vim.cmd("highlight DiffText guifg=#bea9de gui=underline") -- Orange for changed lines
+			vim.cmd("highlight DiffDelete guibg=#2C002C") -- Red for removed lines		end,
 
 			-- vim.cmd("highlight DiffAdd guibg=#002C2C guifg=#4EC9B0") -- Green for added lines
 			-- vim.cmd("highlight DiffChange guibg=#003747 guifg=#FFA500") -- Orange for changed lines
