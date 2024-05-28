@@ -1,10 +1,11 @@
 local M = {}
 
 function M.config()
+	local icons = require("utils.ui-components").icons
 	require("lualine").setup({
 		options = {
 			icons_enabled = true,
-			theme = "nord",
+			theme = "auto",
 			-- component_separators = { left = "", right = "" },
 			-- section_separators = { left = "", right = "" },
 			globalstatus = false,
@@ -13,7 +14,10 @@ function M.config()
 			lualine_a = { "mode" },
 			lualine_b = {
 				"branch",
-				"diff",
+				{
+					"diff",
+					symbols = { added = icons.git.added, modified = icons.git.modified, removed = icons.git.removed }, -- Changes the symbols used by the diff.
+				},
 			},
 			lualine_c = {
 				"filename",

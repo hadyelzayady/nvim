@@ -16,20 +16,26 @@ return {
 		"echasnovski/mini.surround",
 		version = false,
 		config = require("plugins-options.mini-surround").config,
-		keys = { "s" },
+		keys = { { "s", mode = { "v", "n" } } },
 	},
 	{
 		"johmsalas/text-case.nvim",
 		dependencies = { "nvim-telescope/telescope.nvim" },
 		config = require("plugins-options.text-case").config,
-		keys = { "ga", },
-		cmd = { "Subs", "TextCaseOpenTelescope", "TextCaseOpenTelescopeQuickChange", "TextCaseOpenTelescopeLSPChange", "TextCaseStartReplacingCommand", },
+		keys = { "ga" },
+		cmd = {
+			"Subs",
+			"TextCaseOpenTelescope",
+			"TextCaseOpenTelescopeQuickChange",
+			"TextCaseOpenTelescopeLSPChange",
+			"TextCaseStartReplacingCommand",
+		},
 	},
 
 	{
 		"echasnovski/mini.splitjoin",
 		version = false,
-		keys = { "gs","gS","gJ" },
+		keys = { "gs", "gS", "gJ" },
 		config = require("plugins-options.mini-splitjoin").config,
 	},
 	{
