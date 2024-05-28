@@ -71,7 +71,7 @@ return {
 		priority = 1000,
 		config = function()
 			require("tokyonight").setup({
-
+				sidebars = { "qf", "help" }, -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
 				dim_inactive = true, -- dims inactive windows
 				on_colors = function(colors)
 					colors.border = "#565f89"

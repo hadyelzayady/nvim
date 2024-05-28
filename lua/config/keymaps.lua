@@ -11,16 +11,16 @@ function M.setup()
 
 	map("n", "<leader>h", "<cmd>nohlsearch<CR>", { desc = "Clear search highlights" })
 	-- resize
-	map("n", "<m-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
-	map("n", "<m-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
-	map("n", "<m-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
-	map("n", "<m-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
+	map("n", "<C-S-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
+	map("n", "<C-S-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
+	map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
+	map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 	-- end resize
 	--
 	-- navigation
 
 	map("n", "<leader>E", "<cmd>NvimTreeFindFile<CR>", { desc = "NvimTree Find File Toggle" })
-	map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle NvimTree" })
+	map("n", "<leader>e", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle NvimTree" })
 	map("n", "<c-,>", "<cmd>cnext<CR>", { desc = "Next Quickfix Item" })
 	map("n", "<c-.>", "<cmd>cprevious<CR>", { desc = "Prev Quickfix Item" })
 	map("n", "<c-q>", function()
@@ -124,8 +124,8 @@ function M.lsp()
 	map("n", "gI", require("utils.lsp.operations").goto_implementations)
 	map("n", "<leader>li", require("utils.lsp.operations").goto_incoming_calls)
 	map("n", "<leader>lo", require("utils.lsp.operations").goto_outgoing_calls)
-	-- map("n", "K", require("plugins.lsp.operations").hover)
 	map("n", "<leader>lr", require("utils.lsp.operations").rename, opts)
+	map("n", "<leader>la", vim.lsp.buf.code_action, opts)
 	map("n", "<leader>lR", require("utils.lsp.operations").rename_file, opts)
 	map("n", "<leader>cf", require("utils.lsp.operations").fixAll, opts)
 	map("n", "<leader>cc", require("utils.lsp.operations").removeUnused, opts)

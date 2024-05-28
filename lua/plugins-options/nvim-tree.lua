@@ -19,7 +19,9 @@ function M.toggle_width_adaptive()
 
 	require("nvim-tree.api").tree.reload()
 end
+
 function M.config()
+	local icons = require("utils.ui-components").icons
 	require("nvim-tree").setup({
 		filters = { custom = { "^.git$" } },
 		filesystem_watchers = {
@@ -27,16 +29,54 @@ function M.config()
 				"node_modules",
 			},
 		},
-		renderer = { root_folder_label = label, group_empty = true },
+		renderer = {
+			root_folder_label = label,
+			group_empty = true,
+
+			icons = {
+
+				git_placement = "after",
+				modified_placement = "before",
+				glyphs = {
+					folder = {
+						arrow_closed = "",
+						arrow_open = "",
+						default = icons.folder.closed,
+						open = icons.folder.opened,
+						empty = "",
+						empty_open = icons.folder.empty,
+						symlink = "",
+						symlink_open = "",
+					},
+					git = {
+						unstaged = icons.git.unstaged,
+						staged = icons.git.staged,
+						unmerged = icons.git.conflict,
+						renamed = icons.git.renamed,
+						untracked = icons.git.untracked,
+						deleted = icons.git.removed,
+						ignored = icons.git.ignored,
+					},
+				},
+			},
+		},
+		modified = {
+			enable = true,
+		},
+		diagnostics = {
+			enable = true,
+			show_on_dirs = true,
+			icons = {
+				hint = icons.diagnostics.Hint,
+				info = icons.diagnostics.Info,
+				warning = icons.diagnostics.Warn,
+				error = icons.diagnostics.Error,
+			},
+		},
 		-- Here is where we enable case-insensitive filtering
 		hijack_directories = {
 			enable = true,
 			auto_open = true,
-		},
-		-- Enable case-insensitive filename filtering
-		live_filter = {
-			prefix = "[FILTER]: ",
-			always_show_folders = false,
 		},
 		view = {
 			width = {
