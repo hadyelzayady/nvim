@@ -26,7 +26,7 @@ function M.config()
 		filters = { custom = { "^.git$" } },
 		filesystem_watchers = {
 			ignore_dirs = {
-				"node_modules",
+				-- "node_modules",
 			},
 		},
 		renderer = {

@@ -16,9 +16,8 @@ function M.setup()
 	map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
 	map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 	-- end resize
-	--
-	-- navigation
 
+	-- navigation
 	map("n", "<leader>E", "<cmd>NvimTreeFindFile<CR>", { desc = "NvimTree Find File Toggle" })
 	map("n", "<leader>e", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle NvimTree" })
 	map("n", "<c-,>", "<cmd>cnext<CR>", { desc = "Next Quickfix Item" })
@@ -39,6 +38,8 @@ function M.setup()
 
 	map("n", "<leader>cS", "<cmd>AerialToggle<cr>", { silent = true, desc = "Symbole Outline" })
 	map("n", "<leader>cs", "<cmd>AerialNavToggle<cr>", { silent = true, desc = "Symbole Nav" })
+	map("n", "<leader>xx", "<cmd>TroubleToggle document_diagnostics<cr> ", { silent = true, desc = "Format" })
+	map("n", "<leader>xX", "<cmd>TroubleToggle workspace_diagnostics<cr> ", { silent = true, desc = "Format" })
 	-- end navigation
 
 	-- search
@@ -85,6 +86,7 @@ function M.setup()
 	map("n", "<leader>gR", ":Gitsigns reset_buffer<cr>", { desc = "Reset Buffer" })
 	map("n", "<leader>gs", ":Gitsigns stage_hunk<cr>", { desc = "Stage Hunk" })
 	map("n", "<leader>gS", ":Gitsigns undo_stage_hunk<cr>", { desc = "UnStage Hunk" })
+	map("n", "<leader>gl", ":Gitsigns setqflist<cr>", { desc = "Quickfix Changes" })
 	-- End Git
 
 	-- quit/session/projects
