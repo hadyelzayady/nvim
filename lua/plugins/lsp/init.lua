@@ -26,9 +26,11 @@ return {
 	},
 	{
 		"b0o/schemastore.nvim",
+		ft = { "json", "yaml" },
 	},
 	{
 		"j-hui/fidget.nvim",
+		event = "VeryLazy",
 		config = true,
 	},
 }
