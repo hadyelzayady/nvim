@@ -6,6 +6,9 @@ function M.setup()
 	map("n", "<leader>to", function()
 		vim.o.scrolloff = 999 - vim.o.scrolloff
 	end)
+	-- map("n", "<leader>tc", function()
+	-- 	vim.o.scrolloff = 999 - vim.o.scrolloff
+	-- end)
 	map("n", "<leader>th", "<cmd>TSToggle highlight<CR>", { desc = "Toggle Treesitter highlight" })
 	-- end Nvim options Toggle
 
@@ -20,11 +23,17 @@ function M.setup()
 	-- navigation
 	map("n", "<leader>E", "<cmd>NvimTreeFindFile<CR>", { desc = "NvimTree Find File Toggle" })
 	map("n", "<leader>e", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle NvimTree" })
-	map("n", "<c-,>", "<cmd>cnext<CR>", { desc = "Next Quickfix Item" })
-	map("n", "<c-.>", "<cmd>cprevious<CR>", { desc = "Prev Quickfix Item" })
+	map("n", "<c-,>", function()
+    require("trouble").next()
+		vim.cmd("silent! cnext")
+	end, { desc = "Next Quickfix Item" })
+	map("n", "<c-.>", function()
+		vim.cmd("silent! cprevious")
+    require("trouble").prev()
+	end, { desc = "Prev Quickfix Item" })
 	map("n", "<c-q>", function()
 		vim.cmd("cclose")
-		vim.cmd("TroubleClose")
+		vim.cmd("silent! TroubleClose")
 		vim.cmd("silent! lua require('neogit').close()")
 	end, { desc = "Close Common Splits" })
 
