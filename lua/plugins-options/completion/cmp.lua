@@ -58,6 +58,12 @@ function M.config()
 
 	cmp.setup(opts)
 
+	require("cmp").setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+		sources = {
+			{ name = "dap" },
+		},
+	})
+
 	-- cmp.setup.filetype("gitcommit", {
 	-- 	sources = cmp.config.sources({
 	-- 		{ name = "git" }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).

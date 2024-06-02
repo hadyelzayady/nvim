@@ -33,13 +33,13 @@ local function diff_mode_changes()
 	end
 end
 
--- Autocmd to disable diagnostics when entering a buffer in diff mode
-autocmd({ "BufEnter", "BufWinEnter" }, {
-	group = augroup("diff_diagnostics"),
-	callback = function()
-		diff_mode_changes()
-	end,
-})
+-- -- Autocmd to disable diagnostics when entering a buffer in diff mode
+-- autocmd({ "BufEnter", "BufWinEnter" }, {
+-- 	group = augroup("diff_diagnostics"),
+-- 	callback = function()
+-- 		diff_mode_changes()
+-- 	end,
+-- })
 
 -- Autocmd to recheck diagnostics when the diff mode state changes
 autocmd("OptionSet", {

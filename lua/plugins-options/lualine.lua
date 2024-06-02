@@ -8,7 +8,7 @@ function M.config()
 			theme = "auto",
 			-- component_separators = { left = "", right = "" },
 			-- section_separators = { left = "", right = "" },
-			globalstatus = false,
+			globalstatus = true,
 		},
 		sections = {
 			lualine_a = { "mode" },
@@ -20,7 +20,10 @@ function M.config()
 				},
 			},
 			lualine_c = {
-				"filename",
+				{
+					"filename",
+					path = 1,
+				},
 			},
 			lualine_x = {
 				{
