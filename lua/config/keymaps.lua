@@ -11,10 +11,10 @@ function M.setup()
 
 	map("n", "<leader>h", "<cmd>nohlsearch<CR>", { desc = "Clear search highlights" })
 	-- resize
-	map("n", "<C-S-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
-	map("n", "<C-S-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
-	map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
-	map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
+	map("n", "<m-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
+	map("n", "<m-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
+	map("n", "<m-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
+	map("n", "<m-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 	-- end resize
 
 	-- navigation
@@ -75,6 +75,7 @@ function M.setup()
 	map("n", "<leader>gh", ":DiffviewFileHistory %<CR>", { desc = "Buffer History" })
 	map("v", "<leader>gh", ":'<,'>DiffviewFileHistory %<CR>", { desc = "Range Buffer History" })
 	map("n", "<leader>gn", "<cmd>Neogit<CR>", { desc = "Neogit" })
+  map("n", "<leader>gg", "<cmd>Lazygit<CR>", { desc = "Lazygit", silent = true })
 	map("n", "<leader>gb", ":Gitsigns blame_line<cr>", { desc = "Blame Current Line" })
 	map("n", "<leader>gB", ":Gitsigns toggle_current_line_blame<cr>", { desc = "Blame Toggle Show Current Line" })
 	map("n", "<leader>gp", ":Gitsigns preview_hunk_inline<cr>", { desc = "Preview Hunk Inline" })
@@ -133,6 +134,8 @@ function M.lsp()
 	map("n", "<leader>cc", require("utils.lsp.operations").removeUnused, opts)
 	map("n", "<leader>cC", require("utils.lsp.operations").removeUnusedImports, opts)
 	map("n", "<leader>ci", require("utils.lsp.operations").addMissingImports, opts)
+	map("n", "<leader>sS", "<cmd>FzfLua lsp_live_workspace_symbols<cr>", opts)
+	map("n", "<leader>ss", "<cmd>FzfLua lsp_document_symbols<cr>", opts)
 	map(
 		"n",
 		"<leader>lth",

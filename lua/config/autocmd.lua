@@ -26,9 +26,9 @@ autocmd("BufReadPost", {
 local function diff_mode_changes()
 	if vim.wo.diff then
     vim.cmd("highlight Folded guibg=clear")
-		vim.diagnostic.enable(false)
+		-- vim.diagnostic.enable(false)
 	else
-		vim.diagnostic.enable(true)
+		-- vim.diagnostic.enable(true)
     vim.cmd("highlight Folded guibg=#3b4261")
 	end
 end
