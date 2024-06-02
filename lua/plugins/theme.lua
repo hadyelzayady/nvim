@@ -83,7 +83,7 @@ return {
 			vim.cmd("highlight DiffChange guibg=#524a07") -- Orange for changed lines
 			vim.cmd("highlight DiffText guifg=#bea9de gui=underline") -- Orange for changed lines
 			vim.cmd("highlight DiffDelete guibg=#2C002C") -- Red for removed lines		end,
-      vim.cmd("highlight NormalFloat guibg=#1c6975")
+      vim.cmd("highlight InclineNormal guibg=#1c6975")
 
 			-- vim.cmd("highlight DiffAdd guibg=#002C2C guifg=#4EC9B0") -- Green for added lines
 			-- vim.cmd("highlight DiffChange guibg=#003747 guifg=#FFA500") -- Orange for changed lines
