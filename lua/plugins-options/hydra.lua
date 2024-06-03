@@ -758,7 +758,7 @@ _q_: Quit Mode
 			color = "blue",
 			invoke_on_body = true,
 		},
-		body = ";",
+		-- body = ";",
 		heads = {
 			{
 				"d",
@@ -849,7 +849,7 @@ _q_: Quit Mode
 				show_name = true,
 			},
 		},
-		body = "t",
+		-- body = "t",
 		heads = {
 			{
 				"f",
