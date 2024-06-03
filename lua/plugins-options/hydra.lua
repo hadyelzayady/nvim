@@ -1,320 +1,880 @@
+-- Setup hydra config here?
+
 local M = {}
-function M.gitsigns_menu()
-	local gitsigns = require("gitsigns")
-
-	local hint = [[
- _J_: Next hunk   _s_: Stage Hunk        _d_: Show Deleted   _b_: Blame Line
- _K_: Prev hunk   _u_: Undo Last Stage   _p_: Preview Hunk   _B_: Blame Show Full
- ^ ^              _S_: Stage Buffer      ^ ^                 _/_: Show Base File
- ^
- ^ ^              _<Enter>_: Neogit              _q_: Exit
-]]
-
-	return {
-		name = "Git",
-		hint = hint,
+function M.config()
+	if vim.g.__debug_config then
+		vim.notify("Avoiding advanced keycommands and modes as we are in debug mode")
+		return
+	end
+	local Hydra = require("hydra")
+	Hydra.setup({
 		config = {
-			color = "pink",
-			invoke_on_body = true,
 			hint = {
-				border = "rounded",
-				position = "bottom",
-			},
-			on_enter = function()
-				vim.cmd("mkview")
-				vim.cmd("silent! %foldopen!")
-				vim.bo.modifiable = false
-				gitsigns.toggle_signs(true)
-				gitsigns.toggle_linehl(true)
-			end,
-			on_exit = function()
-				vim.cmd("silent! DiffviewClose")
-				gitsigns.toggle_signs(false)
-				gitsigns.toggle_linehl(false)
-				gitsigns.toggle_deleted(false)
-			end,
-		},
-		body = "<space>g.",
-		heads = {
-			{
-				"J",
-				function()
-					if vim.wo.diff then
-						return "]c"
-					end
-					vim.schedule(function()
-						gitsigns.next_hunk()
-					end)
-					return "<Ignore>"
-				end,
-				{ expr = true, desc = "Next Hunk" },
-			},
-			{
-				"K",
-				function()
-					if vim.wo.diff then
-						return "[c"
-					end
-					vim.schedule(function()
-						gitsigns.prev_hunk()
-					end)
-					return "<Ignore>"
-				end,
-				{ expr = true, desc = "Prev Hunk" },
-			},
-			{ "s", ":Gitsigns stage_hunk<CR>", { silent = true, desc = "Stage Hunk" } },
-			{ "u", gitsigns.undo_stage_hunk, { desc = "Undo Last Stage" } },
-			{ "S", gitsigns.stage_buffer, { desc = "Stage Buffer" } },
-			{ "p", gitsigns.preview_hunk, { desc = "Preview Hunk" } },
-			{ "d", gitsigns.toggle_deleted, { nowait = true, desc = "Toggle Deleted" } },
-			{ "b", gitsigns.blame_line, { desc = "Blame" } },
-			{
-				"B",
-				function()
-					gitsigns.blame_line({ full = true })
-				end,
-				{ desc = "Blame Show Full" },
-			},
-			{ "/", gitsigns.show, { exit = true, desc = "Show Base File" } }, -- show the base of the file
-			{ "<Enter>", "<Cmd>Neogit<CR>", { exit = true, desc = "Neogit" } },
-			{ "q", nil, { exit = true, nowait = true, desc = "Exit" } },
-		},
-	}
-end
-function M.merge_conflict_menu()
-	local actions = require("diffview.actions")
-
-	local hint = [[
-  _o_: Ours               _t_: Theirs               _a_: All                _b_: Base
-  _O_: Ours Whole File    _T_: Theirs Whole file    _A_: All Whole File     _B_: Base Whole File
-
-  _S_: Stage File
- ^ ^                      _m_: Finish Merge      _q_: Exit
-]]
-
-	return {
-		name = "Git Merge Conflict",
-		hint = hint,
-		config = {
-			color = "pink",
-			invoke_on_body = true,
-			hint = {
-				border = "rounded",
-				position = "bottom",
+				type = "window",
+				float_opts = {
+					border = "rounded",
+				},
 			},
 		},
-		body = "<space>gx",
-		heads = {
-			{ "b", actions.conflict_choose("base"), { desc = "Choose Base" } },
-			{ "B", actions.conflict_choose_all("base"), { desc = "Choose Base All File" } },
-			{ "o", actions.conflict_choose("ours"), { desc = "Choose Ours" } },
-			{ "O", actions.conflict_choose_all("ours"), { desc = "Choose Ours All File" } },
-			{ "t", actions.conflict_choose("theirs"), { desc = "Choose Theirs" } },
-			{ "T", actions.conflict_choose_all("theirs"), { desc = "Choose Theirs All File" } },
-			{ "a", actions.conflict_choose("all"), { desc = "Choose All" } },
-			{ "A", actions.conflict_choose_all("all"), { desc = "Choose All for All File" } },
-			{ "m", "<cmd>Gin commit --<cr>", { desc = "Finish Merge" } },
-			{ "S", "<cmd>Git add %<cr>", { desc = "Stage file" } },
-			{ "q", nil, { exit = true, nowait = true, desc = "Exit" } },
-		},
-	}
-end
-
-function M.dap_menu()
-	local dap = require("dap")
-	local dapui = require("dapui")
-	local dap_widgets = require("dap.ui.widgets")
-
-	local hint = [[
- _t_: Toggle Breakpoint             _R_: Run to Cursor
- _s_: Start                         _E_: Evaluate Input
- _c_: Continue                      _C_: Conditional Breakpoint
- _b_: Step Back                     _U_: Toggle UI
- _d_: Disconnect                    _S_: Scopes
- _e_: Evaluate                      _X_: Close
- _g_: Get Session                   _i_: Step Into
- _H_: Hover Variables               _o_: Step Over
- _r_: Toggle REPL                   _u_: Step Out
- _x_: Terminate                     _p_: Pause
- ^ ^               _q_: Quit
-]]
-
-	return {
-		name = "Debug",
-		hint = hint,
-		config = {
-			color = "pink",
-			invoke_on_body = true,
-			hint = {
-				border = "rounded",
-				position = "middle-right",
-			},
-		},
-		mode = "n",
-		body = "<space>r.",
-    -- stylua: ignore
-    heads = {
-      { "C", function() dap.set_breakpoint(vim.fn.input "[Condition] > ") end, desc = "Conditional Breakpoint", },
-      { "E", function() dapui.eval(vim.fn.input "[Expression] > ") end,        desc = "Evaluate Input", },
-      { "R", function() dap.run_to_cursor() end,                               desc = "Run to Cursor", },
-      { "S", function() dap_widgets.scopes() end,                              desc = "Scopes", },
-      { "U", function() dapui.toggle() end,                                    desc = "Toggle UI", },
-      { "X", function() dap.close() end,                                       desc = "Quit", },
-      { "b", function() dap.step_back() end,                                   desc = "Step Back", },
-      { "c", function() dap.continue() end,                                    desc = "Continue", },
-      { "d", function() dap.disconnect() end,                                  desc = "Disconnect", },
-      {
-        "e",
-        function() dapui.eval() end,
-        mode = { "n", "v" },
-        desc =
-        "Evaluate",
-      },
-      { "g", function() dap.session() end,           desc = "Get Session", },
-      { "H", function() dap_widgets.hover() end,     desc = "Hover Variables", },
-      { "i", function() dap.step_into() end,         desc = "Step Into", },
-      { "o", function() dap.step_over() end,         desc = "Step Over", },
-      { "p", function() dap.pause() end,             desc = "Pause", },
-      { "r", function() dap.repl.toggle() end,       desc = "Toggle REPL", },
-      { "s", function() dap.continue() end,          desc = "Start", },
-      { "t", function() dap.toggle_breakpoint() end, desc = "Toggle Breakpoint", },
-      { "u", function() dap.step_out() end,          desc = "Step Out", },
-      { "x", function() dap.terminate() end,         desc = "Terminate", },
-      { "q", nil, {
-        exit = true,
-        nowait = true,
-        desc = "Exit"
-      } },
-    },
-	}
-end
-
-function M.lsp_menu()
+	})
 	local cmd = require("hydra.keymap-util").cmd
-	return {
+	local lsp_hydra, dap_hydra, repl_hydra, test_hydra = nil, nil, nil, nil
+
+	local mode_hydras = {}
+
+	local hydra_hint_func = function(mode)
+		return function()
+			return string.format("[%s]", vim.g.__miversen_extended_mode == mode and "x" or "")
+		end
+	end
+
+	-- TODO: For some reason, we actually have to quit the mode from within the mode
+	-- Hydra:exit doesn't seem to properly close out the hydra...
+	local hydra_disable_function = function(mode, is_exiting)
+		if mode == vim.g.__miversen_extended_mode then
+			vim.g.__miversen_extended_mode = nil
+		end
+
+		if mode_hydras[mode] and mode_hydras[mode].exit and not is_exiting then
+			mode_hydras[mode]:close()
+		end
+	end
+
+	local hydra_enable_function = function(mode)
+		vim.g.__miversen_extended_mode = mode
+		if not mode then
+			for mode_name, _ in pairs(mode_hydras) do
+				hydra_disable_function(mode_name)
+			end
+			return
+		end
+		if mode_hydras[mode] and mode_hydras[mode].activate then
+			mode_hydras[mode]:activate()
+		end
+	end
+
+	local hydra_toggle_function = function(mode)
+		return function()
+			if vim.g.__miversen_extended_mode == mode or not mode then
+				hydra_disable_function(mode)
+			else
+				hydra_enable_function(mode)
+			end
+		end
+	end
+	lsp_hydra = Hydra({
 		name = "LSP Mode",
-		mode = { "n" },
+		mode = { "n", "v" },
+		hint = [[
+^                 LSP
+^
+-------------Token actions-------------
+_r_: Rename current token
+_a_: Code Actions
+_s_: Show Definitions
+_e_: Hover Help
+_n_: Show References of current token
+_o_: Show implementation of current token
+_D_: Show declerations of current token
+^
+-------------Buffer actions------------
+_d_: Show buffer diagnostics
+_w_: Show workspace diagnostics
+_f_: Format Buffer
+^
+---------------------------------------
+_<Esc>_: Close this window
+_?_: Toggle this help
+_q_: Quit Mode
+]],
 		config = {
 			color = "pink",
 			invoke_on_body = true,
 			hint = {
 				type = "window",
-				position = "bottom-right",
-				border = "rounded",
-				show_name = true,
+				position = "middle-right",
+				float_opts = {
+					border = "rounded",
+				},
+				hide_on_load = true,
 			},
+			on_exit = function()
+				hydra_disable_function("lsp", true)
+			end,
 		},
-		hint = [[
-    LSP
-^
-Common Actions
-- _h_: Show Hover Doc
-- _f_: Format Buffer
-- _a_: Code Actions
-- _s_: Jump to Definition
-- _d_: Show Diagnostics
-- _w_: Show Workspace Diagnostics
-^
-Help
-- _e_: Show Declarations
-- _D_: Show Type Definition
-- _j_: Show Sig Help
-- _o_: Show Implementation
-- _r_: Show References
-^
-_;_/_q_/_<Esc>_: Exit Hydra
-]],
-		body = "<A-z>",
 		heads = {
-			{ "s", cmd("TroubleToggle lsp_definitions"), { desc = "Jump to Definition", silent = true } },
-			{ "h", cmd("Lspsaga hover_doc"), { desc = "Show Hover Doc", silent = true } },
-			{ "o", cmd("TroubleToggle lsp_implementations"), { desc = "Show Implementations", silent = true } },
-			{ "j", vim.lsp.buf.signature_help, { desc = "Show Sig Help", silent = true } },
-			{ "r", cmd("TroubleToggle lsp_references"), { desc = "Show References", silent = true } },
+			{
+				"a",
+				function()
+					vim.lsp.buf.code_action()
+				end,
+				{
+					desc = "Code actions for current token",
+					silent = true,
+					exit = false,
+					private = true,
+				},
+			},
+			{
+				"s",
+				cmd("Glance definitions"),
+				{
+					desc = "Definitions for current token",
+					silent = true,
+					exit = false,
+					private = true,
+				},
+			},
+			{
+				"r",
+				function()
+					vim.lsp.buf.rename()
+				end,
+				{
+					desc = "Rename the current token",
+					silent = true,
+					exit = false,
+					private = true,
+				},
+			},
+			{
+				"d",
+				cmd("Glance document_diagnostics"),
+				{
+					desc = "Show current diagnostics for buffer",
+					silent = true,
+					exit = false,
+					private = true,
+				},
+			},
+			{
+				"w",
+				cmd("Glace workspace_diagnostics"),
+				{
+					desc = "Show workspace diagnostics",
+					silent = true,
+					exit = true,
+					private = true,
+				},
+			},
 			{
 				"f",
 				function()
 					vim.lsp.buf.format({ async = true })
 				end,
-				{ desc = "Format Buffer", silent = true },
+				{
+					desc = "Format current buffer",
+					silent = true,
+					exit = false,
+					private = true,
+				},
 			},
-			{ "a", vim.lsp.buf.code_action, { desc = "Show Code Actions", silent = true } },
-			{ "d", cmd("TroubleToggle document_diagnostics"), { desc = "Show Diagnostics", silent = true } },
 			{
-				"w",
-				cmd("TroubleToggle workspace_diagnostics"),
-				{ desc = "Show Workspace Diagnostics", silent = true },
+				"n",
+				cmd("Glance references"),
+				{
+					desc = "Show references to token",
+					silent = true,
+					exit = false,
+					private = true,
+				},
 			},
-			{ "D", cmd("TroubleToggle lsp_definitions"), { desc = "Show Type Definition", silent = true } },
-			{ "e", vim.lsp.buf.declaration, { desc = "Show Declaration", silent = true } },
-			{ ";", nil, { desc = "quit", exit = true, nowait = true } },
-			{ "q", nil, { desc = "quit", exit = true, nowait = true } },
-			{ "<Esc>", nil, { desc = "quit", exit = true, nowait = true } },
+			{
+				"e",
+				function()
+					require("pretty_hover").hover()
+				end,
+				{
+					desc = "Show Hover Doc",
+					silent = true,
+					exit = false,
+					private = true,
+				},
+			},
+			{
+				"D",
+				cmd("Glance type_definitions"),
+				{
+					desc = "Shows current token declerations",
+					silent = true,
+					exit = false,
+					private = true,
+				},
+			},
+			{
+				"o",
+				cmd("Glance implementations"),
+				{
+					desc = "Show Implementations of current token",
+					silent = true,
+					exit = false,
+					private = true,
+				},
+			},
+			{
+				"?",
+				function()
+					if lsp_hydra.hint.win then
+						lsp_hydra.hint:close()
+					else
+						lsp_hydra.hint:show()
+					end
+				end,
+				{
+					private = true,
+					silent = true,
+				},
+			},
+			{
+				"<Esc>",
+				function()
+					if lsp_hydra.hint.win then
+						lsp_hydra.hint:close()
+					end
+				end,
+				{
+					private = true,
+					silent = true,
+				},
+			},
+			{
+				"q",
+				nil,
+				{
+					exit = true,
+					silent = true,
+				},
+			},
 		},
-	}
-end
+	})
+	dap_hydra = Hydra({
+		name = "DAP",
+		mode = { "n", "v" },
+		config = {
+			color = "pink",
+			invoke_on_body = true,
+			hint = {
+				type = "window",
+				position = "middle-right",
+				float_opts = {
+					border = "rounded",
+				},
+				-- hide_on_load = true,
+			},
+			on_exit = function()
+				hydra_disable_function("dap", true)
+			end,
+		},
+		body = "<leader>r.",
+		hint = [[
+^              DAP
+^
+-------------Setup--------------
+_t_: Toggle UI
+_L_: Launch DAP Server
+_S_: Stop Debugger
+_r_: Open DAP REPL
+^
+-----------Navigation-----------
+_u_: Step **OUT** of code block
+_o_: Step **OVER** code block
+_i_: Step **INTO** code block
+_c_: Continue to Cursor
+^
+-----------Breakpoint-----------
+_b_: Toggle Breakpoint
+_B_: Toggle Conditional Breakpoint
+_C_: Continue after breakpoint
+^
+--------------------------------
+_<Esc>_: Close this window
+_?_: Toggle this help
+_q_: Quit Mode
+]],
 
-function M.quick_menu()
-	local cmd = require("hydra.keymap-util").cmd
-	return {
-		name = "Quick Menu",
+		heads = {
+			{
+				"t",
+				function()
+					require("dapui").toggle()
+				end,
+				{
+					desc = "Toggles Dap UI",
+					exit = false,
+					private = true,
+					silent = true,
+				},
+			},
+			{
+				"b",
+				function()
+					require("dap").toggle_breakpoint()
+				end,
+				{
+					desc = "Set Breakpoint",
+					exit = false,
+					private = true,
+					silent = true,
+				},
+			},
+			{
+				"B",
+				function()
+					local callback = function(output)
+						if output then
+							require("dap").set_breakpoint(output)
+						end
+					end
+					vim.ui.input({
+						prompt = "Condition: ",
+					}, callback)
+				end,
+				{
+					desc = "Set Conditional Breakpoint",
+					exit = false,
+					private = true,
+					silent = true,
+				},
+			},
+			{
+				"C",
+				function()
+					require("dap").continue()
+				end,
+				{
+					desc = "Continue from breakpoint",
+					exit = false,
+					private = true,
+					silent = true,
+				},
+			},
+			{
+				"S",
+				function()
+					local dap = require("dap")
+					dap.terminate({}, {
+						terminateDebugee = true,
+					}, function()
+						dap.close()
+					end)
+				end,
+				{
+					desc = "Stop Debugger",
+					exit = false,
+					private = true,
+					silent = true,
+				},
+			},
+			{
+				"u",
+				function()
+					require("dap").step_out()
+				end,
+				{
+					desc = "Step out of code block",
+					exit = false,
+					private = true,
+					silent = true,
+				},
+			},
+			{
+				"o",
+				function()
+					require("dap").step_over()
+				end,
+				{
+					desc = "Step **over** code block",
+					exit = false,
+					private = true,
+					silent = true,
+				},
+			},
+			{
+				"c",
+				function()
+					require("dap").run_to_cursor()
+				end,
+				{
+					desc = "Continue To Cursor",
+					exit = false,
+					private = true,
+					silent = true,
+				},
+			},
+			{
+				"i",
+				function()
+					require("dap").step_into()
+				end,
+				{
+					desc = "Step **into** code block",
+					exit = false,
+					private = true,
+					silent = true,
+				},
+			},
+			{
+				"L",
+				function()
+					local filetype = vim.api.nvim_buf_get_option(0, "filetype")
+					local dap = require("dap")
+					if filetype == "" then
+						filetype = "nil"
+					end
+					if dap and dap.launch_server and dap.launch_server[filetype] then
+						dap.launch_server[filetype]()
+					else
+						vim.notify(
+							string.format("No DAP Launch server configured for filetype %s", filetype),
+							vim.log.levels.WARN
+						)
+					end
+				end,
+				{
+					desc = "Launch DAP server",
+					exit = false,
+					private = true,
+					silent = true,
+				},
+			},
+			{
+				"r",
+				function()
+					require("dap").repl.open()
+				end,
+				{
+					desc = "Open DAP REPL",
+					exit = false,
+					private = true,
+					silent = true,
+				},
+			},
+			{
+				"?",
+				function()
+					if dap_hydra.hint.win then
+						dap_hydra.hint:close()
+					else
+						dap_hydra.hint:show()
+					end
+				end,
+				{
+					private = true,
+					silent = true,
+				},
+			},
+			{
+				"<Esc>",
+				function()
+					if dap_hydra.hint.win then
+						dap_hydra.hint:close()
+					end
+				end,
+				{
+					private = true,
+					silent = true,
+				},
+			},
+			{
+				"q",
+				nil,
+				{
+					exit = true,
+					silent = true,
+				},
+			},
+		},
+	})
+
+	test_hydra = Hydra({
+		name = "Testing",
+		mode = { "n", "v" },
+		config = {
+			color = "pink",
+			invoke_on_body = true,
+			hint = {
+				type = "window",
+				position = "middle-right",
+				float_opts = {
+					border = "rounded",
+				},
+				hide_on_load = true,
+			},
+			on_exit = function()
+				hydra_disable_function("test", true)
+			end,
+		},
+		hint = [[
+^          Testing
+^
+-------------------------------
+_t_: Toggle unit test UI
+^
+_r_: Run unit tests for this file
+_a_: Run all unit tests
+_d_: Run unit tests in DAP mode
+^
+_l_: Re-run last unit test(s)
+^
+_s_: Stop all tests
+^
+-------------------------------
+_<Esc>_: Close this window
+_?_: Toggle this help
+_q_: Quit Mode
+]],
+
+		heads = {
+			{
+				"t",
+				function()
+					require("neotest").output_panel.toggle()
+				end,
+				{
+					desc = "Toggles unit test UI",
+					exit = false,
+					private = true,
+					silent = true,
+				},
+			},
+			{
+				"r",
+				function()
+					require("neotest").run.run(vim.fn.expand("%"))
+				end,
+				{
+					desc = "Run unit tests for file",
+					exit = false,
+					private = true,
+					silent = true,
+				},
+			},
+			{
+				"a",
+				function()
+					require("neotest").run.run()
+				end,
+				{
+					desc = "Run all unit tests",
+					exit = false,
+					private = true,
+					silent = true,
+				},
+			},
+			{
+				"d",
+				function()
+					require("neotest").run.run({ strategy = "dap" })
+				end,
+				{
+					desc = "Run unit tests in DAP mode",
+					exit = false,
+					private = true,
+					silent = true,
+				},
+			},
+			{
+				"l",
+				function()
+					require("neotest").run.run_last()
+				end,
+				{
+					desc = "Rerun previous unit test",
+					exit = false,
+					private = true,
+					silent = true,
+				},
+			},
+			{
+				"s",
+				function()
+					require("neotest").run.stop()
+				end,
+				{
+					desc = "Stop unit tests",
+					exit = false,
+					private = true,
+					silent = true,
+				},
+			},
+			{
+				"?",
+				function()
+					if test_hydra.hint.win then
+						test_hydra.hint:close()
+					else
+						test_hydra.hint:show()
+					end
+				end,
+				{
+					private = true,
+					silent = true,
+				},
+			},
+			{
+				"<Esc>",
+				function()
+					if test_hydra.hint.win then
+						test_hydra.hint:close()
+					end
+				end,
+				{
+					private = true,
+					silent = true,
+				},
+			},
+			{
+				"q",
+				nil,
+				{
+					exit = true,
+					silent = true,
+				},
+			},
+		},
+	})
+
+	repl_hydra = Hydra({
+		name = "REPL",
+		mode = { "n", "v" },
+		config = {
+			color = "pink",
+			invoke_on_body = true,
+			hint = {
+				type = "window",
+				position = "middle-right",
+				float_opts = {
+					border = "rounded",
+				},
+				hide_on_load = true,
+			},
+			on_exit = function()
+				hydra_disable_function("repl", true)
+			end,
+		},
+		hint = [[
+^          REPL
+^
+--------------------------------
+_<C-S>_: Send current file to REPL
+_r_: Restart REPL
+^
+-------------------------------
+_<Esc>_: Close this window
+_?_: Toggle this help
+_q_: Quit Mode
+]],
+
+		heads = {
+			{
+				"<C-s>",
+				function()
+					vim.cmd("%SnipRun")
+				end,
+				{
+					desc = "Writes current file to repl",
+					exit = false,
+					private = true,
+					silent = true,
+				},
+			},
+			{
+				"r",
+				function()
+					require("sniprun").reset()
+				end,
+				{
+					desc = "Resets repl",
+					exit = false,
+					private = true,
+					silent = true,
+				},
+			},
+			{
+				"?",
+				function()
+					if test_hydra.hint.win then
+						test_hydra.hint:close()
+					else
+						test_hydra.hint:show()
+					end
+				end,
+				{
+					private = true,
+					silent = true,
+				},
+			},
+			{
+				"<Esc>",
+				function()
+					if test_hydra.hint.win then
+						test_hydra.hint:close()
+					end
+				end,
+				{
+					private = true,
+					silent = true,
+				},
+			},
+			{
+				"q",
+				nil,
+				{
+					exit = true,
+					silent = true,
+				},
+			},
+		},
+	})
+	Hydra({
+		name = "Mode",
+		mode = { "n", "v" },
+		hint = [[
+^ ^ Extended Mode
+^
+^ _d_ %{dap_mode} DAP
+^ _r_ %{repl_mode} REPL
+^ _l_ %{lsp_mode} LSP
+^ _t_ %{test_mode} Testing
+^ _c_ Clear mode
+^
+^ _q_/_;_ Quit
+        ]],
+		config = {
+			hint = {
+				type = "window",
+				position = "middle",
+				float_opts = {
+					border = "rounded",
+				},
+				-- hide_on_load = true,
+				funcs = {
+					dap_mode = hydra_hint_func("dap"),
+					repl_mode = hydra_hint_func("repl"),
+					lsp_mode = hydra_hint_func("lsp"),
+					test_mode = hydra_hint_func("test"),
+				},
+			},
+			color = "blue",
+			invoke_on_body = true,
+		},
+		body = ";",
+		heads = {
+			{
+				"d",
+				hydra_toggle_function("dap"),
+				{
+					private = true,
+					on_key = false,
+				},
+			},
+			{
+				"r",
+				hydra_toggle_function("repl"),
+				{
+					private = true,
+					on_key = false,
+				},
+			},
+			{
+				"l",
+				hydra_toggle_function("lsp"),
+				{
+					private = true,
+					on_key = false,
+				},
+			},
+			{
+				"t",
+				hydra_toggle_function("test"),
+				{
+					private = true,
+					on_key = false,
+				},
+			},
+			{
+				"c",
+				hydra_toggle_function(),
+				{
+					private = true,
+					on_key = false,
+				},
+			},
+			{
+				"q",
+				nil,
+				{
+					exit = true,
+				},
+			},
+			{
+				";",
+				nil,
+				{
+					exit = true,
+				},
+			},
+		},
+	})
+	mode_hydras = {
+		lsp = lsp_hydra,
+		dap = dap_hydra,
+		test = test_hydra,
+		repl = repl_hydra,
+	}
+
+	---- Non mode hydra stuffs
+	Hydra({
+		name = "Quick/Common Commands",
 		mode = { "n" },
 		hint = [[
-        Quick Menu
+^                                Quick/Common Commands
 ^
-_f_: Show Terminal (float)
-_v_: Open Terminal (vertical)
-_h_: Open Terminal (horizontal)
-
-_x_: Open Quickfix
-_l_: Open Location List
-
-_s_: Buffer Fuzzy Search
-_o_: Open Symbols Outline
-
-_t_: Show Help Tags
-_k_: Show Keymaps
-_c_: Show Vim Commands
-_m_: Show Man Pages
+^_f_: Show Filesystem        _t_: Show Terminal (float)       _x_: Open Quickfix
+^_s_: Buffer Fuzzy Search    _o_: Open Horizontal Terminal    _p_: Open Vertical Terminal
+^_h?_: Show Help Tags        _c?_: Show Vim Commands          _m?_: Show Man Pages
+^_l_: Open Location List
 ^
-^ ^  _q_/_<Esc>_: Exit Hydra
-    ]],
+^                                _q_/_<Esc>_: Exit Hydra
+]],
 		config = {
 			color = "teal",
 			invoke_on_body = true,
 			hint = {
 				type = "window",
 				position = "bottom",
-				border = "rounded",
+				float_opts = {
+					border = "rounded",
+				},
 				show_name = true,
 			},
 		},
-		body = "<A-q>",
+		body = "t",
 		heads = {
-			{ "t", cmd("Telescope help_tags"), {
-				desc = "Open Help Tags",
-				silent = true,
-			} },
 			{
-				"k",
-				":lua require('telescope.builtin').keymaps()<CR>",
+				"f",
+				cmd("Neotree filesystem reveal right"),
 				{
-					desc = "Open Neovim Keymaps",
+					desc = "Opens Neotree File Explorer",
 					silent = true,
 				},
 			},
 			{
-				"c",
+				"h?",
+				cmd("Telescope help_tags"),
+				{
+					desc = "Open Help Tags",
+					silent = true,
+				},
+			},
+			{
+				"c?",
 				cmd("Telescope commands"),
 				{
 					desc = "Open Available Telescope Commands",
 					silent = true,
 				},
 			},
-			{ "m", cmd("Telescope man_pages"), {
-				desc = "Opens Man Pages",
-				silent = true,
-			} },
 			{
 				"s",
 				cmd("Telescope current_buffer_fuzzy_find skip_empty_lines=true"),
@@ -324,60 +884,73 @@ _m_: Show Man Pages
 				},
 			},
 			{
+				"m?",
+				cmd("Telescope man_pages"),
+				{
+					desc = "Opens Man Pages",
+					silent = true,
+				},
+			},
+			{
+				"x",
+				cmd("TroubleToggle quickfix"),
+				{
+					desc = "Opens Quickfix",
+					silent = true,
+				},
+			},
+			{
+				"l",
+				cmd("TroubleToggle loclist"),
+				{
+					desc = "Opens Location List",
+					silent = true,
+				},
+			},
+			{
+				"t",
+				cmd("CFloatTerm"),
+				{
+					desc = "Floating Term",
+					silent = true,
+				},
+			},
+			{
 				"o",
-				cmd("Telescope aerial"),
+				cmd("CSplitTerm horizontal"),
 				{
-					desc = "Opens Symbols Outline",
+					desc = "Horizontal Term",
+					silent = true,
+				},
+			},
+			{
+				"p",
+				cmd("CSplitTerm vertical"),
+				{
+					desc = "Vertical Term",
+					silent = true,
+				},
+			},
+			{
+				"q",
+				nil,
+				{
+					desc = "quit",
 					exit = true,
-					silent = true,
-				},
-			},
-			{ "x", cmd("TroubleToggle quickfix"), {
-				desc = "Opens Quickfix",
-				silent = true,
-			} },
-			{ "l", cmd("TroubleToggle loclist"), {
-				desc = "Opens Location List",
-				silent = true,
-			} },
-
-			{
-				"f",
-				cmd("ToggleTerm direction=float"),
-				{
-					desc = "Floating Terminal",
-					silent = true,
+					nowait = true,
 				},
 			},
 			{
-				"v",
-				cmd("ToggleTerm direction=vertical"),
+				"<Esc>",
+				nil,
 				{
-					desc = "Vertical Terminal",
-					silent = true,
+					desc = "quit",
+					exit = true,
+					nowait = true,
 				},
 			},
-			{
-				"h",
-				cmd("ToggleTerm direction=horizontal"),
-				{
-					desc = "Horizontal Terminal",
-					silent = true,
-				},
-			},
-
-			{ "q", nil, {
-				desc = "quit",
-				exit = true,
-				nowait = true,
-			} },
-			{ "<Esc>", nil, {
-				desc = "quit",
-				exit = true,
-				nowait = true,
-			} },
 		},
-	}
+	})
 end
 
 return M
