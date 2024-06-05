@@ -22,4 +22,9 @@ return {
 		event = "VeryLazy",
 		config = require("plugins-options.mini-indentscope").config,
 	},
+  {
+    'norcalli/nvim-colorizer.lua',
+    event="VeryLazy",
+    config=true
+  }
 }

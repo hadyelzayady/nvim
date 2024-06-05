@@ -10,6 +10,7 @@ function M.setup()
 	-- 	vim.o.scrolloff = 999 - vim.o.scrolloff
 	-- end)
 	map("n", "<leader>th", "<cmd>TSToggle highlight<CR>", { desc = "Toggle Treesitter highlight" })
+	map("n", "<leader>tc", "<cmd>ColorizerToggle<CR>", { desc = "Toggle Colorizer" })
 	-- end Nvim options Toggle
 
 	map("n", "<leader>h", "<cmd>nohlsearch<CR>", { desc = "Clear search highlights" })
