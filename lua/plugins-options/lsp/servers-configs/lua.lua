@@ -2,6 +2,7 @@ local M = {}
 
 function M.setup()
   require 'lspconfig'.lua_ls.setup {
+		on_attach = require("plugins-options.lsp.lspconfig").on_attach,
     capabilities = require("plugins-options.lsp.lspconfig").capabilities,
     settings = {
       Lua = {

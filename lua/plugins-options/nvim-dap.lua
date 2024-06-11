@@ -1,6 +1,16 @@
 local M = {}
 function M.config()
 	local dap = require("dap")
+
+	dap.configurations.java = {
+		{
+			type = "java",
+			request = "attach",
+			name = "Debug (Attach) - Remote",
+			hostName = "127.0.0.1",
+			port = 5005,
+		},
+	}
 	dapUI()
 	dap.adapters.lldb = {
 		type = "executable",
@@ -27,6 +37,43 @@ function M.config()
 		table.insert(commands, 1, script_import)
 
 		return commands
+	end
+	dap.adapters.node2 = {
+		type = "executable",
+		command = "node",
+		args = { vim.fn.stdpath("data") .. "/mason/packages/node-debug2-adapter/out/src/nodeDebug.js" },
+	}
+	dap.adapters["pwa-node"] = {
+		type = "server",
+		host = "localhost",
+		port = "4711",
+		executable = {
+			command = "node",
+			-- 💀 Make sure to update this path to point to your installation
+			args = { vim.fn.stdpath("data") .. "/lazy/vscode-js-debug/out/src/vsDebugServer.js", "4711" },
+		},
+	}
+	dap.adapters.node2 = {
+		type = "executable",
+		command = "node",
+		args = { vim.fn.stdpath("data") .. "/mason/packages/node-debug2-adapter/out/src/nodeDebug.js" },
+	}
+	for _, language in ipairs({ "typescript", "javascript", "typescriptreact", "javascriptreact" }) do
+		require("dap").configurations[language] = {
+			-- type = "node2",
+			-- request = "launch",
+			program = "${workspaceFolder}/node_modules/.bin/jest",
+			args = { "--runInBand" },
+			-- cwd = vim.fn.getcwd(),
+			-- sourceMaps = true,
+			protocol = "inspector",
+			console = "integratedTerminal",
+			type = "pwa-node",
+			request = "launch",
+			name = "Launch file",
+			-- program = "${file}",
+			cwd = "${workspaceFolder}",
+		}
 	end
 end
 

@@ -22,9 +22,14 @@ return {
 		event = "VeryLazy",
 		config = require("plugins-options.mini-indentscope").config,
 	},
-  {
-    'norcalli/nvim-colorizer.lua',
-    event="VeryLazy",
-    config=true
-  }
+	{
+		"norcalli/nvim-colorizer.lua",
+		event = "VeryLazy",
+		config = true,
+	},
+	{
+		"nvim-treesitter/nvim-treesitter-context",
+		cmd = { "TSContextEnable", "TSContextDisable", "TSContextToggle" },
+		config = require("plugins-options.treesitter-context").config,
+	},
 }

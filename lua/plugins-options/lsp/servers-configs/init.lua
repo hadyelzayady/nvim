@@ -12,6 +12,7 @@ function M.setup()
 	require("plugins-options.lsp.servers-configs.eslint").setup()
 	require("plugins-options.lsp.servers-configs.biome").setup()
 	require("plugins-options.lsp.servers-configs.yaml").setup()
+	require("plugins-options.lsp.servers-configs.sql").setup()
 	require("plugins-options.lsp.servers-configs.rust").setup()
 end
 

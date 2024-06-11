@@ -11,6 +11,7 @@ function M.setup()
 	-- end)
 	map("n", "<leader>th", "<cmd>TSToggle highlight<CR>", { desc = "Toggle Treesitter highlight" })
 	map("n", "<leader>tc", "<cmd>ColorizerToggle<CR>", { desc = "Toggle Colorizer" })
+	map("n", "<leader>tC", "<cmd>TSContextToggle<CR>", { desc = "Toggle Context" })
 	-- end Nvim options Toggle
 
 	map("n", "<leader>h", "<cmd>nohlsearch<CR>", { desc = "Clear search highlights" })
@@ -25,17 +26,17 @@ function M.setup()
 	map("n", "<leader>E", "<cmd>NvimTreeFindFile<CR>", { desc = "NvimTree Find File Toggle" })
 	map("n", "<leader>e", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle NvimTree" })
 	map("n", "<c-,>", function()
-    require("trouble").next()
+		require("trouble").next()
 		vim.cmd("silent! cnext")
 	end, { desc = "Next Quickfix Item" })
 	map("n", "<c-.>", function()
 		vim.cmd("silent! cprevious")
-    require("trouble").prev()
+		require("trouble").prev()
 	end, { desc = "Prev Quickfix Item" })
 	map("n", "<c-q>", function()
 		vim.cmd("cclose")
-		vim.cmd("silent! TroubleClose")
-		vim.cmd("silent! lua require('neogit').close()")
+		require("neogit").close()
+		require("trouble").close()
 	end, { desc = "Close Common Splits" })
 
 	map("n", "<C-e>", "<cmd>FzfLua oldfiles<cr>", { desc = "Recent Files" })
@@ -48,8 +49,18 @@ function M.setup()
 
 	map("n", "<leader>cS", "<cmd>AerialToggle<cr>", { silent = true, desc = "Symbole Outline" })
 	map("n", "<leader>cs", "<cmd>AerialNavToggle<cr>", { silent = true, desc = "Symbole Nav" })
-	map("n", "<leader>xx", "<cmd>TroubleToggle document_diagnostics<cr> ", { silent = true, desc = "Format" })
-	map("n", "<leader>xX", "<cmd>TroubleToggle workspace_diagnostics<cr> ", { silent = true, desc = "Format" })
+	map(
+		"n",
+		"<leader>xx",
+		"<cmd>TroubleToggle document_diagnostics<cr> ",
+		{ silent = true, desc = "Document Diagnostics" }
+	)
+	map(
+		"n",
+		"<leader>xX",
+		"<cmd>TroubleToggle workspace_diagnostics<cr> ",
+		{ silent = true, desc = "Workspace Diagnostics" }
+	)
 	-- end navigation
 
 	-- search
@@ -79,13 +90,13 @@ function M.setup()
 	-- end jumping around
 
 	-- Git
-	map("n", "<leader>gD", ":DiffviewOpen<cr>", { desc = "Diff" })
-	map("n", "<leader>gd", ":DiffviewOpen -- %<cr>", { desc = "Diff file" })
+	map("n", "<leader>gd", ":DiffviewOpen<cr>", { desc = "Diff" })
+	map("n", "<leader>gD", ":DiffviewOpen -- %<cr>", { desc = "Diff file" })
 	map("n", "<leader>gc", "<cmd>FzfLua git_branches<CR>", { desc = "Checkout Branch" })
 	map("n", "<leader>gh", ":DiffviewFileHistory %<CR>", { desc = "Buffer History" })
 	map("v", "<leader>gh", ":'<,'>DiffviewFileHistory %<CR>", { desc = "Range Buffer History" })
 	map("n", "<leader>gn", "<cmd>Neogit<CR>", { desc = "Neogit" })
-  map("n", "<leader>gg", "<cmd>Lazygit<CR>", { desc = "Lazygit", silent = true })
+	map("n", "<leader>gg", "<cmd>Lazygit<CR>", { desc = "Lazygit", silent = true })
 	map("n", "<leader>gb", ":Gitsigns blame_line<cr>", { desc = "Blame Current Line" })
 	map("n", "<leader>gB", ":Gitsigns toggle_current_line_blame<cr>", { desc = "Blame Toggle Show Current Line" })
 	map("n", "<leader>gp", ":Gitsigns preview_hunk_inline<cr>", { desc = "Preview Hunk Inline" })
@@ -93,7 +104,7 @@ function M.setup()
 	map("n", "<leader>gk", ":silent! Gitsigns prev_hunk<cr>", { desc = "Prev Hunk" })
 	map("n", "]g", ":Gitsigns next_hunk<cr>", { desc = "Next Hunk" })
 	map("n", "[g", ":Gitsigns prev_hunk<cr>", { desc = "Prev Hunk" })
-	map("n", "<leader>gr", ":Gitsigns reset_hunk<cr>", { desc = "Reset Hunk", silent = true })
+	map({ "n", "v" }, "<leader>gr", ":Gitsigns reset_hunk<cr>", { desc = "Reset Hunk", silent = true })
 	map("n", "<leader>gR", ":Gitsigns reset_buffer<cr>", { desc = "Reset Buffer" })
 	map("n", "<leader>gs", ":Gitsigns stage_hunk<cr>", { desc = "Stage Hunk" })
 	map("n", "<leader>gS", ":Gitsigns undo_stage_hunk<cr>", { desc = "UnStage Hunk" })
@@ -111,6 +122,26 @@ function M.setup()
 	-- format
 	map({ "n", "v" }, "<leader>lf", require("utils.lsp.operations").format, { silent = true, desc = "Format" })
 	M.lsp()
+end
+
+function M.neotest()
+	map("n", "<leader>rtt", function()
+		require("neotest").run.run()
+	end, { desc = "Run Nearest Test" })
+	map("n", "<leader>rtf", function()
+		require("neotest").run.run(vim.fn.expand("%"))
+	end, { desc = "Run Test File" })
+	map("n", "<leader>rtd", function()
+		require("neotest").run.run({ strategy = "dap" })
+	end, { desc = "Debug Test File" })
+	map("n", "<leader>rts", function()
+		require("neotest").run.stop()
+	end, { desc = "Stop Nearest Test" })
+	map("n", "<leader>rta", function()
+		require("neotest").run.attach()
+	end, { desc = "Attach Nearest Test" })
+	map("n", "<leader>rto", "<cmd>Neotest output-panel<cr>", { desc = "Show Output Panel" })
+	map("n", "<leader>rtO", "<cmd>Neotest output<cr>", { desc = "Show Output" })
 end
 
 function M.lsp()

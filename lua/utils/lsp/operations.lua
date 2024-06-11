@@ -47,7 +47,7 @@ function M.goto_declaration()
 end
 
 function M.format()
-	require("conform").format({ async = true, lsp_fallback = true })
+	require("conform").format({ async = true, lsp_fallback = false })
 end
 
 function M.rename()

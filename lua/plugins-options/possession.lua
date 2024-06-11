@@ -4,7 +4,7 @@ function M.config()
 	require("possession").setup({
 		autosave = {
 			current = false, -- or fun(name): boolean
-			tmp = true, -- or fun(): boolean
+			tmp = false, -- or fun(): boolean
 			tmp_name = function()
 				return vim.fs.basename(vim.loop.cwd() or "")
 			end, -- or fun(): string

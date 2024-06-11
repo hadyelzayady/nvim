@@ -16,7 +16,8 @@ function M.config()
 	})
 
 	require("lspconfig")["typescript-tools"].setup({
-		on_attach = function(client)
+		on_attach = function(client, buffer)
+			require("plugins-options.lsp.lspconfig").on_attach(client, buffer)
 			-- client.server_capabilities.semanticTokensProvider = nil
 			client.server_capabilities.documentHighlightProvider = nil
 		end,

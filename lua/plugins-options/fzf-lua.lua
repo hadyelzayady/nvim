@@ -4,7 +4,7 @@ function M.config()
 	local fzf = require("fzf-lua")
 	local actions = require("fzf-lua.actions")
 	fzf.setup({
-		"max-perf",
+		"default",
 		actions = {
 			files = {
 				["default"] = actions.file_edit_or_qf,
@@ -47,6 +47,9 @@ function M.config()
 			fzf_opts = {
 				["--history"] = vim.fn.stdpath("data") .. "/fzf-lua-grep-history",
 			},
+			actions = {
+				["ctrl-i"] = { fn = actions.toggle_hidden },
+			},
 		},
 		git = {
 			branches = {
@@ -54,8 +57,8 @@ function M.config()
 				cmd = "git branch --all --color",
 				preview = "git log --graph --pretty=oneline --abbrev-commit --color {1}",
 				actions = {
-					["default"] =function(state)
-            os.execute("git checkout " .. state[1])
+					["default"] = function(state)
+						os.execute("git checkout " .. state[1])
 					end,
 					["ctrl-x"] = { fn = actions.git_branch_del, reload = true },
 					["ctrl-a"] = { fn = actions.git_branch_add, field_index = "{q}", reload = true },
