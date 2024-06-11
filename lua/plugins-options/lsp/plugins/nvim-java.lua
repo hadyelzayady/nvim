@@ -1,7 +1,11 @@
 local M = {}
 
 function M.config()
-	require("java").setup()
+	require("java").setup({
+		java_debug_adapter = {
+			enable = true,
+		},
+	})
 	require("lspconfig").jdtls.setup({
 		on_attach = require("plugins-options.lsp.lspconfig").on_attach,
 		on_init = function(client)

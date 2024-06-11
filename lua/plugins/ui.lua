@@ -32,4 +32,7 @@ return {
 		cmd = { "TSContextEnable", "TSContextDisable", "TSContextToggle" },
 		config = require("plugins-options.treesitter-context").config,
 	},
+	{
+		"dhruvasagar/vim-zoom",
+	},
 }

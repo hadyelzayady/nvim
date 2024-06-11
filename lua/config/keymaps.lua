@@ -12,6 +12,7 @@ function M.setup()
 	map("n", "<leader>th", "<cmd>TSToggle highlight<CR>", { desc = "Toggle Treesitter highlight" })
 	map("n", "<leader>tc", "<cmd>ColorizerToggle<CR>", { desc = "Toggle Colorizer" })
 	map("n", "<leader>tC", "<cmd>TSContextToggle<CR>", { desc = "Toggle Context" })
+	map("n", "<leader>tw", "<cmd>IlluminateToggle<CR>", { desc = "Toggle Highlight Word Under Cursor" })
 	-- end Nvim options Toggle
 
 	map("n", "<leader>h", "<cmd>nohlsearch<CR>", { desc = "Clear search highlights" })
@@ -61,6 +62,13 @@ function M.setup()
 		"<cmd>TroubleToggle workspace_diagnostics<cr> ",
 		{ silent = true, desc = "Workspace Diagnostics" }
 	)
+
+	map("n", "<leader>n", function()
+		require("illuminate").goto_next_reference(true)
+	end, { desc = "Go Next Reference" })
+	map("n", "<leader>p", function()
+		require("illuminate").goto_prev_reference(true)
+	end, { desc = "Go Prev Reference" })
 	-- end navigation
 
 	-- search
@@ -183,7 +191,7 @@ function M.lsp()
 		require("utils.lsp.operations").toggle_inlay_hints,
 		{ desc = "Toggle Inlayhints", silent = true }
 	)
-	map("n", "<leader>ltl", "<cmd>LspLensToggle<cr>", { desc = "Toggle function hints", silent = true })
+	-- map("n", "<leader>ltl", "<cmd>LspLensToggle<cr>", { desc = "Toggle function hints", silent = true })
 	map({ "n", "i" }, "<C-s>", vim.lsp.buf.signature_help, opts)
 end
 function M.bufremove()

@@ -26,6 +26,7 @@ function M.config()
 				},
 			},
 			lualine_x = {
+				"vim.fn['zoom#statusline']()",
 				{
 					function()
 						local attach_clients = #vim.lsp.get_clients({ bufnr = 0 })

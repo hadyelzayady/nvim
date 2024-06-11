@@ -16,13 +16,12 @@ function M.on_attach(client, bufnr)
 	if client.server_capabilities.documentHighlightProvider then
 		client.server_capabilities.documentHighlightProvider = false
 	end
-  -- Override handlers for semantic tokens and document highlights
-  client.handlers["textDocument/semanticTokens/full"] = function() end
-  client.handlers["textDocument/semanticTokens/full/delta"] = function() end
-  client.handlers["textDocument/semanticTokens/range"] = function() end
-  client.handlers["textDocument/documentHighlight"] = function() end
-	-- client.server_capabilities.semanticTokensProvider = nil
-	-- client.server_capabilities.documentHighlightProvider = nil
+
+	-- Override handlers for semantic tokens and document highlights
+	client.handlers["textDocument/semanticTokens/full"] = function() end
+	client.handlers["textDocument/semanticTokens/full/delta"] = function() end
+	client.handlers["textDocument/semanticTokens/range"] = function() end
+	client.handlers["textDocument/documentHighlight"] = function() end
 end
 
 return M

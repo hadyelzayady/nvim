@@ -107,4 +107,9 @@ return {
 			require("window-picker").setup()
 		end,
 	},
+	{
+		"RRethy/vim-illuminate",
+		cmd = { "IlluminateToggle" },
+		config = require("plugins-options.vim-illuminate").config,
+	},
 }
