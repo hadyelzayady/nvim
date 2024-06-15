@@ -4,7 +4,7 @@ function M.config()
 	local fzf = require("fzf-lua")
 	local actions = require("fzf-lua.actions")
 	fzf.setup({
-		"default",
+		"max-perf",
 		actions = {
 			files = {
 				["default"] = actions.file_edit_or_qf,
@@ -28,6 +28,9 @@ function M.config()
 			cwd_only = true,
 			stat_file = true, -- verify files exist on disk
 			include_current_session = true, -- include bufs from current session
+			fzf_opts = {
+				["--history"] = vim.fn.stdpath("data") .. "/fzf-lua-old-files-history",
+			},
 		},
 		buffers = {
 			prompt = "Buffers❯ ",

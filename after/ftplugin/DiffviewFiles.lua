@@ -1,1 +1,1 @@
-vim.opt_local.cursorlineopt = "line"
+vim.opt.cursorlineopt = "line"

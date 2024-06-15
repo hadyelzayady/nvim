@@ -25,11 +25,11 @@ autocmd("BufReadPost", {
 -- Function to disable diagnostics in diff mode
 local function diff_mode_changes()
 	if vim.wo.diff then
-    vim.cmd("highlight Folded guibg=clear")
+		vim.cmd("highlight Folded guibg=clear")
 		-- vim.diagnostic.enable(false)
 	else
 		-- vim.diagnostic.enable(true)
-    vim.cmd("highlight Folded guibg=#3b4261")
+		vim.cmd("highlight Folded guibg=#3b4261")
 	end
 end
 
@@ -48,4 +48,17 @@ autocmd("OptionSet", {
 	callback = function()
 		diff_mode_changes()
 	end,
+})
+
+-- Set autocommand to update undofile path
+autocmd("BufWritePost", {
+	group = augroup("undo"),
+	pattern = "*",
+	callback = require("utils.undo").write_undo,
+})
+
+autocmd("BufReadPost", {
+	group = augroup("undo"),
+	pattern = "*",
+	callback = require("utils.undo").read_undo,
 })

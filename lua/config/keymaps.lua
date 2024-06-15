@@ -40,12 +40,12 @@ function M.setup()
 		require("trouble").close()
 	end, { desc = "Close Common Splits" })
 
-	map("n", "<C-e>", "<cmd>FzfLua oldfiles<cr>", { desc = "Recent Files" })
-	map("n", "<leader>ff", "<cmd>FzfLua files<cr>", { desc = "Find File" })
-	map("n", "<leader>fb", "<cmd>FzfLua buffers<cr>", { desc = "Find Buffer" })
+	map("n", "<C-e>", "<cmd>FzfLua oldfiles previewer=builtin<cr>", { desc = "Recent Files" })
+	map("n", "<leader>ff", "<cmd>FzfLua files previewer=builtin<cr>", { desc = "Find File" })
+	map("n", "<leader>fb", "<cmd>FzfLua buffers previewer=builtin<cr>", { desc = "Find Buffer" })
 	map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
-	map("n", "<leader>ft", "<cmd>FzfLua filetypes<cr>", { desc = "File Types" })
-	map("n", "<leader>sm", "<cmd>FzfLua marks<cr>", { desc = "Search Marks" })
+	map("n", "<leader>ft", "<cmd>FzfLua filetypes previewer=builtin<cr>", { desc = "File Types" })
+	map("n", "<leader>sm", "<cmd>FzfLua marks previewer=builtin<cr>", { desc = "Search Marks" })
 	map("n", "-", "<cmd>Oil<cr>", { desc = "Open Oil" })
 
 	map("n", "<leader>cS", "<cmd>AerialToggle<cr>", { silent = true, desc = "Symbole Outline" })
@@ -72,11 +72,11 @@ function M.setup()
 	-- end navigation
 
 	-- search
-	map("n", "<leader>sw", "<cmd>FzfLua grep_cword<cr>", { desc = "Search Current Word (project)" })
-	map("n", "<leader>sb", "<cmd>FzfLua grep_curbuf<cr>", { desc = "Search Buffer" })
-	map("n", "<leader>sp", "<cmd>FzfLua grep_project<cr>", { desc = "Search Project" })
-	map({ "n", "v" }, "<leader>sv", "<cmd>FzfLua grep_visual<cr>", { desc = "Search Visual", noremap = true })
-	map("n", "<leader>sg", "<cmd>FzfLua live_grep_glob<cr>", { desc = "Grep" })
+	map("n", "<leader>sw", "<cmd>FzfLua grep_cword previewer=builtin<cr>", { desc = "Search Current Word (project)" })
+	map("n", "<leader>sb", "<cmd>FzfLua grep_curbuf previewer=builtin<cr>", { desc = "Search Buffer" })
+	map("n", "<leader>sp", "<cmd>FzfLua grep_project previewer=builtin<cr>", { desc = "Search Project" })
+	map({ "n", "v" }, "<leader>sv", "<cmd>FzfLua grep_visual previewer=builtin<cr>", { desc = "Search Visual", noremap = true })
+	map("n", "<leader>sg", "<cmd>FzfLua live_grep_glob previewer=builtin<cr>", { desc = "Grep" })
 	-- end search
 
 	-- Tab management
@@ -183,7 +183,7 @@ function M.lsp()
 	map("n", "<leader>cc", require("utils.lsp.operations").removeUnused, opts)
 	map("n", "<leader>cC", require("utils.lsp.operations").removeUnusedImports, opts)
 	map("n", "<leader>ci", require("utils.lsp.operations").addMissingImports, opts)
-	map("n", "<leader>sS", "<cmd>FzfLua lsp_live_workspace_symbols<cr>", opts)
+	map("n", "<leader>sS", "<cmd>FzfLua lsp_live_workspace_symbols previewer=builtin<cr>", opts)
 	map("n", "<leader>ss", "<cmd>FzfLua lsp_document_symbols<cr>", opts)
 	map(
 		"n",
