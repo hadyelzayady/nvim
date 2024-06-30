@@ -31,4 +31,13 @@ return {
 			"nvim-neotest/neotest-jest",
 		},
 	},
+	{
+		"tpope/vim-dispatch",
+		config = function()
+			-- vim.g.dispatch_handlers = {
+			-- 	kitty = {"kitty @ new-window --cwd=%d %s"},
+			-- }
+			-- vim.g.dispatch_terminal = "kitty"
+		end,
+	},
 }
