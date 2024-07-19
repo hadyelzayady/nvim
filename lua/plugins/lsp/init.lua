@@ -4,12 +4,6 @@ return {
 		config = require("plugins-options.lsp.lspconfig").config,
 	},
 	{
-		"pmizio/typescript-tools.nvim",
-		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-		ft = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
-		config = require("plugins-options.lsp.plugins.typescript-tools").config,
-	},
-	{
 		"antosha417/nvim-lsp-file-operations",
 		event = "VeryLazy",
 		dependencies = {
@@ -23,6 +17,12 @@ return {
 		"williamboman/mason.nvim",
 		config = true,
 		event = "VeryLazy",
+		opts = {
+			registries = {
+				"github:nvim-java/mason-registry",
+				"github:mason-org/mason-registry",
+			},
+		},
 	},
 	{
 		"b0o/schemastore.nvim",
@@ -45,15 +45,7 @@ return {
 			"MunifTanjim/nui.nvim",
 			"neovim/nvim-lspconfig",
 			"mfussenegger/nvim-dap",
-			{
-				"williamboman/mason.nvim",
-				opts = {
-					registries = {
-						"github:nvim-java/mason-registry",
-						"github:mason-org/mason-registry",
-					},
-				},
-			},
+			"williamboman/mason.nvim",
 		},
 	},
 	{

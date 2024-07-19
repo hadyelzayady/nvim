@@ -2,7 +2,7 @@ local M = {}
 
 function M.setup()
 	require("lspconfig").biome.setup({
-		cmd = { "npx", "biome", "lsp-proxy" },
+		cmd = { "bunx", "biome", "lsp-proxy" },
 		on_attach = function(client)
 			local plenary = require("plenary")
 			local biome_path = plenary.path:new(vim.loop.cwd() .. "/biome.json")

@@ -35,4 +35,24 @@ function M.config(_, opts)
 		},
 	})
 end
+function M.get_buffer_active_formatter()
+	local buffer_formatters = require("conform").list_formatters_for_buffer()
+	local active_formatters = {}
+	for _, formatter_name_or_table in pairs(buffer_formatters) do
+		if type(formatter_name_or_table) == "table" then
+			for _, formatter in pairs(formatter_name_or_table) do
+				if require("conform").get_formatter_info(formatter).available then
+					table.insert(active_formatters, formatter)
+					break
+				end
+			end
+		else
+			if require("conform").get_formatter_info(formatter_name_or_table).available then
+				table.insert(active_formatters, formatter_name_or_table)
+			end
+		end
+	end
+  return active_formatters
+end
+
 return M

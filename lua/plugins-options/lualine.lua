@@ -29,6 +29,13 @@ function M.config()
 				"vim.fn['zoom#statusline']()",
 				{
 					function()
+						local current_buf = vim.api.nvim_get_current_buf()
+						local formatters = require("plugins-options.conform").get_buffer_active_formatter()
+						return "[" .. table.concat(formatters, ",") .. "]"
+					end,
+				},
+				{
+					function()
 						local attach_clients = #vim.lsp.get_clients({ bufnr = 0 })
 						if attach_clients > 0 then
 							return "LSP(" .. attach_clients .. ")"

@@ -1,7 +1,7 @@
 return {
 	{
 		"stevearc/conform.nvim",
-		keys = { "<space>f" },
+    lazy=true,
 		config = require("plugins-options.conform").config,
 	},
 }

@@ -1,6 +1,76 @@
 local M = {}
+
+local function dapUI()
+	local dap_icons = require("utils.ui-components").icons.debug
+	vim.api.nvim_set_hl(0, "DapBreakpoint", { ctermbg = 0, fg = "#993939", bg = "" })
+	vim.api.nvim_set_hl(0, "DapLogPoint", { ctermbg = 0, fg = "#61afef", bg = "" })
+	vim.api.nvim_set_hl(0, "DapStopped", { ctermbg = 0, fg = "#98c379", bg = "" })
+
+	vim.fn.sign_define(
+		"DapBreakpoint",
+		{ text = dap_icons.breakpoint, texthl = "DapBreakpoint", linehl = "", numhl = "" }
+	)
+	vim.fn.sign_define("DapBreakpointCondition", {
+		text = dap_icons.breakpoint_condition,
+		texthl = "DapBreakpoint",
+		linehl = "",
+		numhl = "",
+	})
+	vim.fn.sign_define(
+		"DapBreakpointRejected",
+		{ text = "", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
+	)
+	vim.fn.sign_define(
+		"DapLogPoint",
+		{ text = dap_icons.breakpoint_logpoint, texthl = "DapLogPoint", linehl = "DapLogPoint", numhl = "DapLogPoint" }
+	)
+	vim.fn.sign_define(
+		"DapStopped",
+		{ text = dap_icons.stopped, texthl = "DapStopped", linehl = "DapStopped", numhl = "DapStopped" }
+	)
+end
+local function c_like_dap_config(type)
+	local dap = require("dap")
+	dap.configurations[type] = {
+		{
+			name = "Launch",
+			type = "lldb",
+			request = "launch",
+			program = function()
+				return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+			end,
+			cwd = "${workspaceFolder}",
+			stopOnEntry = false,
+			args = {},
+
+			-- 💀
+			-- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
+			--
+			--    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
+			--
+			-- Otherwise you might get the following error:
+			--
+			--    Error on launch: Failed to attach to the target process
+			--
+			-- But you should be aware of the implications:
+			-- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
+			-- runInTerminal = false,
+		},
+		{
+			-- If you get an "Operation not permitted" error using this, try disabling YAMA:
+			--  echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
+			name = "Attach to process",
+			type = "lldb", -- Adjust this to match your adapter name (`dap.adapters.<name>`)
+			request = "attach",
+			pid = require("dap.utils").pick_process,
+			args = {},
+		},
+	}
+end
+
 function M.config()
 	local dap = require("dap")
+	dapUI()
 
 	dap.configurations.java = {
 		{
@@ -11,7 +81,6 @@ function M.config()
 			port = 5005,
 		},
 	}
-	dapUI()
 	dap.adapters.lldb = {
 		type = "executable",
 		command = "/usr/bin/lldb-vscode", -- adjust as needed, must be absolute path
@@ -77,73 +146,4 @@ function M.config()
 	end
 end
 
-function c_like_dap_config(type)
-	local dap = require("dap")
-	dap.configurations[type] = {
-		{
-			name = "Launch",
-			type = "lldb",
-			request = "launch",
-			program = function()
-				return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-			end,
-			cwd = "${workspaceFolder}",
-			stopOnEntry = false,
-			args = {},
-
-			-- 💀
-			-- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
-			--
-			--    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
-			--
-			-- Otherwise you might get the following error:
-			--
-			--    Error on launch: Failed to attach to the target process
-			--
-			-- But you should be aware of the implications:
-			-- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
-			-- runInTerminal = false,
-		},
-		{
-			-- If you get an "Operation not permitted" error using this, try disabling YAMA:
-			--  echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
-			name = "Attach to process",
-			type = "lldb", -- Adjust this to match your adapter name (`dap.adapters.<name>`)
-			request = "attach",
-			pid = require("dap.utils").pick_process,
-			args = {},
-		},
-	}
-end
-
-function dapUI()
-	local dap = require("dap")
-	local dap_icons = require("utils.ui-components").icons.debug
-	vim.api.nvim_set_hl(0, "DapBreakpoint", { ctermbg = 0, fg = "#993939", bg = "" })
-	vim.api.nvim_set_hl(0, "DapLogPoint", { ctermbg = 0, fg = "#61afef", bg = "" })
-	vim.api.nvim_set_hl(0, "DapStopped", { ctermbg = 0, fg = "#98c379", bg = "" })
-
-	vim.fn.sign_define(
-		"DapBreakpoint",
-		{ text = dap_icons.breakpoint, texthl = "DapBreakpoint", linehl = "", numhl = "" }
-	)
-	vim.fn.sign_define("DapBreakpointCondition", {
-		text = dap_icons.breakpoint_condition,
-		texthl = "DapBreakpoint",
-		linehl = "",
-		numhl = "",
-	})
-	vim.fn.sign_define(
-		"DapBreakpointRejected",
-		{ text = "", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
-	)
-	vim.fn.sign_define(
-		"DapLogPoint",
-		{ text = dap_icons.breakpoint_logpoint, texthl = "DapLogPoint", linehl = "DapLogPoint", numhl = "DapLogPoint" }
-	)
-	vim.fn.sign_define(
-		"DapStopped",
-		{ text = dap_icons.stopped, texthl = "DapStopped", linehl = "DapStopped", numhl = "DapStopped" }
-	)
-end
 return M

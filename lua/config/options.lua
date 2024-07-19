@@ -9,13 +9,14 @@ vim.g.loaded_netrwPlugin = 0
 --
 
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.g.maplocalleader = "\\"
+
 local opt = vim.opt
 opt.clipboard = "unnamedplus" -- Sync with system clipboard
 opt.number = true -- Print line number
 opt.splitbelow = true -- Horizontal splits will be below
 opt.splitright = true -- Vertical splits will be to the right
--- opt.termguicolors = true -- Enable gui colors
+opt.termguicolors = true -- Enable gui colors
 opt.signcolumn = "auto:1-3" -- Always show sign column (otherwise it will shift text)
 opt.conceallevel = 1 -- Always show sign column (otherwise it will shift text)
 
@@ -24,7 +25,7 @@ opt.scrolloff = 4 -- Lines of context
 
 opt.confirm = true -- Confirm to save changes before exiting modified buffer
 
-opt.undodir = require("utils.undo").undodir
+-- opt.undodir = require("utils.undo").undodir
 opt.undolevels = 10000
 
 opt.expandtab = true -- Use spaces instead of tabs
@@ -56,7 +57,7 @@ vim.cmd("syntax off")
 -- opt.cmdheight = 0
 -- fold
 opt.foldcolumn = "1" -- '0' is not bad
-opt.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+opt.foldlevel = 99
 opt.foldlevelstart = 99
 opt.foldenable = true
 

@@ -15,7 +15,8 @@ return {
 	{
 		"stevearc/oil.nvim",
 		cmd = { "Oil" },
-		dependencies = { "nvim-tree/nvim-web-devicons" },
+		-- dependencies = { "nvim-tree/nvim-web-devicons" },
+  dependencies = { { "echasnovski/mini.icons", opts = {} } },
 		config = require("plugins-options.oil").config,
 	},
 	{
