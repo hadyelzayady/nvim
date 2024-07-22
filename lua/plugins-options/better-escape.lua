@@ -2,10 +2,37 @@ local M = {}
 
 function M.config()
 	require("better_escape").setup({
-		mapping = { "jk" }, -- a table with mappings to use
-		timeout = vim.o.timeoutlen, -- the time in which the keys must be hit in ms. Use option timeoutlen by default
-		clear_empty_lines = false, -- clear line after escaping if there is only whitespace
-		keys = "<Esc>", -- keys used for escaping, if it is a function will use the result everytime
+		timeout = vim.o.timeoutlen,
+		default_mappings = false,
+		mappings = {
+			i = {
+				--  first_key[s]
+				j = {
+					--  second_key[s]
+					k = "<Esc>",
+				},
+			},
+			c = {
+				j = {
+					k = "<Esc>",
+				},
+			},
+			t = {
+				j = {
+					k = "<Esc>",
+				},
+			},
+			v = {
+				j = {
+					k = "<Esc>",
+				},
+			},
+			s = {
+				j = {
+					k = "<Esc>",
+				},
+			},
+		},
 	})
 end
 return M

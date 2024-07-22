@@ -36,6 +36,7 @@ return {
 	{
 		"nvim-java/nvim-java",
 		config = require("plugins-options.lsp.plugins.nvim-java").config,
+		ft = { "java" },
 		dependencies = {
 			"nvim-java/lua-async-await",
 			"nvim-java/nvim-java-refactor",
@@ -51,5 +52,10 @@ return {
 	{
 		"nanotee/sqls.nvim",
 		ft = { "sql" },
+	},
+	{
+		"yioneko/nvim-vtsls",
+		ft = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
+		config = require("plugins-options.lsp.plugins.nvim-vtsls").config,
 	},
 }

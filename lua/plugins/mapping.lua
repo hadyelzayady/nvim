@@ -11,7 +11,7 @@ return {
 			spec = {
 
 				{ "<leader>t", desc = "toggle" },
-				{ "<leader>t", desc = "tabs" },
+				{ "<leader><tab>", desc = "tabs" },
 				{ "<leader>b", desc = "buffer" },
 				{ "<leader>c", desc = "code" },
 				{ "<leader>r", desc = "run/debug" },

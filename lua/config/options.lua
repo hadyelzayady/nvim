@@ -25,7 +25,7 @@ opt.scrolloff = 4 -- Lines of context
 
 opt.confirm = true -- Confirm to save changes before exiting modified buffer
 
--- opt.undodir = require("utils.undo").undodir
+opt.undodir = require("utils.undo").undodir
 opt.undolevels = 10000
 
 opt.expandtab = true -- Use spaces instead of tabs
