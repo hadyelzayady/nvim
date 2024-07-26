@@ -29,9 +29,8 @@ function M.config()
 				"vim.fn['zoom#statusline']()",
 				{
 					function()
-						local current_buf = vim.api.nvim_get_current_buf()
 						local formatters = require("plugins-options.conform").get_buffer_active_formatter()
-						return "[" .. table.concat(formatters, ",") .. "]"
+						return "[" .. table.concat(formatters, ",") .. "]"
 					end,
 				},
 				{
