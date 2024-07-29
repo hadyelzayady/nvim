@@ -52,6 +52,9 @@ function M.get_buffer_active_formatter()
 	for _, formatter in pairs(buffer_formatters) do
 		table.insert(active_formatters, formatter.name)
 	end
+	if #active_formatters == 0 and lspfallback then
+		return { "lsp" }
+	end
 	return active_formatters
 end
 

@@ -16,7 +16,7 @@ return {
 		"stevearc/oil.nvim",
 		cmd = { "Oil" },
 		-- dependencies = { "nvim-tree/nvim-web-devicons" },
-  dependencies = { { "echasnovski/mini.icons", opts = {} } },
+		dependencies = { { "echasnovski/mini.icons", opts = {} } },
 		config = require("plugins-options.oil").config,
 	},
 	{
@@ -112,5 +112,11 @@ return {
 		"RRethy/vim-illuminate",
 		cmd = { "IlluminateToggle" },
 		config = require("plugins-options.vim-illuminate").config,
+	},
+	{
+		"folke/todo-comments.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		opts = require("plugins-options.todo-comments").opts,
+		event = "VeryLazy",
 	},
 }
