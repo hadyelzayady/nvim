@@ -13,6 +13,9 @@ function M.setup()
 	map("n", "<leader>tc", "<cmd>ColorizerToggle<CR>", { desc = "Toggle Colorizer" })
 	map("n", "<leader>tC", "<cmd>TSContextToggle<CR>", { desc = "Toggle Context" })
 	map("n", "<leader>tw", "<cmd>IlluminateToggle<CR>", { desc = "Toggle Highlight Word Under Cursor" })
+	map("n", "<leader>tm", function()
+		require("render-markdown").toggle()
+	end, { desc = "Toggle Markdown Render" })
 	-- end Nvim options Toggle
 
 	map("n", "<leader>h", "<cmd>nohlsearch<CR>", { desc = "Clear search highlights" })
@@ -75,7 +78,12 @@ function M.setup()
 	map("n", "<leader>sw", "<cmd>FzfLua grep_cword previewer=builtin<cr>", { desc = "Search Current Word (project)" })
 	map("n", "<leader>sb", "<cmd>FzfLua grep_curbuf previewer=builtin<cr>", { desc = "Search Buffer" })
 	map("n", "<leader>sp", "<cmd>FzfLua grep_project previewer=builtin<cr>", { desc = "Search Project" })
-	map({ "n", "v" }, "<leader>sv", "<cmd>FzfLua grep_visual previewer=builtin<cr>", { desc = "Search Visual", noremap = true })
+	map(
+		{ "n", "v" },
+		"<leader>sv",
+		"<cmd>FzfLua grep_visual previewer=builtin<cr>",
+		{ desc = "Search Visual", noremap = true }
+	)
 	map("n", "<leader>sg", "<cmd>FzfLua live_grep_glob previewer=builtin<cr>", { desc = "Grep" })
 	-- end search
 
@@ -126,6 +134,12 @@ function M.setup()
 	map("n", "<leader>qw", "<cmd>silent! wall<cr>", { desc = "Save All" })
 	map("n", "<leader>qW", "<cmd>silent! w<cr>", { desc = "Save Current" })
 	-- end quit/session/projects
+
+	-- Phelix TODO
+	map("n", "<leader>ot", function()
+		local todoFile = vim.fn.expand("$HOME/Documents/projects/todo.md")
+		vim.cmd("e " .. todoFile)
+	end, { silent = true, desc = "Format" })
 
 	-- format
 	map({ "n", "v" }, "<leader>lf", require("utils.lsp.operations").format, { silent = true, desc = "Format" })
