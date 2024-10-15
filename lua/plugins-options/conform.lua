@@ -32,14 +32,16 @@ function M.config(_, opts)
 				condition = function()
 					local plenary = require("plenary")
 					local biome_path = plenary.path:new(vim.loop.cwd() .. "/biome.json")
-					return biome_path:exists()
+					local biome_path2 = plenary.path:new(vim.loop.cwd() .. "/biome.jsonc")
+					return biome_path:exists() or biome_path2:exists()
 				end,
 			},
 			prettierd = {
 				condition = function()
 					local plenary = require("plenary")
 					local biome_path = plenary.path:new(vim.loop.cwd() .. "/biome.json")
-					return not biome_path:exists()
+					local biome_path2 = plenary.path:new(vim.loop.cwd() .. "/biome.jsonc")
+					return not biome_path:exists() and not biome_path2:exists()
 				end,
 			},
 		},

@@ -62,3 +62,10 @@ autocmd("BufReadPost", {
 	pattern = "*",
 	callback = require("utils.undo").read_undo,
 })
+
+
+-- autocmd("BufReadPre", {
+-- 	group = augroup("rainbow"),
+-- 	pattern = "*",
+-- 	callback = require("utils.undo").read_undo,
+-- })

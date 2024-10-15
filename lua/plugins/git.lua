@@ -17,11 +17,14 @@ return {
 	{
 		"TimUntersberger/neogit",
 		cmd = "Neogit",
-		dependencies = { "nvim-lua/plenary.nvim", "sindrets/diffview.nvim", },
+		dependencies = { "nvim-lua/plenary.nvim", "sindrets/diffview.nvim" },
 		config = require("plugins-options.neogit").config,
 	},
 	{
 		"whiteinge/diffconflicts",
 		cmd = { "DiffConflicts", "DiffConflictsShowHistory", "DiffConflictsWithHistory" },
+	},
+	{
+		"emmanueltouzery/agitator.nvim",
 	},
 }

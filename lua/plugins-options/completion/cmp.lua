@@ -48,7 +48,7 @@ function M.config()
 		}),
 		sources = cmp.config.sources({
 			{ name = "nvim_lsp" },
-			{ name = "luasnip" }, -- For luasnip users.
+			{ name = "luasnip", keyword_length = 2 }, -- For luasnip users.
 			{ name = "calc" },
 			{ name = "path" },
 		}, {

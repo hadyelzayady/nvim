@@ -47,5 +47,12 @@ return {
 	},
 	{
 		"bullets-vim/bullets.vim",
+		ft = { "markdown" },
+		event = "VeryLazy",
+	},
+	{
+		"HiPhish/rainbow-delimiters.nvim",
+		config = require("plugins-options.rainbow-delimiters").config,
+		event = "VeryLazy",
 	},
 }

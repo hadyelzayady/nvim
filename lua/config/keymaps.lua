@@ -217,4 +217,9 @@ function M.bufremove()
 	end, { desc = "Force Delete Buffer" })
 end
 
+function M.rainbiow()
+	map("n", "<leader>tr", function()
+		require("rainbow-delimiters").toggle()
+	end, { desc = "Toggle Rainbow Delimiters" })
+end
 return M

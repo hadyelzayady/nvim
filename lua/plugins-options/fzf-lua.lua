@@ -43,7 +43,7 @@ function M.config()
 		},
 		grep = {
 			multiprocess = true, -- run command in a separate process
-			rg_opts = "--column --line-number --no-heading --color=always --smart-case --max-columns=4096 -e",
+      -- rg_opts = "--column --line-number --no-heading --color=always --smart-case --max-columns=4096 -e",
 			rg_glob = false, -- default to glob parsing?
 			glob_flag = "--iglob", -- for case sensitive globs use '--glob'
 			glob_separator = "%s%-%-", -- query separator pattern (lua): ' --'
@@ -66,6 +66,9 @@ function M.config()
 					["ctrl-x"] = { fn = actions.git_branch_del, reload = true },
 					["ctrl-a"] = { fn = actions.git_branch_add, field_index = "{q}", reload = true },
 					["ctrl-d"] = function(state)
+						vim.cmd("DiffviewOpen " .. state[1] .. " -- %")
+					end,
+					["ctrl-D"] = function(state)
 						vim.cmd("DiffviewOpen " .. state[1])
 					end,
 					["ctrl-t"] = function(state)
