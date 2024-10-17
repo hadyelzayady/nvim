@@ -2,47 +2,6 @@ local M = {}
 local map = vim.keymap.set
 
 function M.setup()
-	-- Nvim options Toggle
-	map("n", "<leader>to", function()
-		vim.o.scrolloff = 999 - vim.o.scrolloff
-	end)
-	-- map("n", "<leader>tc", function()
-	-- 	vim.o.scrolloff = 999 - vim.o.scrolloff
-	-- end)
-	map("n", "<leader>th", "<cmd>TSToggle highlight<CR>", { desc = "Toggle Treesitter highlight" })
-	map("n", "<leader>tc", "<cmd>ColorizerToggle<CR>", { desc = "Toggle Colorizer" })
-	map("n", "<leader>tC", "<cmd>TSContextToggle<CR>", { desc = "Toggle Context" })
-	map("n", "<leader>tw", "<cmd>IlluminateToggle<CR>", { desc = "Toggle Highlight Word Under Cursor" })
-	map("n", "<leader>tm", function()
-		require("render-markdown").toggle()
-	end, { desc = "Toggle Markdown Render" })
-	-- end Nvim options Toggle
-
-	map("n", "<leader>h", "<cmd>nohlsearch<CR>", { desc = "Clear search highlights" })
-	-- resize
-	map("n", "<m-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
-	map("n", "<m-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
-	map("n", "<m-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
-	map("n", "<m-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
-	-- end resize
-
-	-- navigation
-	map("n", "<leader>E", "<cmd>NvimTreeFindFile<CR>", { desc = "NvimTree Find File Toggle" })
-	map("n", "<leader>e", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle NvimTree" })
-	map("n", "<c-,>", function()
-		require("trouble").next()
-		vim.cmd("silent! cnext")
-	end, { desc = "Next Quickfix Item" })
-	map("n", "<c-.>", function()
-		vim.cmd("silent! cprevious")
-		require("trouble").prev()
-	end, { desc = "Prev Quickfix Item" })
-	map("n", "<c-q>", function()
-		vim.cmd("cclose")
-		require("neogit").close()
-		require("trouble").close()
-	end, { desc = "Close Common Splits" })
-
 	map("n", "<C-e>", "<cmd>FzfLua oldfiles previewer=builtin<cr>", { desc = "Recent Files" })
 	map("n", "<leader>ff", "<cmd>FzfLua files previewer=builtin<cr>", { desc = "Find File" })
 	map("n", "<leader>fb", "<cmd>FzfLua buffers previewer=builtin<cr>", { desc = "Find Buffer" })
@@ -50,29 +9,6 @@ function M.setup()
 	map("n", "<leader>ft", "<cmd>FzfLua filetypes previewer=builtin<cr>", { desc = "File Types" })
 	map("n", "<leader>sm", "<cmd>FzfLua marks previewer=builtin<cr>", { desc = "Search Marks" })
 	map("n", "-", "<cmd>Oil<cr>", { desc = "Open Oil" })
-
-	map("n", "<leader>cS", "<cmd>AerialToggle<cr>", { silent = true, desc = "Symbole Outline" })
-	map("n", "<leader>cs", "<cmd>AerialNavToggle<cr>", { silent = true, desc = "Symbole Nav" })
-	map(
-		"n",
-		"<leader>xx",
-		"<cmd>TroubleToggle document_diagnostics<cr> ",
-		{ silent = true, desc = "Document Diagnostics" }
-	)
-	map(
-		"n",
-		"<leader>xX",
-		"<cmd>TroubleToggle workspace_diagnostics<cr> ",
-		{ silent = true, desc = "Workspace Diagnostics" }
-	)
-
-	map("n", "<leader>n", function()
-		require("illuminate").goto_next_reference(true)
-	end, { desc = "Go Next Reference" })
-	map("n", "<leader>p", function()
-		require("illuminate").goto_prev_reference(true)
-	end, { desc = "Go Prev Reference" })
-	-- end navigation
 
 	-- search
 	map("n", "<leader>sw", "<cmd>FzfLua grep_cword previewer=builtin<cr>", { desc = "Search Current Word (project)" })
@@ -143,7 +79,6 @@ function M.setup()
 
 	-- format
 	map({ "n", "v" }, "<leader>lf", require("utils.lsp.operations").format, { silent = true, desc = "Format" })
-	M.lsp()
 end
 
 function M.neotest()

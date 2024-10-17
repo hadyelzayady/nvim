@@ -13,40 +13,41 @@ vim.g.maplocalleader = "\\"
 
 local opt = vim.opt
 opt.clipboard = "unnamedplus" -- Sync with system clipboard
-opt.number = true -- Print line number
-opt.splitbelow = true -- Horizontal splits will be below
-opt.splitright = true -- Vertical splits will be to the right
-opt.termguicolors = true -- Enable gui colors
-opt.signcolumn = "auto:1-3" -- Always show sign column (otherwise it will shift text)
-opt.conceallevel = 1 -- Always show sign column (otherwise it will shift text)
+opt.number = true             -- Print line number
+opt.splitbelow = true         -- Horizontal splits will be below
+opt.splitright = true         -- Vertical splits will be to the right
+opt.termguicolors = true      -- Enable gui colors
+opt.signcolumn = "auto:1-3"   -- Always show sign column (otherwise it will shift text)
+opt.conceallevel = 0
 
-opt.mouse = "a" -- Enable mouse mode
-opt.scrolloff = 4 -- Lines of context
+opt.mouse = ""     -- Enable mouse mode
+opt.scrolloff = 2  -- Lines of context
 
 opt.confirm = true -- Confirm to save changes before exiting modified buffer
 
 opt.undodir = require("utils.undo").undodir
 opt.undolevels = 10000
 
-opt.expandtab = true -- Use spaces instead of tabs
+opt.expandtab = true  -- Use spaces instead of tabs
 opt.shiftround = true -- Round indent
-opt.shiftwidth = 2 -- Size of an indent
-opt.tabstop = 2 -- Number of spaces tabs count for
+opt.shiftwidth = 2    -- Size of an indent
+opt.tabstop = 2       -- Number of spaces tabs count for
 
-opt.linebreak = true -- Wrap long lines at 'breakat' (if 'wrap' is set)
+opt.linebreak = true  -- Wrap long lines at 'breakat' (if 'wrap' is set)
 
 -- when open new line will detect current indect and place the cursor to this indent
 opt.smartindent = true -- Make indenting smart
 
-opt.cursorline = true -- Highlight current line
+opt.cursorline = false -- Highlight current line
+opt.cursorcolumn = false
 opt.cursorlineopt = "number"
 opt.spell = true
 opt.spelllang = { "en_us" }
 
 opt.completeopt = "menuone,noinsert,noselect" -- Customize completions
 
-opt.smartcase = true -- Don't ignore case when searching if pattern has upper case
-opt.ignorecase = true -- Ignore case when searching (use `\C` to force not doing that)
+opt.smartcase = true                          -- Don't ignore case when searching if pattern has upper case
+opt.ignorecase = true                         -- Ignore case when searching (use `\C` to force not doing that)
 
 opt.listchars = "tab:| ,lead:.,trail:-,extends:›,precedes:‹"
 opt.list = true
@@ -61,5 +62,33 @@ opt.foldlevel = 99
 opt.foldlevelstart = 99
 opt.foldenable = true
 
+-- swap
+opt.swapfile = false
+opt.backup = false
+opt.undofile = false
 -- jumps
 opt.jumpoptions = "stack,view"
+
+
+-- performance optimize
+opt.updatetime = 300                                  -- Default is 4000ms
+opt.ttyfast = true                                    -- Optimize for fast terminals
+opt.lazyredraw = true                                 -- Redraw only when necessary
+
+opt.history = 100                                     -- Default is 1000, set lower if not needed
+opt.hlsearch = false                                  -- Disable highlight on search
+
+vim.opt.diffopt:append("internal,algorithm:patience") -- Use faster algorithm
+
+vim.opt.showmode = false                              -- Don't show mode, it's redundant with a statusline
+
+vim.cmd([[
+  augroup LargeFile
+    autocmd!
+    autocmd BufReadPre * if getfsize(expand('<afile>')) > 500*1024 | syntax off | endif
+  augroup END
+]])
+
+vim.opt.foldmethod = "manual"  -- Disable automatic folding
+vim.opt.foldenable = false     -- Don't open files with folds
+vim.opt.pumheight = 10  -- Limit popup menu height
