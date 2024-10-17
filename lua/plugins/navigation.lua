@@ -6,6 +6,18 @@
 		config = require("plugins-options.oil").config,
 	},
 	{
+		"kevinhwang91/nvim-bqf",
+		ft = "qf",
+		dependencies = { 
+      {
+			"junegunn/fzf",
+			build = function()
+				vim.fn["fzf#install"]()
+			end,
+		} 
+  }
+	},
+	{
 		"chrishrb/gx.nvim",
 		keys = { { "gx", "<cmd>Browse<cr>", mode = { "n", "x" } } },
 		cmd = { "Browse" },
