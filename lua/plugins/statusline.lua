@@ -22,51 +22,63 @@ return {
       local lib = require "heirline-components.all"
       -- Setup for the Winbar
       local winbar = {
-        -- Condition to show the filename only when the buffer is not empty
-        condition = function()
-          return vim.api.nvim_buf_get_name(0) ~= ""
-        end,
-        -- The provider that displays the filename aligned to the right
         {
-          provider = function()
-            local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":.")
-            return filename
+          -- Condition to show the filename only when the buffer is not empty
+          condition = function()
+            return vim.api.nvim_buf_get_name(0) ~= ""
           end,
+          -- The provider that displays the filename aligned to the right
+          {
+            provider = function()
+              local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":.")
+              return filename
+            end,
 
-          -- Make the filename stand out
-          hl = {
-            fg = 'green',          -- Filename in blue
-            bg = colors.winbar_bg, -- Distinguishable background for the Winbar
-            bold = true,           -- Make the text bold for emphasis
+            -- Make the filename stand out
+            hl = {
+              fg = 'green',          -- Filename in blue
+              bg = colors.winbar_bg, -- Distinguishable background for the Winbar
+              bold = true,           -- Make the text bold for emphasis
+            },
+
           },
-
+          {
+            -- Show an icon if the buffer is modified
+            provider = function()
+              if vim.bo.modified then
+                return "  " -- Unicode icon for "modified" (or use any other)
+              end
+              return ""
+            end,
+            hl = {
+              fg = colors.red, -- Make the modified icon red
+            },
+          },
         },
         {
-          -- Show an icon if the buffer is modified
-          provider = function()
-            if vim.bo.modified then
-              return "  " -- Unicode icon for "modified" (or use any other)
-            end
-            return ""
-          end,
-          hl = {
-            fg = colors.red, -- Make the modified icon red
-          },
+          provider = "%=" -- This ensures the breadcrumbs are centered
+        },
+        {
+          require("heirline-components.all").component.breadcrumbs(),
+          padding = { left = 0 },
+        },
+        {
+          provider = "%=" -- This ensures the breadcrumbs are centered
         },
       }
       return {
         winbar = winbar,
 
-        -- opts = {
-        --   disable_winbar_cb = function(args) -- We do this to avoid showing it on the greeter.
-        --     local is_disabled = not require("heirline-components.buffer").is_valid(args.buf) or
-        --         lib.condition.buffer_matches({
-        --           buftype = { "terminal", "prompt", "nofile", "help", "quickfix" },
-        --           filetype = { "NvimTree", "neo%-tree", "dashboard", "Outline", "aerial" },
-        --         }, args.buf)
-        --     return is_disabled
-        --   end,
-        -- },
+        opts = {
+          disable_winbar_cb = function(args) -- We do this to avoid showing it on the greeter.
+            local is_disabled = not require("heirline-components.buffer").is_valid(args.buf) or
+                lib.condition.buffer_matches({
+                  buftype = { "terminal", "prompt", "nofile", "help", "quickfix" },
+                  filetype = { "NvimTree", "neo%-tree", "dashboard", "Outline", "aerial" },
+                }, args.buf)
+            return is_disabled
+          end,
+        },
         -- tabline = { -- UI upper bar
         --   lib.component.tabline_conditional_padding(),
         --   lib.component.tabline_buffers(),
