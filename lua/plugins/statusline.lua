@@ -10,18 +10,63 @@ return {
     dependencies = { "zeioth/heirline-components.nvim" },
     event = "VeryLazy",
     opts = function()
+      local utils = require('heirline.utils')
+      -- Fetch colors from the TokyoNight theme's highlight groups
+      local colors = {
+        fg = utils.get_highlight("Normal").fg,            -- Default foreground
+        bg = utils.get_highlight("Normal").bg,            -- Default background
+        blue = utils.get_highlight("Function").fg,        -- Blue for functions
+        red = utils.get_highlight("Error").fg,            -- Red for modified indicator
+        winbar_bg = utils.get_highlight("StatusLine").bg, -- Use StatusLine background for Winbar
+      }
       local lib = require "heirline-components.all"
-      return {
-        opts = {
-          disable_winbar_cb = function(args) -- We do this to avoid showing it on the greeter.
-            local is_disabled = not require("heirline-components.buffer").is_valid(args.buf) or
-                lib.condition.buffer_matches({
-                  buftype = { "terminal", "prompt", "nofile", "help", "quickfix" },
-                  filetype = { "NvimTree", "neo%-tree", "dashboard", "Outline", "aerial" },
-                }, args.buf)
-            return is_disabled
+      -- Setup for the Winbar
+      local winbar = {
+        -- Condition to show the filename only when the buffer is not empty
+        condition = function()
+          return vim.api.nvim_buf_get_name(0) ~= ""
+        end,
+        -- The provider that displays the filename aligned to the right
+        {
+          provider = function()
+            local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":.")
+            return filename
           end,
+
+          -- Make the filename stand out
+          hl = {
+            fg = 'green',          -- Filename in blue
+            bg = colors.winbar_bg, -- Distinguishable background for the Winbar
+            bold = true,           -- Make the text bold for emphasis
+          },
+
         },
+        {
+          -- Show an icon if the buffer is modified
+          provider = function()
+            if vim.bo.modified then
+              return "  " -- Unicode icon for "modified" (or use any other)
+            end
+            return ""
+          end,
+          hl = {
+            fg = colors.red, -- Make the modified icon red
+          },
+        },
+      }
+      return {
+        winbar = winbar,
+
+        -- opts = {
+        --   disable_winbar_cb = function(args) -- We do this to avoid showing it on the greeter.
+        --     local is_disabled = not require("heirline-components.buffer").is_valid(args.buf) or
+        --         lib.condition.buffer_matches({
+        --           buftype = { "terminal", "prompt", "nofile", "help", "quickfix" },
+        --           filetype = { "NvimTree", "neo%-tree", "dashboard", "Outline", "aerial" },
+        --         }, args.buf)
+        --     return is_disabled
+        --   end,
+        -- },
         -- tabline = { -- UI upper bar
         --   lib.component.tabline_conditional_padding(),
         --   lib.component.tabline_buffers(),
@@ -62,19 +107,21 @@ return {
         -- } or nil,
         statusline = { -- UI statusbar
           hl = { fg = "fg", bg = "bg" },
-          lib.component.mode(),
           lib.component.git_branch(),
-          lib.component.file_info(),
           lib.component.git_diff(),
           lib.component.diagnostics(),
+          lib.component.file_info({
+            filename = {},      -- if set, displays the filename.
+            filetype = false,
+            file_modified = {}, -- if set, displays a white dot if the file has been modified.
+          }),
           lib.component.fill(),
           lib.component.cmd_info(),
           lib.component.fill(),
           lib.component.lsp(),
+          lib.component.file_info(),
           lib.component.compiler_state(),
-          lib.component.virtual_env(),
           lib.component.nav(),
-          lib.component.mode { surround = { separator = "right" } },
         },
       }
     end,
