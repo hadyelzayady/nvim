@@ -18,7 +18,7 @@ return {
   },
   {
     "johmsalas/text-case.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim" },
+    dependencies = { "nvim-telescope/telescope.nvim",cmd={"Telescope"} },
     config = require("plugins-options.text-case").config,
     keys = { "ga" },
     cmd = {

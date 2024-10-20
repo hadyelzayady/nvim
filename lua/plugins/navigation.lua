@@ -30,7 +30,8 @@ return {
   {
     "ibhagwan/fzf-lua",
     dependencies = { 'echasnovski/mini.icons' },
-    config = require("plugins-options.fzf-lua").config
+    config = require("plugins-options.fzf-lua").config,
+    cmd={"FzfLua"}
   },
   {
     "echasnovski/mini.bufremove",
