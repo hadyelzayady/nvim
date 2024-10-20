@@ -121,12 +121,12 @@ return {
           hl = { fg = "fg", bg = "bg" },
           lib.component.git_branch(),
           lib.component.git_diff(),
-          lib.component.diagnostics(),
           lib.component.file_info({
             filename = {},      -- if set, displays the filename.
             filetype = false,
             file_modified = {}, -- if set, displays a white dot if the file has been modified.
           }),
+          lib.component.diagnostics(),
           lib.component.fill(),
           lib.component.cmd_info(),
           lib.component.fill(),
