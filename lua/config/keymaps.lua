@@ -2,6 +2,23 @@ local M = {}
 local map = vim.keymap.set
 
 function M.setup()
+  -- navigation
+  map("n", "<leader>E", "<cmd>NvimTreeFindFile<CR>", { desc = "NvimTree Find File Toggle" })
+  map("n", "<leader>e", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle NvimTree" })
+  map("n", "<c-,>", function()
+    -- require("trouble").next()
+    vim.cmd("silent! cnext")
+  end, { desc = "Next Quickfix Item" })
+  map("n", "<c-.>", function()
+    vim.cmd("silent! cprevious")
+    -- require("trouble").prev()
+  end, { desc = "Prev Quickfix Item" })
+  map("n", "<c-q>", function()
+    vim.cmd("cclose")
+    require("neogit").close()
+    -- require("trouble").close()
+  end, { desc = "Close Common Splits" })
+
   map("n", "<C-e>", "<cmd>FzfLua oldfiles previewer=builtin<cr>", { desc = "Recent Files" })
   map("n", "<leader>ff", "<cmd>FzfLua files previewer=builtin<cr>", { desc = "Find File" })
   map("n", "<leader>fb", "<cmd>FzfLua buffers previewer=builtin<cr>", { desc = "Find Buffer" })
@@ -9,8 +26,9 @@ function M.setup()
   map("n", "<leader>ft", "<cmd>FzfLua filetypes previewer=builtin<cr>", { desc = "File Types" })
   map("n", "<leader>sm", "<cmd>FzfLua marks previewer=builtin<cr>", { desc = "Search Marks" })
   map("n", "-", "<cmd>Oil<cr>", { desc = "Open Oil" })
-  map("n", "<leader>E", "<cmd>NvimTreeFindFile<CR>", { desc = "NvimTree Find File Toggle" })
-  map("n", "<leader>e", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle NvimTree" })
+
+  map("n", "<leader>cS", "<cmd>AerialToggle<cr>", { silent = true, desc = "Symbole Outline" })
+  map("n", "<leader>cs", "<cmd>AerialNavToggle<cr>", { silent = true, desc = "Symbole Nav" })
 
   -- search
   map("n", "<leader>sw", "<cmd>FzfLua grep_cword previewer=builtin<cr>", { desc = "Search Current Word (project)" })

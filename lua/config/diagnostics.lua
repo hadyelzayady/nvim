@@ -19,7 +19,7 @@ vim.diagnostic.config({
 	},
 	severity_sort = true,
 	float = {
-		-- border = "rounded",
+		border = "rounded",
 		source = "if_many",
 		-- Show severity icons as prefixes.
 		prefix = function(diag)

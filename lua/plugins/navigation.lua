@@ -48,12 +48,19 @@ return {
   },
   {
     'stevearc/aerial.nvim',
-    event = "VeryLazy",
-    opts = {},
+		config = require("plugins-options.aerial").config,
+		cmd = { "AerialToggle", "AerialNavToggle" },
     -- Optional dependencies
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       "nvim-tree/nvim-web-devicons"
     },
-  }
+  },
+  {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    keys = require("plugins-options.flash").keys,
+    config = require("plugins-options.flash").config,
+    vscode = true,
+  },
 }

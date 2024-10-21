@@ -83,7 +83,7 @@ vim.opt.diffopt:append("internal,algorithm:patience") -- Use faster algorithm
 vim.opt.showmode = false                              -- Don't show mode, it's redundant with a statusline
 
 
-vim.opt.foldmethod = "manual"  -- Disable automatic folding
-vim.opt.foldenable = false     -- Don't open files with folds
-vim.opt.pumheight = 10  -- Limit popup menu height
+vim.opt.foldmethod = "manual" -- Disable automatic folding
+vim.opt.foldenable = false    -- Don't open files with folds
+vim.opt.pumheight = 10        -- Limit popup menu height
 vim.o.laststatus = 3
