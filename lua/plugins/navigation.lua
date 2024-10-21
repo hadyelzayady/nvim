@@ -6,6 +6,13 @@ return {
     config = require("plugins-options.oil").config,
   },
   {
+    "nvim-tree/nvim-tree.lua",
+    version = "*",
+    lazy = false,
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = require("plugins-options.nvim-tree").config,
+  },
+  {
     "kevinhwang91/nvim-bqf",
     ft = "qf",
     dependencies = {
@@ -31,7 +38,7 @@ return {
     "ibhagwan/fzf-lua",
     dependencies = { 'echasnovski/mini.icons' },
     config = require("plugins-options.fzf-lua").config,
-    cmd={"FzfLua"}
+    cmd = { "FzfLua" }
   },
   {
     "echasnovski/mini.bufremove",
@@ -41,7 +48,7 @@ return {
   },
   {
     'stevearc/aerial.nvim',
-    event="VeryLazy",
+    event = "VeryLazy",
     opts = {},
     -- Optional dependencies
     dependencies = {

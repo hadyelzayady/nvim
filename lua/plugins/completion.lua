@@ -35,7 +35,7 @@ return {
         {
           'blink.cmp.sources.lsp',
           name = 'LSP',
-          keyword_length = 2,
+          keyword_length = 0,
         },
       },
       -- experimental signature help support
