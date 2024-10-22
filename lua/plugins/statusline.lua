@@ -69,7 +69,7 @@ return {
 							or lib.condition.buffer_matches({
 								buftype = { "terminal", "prompt", "nofile", "help", "quickfix" },
 								filetype = { "NvimTree", "neo%-tree", "dashboard", "Outline", "aerial" },
-							}, args.buf) or vim.wo.diff
+							}, args.buf)
 						return is_disabled
 					end,
 				},

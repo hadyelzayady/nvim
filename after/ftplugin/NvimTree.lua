@@ -1,3 +1,4 @@
+vim.b.miniindentscope_disable = true
 vim.keymap.set(
 	"n",
 	"A",

@@ -49,14 +49,14 @@ function M.config(_, opts)
 end
 function M.get_buffer_active_formatter()
 	local bufnr = vim.api.nvim_get_current_buf()
-	local buffer_formatters, lspfallback = require("conform").list_formatters_to_run(bufnr)
+	-- local buffer_formatters, lspfallback = require("conform").list_formatters_to_run(bufnr)
 	local active_formatters = {}
-	for _, formatter in pairs(buffer_formatters) do
-		table.insert(active_formatters, formatter.name)
-	end
-	if #active_formatters == 0 and lspfallback then
-		return { "lsp" }
-	end
+	-- for _, formatter in pairs(buffer_formatters) do
+	-- 	table.insert(active_formatters, formatter.name)
+	-- end
+	-- if #active_formatters == 0 and lspfallback then
+	-- 	return { "lsp" }
+	-- end
 	return active_formatters
 end
 
