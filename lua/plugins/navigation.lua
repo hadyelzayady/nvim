@@ -48,8 +48,8 @@ return {
   },
   {
     'stevearc/aerial.nvim',
-		config = require("plugins-options.aerial").config,
-		cmd = { "AerialToggle", "AerialNavToggle" },
+    event = "VeryLazy",
+    config = require("plugins-options.aerial").config,
     -- Optional dependencies
     dependencies = {
       "nvim-treesitter/nvim-treesitter",

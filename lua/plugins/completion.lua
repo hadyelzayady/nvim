@@ -39,7 +39,16 @@ return {
         },
       },
       -- experimental signature help support
-      trigger = { signature_help = { enabled = true } },
+      trigger = {
+        completion = {
+
+          show_in_snippet = true,
+          blocked_trigger_characters = { ' ', '\n', '\t', ',' },
+        },
+        signature_help = {
+          enabled = false
+        },
+      },
       windows = {
         documentation = {
           auto_show = true,
