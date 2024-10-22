@@ -44,7 +44,8 @@ opt.cursorlineopt = "number"
 opt.spell = true
 opt.spelllang = { "en_us" }
 
-opt.completeopt = "menuone,noinsert,noselect" -- Customize completions
+-- opt.completeopt = "menuone,noinsert,noselect" -- Customize completions
+opt.completeopt = "" -- Customize completions
 
 opt.smartcase = true                          -- Don't ignore case when searching if pattern has upper case
 opt.ignorecase = true                         -- Ignore case when searching (use `\C` to force not doing that)
