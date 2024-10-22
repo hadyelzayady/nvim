@@ -8,7 +8,6 @@ return {
   {
     "rebelot/heirline.nvim",
     dependencies = { "zeioth/heirline-components.nvim" },
-    event = "VeryLazy",
     opts = function()
       local utils = require('heirline.utils')
       -- Fetch colors from the TokyoNight theme's highlight groups
@@ -46,7 +45,8 @@ return {
             -- Show an icon if the buffer is modified
             provider = function()
               if vim.bo.modified then
-                return "  " -- Unicode icon for "modified" (or use any other)
+                return " " ..
+                require("utils.ui-components").icons.file.modified               -- Unicode icon for "modified" (or use any other)
               end
               return ""
             end,
