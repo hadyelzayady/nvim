@@ -54,7 +54,7 @@ return {
 					},
 				},
 				{
-					provider = " ",
+					provider = "   ",
 				},
 				{
 					require("heirline-components.all").component.breadcrumbs(),

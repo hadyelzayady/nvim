@@ -93,6 +93,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts) -- Go to definition
 		buf_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts) -- Go to declaration
 		buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts) -- Go to implementation
+		buf_set_keymap("n", "<leader>li", "<cmd>lua vim.lsp.buf.incoming_calls()<CR>", opts) -- Go to implementation
 		-- buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)          -- Find references
 		buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts) -- Hover documentation
 		buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts) -- Signature help
