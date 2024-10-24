@@ -1,4 +1,5 @@
 require("config.options")
+require("config.signs")
 require("config.lsp")
 -- require("config.statusline")
 require("config.commands")
