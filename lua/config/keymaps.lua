@@ -99,7 +99,13 @@ function M.setup()
   end, { silent = true, desc = "Format" })
 
   -- format
+	local opts = { silent = true }
   map({ "n", "v" }, "<leader>lf", require("utils.lsp.operations").format, { silent = true, desc = "Format" })
+  map("n", "<leader>lR", require("utils.lsp.operations").rename_file, opts)
+  map("n", "<leader>cf", require("utils.lsp.operations").fixAll, opts)
+  map("n", "<leader>cc", require("utils.lsp.operations").removeUnused, opts)
+  map("n", "<leader>cC", require("utils.lsp.operations").removeUnusedImports, opts)
+  map("n", "<leader>ci", require("utils.lsp.operations").addMissingImports, opts)
 end
 
 function M.neotest()

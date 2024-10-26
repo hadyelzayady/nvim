@@ -1,9 +1,49 @@
 return {
+
+  {
+    "L3MON4D3/LuaSnip",
+    version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+    build = "make install_jsregexp",
+    dependencies = {
+      "rafamadriz/friendly-snippets",
+      config = function()
+        require("luasnip.loaders.from_vscode").lazy_load()
+      end,
+    },
+    -- keys = {
+    --   {
+    --     "<tab>",
+    --     function()
+    --       return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
+    --     end,
+    --     expr = true,
+    --     silent = true,
+    --     mode = "i",
+    --   },
+    --   {
+    --     "<tab>",
+    --     function()
+    --       require("luasnip").jump(1)
+    --     end,
+    --     mode = "s",
+    --   },
+    --   {
+    --     "<s-tab>",
+    --     function()
+    --       require("luasnip").jump(-1)
+    --     end,
+    --     mode = { "i", "s" },
+    --   },
+    -- },
+    config = require("plugins-options.completion.luasnip").config,
+  },
   {
     'saghen/blink.cmp',
     event = { "InsertEnter" },
     -- optional: provides snippets for the snippet source
-    dependencies = 'rafamadriz/friendly-snippets',
+    dependencies = {
+      'rafamadriz/friendly-snippets'
+    },
 
     -- use a release tag to download pre-built binaries
     version = 'v0.*',
@@ -18,6 +58,38 @@ return {
       keymap = {
         accept = '<Enter>'
       },
+      sources = {
+        -- list of enabled providers
+        completion = {
+          enabled_providers = { 'lsp', 'path', 'snippets', 'buffer' },
+        },
+        -- providers = {
+          -- lsp = {
+          --   name = 'lsp',
+          -- },
+          -- path = {
+          --   name = 'path',
+          -- },
+          -- snippets = {
+          --   name = 'Snippets',
+          --   score_offset = -3,
+          --   opts = {
+          --     friendly_snippets = true,
+          --     search_paths = { vim.fn.stdpath('config') .. '/snippets' },
+          --     global_snippets = { 'all' },
+          --     extended_filetypes = {},
+          --     ignored_filetypes = {},
+          --   }
+          --
+          --   --- Example usage for disabling the snippet provider after pressing trigger characters (i.e. ".")
+          --   -- enabled = function(ctx) return ctx ~= nil and ctx.trigger.kind == vim.lsp.protocol.CompletionTriggerKind.TriggerCharacter end,
+          -- },
+          -- buffer = {
+          --   name = 'Buffer',
+          --   fallback_for = { 'lsp' },
+          -- },
+        -- },
+      },
       highlight = {
         -- sets the fallback highlight groups to nvim-cmp's highlight groups
         -- useful for when your theme doesn't support blink.cmp
@@ -30,14 +102,6 @@ return {
 
       -- experimental auto-brackets support
       accept = { auto_brackets = { enabled = true } },
-      providers = {
-        -- all of these properties work on every source
-        {
-          'blink.cmp.sources.lsp',
-          name = 'LSP',
-          keyword_length = 0,
-        },
-      },
       -- experimental signature help support
       trigger = {
         completion = {
