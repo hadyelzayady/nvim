@@ -77,7 +77,7 @@ opt.ttyfast = true                                    -- Optimize for fast termi
 opt.lazyredraw = true                                 -- Redraw only when necessary
 
 opt.history = 100                                     -- Default is 1000, set lower if not needed
-opt.hlsearch = false                                  -- Disable highlight on search
+opt.hlsearch = true                                  -- Disable highlight on search
 
 vim.opt.diffopt:append("internal,algorithm:patience") -- Use faster algorithm
 
