@@ -19,6 +19,11 @@ function M.setup()
     -- require("trouble").close()
   end, { desc = "Close Common Splits" })
 
+	-- resize
+	map("n", "<m-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
+	map("n", "<m-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
+	map("n", "<m-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
+	map("n", "<m-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
   map("n", "<C-e>", "<cmd>FzfLua oldfiles previewer=builtin<cr>", { desc = "Recent Files" })
   map("n", "<leader>ff", "<cmd>FzfLua files previewer=builtin<cr>", { desc = "Find File" })
   map("n", "<leader>fb", "<cmd>FzfLua buffers previewer=builtin<cr>", { desc = "Find Buffer" })
