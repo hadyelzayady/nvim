@@ -7,6 +7,7 @@ function M.config()
 			diffview = true,
 			fzf_lua = true,
 		},
+		graph_style = "unicode"
 	})
 end
 
