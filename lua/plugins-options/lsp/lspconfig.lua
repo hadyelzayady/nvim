@@ -30,6 +30,7 @@ function M.config()
   require('plugins-options.lsp.servers.cssmodules')(setup_lsp)
   require('plugins-options.lsp.servers.cssls')(setup_lsp)
   require('plugins-options.lsp.servers.lua')(setup_lsp)
+  require('plugins-options.lsp.servers.eslint')(setup_lsp)
 end
 
 return M
