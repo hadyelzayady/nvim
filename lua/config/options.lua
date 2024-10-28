@@ -38,9 +38,9 @@ opt.linebreak = true  -- Wrap long lines at 'breakat' (if 'wrap' is set)
 -- when open new line will detect current indect and place the cursor to this indent
 opt.smartindent = true -- Make indenting smart
 
-opt.cursorline = false -- Highlight current line
+opt.cursorline = true -- Highlight current line
 opt.cursorcolumn = false
-opt.cursorlineopt = "number"
+opt.cursorlineopt = "line"
 opt.spell = true
 opt.spelllang = { "en_us" }
 

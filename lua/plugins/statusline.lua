@@ -35,7 +35,7 @@ return {
 
 						-- Make the filename stand out
 						hl = {
-							fg = "green", -- Filename in blue
+							fg = "#0bfc03", -- Filename in blue
 							bg = colors.winbar_bg, -- Distinguishable background for the Winbar
 							bold = true, -- Make the text bold for emphasis
 						},
@@ -120,6 +120,12 @@ return {
 						filetype = false,
 						file_modified = {}, -- if set, displays a white dot if the file has been modified.
 					}),
+					{
+						provider = function()
+							local statusline = require("arrow.statusline")
+							return statusline.text_for_statusline_with_icons() -- Same, but with an bow and arrow icon ;D
+						end,
+					},
 					lib.component.diagnostics(),
 					lib.component.fill(),
 					lib.component.cmd_info(),
