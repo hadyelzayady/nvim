@@ -4,7 +4,8 @@ function M.goto_definition()
     vim.lsp.buf.definition()
     return
   end
-  vim.cmd("Glance definitions")
+  vim.lsp.buf.definition()
+  -- vim.cmd("Glance definitions")
 end
 
 function M.goto_references()
