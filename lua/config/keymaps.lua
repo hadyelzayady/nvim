@@ -136,6 +136,18 @@ end
 function M.lsp()
 	local opts = { silent = true }
 
+	map("n", "[w", function()
+		vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.WARN })
+	end, opts)
+	map("n", "]w", function()
+		vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.WARN })
+	end, opts)
+	map("n", "[e", function()
+		vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
+	end, opts)
+	map("n", "]e", function()
+		vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
+	end, opts)
 	-- vim.keymap.del("n", "grr")
 	map("n", "gd", require("utils.lsp.operations").goto_definition, { desc = "Goto Definition" })
 	map("n", "gD", require("utils.lsp.operations").goto_declaration)
