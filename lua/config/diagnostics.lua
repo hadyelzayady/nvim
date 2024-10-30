@@ -15,7 +15,7 @@ vim.diagnostic.config({
   severity_sort = true,
   float = {
     border = "rounded",
-    source = "if_many",
+    source = true,
     -- Show severity icons as prefixes.
     prefix = function(diag)
       local level = diagnostic_key_icon_name_map[vim.diagnostic.severity[diag.severity]]
