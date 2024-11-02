@@ -1,5 +1,5 @@
 return function(setup_lsp)
-	setup_lsp("eslint", {
-		settings = {},
-	})
+  setup_lsp("eslint", {
+    settings = {},
+  })
 end
