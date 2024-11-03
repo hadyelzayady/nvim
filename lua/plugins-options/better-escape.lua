@@ -22,11 +22,6 @@ function M.config()
 					k = "<Esc>",
 				},
 			},
-			v = {
-				j = {
-					k = "<Esc>",
-				},
-			},
 			s = {
 				j = {
 					k = "<Esc>",

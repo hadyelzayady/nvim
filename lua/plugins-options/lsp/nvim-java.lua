@@ -2,6 +2,10 @@ local M = {}
 
 function M.config()
 	require("java").setup({
+		-- load java debugger plugins
+		java_debug_adapter = {
+			enable = true,
+		},
 		-- jdk = {
 		-- 	-- install jdk using mason.nvim
 		-- 	auto_install = false,
