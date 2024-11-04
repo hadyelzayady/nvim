@@ -64,9 +64,9 @@ opt.foldlevelstart = 99
 opt.foldenable = true
 
 -- swap
-opt.swapfile = false
+opt.swapfile = true
 opt.backup = false
-opt.undofile = false
+opt.undofile = true
 -- jumps
 opt.jumpoptions = "stack,view"
 

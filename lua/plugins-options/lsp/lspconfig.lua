@@ -3,7 +3,7 @@ local M = {}
 function M.config()
 	local lspconfig = require("lspconfig")
 
-	local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+	local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 	local capabilities = vim.tbl_deep_extend(
 		"force",
 		cmp_capabilities,
