@@ -12,9 +12,18 @@ return {
   },
   {
     'echasnovski/mini.pairs',
+    enabled = false,
     event = "InsertEnter",
     version = false,
     config = require("plugins-options.mini-pairs").config,
+  },
+  {
+    'altermo/ultimate-autopair.nvim',
+    event = { 'InsertEnter', 'CmdlineEnter' },
+    branch = 'v0.6', --recommended as each new version will have breaking changes
+    opts = {
+      --Config goes here
+    },
   },
   {
     "johmsalas/text-case.nvim",
@@ -73,4 +82,8 @@ return {
       },
     },
   },
+  {
+    "lambdalisue/vim-suda",
+    cmd = { "SudoWrite", "SudaRead" }
+  }
 }
