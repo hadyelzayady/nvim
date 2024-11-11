@@ -29,6 +29,8 @@ function M.config()
 	require("plugins-options.lsp.servers.lua")(setup_lsp)
 	require("plugins-options.lsp.servers.eslint")(setup_lsp)
 	require("plugins-options.lsp.servers.java")(setup_lsp)
+	require("plugins-options.lsp.servers.json")(setup_lsp)
+	require("plugins-options.lsp.servers.prisma")(setup_lsp)
 	require("config.keymaps").lsp()
 end
 
