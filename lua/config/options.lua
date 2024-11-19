@@ -58,7 +58,7 @@ vim.cmd("syntax off")
 
 -- opt.cmdheight = 0
 -- fold
-opt.foldcolumn = "1" -- '0' is not bad
+opt.foldcolumn = "0" -- '0' is not bad
 opt.foldlevel = 99
 opt.foldlevelstart = 99
 opt.foldenable = true
@@ -84,7 +84,9 @@ vim.opt.diffopt:append("internal,algorithm:patience") -- Use faster algorithm
 vim.opt.showmode = false                              -- Don't show mode, it's redundant with a statusline
 
 
-vim.opt.foldmethod = "manual" -- Disable automatic folding
+vim.opt.foldmethod = "expr" -- Disable automatic folding
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+
 vim.opt.foldenable = false    -- Don't open files with folds
 vim.opt.pumheight = 10        -- Limit popup menu height
 vim.o.laststatus = 3
