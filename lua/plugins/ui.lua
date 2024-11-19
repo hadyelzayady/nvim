@@ -15,5 +15,12 @@ return {
     'stevearc/dressing.nvim',
     config = require("plugins-options.dressing").config,
     event = "VeryLazy"
+  },
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
+    ---@module 'render-markdown'
+    ---@type render.md.UserConfig
+    opts = {},
   }
 }
