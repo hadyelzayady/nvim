@@ -1,10 +1,24 @@
 local ls = require("luasnip")
-local s = ls.snippet
-local i = ls.insert_node
 local fmt = require("luasnip.extras.fmt").fmt
-local l = require("luasnip.extras").lambda
 
+local function get_file_basename()
+  local file = vim.fn.expand("%:t:r") -- %:t:r gets the file's base name without extension
+  return file or "Component"
+end
 local snippets = {
-  ls.parser.parse_snippet("lmmm", "local M = {}\n\nfunction M.setup()\n  $1 \nend\n\nreturn M"),
+  ls.snippet("fc", fmt([[
+interface Props{{}}
+export function {}(props:Props){{
+  return (
+    <div>
+    {}
+    </div>
+  );
+}};
+
+  ]], {
+    ls.function_node(get_file_basename, {}),
+    ls.insert_node(1)
+  }))
 }
 return snippets
