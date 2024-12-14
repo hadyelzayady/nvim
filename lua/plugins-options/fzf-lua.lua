@@ -12,6 +12,9 @@ function M.config()
       fzf_opts = {
         ["--history"] = vim.fn.stdpath("data") .. "/fzf-lua-files-history",
       },
+      actions = {
+        ["ctrl-q"] = actions.file_sel_to_qf,
+      },
     },
     oldfiles = {
       prompt = "History❯ ",
@@ -21,6 +24,9 @@ function M.config()
       fzf_opts = {
         ["--history"] = vim.fn.stdpath("data") .. "/fzf-lua-old-files-history",
       },
+      actions = {
+        ["ctrl-q"] = actions.file_sel_to_qf,
+      },
     },
     buffers = {
       prompt = "Buffers❯ ",
@@ -29,6 +35,7 @@ function M.config()
       cwd_only = true,      -- buffers for the cwd only
       actions = {
         ["ctrl-x"] = { fn = actions.buf_del, reload = true },
+        ["ctrl-q"] = actions.file_sel_to_qf,
       },
       fzf_opts = {
         ["--history"] = vim.fn.stdpath("data") .. "/fzf-lua-buffers",
@@ -43,6 +50,11 @@ function M.config()
       fzf_opts = {
         ["--history"] = vim.fn.stdpath("data") .. "/fzf-lua-grep-history",
       },
+      actions = {
+        ['ctrl-q'] = {
+          fn = actions.file_edit_or_qf,
+        },
+      }
     },
     git = {
       branches = {

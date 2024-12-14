@@ -17,21 +17,21 @@ return {
   --   version = false,
   --   config = require("plugins-options.mini-pairs").config,
   -- },
-  -- {
-  --   "altermo/ultimate-autopair.nvim",
-  --   event = { "InsertEnter", "CmdlineEnter" },
-  --   branch = "v0.6", --recommended as each new version will have breaking changes
-  --   opts = function()
-  --     return {
-  --
-  --       fastwarp = {
-  --
-  --         map = "<D-e>", --string or table
-  --       },
-  --       --Config goes here
-  --     }
-  --   end,
-  -- },
+  {
+    "altermo/ultimate-autopair.nvim",
+    event = { "InsertEnter", "CmdlineEnter" },
+    branch = "v0.6", --recommended as each new version will have breaking changes
+    opts = function()
+      return {
+
+        fastwarp = {
+
+          map = "<D-e>", --string or table
+        },
+        --Config goes here
+      }
+    end,
+  },
   {
     "johmsalas/text-case.nvim",
     dependencies = { "nvim-telescope/telescope.nvim", cmd = { "Telescope" } },
