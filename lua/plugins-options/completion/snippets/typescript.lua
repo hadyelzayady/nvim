@@ -7,32 +7,11 @@ local function get_file_basename()
 end
 local snippets = {
 	ls.snippet(
-		"fc",
-		fmt(
-			[[
-interface Props{{}}
-export function {}(props:Props){{
-  return (
-    <div>
-    {}
-    </div>
-  );
-}};
-
-  ]],
-			{
-				ls.function_node(get_file_basename, {}),
-				ls.insert_node(1),
-			}
-		)
-	),
-
-	ls.snippet(
 		"fh",
 		fmt(
 			[[
 interface Props{{}}
-export function use{}(props:Props){{
+export function {}(props:Props){{
   return {};
 }};
 
