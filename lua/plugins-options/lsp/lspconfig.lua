@@ -33,6 +33,7 @@ function M.config()
 	require("plugins-options.lsp.servers.yaml")(setup_lsp)
 	require("plugins-options.lsp.servers.prisma")(setup_lsp)
 	require("plugins-options.lsp.servers.nginx")(setup_lsp)
+	require("plugins-options.lsp.servers.tailwind")(setup_lsp)
 	require("config.keymaps").lsp()
 end
 
