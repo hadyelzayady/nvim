@@ -1,11 +1,16 @@
 return {
   {
     'saghen/blink.cmp',
-    dependencies = 'rafamadriz/friendly-snippets',
-
+    dependencies = { 'rafamadriz/friendly-snippets', { 'L3MON4D3/LuaSnip', version = 'v2.*' }, },
     version = '*',
     opts = {
-      keymap = { preset = 'default' },
+      keymap = { preset = 'enter' },
+      completion = {
+        list = {
+          selection = 'preselect',
+        }
+
+      },
 
       appearance = {
         use_nvim_cmp_as_default = true,
@@ -13,7 +18,17 @@ return {
       },
       signature = { enabled = true },
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer' },
+        default = { 'lsp', 'path', 'luasnip', 'snippets', 'buffer' },
+        -- By default, we choose providers for the cmdline based on the current cmdtype
+        -- You may disable cmdline completions by replacing this with an empty table
+        cmdline = function()
+          -- local type = vim.fn.getcmdtype()
+          -- -- Search forward and backward
+          -- if type == '/' or type == '?' then return { 'buffer' } end
+          -- -- Commands
+          -- if type == ':' then return { 'cmdline' } end
+          return {}
+        end,
       },
     },
     opts_extend = { "sources.default" }
