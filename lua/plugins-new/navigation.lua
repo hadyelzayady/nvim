@@ -52,9 +52,7 @@ return {
 	},
 	{
 		"stevearc/aerial.nvim",
-		event = "VeryLazy",
 		config = require("plugins-options.aerial").config,
-		-- Optional dependencies
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
 		},

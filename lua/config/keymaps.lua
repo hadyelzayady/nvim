@@ -202,4 +202,16 @@ function M.rainbiow()
 	end, { desc = "Toggle Rainbow Delimiters" })
 end
 
+function M.agitator()
+	map("n", "<leader>g,g", function()
+		require("agitator").search_git_branch()
+	end, { desc = "Grep in branch" })
+	map("n", "<leader>g,f", function()
+		require("agitator").open_file_git_branch()
+	end, { desc = "Open file in branch" })
+	map("n", "<leader>g,m", function()
+		require("agitator").git_time_machine()
+	end, { desc = "Time machine" })
+end
+
 return M

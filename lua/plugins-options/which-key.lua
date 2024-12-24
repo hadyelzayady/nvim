@@ -3,6 +3,7 @@ local M = {}
 M.opts = {
   spec = {
     { "<leader>g", group = "Git" },            -- group
+    { "<leader>g,", group = "Agitator" },            -- group
     { "<leader>f", group = "Find" },           -- group
     { "<leader>s", group = "Search/Replace" }, -- group
     { "<leader>c", group = "Code" },           -- group

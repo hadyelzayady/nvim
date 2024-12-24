@@ -9,7 +9,6 @@ return {
         list = {
           selection = 'preselect',
         }
-
       },
 
       appearance = {
@@ -32,20 +31,6 @@ return {
       },
     },
     opts_extend = { "sources.default" }
-  },
-  {
-    "hrsh7th/nvim-cmp",
-    config = require("plugins-options.completion.cmp").config,
-    event = "InsertEnter",
-    enabled = false,
-    dependencies = {
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-calc",
-      "saadparwaiz1/cmp_luasnip",
-      "rcarriga/cmp-dap",
-    },
   },
   {
     "L3MON4D3/LuaSnip",
