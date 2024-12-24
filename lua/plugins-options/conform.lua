@@ -17,7 +17,7 @@ function M.config(_, opts)
       json = js_like_formatters,
       jsonc = js_like_formatters,
       scss = { "prettierd" },
-      css = { "prettierd" },
+      css = { "biome", "prettierd" },
       html = { "prettierd" },
 
       cpp = { "clang_format" },
