@@ -12,21 +12,17 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 local opt = vim.opt
-opt.clipboard = "unnamedplus" -- Sync with system clipboard
 opt.number = true             -- Print line number
 opt.splitbelow = true         -- Horizontal splits will be below
 opt.splitright = true         -- Vertical splits will be to the right
 opt.termguicolors = true      -- Enable gui colors
 opt.signcolumn = "auto:1-3"   -- Always show sign column (otherwise it will shift text)
-opt.conceallevel = 0
+-- opt.conceallevel = 0
 
 opt.mouse = ""     -- Enable mouse mode
 opt.scrolloff = 2  -- Lines of context
 
 opt.confirm = true -- Confirm to save changes before exiting modified buffer
-
--- opt.undodir = require("utils.undo").undodir
--- opt.undolevels = 10000
 
 opt.expandtab = true  -- Use spaces instead of tabs
 opt.shiftround = true -- Round indent
@@ -44,29 +40,17 @@ opt.cursorlineopt = "line"
 opt.spell = true
 opt.spelllang = { "en_us" }
 
--- opt.completeopt = "menuone,noinsert,noselect" -- Customize completions
-opt.completeopt = "" -- Customize completions
-
-opt.smartcase = true                          -- Don't ignore case when searching if pattern has upper case
-opt.ignorecase = true                         -- Ignore case when searching (use `\C` to force not doing that)
-
+-- empty space ui
 opt.listchars = "tab:| ,lead:.,trail:-,extends:›,precedes:‹"
 opt.list = true
-
 opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep:│,foldclose:]]
-vim.cmd("syntax off")
-
--- opt.cmdheight = 0
--- fold
-opt.foldcolumn = "0" -- '0' is not bad
-opt.foldlevel = 99
-opt.foldlevelstart = 99
-opt.foldenable = true
+-- vim.cmd("syntax off")
 
 -- swap
 opt.swapfile = true
 opt.backup = false
 opt.undofile = true
+
 -- jumps
 opt.jumpoptions = "stack,view"
 
@@ -76,17 +60,26 @@ opt.updatetime = 300                                  -- Default is 4000ms
 opt.ttyfast = true                                    -- Optimize for fast terminals
 opt.lazyredraw = true                                 -- Redraw only when necessary
 
+-- Search
 opt.history = 100                                     -- Default is 1000, set lower if not needed
 opt.hlsearch = true                                  -- Disable highlight on search
+-- opt.completeopt = "menuone,noinsert,noselect" -- Customize completions
+opt.completeopt = "" -- Customize completions
 
-vim.opt.diffopt:append("internal,algorithm:patience") -- Use faster algorithm
+opt.smartcase = true                          -- Don't ignore case when searching if pattern has upper case
+opt.ignorecase = true                         -- Ignore case when searching (use `\C` to force not doing that)
 
-vim.opt.showmode = false                              -- Don't show mode, it's redundant with a statusline
+-- Diff algorithm
+opt.diffopt:append("internal,algorithm:patience") -- Use faster algorithm
 
+-- Fold
+opt.foldmethod = "expr" -- Disable automatic folding
+opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+opt.foldcolumn = "0" -- '0' is not bad
+opt.foldlevel = 99
+opt.foldlevelstart = 99
 
-vim.opt.foldmethod = "expr" -- Disable automatic folding
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-
-vim.opt.foldenable = false    -- Don't open files with folds
-vim.opt.pumheight = 10        -- Limit popup menu height
-vim.o.laststatus = 3
+-- status
+opt.pumheight = 10        -- Limit popup menu height
+opt.laststatus = 3
+opt.showmode = false                              -- Don't show mode, it's redundant with a statusline
