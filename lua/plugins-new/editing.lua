@@ -1,4 +1,9 @@
 return {
+  {
+    "max397574/better-escape.nvim",
+    config = require("plugins-options.better-escape").config,
+    event = "InsertEnter",
+  },
 	{
 		"johmsalas/text-case.nvim",
 		dependencies = { "nvim-telescope/telescope.nvim", cmd = { "Telescope" } },
