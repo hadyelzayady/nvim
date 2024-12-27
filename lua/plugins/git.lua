@@ -15,7 +15,6 @@ return {
 		config = require("plugins-options.diffview").config,
 		cmd = require("plugins-options.diffview").cmd,
 	},
-
 	{
 		"NeogitOrg/neogit",
 		dependencies = {

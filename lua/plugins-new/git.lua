@@ -2,12 +2,7 @@ return {
 	{
 		"emmanueltouzery/agitator.nvim",
 		config = require("plugins-options.agitator").config,
-	},
-	{
-		"echasnovski/mini.diff",
-		config = require("plugins-options.mini-diff").config,
-		enabled = false,
-		version = false,
+		lazy = true,
 	},
 	{
 		"lewis6991/gitsigns.nvim",

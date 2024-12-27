@@ -1,44 +1,45 @@
 return {
-  {
-    "williamboman/mason.nvim",
-    event = "VeryLazy",
-    -- do not use config as nvim-java will break if you use config
-    -- config = require("plugins-options.mason").config,
-  },
-  {
-    "neovim/nvim-lspconfig",
-    dependencies = { "nvim-java/nvim-java" },
-    config = require("plugins-options.lsp.lspconfig").config,
-  },
-  {
-    "mrcjkb/rustaceanvim",
-    version = "^5", -- Recommended
-    lazy = false, -- This plugin is already lazy
-  },
-  {
-    "yioneko/nvim-vtsls",
-    event = "VeryLazy",
-  },
-  {
-    "antosha417/nvim-lsp-file-operations",
-    event = "VeryLazy",
-    requires = {
-      "nvim-lua/plenary.nvim",
-      -- Uncomment whichever supported plugin(s) you use
-      "nvim-tree/nvim-tree.lua",
-      -- "nvim-neo-tree/neo-tree.nvim",
-      -- "simonmclean/triptych.nvim"
-    },
-    config = function()
-      require("lsp-file-operations").setup()
-    end,
-  },
-  {
-    "nvim-java/nvim-java",
-    config = require("plugins-options.lsp.nvim-java").config,
-  },
-  {
-    "b0o/schemastore.nvim",
-    ft = { "json", "yaml" },
-  },
+	{
+		"williamboman/mason.nvim",
+		config = true,
+		-- event = "VeryLazy",
+		-- do not use config as nvim-java will break if you use config
+		-- config = require("plugins-options.mason").config,
+	},
+	{
+		"neovim/nvim-lspconfig",
+		dependencies = { "nvim-java/nvim-java" },
+		config = require("plugins-options.lsp.lspconfig").config,
+	},
+	{
+		"mrcjkb/rustaceanvim",
+		version = "^5", -- Recommended
+		lazy = false, -- This plugin is already lazy
+	},
+	{
+		"yioneko/nvim-vtsls",
+		event = "VeryLazy",
+	},
+	{
+		"antosha417/nvim-lsp-file-operations",
+		event = "VeryLazy",
+		requires = {
+			"nvim-lua/plenary.nvim",
+			-- Uncomment whichever supported plugin(s) you use
+			"nvim-tree/nvim-tree.lua",
+			-- "nvim-neo-tree/neo-tree.nvim",
+			-- "simonmclean/triptych.nvim"
+		},
+		config = function()
+			require("lsp-file-operations").setup()
+		end,
+	},
+	{
+		"nvim-java/nvim-java",
+		config = require("plugins-options.lsp.nvim-java").config,
+	},
+	{
+		"b0o/schemastore.nvim",
+		ft = { "json", "yaml" },
+	},
 }

@@ -3,6 +3,7 @@ return {
 		"saghen/blink.cmp",
 		dependencies = { "rafamadriz/friendly-snippets", { "L3MON4D3/LuaSnip", version = "v2.*" } },
 		version = "*",
+		event = { "InsertEnter" },
 		opts = {
 			keymap = { preset = "enter" },
 			completion = {

@@ -12,7 +12,11 @@ return {
 			"TextCaseStartReplacingCommand",
 		},
 	},
-
+	{
+		"echasnovski/mini.pairs",
+		config = true,
+		version = false,
+	},
 	{
 		"echasnovski/mini.splitjoin",
 		version = false,

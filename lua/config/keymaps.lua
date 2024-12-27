@@ -13,6 +13,11 @@ function M.setup()
 	map("n", "<leader>P", '"+P', { noremap = true, silent = true }) -- Paste before cursor
 	map("v", "<leader>p", '"+p', { noremap = true, silent = true }) -- Visual mode paste
 	map("v", "<leader>P", '"+P', { noremap = true, silent = true }) -- Visual mode paste before selection
+
+	-- toggle
+
+	map("n", "<leader>tf", '<cmd>set foldenable!<cr>', { noremap = true, silent = true, desc = "Toggle Fold" }) -- Visual mode paste before selection
+
 	-- navigation
 	map("n", "<leader>E", "<cmd>NvimTreeFindFile<CR>", { desc = "NvimTree Find File Toggle" })
 	map("n", "<leader>e", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle NvimTree" })

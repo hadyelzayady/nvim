@@ -63,8 +63,8 @@ opt.lazyredraw = true                                 -- Redraw only when necess
 -- Search
 opt.history = 100                                     -- Default is 1000, set lower if not needed
 opt.hlsearch = true                                  -- Disable highlight on search
--- opt.completeopt = "menuone,noinsert,noselect" -- Customize completions
-opt.completeopt = "" -- Customize completions
+opt.completeopt = "menuone,noinsert,noselect" -- Customize completions
+-- opt.completeopt = "" -- Customize completions
 
 opt.smartcase = true                          -- Don't ignore case when searching if pattern has upper case
 opt.ignorecase = true                         -- Ignore case when searching (use `\C` to force not doing that)

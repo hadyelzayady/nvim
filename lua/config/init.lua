@@ -1,5 +1,6 @@
 require("config.options")
 require("config.keymaps").setup()
+require("config.keymaps").lsp()
 require("config.ui")
 require("config.commands")
 require("config.autocmd")
