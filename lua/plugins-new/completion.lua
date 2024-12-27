@@ -18,9 +18,12 @@ return {
 			signature = { enabled = true },
 			sources = {
 				default = { "lsp", "path", "luasnip", "snippets", "buffer" },
-				cmdline = function()
-					return {}
-				end,
+				providers = {
+					cmdline = {
+						enabled = false,
+					},
+				},
+				cmdline = {},
 			},
 		},
 		opts_extend = { "sources.default" },

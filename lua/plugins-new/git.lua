@@ -9,4 +9,10 @@ return {
 		event = "VeryLazy",
 		config = require("plugins-options.gitsigns").config,
 	},
+	{
+		"sindrets/diffview.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		config = require("plugins-options.diffview").config,
+		cmd = require("plugins-options.diffview").cmd,
+	},
 }
