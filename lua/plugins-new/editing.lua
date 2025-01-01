@@ -1,9 +1,9 @@
 return {
-  {
-    "max397574/better-escape.nvim",
-    config = require("plugins-options.better-escape").config,
-    event = "InsertEnter",
-  },
+	{
+		"max397574/better-escape.nvim",
+		config = require("plugins-options.better-escape").config,
+		event = "InsertEnter",
+	},
 	{
 		"johmsalas/text-case.nvim",
 		dependencies = { "nvim-telescope/telescope.nvim", cmd = { "Telescope" } },
@@ -21,6 +21,12 @@ return {
 		"echasnovski/mini.pairs",
 		config = true,
 		version = false,
+	},
+	{
+		"echasnovski/mini.surround",
+		version = false,
+		config = require("plugins-options.mini-surround").config,
+		keys = { { "s", mode = { "v", "n" } } },
 	},
 	{
 		"echasnovski/mini.splitjoin",
@@ -56,6 +62,7 @@ return {
 					grug.open({
 						transient = true,
 						prefills = {
+							paths = vim.fn.expand("%"),
 							filesFilter = ext and ext ~= "" and "*." .. ext or nil,
 						},
 					})
@@ -69,5 +76,11 @@ return {
 	{
 		"lambdalisue/vim-suda",
 		cmd = { "SudoWrite", "SudaRead" },
+	},
+	{
+		"folke/ts-comments.nvim",
+		opts = {},
+		event = "VeryLazy",
+		enabled = vim.fn.has("nvim-0.10.0") == 1,
 	},
 }
