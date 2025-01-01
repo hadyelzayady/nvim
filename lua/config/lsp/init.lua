@@ -4,11 +4,11 @@ vim.lsp.config("*", {
 require("config.lsp.lua")
 require("config.lsp.vtsls")
 require("config.lsp.biome")
-require("config.lsp.cssls")
-require("config.lsp.eslint")
+-- require("config.lsp.cssls")
+-- require("config.lsp.eslint")
 -- require("config.lsp.json")
 --
-vim.lsp.enable({ "eslint", "luals", "vtsls", "biome" })
+vim.lsp.enable({ "luals", "vtsls", "biome" })
 
 vim.api.nvim_create_autocmd("LspNotify", {
 	callback = function(args)

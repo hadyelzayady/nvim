@@ -6,7 +6,9 @@ return {
 		"williamboman/mason.nvim",
 		event = "VeryLazy",
 		config = true,
-		-- do not use config as nvim-java will break if you use config
-		-- config = require("plugins-options.mason").config,
+	},
+	{
+		"neovim/nvim-lspconfig",
+		config = require("plugins-options.lsp.lspconfig").config,
 	},
 }

@@ -32,7 +32,7 @@ local function fix_all(opts)
 end
 
 vim.lsp.config["eslint"] = {
-	cmd = { "vscode-eslint-language-server", "--stdio" },
+	cmd = { "bunx", "vscode-eslint-language-server", "--stdio" },
 	filetypes = {
 		"javascript",
 		"javascriptreact",
@@ -44,7 +44,7 @@ vim.lsp.config["eslint"] = {
 		"svelte",
 		"astro",
 	},
-	root_markers = { "tsconfig.json", "package.json", "jsconfig.json", ".git","eslintrc.json" },
+	root_markers = { "tsconfig.json", "package.json", "jsconfig.json", ".git", "eslintrc.json" },
 	settings = {
 		codeAction = {
 			disableRuleComment = {
