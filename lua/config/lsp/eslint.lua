@@ -1,4 +1,4 @@
-local util = require("config.lsp.lspconfig-utils")
+local util = require("config.lsp.utils.lspconfig-utils")
 local lsp = vim.lsp
 local function fix_all(opts)
 	opts = opts or {}

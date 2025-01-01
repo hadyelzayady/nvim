@@ -16,11 +16,14 @@ function M.setup()
 
 	-- toggle
 
-	map("n", "<leader>tf", '<cmd>set foldenable!<cr>', { noremap = true, silent = true, desc = "Toggle Fold" }) -- Visual mode paste before selection
+	map("n", "<leader>tf", "<cmd>set foldenable!<cr>", { noremap = true, silent = true, desc = "Toggle Fold" }) -- Visual mode paste before selection
 
 	-- navigation
 	map("n", "<leader>E", "<cmd>NvimTreeFindFile<CR>", { desc = "NvimTree Find File Toggle" })
 	map("n", "<leader>e", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle NvimTree" })
+	map("n", "<leader>w", function()
+		MiniFiles.open(vim.api.nvim_buf_get_name(0))
+	end, { desc = "Toggle NvimTree" })
 	map("n", "<c-,>", function()
 		-- require("trouble").next()
 		vim.cmd("silent! cnext")

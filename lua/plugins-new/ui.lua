@@ -13,10 +13,21 @@ return {
 		config = require("plugins-options.treesitter").config,
 	},
 	-- {
-	-- 	"stevearc/dressing.nvim",
-	-- 	config = require("plugins-options.dressing").config,
-	-- 	event = "VeryLazy",
+	-- 	"folke/snacks.nvim",
+	-- 	opts = {
+	-- 		input = {
+	-- 			relative = "cursor",
+	-- 			-- your input configuration comes here
+	-- 			-- or leave it empty to use the default settings
+	-- 			-- refer to the configuration section below
+	-- 		},
+	-- 	},
 	-- },
+	{
+		"stevearc/dressing.nvim",
+		config = require("plugins-options.dressing").config,
+		event = "VeryLazy",
+	},
 	-- {
 	-- 	"MeanderingProgrammer/render-markdown.nvim",
 	-- 	dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.icons" }, -- if you use standalone mini plugins

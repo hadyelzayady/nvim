@@ -76,4 +76,17 @@ return {
 			buffer_leader_key = "m", -- Per Buffer Mappings
 		},
 	},
+	{
+		"echasnovski/mini.files",
+		config = true,
+		opts = {
+			options = {
+				-- Whether to delete permanently or move into module-specific trash
+				permanent_delete = false,
+				-- Whether to use for editing directories
+				use_as_default_explorer = false,
+			},
+		},
+		version = false,
+	},
 }
