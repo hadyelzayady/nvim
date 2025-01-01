@@ -2,7 +2,7 @@ return {
 	{
 		"emmanueltouzery/agitator.nvim",
 		config = require("plugins-options.agitator").config,
-		lazy = true,
+		keys = { "<space>g," },
 	},
 	{
 		"lewis6991/gitsigns.nvim",
