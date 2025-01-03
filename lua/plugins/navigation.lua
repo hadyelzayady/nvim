@@ -5,6 +5,12 @@ return {
     dependencies = { "echasnovski/mini.icons" },
     config = require("plugins-options.oil").config,
   },
+{
+	'echasnovski/mini.files',
+	config=true,
+	version = false,
+	lazy=false,
+},
 	--  {
 	--    "nvim-tree/nvim-tree.lua",
 	--    version = "*",
@@ -26,8 +32,6 @@ return {
   {
     "stevearc/quicker.nvim",
     event = "FileType qf",
-    ---@module "quicker"
-    ---@type quicker.SetupOptions
     opts = {},
   },
   {
@@ -56,7 +60,6 @@ return {
     "stevearc/aerial.nvim",
     event = "VeryLazy",
     config = require("plugins-options.aerial").config,
-    -- Optional dependencies
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       "nvim-tree/nvim-web-devicons",
@@ -72,8 +75,6 @@ return {
   {
     "otavioschwanck/arrow.nvim",
     dependencies = {
-      -- { "nvim-tree/nvim-web-devicons" },
-      -- or if using `mini.icons`
       { "echasnovski/mini.icons" },
     },
     keys={";"},
