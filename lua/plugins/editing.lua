@@ -4,19 +4,18 @@ return {
     config = require("plugins-options.better-escape").config,
     event = "InsertEnter",
   },
---  {
---    "echasnovski/mini.surround",
---    version = false,
---    config = require("plugins-options.mini-surround").config,
---    keys = { { "s", mode = { "v", "n" } } },
---  },
-  -- {
-  --   "echasnovski/mini.pairs",
-  --   event = "InsertEnter",
-  --   enabled = false,
-  --   version = false,
-  --   config = require("plugins-options.mini-pairs").config,
-  -- },
+ {
+   "echasnovski/mini.surround",
+   version = false,
+   config = require("plugins-options.mini-surround").config,
+   keys = { { "s", mode = { "v", "n" } } },
+ },
+  {
+    "echasnovski/mini.pairs",
+    event = "InsertEnter",
+    version = false,
+    config = require("plugins-options.mini-pairs").config,
+  },
 --  {
 --    "altermo/ultimate-autopair.nvim",
 --    event = { "InsertEnter", "CmdlineEnter" },
@@ -32,20 +31,20 @@ return {
 --      }
 --    end,
 --  },
---  {
---    "johmsalas/text-case.nvim",
---    dependencies = { "nvim-telescope/telescope.nvim", cmd = { "Telescope" } },
---    config = require("plugins-options.text-case").config,
---    keys = { "ga", { "ga.", "<cmd>TextCaseOpenTelescope<CR>", mode = { "n", "x" }, desc = "Telescope" },
---    },
---    cmd = {
---      "Subs",
---      "TextCaseOpenTelescope",
---      "TextCaseOpenTelescopeQuickChange",
---      "TextCaseOpenTelescopeLSPChange",
---      "TextCaseStartReplacingCommand",
---    },
---  },
+ {
+   "johmsalas/text-case.nvim",
+   dependencies = { "nvim-telescope/telescope.nvim", cmd = { "Telescope" } },
+   config = require("plugins-options.text-case").config,
+   keys = { "ga", { "ga.", "<cmd>TextCaseOpenTelescope<CR>", mode = { "n", "x" }, desc = "Telescope" },
+   },
+   cmd = {
+     "Subs",
+     "TextCaseOpenTelescope",
+     "TextCaseOpenTelescopeQuickChange",
+     "TextCaseOpenTelescopeLSPChange",
+     "TextCaseStartReplacingCommand",
+   },
+ },
 --
  {
    "echasnovski/mini.splitjoin",

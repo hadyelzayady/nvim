@@ -68,3 +68,8 @@ vim.o.tabstop = 4 -- tab width
 
 vim.o.undofile = true -- enable persistent undo
 vim.o.undolevels = 10000 -- 10x more undo levels
+
+-- status
+vim.o.pumheight = 10        -- Limit popup menu height
+vim.o.laststatus = 3
+vim.o.showmode = false                              -- Don't show mode, it's redundant with a statusline
