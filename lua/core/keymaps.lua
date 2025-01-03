@@ -14,6 +14,12 @@ map("n", "<leader>P", '"+P', { noremap = true, silent = true }) -- Paste before 
 map("v", "<leader>p", '"+p', { noremap = true, silent = true }) -- Visual mode paste
 map("v", "<leader>P", '"+P', { noremap = true, silent = true }) -- Visual mode paste before selection
 
+-- Resize
+map("n", "<A-k>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
+map("n", "<A-j>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
+map("n", "<A-h>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
+map("n", "<A-l>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
+
 -- Quickfix
 map("n", "<c-,>", function() vim.cmd("silent! cnext") end, { desc = "Next Quickfix Item" })
 map("n", "<c-.>", function() vim.cmd("silent! cprevious") end, { desc = "Prev Quickfix Item" })
@@ -33,6 +39,17 @@ map("n", "<leader>jl", function() require("flash").jump({ search = { mode = "sea
 		pattern = "^",
 	})
 end, { desc = "Jump To Line" })
+
+map("n", "<leader>xq", function()
+  require("quicker").toggle()
+end, {
+  desc = "Toggle quickfix",
+})
+vim.keymap.set("n", "<leader>xl", function()
+  require("quicker").toggle({ loclist = true })
+end, {
+  desc = "Toggle loclist",
+})
 
 -- Tab management
 map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
