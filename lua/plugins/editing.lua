@@ -14,7 +14,22 @@ return {
     "echasnovski/mini.pairs",
     event = "InsertEnter",
     version = false,
-    config = require("plugins-options.mini-pairs").config,
+    opts = {
+      -- skip autopair when next character is one of these
+      skip_next = [=[[%w%%%'%[%"%.%`%$]]=],
+      -- skip autopair when next character is closing pair
+      -- and there are more closing pairs than opening pairs
+      skip_unbalanced = true,
+      -- better deal with markdown code blocks
+      markdown = true,
+	  mappings = {
+		  -- restrict ' with < and & for rust
+		  ["'"] = { neigh_pattern = "[^%a\\|<|&]." },
+		  -- Add | for rust iterations
+		  ["|"] = { action = "closeopen", pair = "||", neigh_pattern = "[(][)]", register = { cr = false } },
+	  },
+  },
+  config = require("plugins-options.mini-pairs").config,
   },
 --  {
 --    "altermo/ultimate-autopair.nvim",
