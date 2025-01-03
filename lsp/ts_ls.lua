@@ -10,6 +10,7 @@ return {
 		"typescriptreact",
 		"typescript.tsx",
 	},
+	capabilities = vim.lsp.protocol.make_client_capabilities(),
 	init_options = {
 		hostInfo = "neovim",
 	},

@@ -4,9 +4,26 @@ vim.g.loaded_ruby_provider = 0
 vim.g.loaded_node_provider = 0
 vim.g.loaded_python_provider = 0
 vim.g.loaded_python3_provider = 0
+-- vim.g.loaded_netrw = 0
+-- vim.g.loaded_netrwPlugin = 0
+
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+
+vim.opt.splitbelow = true         -- Horizontal splits will be below
+vim.opt.splitright = true         -- Vertical splits will be to the right
+vim.opt.signcolumn = "auto:1-3"   -- Always show sign column (otherwise it will shift text)
+
+-- jumps
+vim.opt.jumpoptions = "stack,view"
+
+-- performance optimize
+vim.opt.updatetime = 300                                  -- Default is 4000ms
+vim.opt.ttyfast = true                                    -- Optimize for fast terminals
+vim.opt.lazyredraw = true                                 -- Redraw only when necessary
 
 -- general options
-vim.o.completeopt = "menu,menuone,popup,fuzzy" -- modern completion menu
+vim.o.completeopt = "menu,menuone,noselect,noinsert,popup,fuzzy" -- modern completion menu
 
 vim.o.foldenable = false -- enable fold
 vim.o.foldlevel = 99 -- start editing with all folds opened
@@ -25,8 +42,6 @@ vim.o.cursorline = true -- enable cursor line
 
 vim.o.number = true -- enable line number
 vim.o.relativenumber = true -- and relative line number
-
-vim.o.signcolumn = "no" -- always show sign column
 
 vim.o.pumheight = 10 -- max height of completion menu
 
@@ -53,11 +68,3 @@ vim.o.tabstop = 4 -- tab width
 
 vim.o.undofile = true -- enable persistent undo
 vim.o.undolevels = 10000 -- 10x more undo levels
-
--- define <leader> and <localleader> keys
--- you should use `vim.keycode` to translate keycodes or pass raw keycode values like `" "` instead of just `"<space>"`
-vim.g.mapleader = vim.keycode("<space>")
-vim.g.maplocalleader = vim.keycode("<cr>")
-
--- remove netrw banner for cleaner looking
-vim.g.netrw_banner = 0
