@@ -102,3 +102,36 @@ map("n", "<leader>sp", "<cmd>FzfLua grep_project previewer=builtin<cr>", { desc 
 map( { "n", "v" }, "<leader>sv", "<cmd>FzfLua grep_visual previewer=builtin<cr>", { desc = "Search Visual", noremap = true }
 )
 map("n", "<leader>sg", "<cmd>FzfLua live_grep_glob previewer=builtin<cr>", { desc = "Grep" })
+
+-- Lsp
+map({ "n", "v" }, "<leader>lf", require("utils.lsp.operations").format, { silent = true, desc = "Format" })
+map("n", "gd", require("utils.lsp.operations").goto_definition, { desc = "Goto Definition" })
+map("n", "gD", require("utils.lsp.operations").goto_declaration, { desc = "Goto Declaration" })
+map("n", "grr", require("utils.lsp.operations").goto_references, { desc = "Goto References" })
+map("n", "gR", require("utils.lsp.operations").goto_file_references, { desc = "Goto File References" })
+map("n", "gt", require("utils.lsp.operations").goto_type_definition, { desc = "Goto Type Definition" })
+map("n", "gI", require("utils.lsp.operations").goto_implementations, { desc = "Goto Implementations" })
+map("n", "<leader>li", require("utils.lsp.operations").goto_incoming_calls, { desc = "Goto Incoming Calls" })
+map("n", "<leader>lo", require("utils.lsp.operations").goto_outgoing_calls, { desc = "Goto Outgoing Calls" })
+-- map("n", "<leader>lr", require("utils.lsp.operations").rename, { silent = true, desc = "Rename" })
+-- map("n", "<leader>la", vim.lsp.buf.code_action, { silent = true, desc = "Code Actions" })
+map("n", "<leader>lR", require("utils.lsp.operations").rename_file, { desc = "Rename File" })
+map("n", "<leader>cf", require("utils.lsp.operations").fixAll, { desc = "Fix All" })
+map("n", "<leader>cc", require("utils.lsp.operations").removeUnused, { desc = "Remove Unused" })
+map("n", "<leader>cC", require("utils.lsp.operations").removeUnusedImports, { desc = "Remove Unused Imports" })
+map("n", "<leader>ci", require("utils.lsp.operations").addMissingImports, { desc = "Add Missing Imports" })
+map(
+	"n",
+	"<leader>sS",
+	"<cmd>FzfLua lsp_live_workspace_symbols previewer=builtin<cr>",
+	{ desc = "Workspace Symbols" }
+)
+map("n", "<leader>ss", "<cmd>FzfLua lsp_document_symbols<cr>", { desc = "Document Symbols" })
+map(
+	"n",
+	"<leader>lth",
+	require("utils.lsp.operations").toggle_inlay_hints,
+	{ desc = "Toggle Inlayhints", silent = true }
+)
+-- map("n", "<leader>ltl", "<cmd>LspLensToggle<cr>", { desc = "Toggle function hints", silent = true })
+map({ "n", "i" }, "<C-s>", vim.lsp.buf.signature_help, opts)
