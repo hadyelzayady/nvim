@@ -26,7 +26,8 @@ map("n", "<c-.>", function() vim.cmd("silent! cprevious") end, { desc = "Prev Qu
 map("n", "<c-q>", function() vim.cmd("cclose") require("neogit").close() end, { desc = "Close Common Splits" })
 
 -- Navigation
-map("n", "<leader>w", function() MiniFiles.open(vim.api.nvim_buf_get_name(0)) end, { desc = "Toggle MiniFiles" })
+map("n", "<leader>'", function() require('fzf-lua').resume() end, { desc = "FzfLua Resume" })
+map("n", "<leader>e", function() MiniFiles.open(vim.api.nvim_buf_get_name(0)) end, { desc = "Toggle MiniFiles" })
 map("n", "<C-e>", "<cmd>FzfLua oldfiles previewer=builtin<cr>", { desc = "Recent Files" })
 map("n", "<leader>ff", "<cmd>FzfLua files previewer=builtin<cr>", { desc = "Find File" })
 map("n", "<leader>fb", "<cmd>FzfLua buffers previewer=builtin<cr>", { desc = "Find Buffer" })
