@@ -25,7 +25,7 @@ vim.opt.lazyredraw = true                                 -- Redraw only when ne
 -- general options
 vim.o.completeopt = "menu,menuone,noselect,noinsert,popup,fuzzy" -- modern completion menu
 
-vim.o.foldenable = false -- enable fold
+vim.o.foldenable = true -- enable fold
 vim.o.foldlevel = 99 -- start editing with all folds opened
 vim.o.foldmethod = "expr" -- use tree-sitter for folding method
 vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"

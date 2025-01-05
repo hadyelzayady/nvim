@@ -3,9 +3,9 @@ local map = vim.keymap.set
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
 
 -- Copy to clipboard
-map("v", "<leader>y", '"+y', { noremap = true, silent = true }) -- Visual mode copy
+map("v", "<leader>y", '"+y', { noremap = true, silent = true })   -- Visual mode copy
 map("n", "<leader>Y", '"+yg_', { noremap = true, silent = true }) -- Copy to clipboard without moving cursor
-map("n", "<leader>y", '"+y', { noremap = true, silent = true }) -- Normal mode copy
+map("n", "<leader>y", '"+y', { noremap = true, silent = true })   -- Normal mode copy
 map("n", "<leader>yy", '"+yy', { noremap = true, silent = true }) -- Yank the whole line
 
 -- Paste from clipboard
@@ -23,7 +23,10 @@ map("n", "<A-l>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width
 -- Quickfix
 map("n", "<c-,>", function() vim.cmd("silent! cnext") end, { desc = "Next Quickfix Item" })
 map("n", "<c-.>", function() vim.cmd("silent! cprevious") end, { desc = "Prev Quickfix Item" })
-map("n", "<c-q>", function() vim.cmd("cclose") require("neogit").close() end, { desc = "Close Common Splits" })
+map("n", "<c-q>", function()
+	vim.cmd("cclose")
+	require("neogit").close()
+end, { desc = "Close Common Splits" })
 
 -- Navigation
 map("n", "<leader>'", function() require('fzf-lua').resume() end, { desc = "FzfLua Resume" })
@@ -35,25 +38,18 @@ map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 map("n", "<leader>ft", "<cmd>FzfLua filetypes previewer=builtin<cr>", { desc = "File Types" })
 map("n", "<leader>sm", "<cmd>FzfLua marks previewer=builtin<cr>", { desc = "Search Marks" })
 map("n", "-", "<cmd>Oil<cr>", { desc = "Open Oil" })
-map("n", "<leader>jl", function() require("flash").jump({ search = { mode = "search", max_length = 0 },
+map("n", "<leader>jl", function()
+	require("flash").jump({
+		search = { mode = "search", max_length = 0 },
 		label = { after = { 0, 0 } },
 		pattern = "^",
 	})
 end, { desc = "Jump To Line" })
-
-map("n", "<leader>xq", function()
-  require("quicker").toggle()
-end, {
-  desc = "Toggle quickfix",
-})
-vim.keymap.set("n", "<leader>xl", function()
-  require("quicker").toggle({ loclist = true })
-end, {
-  desc = "Toggle loclist",
-})
-
+map("n", "<leader>xq", function() require("quicker").toggle() end, { desc = "Toggle quickfix", })
+map("n", "<leader>xl", function() require("quicker").toggle({ loclist = true }) end, { desc = "Toggle loclist", })
 map("n", "<leader>cS", "<cmd>AerialToggle<cr>", { silent = true, desc = "Symbole Outline" })
 map("n", "<leader>cs", "<cmd>AerialNavToggle<cr>", { silent = true, desc = "Symbole Nav" })
+
 -- Tab management
 map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
 map("n", "<leader><tab>n", "<cmd>tabnext<cr>", { desc = "Next Tab" })
@@ -85,8 +81,9 @@ map("n", "<leader>gh", ":DiffviewFileHistory %<CR>", { desc = "Buffer History" }
 map("v", "<leader>gh", ":'<,'>DiffviewFileHistory %<CR>", { desc = "Range Buffer History" })
 map("n", "<leader>gg", "<cmd>Lazygit<CR>", { desc = "Lazygit", silent = true })
 map("n", "<leader>gG", "<cmd>Gitui<CR>", { desc = "Gitui", silent = true })
--- End Git
 
+-- toggle
+map("n", "<leader>tf", "<cmd>set foldenable!<cr>", { noremap = true, silent = true, desc = "Toggle Fold" })  -- Visual mode paste before selection
 
 -- quit/session/projects
 map("n", "<leader>qq", "<cmd>q<cr>", { desc = "Quit" })
@@ -100,7 +97,8 @@ map("n", "<leader>qW", "<cmd>silent! w<cr>", { desc = "Save Current" })
 map("n", "<leader>sw", "<cmd>FzfLua grep_cword previewer=builtin<cr>", { desc = "Search Current Word (project)" })
 map("n", "<leader>sb", "<cmd>FzfLua grep_curbuf previewer=builtin<cr>", { desc = "Search Buffer" })
 map("n", "<leader>sp", "<cmd>FzfLua grep_project previewer=builtin<cr>", { desc = "Search Project" })
-map( { "n", "v" }, "<leader>sv", "<cmd>FzfLua grep_visual previewer=builtin<cr>", { desc = "Search Visual", noremap = true }
+map({ "n", "v" }, "<leader>sv", "<cmd>FzfLua grep_visual previewer=builtin<cr>",
+	{ desc = "Search Visual", noremap = true }
 )
 map("n", "<leader>sg", "<cmd>FzfLua live_grep_glob previewer=builtin<cr>", { desc = "Grep" })
 
