@@ -16,7 +16,4 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 -- you can find server configurations from lsp/*.lua files
-vim.lsp.enable("gopls")
-vim.lsp.enable("lua_ls")
-vim.lsp.enable("ts_ls")
-vim.lsp.enable("eslint")
+vim.lsp.enable({ "lua_ls", "ts_ls", "eslint","css",'cssmodules' })

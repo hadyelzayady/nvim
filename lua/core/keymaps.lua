@@ -83,7 +83,7 @@ map("n", "<leader>gg", "<cmd>Lazygit<CR>", { desc = "Lazygit", silent = true })
 map("n", "<leader>gG", "<cmd>Gitui<CR>", { desc = "Gitui", silent = true })
 
 -- toggle
-map("n", "<leader>tf", "<cmd>set foldenable!<cr>", { noremap = true, silent = true, desc = "Toggle Fold" })  -- Visual mode paste before selection
+map("n", "<leader>tf", "<cmd>set foldenable!<cr>", { noremap = true, silent = true, desc = "Toggle Fold" }) -- Visual mode paste before selection
 
 -- quit/session/projects
 map("n", "<leader>qq", "<cmd>q<cr>", { desc = "Quit" })
@@ -105,6 +105,7 @@ map("n", "<leader>sg", "<cmd>FzfLua live_grep_glob previewer=builtin<cr>", { des
 -- Lsp
 map({ "n", "v" }, "<leader>lf", require("utils.lsp.operations").format, { silent = true, desc = "Format" })
 map("n", "gd", require("utils.lsp.operations").goto_definition, { desc = "Goto Definition" })
+map("n", "gvd", function() vim.cmd("vsplit") require("utils.lsp.operations").goto_definition() end, { desc = "Goto Definition" })
 map("n", "gD", require("utils.lsp.operations").goto_declaration, { desc = "Goto Declaration" })
 map("n", "grr", require("utils.lsp.operations").goto_references, { desc = "Goto References" })
 map("n", "gR", require("utils.lsp.operations").goto_file_references, { desc = "Goto File References" })

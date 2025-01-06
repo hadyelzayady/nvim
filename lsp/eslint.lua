@@ -30,20 +30,38 @@ local function fix_all(opts)
 		},
 	})
 end
+local function find_git_ancestor(startpath)
+	local path = vim.fs.dirname(startpath)
+
+	while path do
+		if vim.fn.isdirectory(path .. "/.git") == 1 then
+			return path
+		end
+		path = vim.fs.dirname(path)
+	end
+
+	return nil
+end
+-- Function to determine the root directory
+local function find_eslint_root(startpath)
+	startpath = vim.api.nvim_buf_get_name(0)
+	return vim.loop.cwd()
+end
 
 local root_file = {
-	'.eslintrc',
-	'.eslintrc.js',
-	'.eslintrc.cjs',
-	'.eslintrc.yaml',
-	'.eslintrc.yml',
-	'.eslintrc.json',
-	'eslint.config.js',
-	'eslint.config.mjs',
-	'eslint.config.cjs',
-	'eslint.config.ts',
-	'eslint.config.mts',
-	'eslint.config.cts',
+	-- '.eslintrc',
+	-- '.eslintrc.js',
+	-- '.eslintrc.cjs',
+	-- '.eslintrc.yaml',
+	-- '.eslintrc.yml',
+	-- '.eslintrc.json',
+	-- 'eslint.config.js',
+	-- 'eslint.config.mjs',
+	-- 'eslint.config.cjs',
+	-- 'eslint.config.ts',
+	-- 'eslint.config.mts',
+	-- 'eslint.config.cts',
+	'package.json'
 }
 ---@type vim.lsp.Config
 return {
@@ -52,10 +70,28 @@ return {
 		"javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx", "vue",
 		"svelte", "astro"
 	},
-	root_dir = function(fname)
-		root_file = util.insert_package_json(root_file, 'eslintConfig', fname)
-		return util.root_pattern(unpack(root_file))(fname)
-	end,
+	root_markers = {
+		".git",
+		'.eslintrc',
+		'.eslintrc.js',
+		'.eslintrc.cjs',
+		'.eslintrc.yaml',
+		'.eslintrc.yml',
+		'.eslintrc.json',
+		'eslint.config.js',
+		'eslint.config.mjs',
+		'eslint.config.cjs',
+		'eslint.config.ts',
+		'eslint.config.mts',
+		'eslint.config.cts',
+		'package.json',
+	},
+	root_dir = find_eslint_root,
+	-- root_dir = function(fname)
+	-- 	print(vim.inspect(fname))
+	-- 	root_file = util.insert_package_json(root_file, 'eslintConfig', fname)
+	-- 	return util.root_pattern(unpack(root_file))(fname)
+	-- end,
 	settings = {
 		codeAction = {
 			disableRuleComment = {

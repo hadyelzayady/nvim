@@ -51,6 +51,7 @@ vim.opt.listchars = { -- NOTE: using `vim.opt` instead of `vim.o` to pass rich o
 	trail = "·",
 	extends = "»",
 	precedes = "«",
+	-- leadmultispace="...|"
 }
 
 vim.opt.diffopt:append("linematch:60") -- second stage diff to align lines

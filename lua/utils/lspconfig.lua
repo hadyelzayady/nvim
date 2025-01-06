@@ -192,6 +192,7 @@ function M.root_pattern(...)
 end
 
 function M.insert_package_json(config_files, field, fname)
+print(vim.inspect(fname))
 	local path = vim.fn.fnamemodify(fname, ':h')
 	local root_with_package = vim.fs.dirname(vim.fs.find('package.json', { path = path, upward = true })[1])
 
