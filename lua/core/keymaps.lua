@@ -97,9 +97,7 @@ map("n", "<leader>qW", "<cmd>silent! w<cr>", { desc = "Save Current" })
 map("n", "<leader>sw", "<cmd>FzfLua grep_cword previewer=builtin<cr>", { desc = "Search Current Word (project)" })
 map("n", "<leader>sb", "<cmd>FzfLua grep_curbuf previewer=builtin<cr>", { desc = "Search Buffer" })
 map("n", "<leader>sp", "<cmd>FzfLua grep_project previewer=builtin<cr>", { desc = "Search Project" })
-map({ "n", "v" }, "<leader>sv", "<cmd>FzfLua grep_visual previewer=builtin<cr>",
-	{ desc = "Search Visual", noremap = true }
-)
+map({ "n", "v" }, "<leader>sv", "<cmd>FzfLua grep_visual previewer=builtin<cr>", { desc = "Search Visual", noremap = true })
 map("n", "<leader>sg", "<cmd>FzfLua live_grep_glob previewer=builtin<cr>", { desc = "Grep" })
 
 -- Lsp
@@ -113,8 +111,8 @@ map("n", "gt", require("utils.lsp.operations").goto_type_definition, { desc = "G
 map("n", "gI", require("utils.lsp.operations").goto_implementations, { desc = "Goto Implementations" })
 map("n", "<leader>li", require("utils.lsp.operations").goto_incoming_calls, { desc = "Goto Incoming Calls" })
 map("n", "<leader>lo", require("utils.lsp.operations").goto_outgoing_calls, { desc = "Goto Outgoing Calls" })
--- map("n", "<leader>lr", require("utils.lsp.operations").rename, { silent = true, desc = "Rename" })
--- map("n", "<leader>la", vim.lsp.buf.code_action, { silent = true, desc = "Code Actions" })
+map("n", "<leader>lr", require("utils.lsp.operations").rename, { silent = true, desc = "Rename" })
+map("n", "<leader>la", vim.lsp.buf.code_action, { silent = true, desc = "Code Actions" })
 map("n", "<leader>lR", require("utils.lsp.operations").rename_file, { desc = "Rename File" })
 map("n", "<leader>cf", require("utils.lsp.operations").fixAll, { desc = "Fix All" })
 map("n", "<leader>cc", require("utils.lsp.operations").removeUnused, { desc = "Remove Unused" })
