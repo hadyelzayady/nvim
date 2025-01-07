@@ -1,9 +1,9 @@
 local M = {}
 function M.goto_definition()
-  if vim.bo.filetype == "yaml" then
-    vim.lsp.buf.definition()
-    return
-  end
+  -- if vim.bo.filetype == "yaml" then
+  --   vim.lsp.buf.definition()
+  --   return
+  -- end
   vim.lsp.buf.definition()
   -- vim.cmd("Glance definitions")
 end
@@ -27,10 +27,6 @@ function M.goto_file_references()
     for _, client in ipairs(clients) do
       if client == "vtsls" then
         require("vtsls").commands.file_references()
-        return
-      end
-      if client == "typescript-tools" then
-        vim.cmd("TSToolsFileReferences")
         return
       end
     end
@@ -60,24 +56,19 @@ end
 
 function M.rename_file()
   local clients = require("utils.lsp").get_buffer_attached_lsp()
-  if #clients > 0 then
-    for _, client in ipairs(clients) do
-      if client == "typescript-tools" then
-        vim.cmd("TSToolsRenameFile")
-        return
-      end
-    end
-  end
+  -- if #clients > 0 then
+  --   for _, client in ipairs(clients) do
+  --     if client == "vtsls" then
+  --       return
+  --     end
+  --   end
+  -- end
 end
 
 function M.addMissingImports()
   local clients = require("utils.lsp").get_buffer_attached_lsp()
   if #clients > 0 then
     for _, client in ipairs(clients) do
-      if client == "typescript-tools" then
-        vim.cmd("TSToolsAddMissingImports")
-        return
-      end
       if client == "vtsls" then
         vim.cmd("VtsExec add_missing_imports")
         return
@@ -90,10 +81,6 @@ function M.removeUnusedImports()
   local clients = require("utils.lsp").get_buffer_attached_lsp()
   if #clients > 0 then
     for _, client in ipairs(clients) do
-      if client == "typescript-tools" then
-        vim.cmd("TSToolsRemoveUnusedImports")
-        break
-      end
       if client == "vtsls" then
         require("vtsls").commands.remove_unused_imports()
         break
@@ -106,10 +93,6 @@ function M.removeUnused()
   local clients = require("utils.lsp").get_buffer_attached_lsp()
   if #clients > 0 then
     for _, client in ipairs(clients) do
-      if client == "typescript-tools" then
-        vim.cmd("TSToolsRemoveUnused")
-        break
-      end
       if client == "vtsls" then
         require("vtsls").commands.remove_unused()
         break
@@ -122,9 +105,6 @@ function M.fixAll()
   local clients = require("utils.lsp").get_buffer_attached_lsp()
   if #clients > 0 then
     for _, client in ipairs(clients) do
-      if client == "typescript-tools" then
-        vim.cmd("TSToolsFixAll")
-      end
       if client == "eslint" then
         vim.cmd("EslintFixAll")
       end

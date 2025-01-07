@@ -25,7 +25,7 @@ return {
 	dependencies = {
 		{
 			"junegunn/fzf",
-			build ="install --bin"
+			build ="./install --bin"
 		}
 	},
   },
