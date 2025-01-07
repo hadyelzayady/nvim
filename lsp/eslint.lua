@@ -1,4 +1,4 @@
-local util = require 'utils.lspconfig'
+local util = require 'utils.lsp.lspconfig'
 
 local function fix_all(opts)
 	opts = opts or {}
