@@ -99,8 +99,6 @@ local function default_code_action_handler(err, actions, ctx, config)
 end
 
 local o = {
-	---@deprecated
-	name = "ts_ls",
 	handlers = {
 		source_definition = make_default_locations_handler("TS Source Definitions"),
 		file_references = make_default_locations_handler("TS File References"),

@@ -109,7 +109,6 @@ function M.fixAll()
 		for _, clientName in ipairs(clients) do
 			if clientName == "ts_ls" or clientName == "vtsls" or clientName == "eslint" then
 				require("utils.lsp.commands").for_client(clientName).fix_all()
-				break
 			end
 		end
 	end

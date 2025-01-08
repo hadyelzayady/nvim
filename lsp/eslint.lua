@@ -1,128 +1,84 @@
 local util = require 'utils.lsp.lspconfig'
 
-local function fix_all(opts)
-	opts = opts or {}
-
-	local eslint_lsp_client = util.get_active_client_by_name(opts.bufnr, 'eslint')
-	if eslint_lsp_client == nil then
-		return
-	end
-
-	local request
-	if opts.sync then
-		request = function(bufnr, method, params)
-			eslint_lsp_client.request_sync(method, params, nil, bufnr)
-		end
-	else
-		request = function(bufnr, method, params)
-			eslint_lsp_client.request(method, params, nil, bufnr)
-		end
-	end
-
-	local bufnr = util.validate_bufnr(opts.bufnr or 0)
-	request(0, 'workspace/executeCommand', {
-		command = 'eslint.applyAllFixes',
-		arguments = {
-			{
-				uri = vim.uri_from_bufnr(bufnr),
-				version = lsp.util.buf_versions[bufnr],
-			},
-		},
-	})
-end
-local function find_git_ancestor(startpath)
-	local path = vim.fs.dirname(startpath)
-
-	while path do
-		if vim.fn.isdirectory(path .. "/.git") == 1 then
-			return path
-		end
-		path = vim.fs.dirname(path)
-	end
-
-	return nil
-end
--- Function to determine the root directory
-local function find_eslint_root(startpath)
-	startpath = vim.api.nvim_buf_get_name(0)
-	return vim.loop.cwd()
-end
-
 local root_file = {
-	-- '.eslintrc',
-	-- '.eslintrc.js',
-	-- '.eslintrc.cjs',
-	-- '.eslintrc.yaml',
-	-- '.eslintrc.yml',
-	-- '.eslintrc.json',
-	-- 'eslint.config.js',
-	-- 'eslint.config.mjs',
-	-- 'eslint.config.cjs',
-	-- 'eslint.config.ts',
-	-- 'eslint.config.mts',
-	-- 'eslint.config.cts',
-	'package.json'
+	'.eslintrc',
+	'.eslintrc.js',
+	'.eslintrc.cjs',
+	'.eslintrc.yaml',
+	'.eslintrc.yml',
+	'.eslintrc.json',
+	'eslint.config.js',
+	'eslint.config.mjs',
+	'eslint.config.cjs',
+	'eslint.config.ts',
+	'eslint.config.mts',
+	'eslint.config.cts',
+	".git",
+	"tsconfig.json"
 }
----@type vim.lsp.Config
+
 return {
-	cmd = { "vscode-eslint-language-server", "--stdio" },
+	cmd = { 'vscode-eslint-language-server', '--stdio' },
 	filetypes = {
-		"javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx", "vue",
-		"svelte", "astro"
+		'javascript',
+		'javascriptreact',
+		'javascript.jsx',
+		'typescript',
+		'typescriptreact',
+		'typescript.tsx',
+		'vue',
+		'svelte',
+		'astro',
 	},
-	root_markers = {
-		".git",
-		'.eslintrc',
-		'.eslintrc.js',
-		'.eslintrc.cjs',
-		'.eslintrc.yaml',
-		'.eslintrc.yml',
-		'.eslintrc.json',
-		'eslint.config.js',
-		'eslint.config.mjs',
-		'eslint.config.cjs',
-		'eslint.config.ts',
-		'eslint.config.mts',
-		'eslint.config.cts',
-		'package.json',
-	},
-	root_dir = find_eslint_root,
-	-- root_dir = function(fname)
-	-- 	print(vim.inspect(fname))
-	-- 	root_file = util.insert_package_json(root_file, 'eslintConfig', fname)
-	-- 	return util.root_pattern(unpack(root_file))(fname)
-	-- end,
+	-- https://eslint.org/docs/user-guide/configuring/configuration-files#configuration-file-formats
+	-- root_dir = "/Users/hadyelzayady/Documents/projects/phelix-project-manager-portal-frontend",
+	root_dir = function(cb)
+		local bufnr = vim.api.nvim_get_current_buf()
+		if not vim.api.nvim_buf_is_valid(bufnr) then
+			return
+		end
+		local bufname = vim.api.nvim_buf_get_name(bufnr)
+		if (#bufname ~= 0 and not util.bufname_valid(bufname)) then
+			return
+		end
+		local fname = vim.fs.normalize(bufname)
+		root_file = util.insert_package_json(root_file, 'eslintConfig', fname)
+		cb(util.root_pattern(unpack(root_file))(fname))
+	end,
+	-- Refer to https://github.com/Microsoft/vscode-eslint#settings-options for documentation.
 	settings = {
-		codeAction = {
-			disableRuleComment = {
-				enable = true,
-				location = "separateLine"
-			},
-			showDocumentation = {
-				enable = true
-			}
+		validate = 'on',
+		packageManager = nil,
+		useESLintClass = false,
+		experimental = {
+			useFlatConfig = false,
 		},
 		codeActionOnSave = {
 			enable = false,
-			mode = "all"
+			mode = 'all',
 		},
-		experimental = {
-			useFlatConfig = false
-		},
-		format = false,
-		nodePath = "",
-		onIgnoredFiles = "off",
-		problems = {
-			shortenToSingleLine = false
-		},
+		format = true,
 		quiet = false,
+		onIgnoredFiles = 'off',
 		rulesCustomizations = {},
-		run = "onType",
-		useESLintClass = false,
-		validate = "on",
-		workingDirectory = {
-			mode = "location"
-		}
+		run = 'onType',
+		problems = {
+			shortenToSingleLine = false,
+		},
+		-- nodePath configures the directory in which the eslint server should start its node_modules resolution.
+		-- This path is relative to the workspace folder (root dir) of the server instance.
+		nodePath = '',
+		-- use the workspace folder location or the file location (if no workspace folder is open) as the working directory
+		workingDirectory = { mode = 'location' },
+		codeAction = {
+			disableRuleComment = {
+				enable = true,
+				location = 'separateLine',
+			},
+			showDocumentation = {
+				enable = true,
+			},
+		},
 	},
 	on_new_config = function(config, new_root_dir)
 		-- The "workspaceFolder" is a VSCode concept. It limits how far the
@@ -182,12 +138,7 @@ return {
 			return {}
 		end,
 	},
-	commands = {
-		EslintFixAll = {
-			function()
-				fix_all { sync = true, bufnr = 0 }
-			end,
-			description = 'Fix all eslint problems for this buffer',
-		},
-	},
+	on_init = function(client)
+		client.config.settings.workingDirectory = { directory = client.config.root_dir }
+	end,
 }

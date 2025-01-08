@@ -4,11 +4,12 @@ local rename = require("utils.lsp.commands.rename")
 local compat = require("utils.lsp.commands.compat")
 
 local M = {}
-local clientName=nil
+local clientName = nil
 function M.for_client(name)
-	clientName=name
-   return M
+	clientName = name
+	return M
 end
+
 local function get_client(bufnr)
 	local clients = compat.lsp_get_clients({ bufnr = bufnr, name = clientName })
 	if clients and clients[1] then
@@ -94,6 +95,17 @@ local function code_action(bufnr, client, kinds)
 			data = d.user_data and (d.user_data.lsp or {}),
 		}
 	end, diagnostics)
+	if client.name == "eslint" then
+		return async.request(client, 'workspace/executeCommand', {
+			command = 'eslint.applyAllFixes',
+			arguments = {
+				{
+					uri = vim.uri_from_bufnr(bufnr),
+					version = vim.lsp.util.buf_versions[bufnr],
+				},
+			},
+		})
+	end
 
 	return async.request(client, "textDocument/codeAction", {
 		textDocument = params,
