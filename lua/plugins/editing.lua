@@ -120,4 +120,9 @@ return {
 	--    version = "*", -- Pin Neorg to the latest stable release
 	--    config = require("plugins-options.neorg").config
 	--  }
+	{
+		"windwp/nvim-ts-autotag",
+		event = "VeryLazy",
+		config = require("plugins-options.ts-autotag").config
+	}
 }

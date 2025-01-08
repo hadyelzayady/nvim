@@ -41,7 +41,7 @@ vim.o.termguicolors = true -- enable rgb colors
 vim.o.cursorline = true -- enable cursor line
 
 vim.o.number = true -- enable line number
-vim.o.relativenumber = true -- and relative line number
+vim.o.relativenumber = false -- and relative line number
 
 vim.o.pumheight = 10 -- max height of completion menu
 
