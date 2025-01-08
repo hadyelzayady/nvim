@@ -25,6 +25,10 @@ return {
 				default = { 'lsp', 'path', 'snippets', 'buffer' },
 				cmdline = {}
 			},
+
+			appearance = {
+				kind_icons = require("utils.ui-components").icons.kinds
+			}
 		},
 		opts_extend = { "sources.default" }
 	},
