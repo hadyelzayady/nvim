@@ -22,7 +22,7 @@ return {
 		priority = 1000, -- Colorscheme plugin is loaded first before any other plugins
 		opts = {
 			transparent_background = true,
-			variant = 'medium', -- 'hard'|'medium'|'soft'
+			variant = 'hard', -- 'hard'|'medium'|'soft'
 			overrides = {}, -- add custom overrides
 		},
 		lazy = false,
