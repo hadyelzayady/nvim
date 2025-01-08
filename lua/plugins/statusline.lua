@@ -1,3 +1,5 @@
+require("utils.string")
+
 return {
 	{
 		"zeioth/heirline-components.nvim",
@@ -68,6 +70,11 @@ return {
 
 				opts = {
 					disable_winbar_cb = function(args) -- We do this to avoid showing it on the greeter.
+						local bufname = vim.api.nvim_buf_get_name(0) -- Get the name of the current buffer
+						local isDiffview = bufname:starts("diffview")
+						if isDiffview then
+							return false
+						end
 						local is_disabled = not require("heirline-components.buffer").is_valid(args.buf)
 							or lib.condition.buffer_matches({
 								buftype = { "terminal", "prompt", "nofile", "help", "quickfix" },

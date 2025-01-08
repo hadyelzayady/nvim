@@ -22,12 +22,17 @@ return {
 		priority = 1000, -- Colorscheme plugin is loaded first before any other plugins
 		opts = {
 			transparent_background = true,
-			variant = 'hard', -- 'hard'|'medium'|'soft'
-			overrides = {}, -- add custom overrides
+			variant = 'medium', -- 'hard'|'medium'|'soft'
+			overrides = {
+				DiffText = {
+					bg = "#000000"
+				}
+
+			}, -- add custom overrides
 		},
 		lazy = false,
-		config = function()
-			require 'evergarden'.setup {}
+		config = function(_, opts)
+			require 'evergarden'.setup(opts)
 			vim.cmd("colorscheme evergarden")
 		end
 	},
