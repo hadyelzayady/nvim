@@ -97,13 +97,26 @@ map("n", "<leader>qW", "<cmd>silent! w<cr>", { desc = "Save Current" })
 map("n", "<leader>sw", "<cmd>FzfLua grep_cword previewer=builtin<cr>", { desc = "Search Current Word (project)" })
 map("n", "<leader>sb", "<cmd>FzfLua grep_curbuf previewer=builtin<cr>", { desc = "Search Buffer" })
 map("n", "<leader>sp", "<cmd>FzfLua grep_project previewer=builtin<cr>", { desc = "Search Project" })
-map({ "n", "v" }, "<leader>sv", "<cmd>FzfLua grep_visual previewer=builtin<cr>", { desc = "Search Visual", noremap = true })
+map({ "n", "v" }, "<leader>sv", "<cmd>FzfLua grep_visual previewer=builtin<cr>",
+	{ desc = "Search Visual", noremap = true })
 map("n", "<leader>sg", "<cmd>FzfLua live_grep_glob previewer=builtin<cr>", { desc = "Grep" })
 
 -- Lsp
+
+map("n", "[w", function() vim.diagnostic.jump({ count = -vim.v.count1, severity = "WARN" }) end,
+	{ silent = true, desc = "Prev Warning" })
+map("n", "]w", function() vim.diagnostic.jump({ count = vim.v.count1, severity = "WARN" }) end,
+	{ silent = true, desc = "Next Warning" })
+map("n", "[e", function() vim.diagnostic.jump({ count = -vim.v.count1, severity = "ERROR" }) end,
+	{ silent = true, desc = "Prev Error" })
+map("n", "]e", function() vim.diagnostic.jump({ count = vim.v.count1, severity = "ERROR" }) end,
+	{ silent = true, desc = "Next Erro" })
 map({ "n", "v" }, "<leader>lf", require("utils.lsp.operations").format, { silent = true, desc = "Format" })
 map("n", "gd", require("utils.lsp.operations").goto_definition, { desc = "Goto Definition" })
-map("n", "gvd", function() vim.cmd("vsplit") require("utils.lsp.operations").goto_definition() end, { desc = "Goto Definition" })
+map("n", "gvd", function()
+	vim.cmd("vsplit")
+	require("utils.lsp.operations").goto_definition()
+end, { desc = "Goto Definition" })
 map("n", "gD", require("utils.lsp.operations").goto_declaration, { desc = "Goto Declaration" })
 map("n", "grr", require("utils.lsp.operations").goto_references, { desc = "Goto References" })
 map("n", "gR", require("utils.lsp.operations").goto_file_references, { desc = "Goto File References" })
