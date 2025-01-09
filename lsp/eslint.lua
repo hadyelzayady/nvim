@@ -1,5 +1,5 @@
 local util = require 'utils.lsp.lspconfig'
-
+-- Utility function to check for ESLint config
 local root_file = {
 	'.eslintrc',
 	'.eslintrc.js',
@@ -13,10 +13,31 @@ local root_file = {
 	'eslint.config.ts',
 	'eslint.config.mts',
 	'eslint.config.cts',
-	".git",
 	"tsconfig.json"
 }
 
+local function has_eslint_config()
+	local eslint_files = {
+		'.eslintrc',
+		'.eslintrc.js',
+		'.eslintrc.cjs',
+		'.eslintrc.yaml',
+		'.eslintrc.yml',
+		'.eslintrc.json',
+		'eslint.config.js',
+		'eslint.config.mjs',
+		'eslint.config.cjs',
+		'eslint.config.ts',
+		'eslint.config.mts',
+		'eslint.config.cts',
+	}
+	for _, file in ipairs(eslint_files) do
+		if vim.fn.glob(file) ~= '' then
+			return true
+		end
+	end
+	return false
+end
 return {
 	cmd = { 'vscode-eslint-language-server', '--stdio' },
 	filetypes = {
@@ -33,6 +54,10 @@ return {
 	-- https://eslint.org/docs/user-guide/configuring/configuration-files#configuration-file-formats
 	-- root_dir = "/Users/hadyelzayady/Documents/projects/phelix-project-manager-portal-frontend",
 	root_dir = function(cb)
+		if not has_eslint_config() then
+			vim.notify('No ESLint config found, disabling ESLint LSP', vim.log.levels.WARN)
+			return nil
+		end
 		local bufnr = vim.api.nvim_get_current_buf()
 		if not vim.api.nvim_buf_is_valid(bufnr) then
 			return
@@ -139,6 +164,20 @@ return {
 		end,
 	},
 	on_init = function(client)
+		if not has_eslint_config() then
+			vim.notify('No ESLint config found, disabling ESLint LSP', vim.log.levels.WARN)
+			client.stop() -- Stop the LSP client if no config is found
+			return
+		end
 		client.config.settings.workingDirectory = { directory = client.config.root_dir }
 	end,
+	on_attach = function(client)
+		if not has_eslint_config() then
+			vim.notify('No ESLint config found, disabling ESLint LSP', vim.log.levels.WARN)
+			client.stop() -- Stop the LSP client if no config is found
+			return
+		end
+		-- Your regular on_attach logic here
+		print('ESLint attached!')
+	end
 }
