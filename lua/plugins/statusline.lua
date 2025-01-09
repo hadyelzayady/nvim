@@ -140,7 +140,26 @@ return {
 					lib.component.fill(),
 					lib.component.cmd_info(),
 					lib.component.fill(),
-					lib.component.lsp(),
+					{
+						provider = function()
+							local active = require("conform").list_formatters_to_run()
+							local ui = ""
+							for _, value in ipairs(active) do
+								if value.available then
+									if string.len(ui) == 0 then
+										ui = value.name
+									else
+										ui = ui .. "," .. value.name
+									end
+								end
+							end
+							return require("utils.ui-components").icons.format.formatter .. " [" .. ui .. "] "
+							-- local statusline = require("arrow.statusline")
+							-- return statusline.text_for_statusline_with_icons() -- Same, but with an bow and arrow icon ;D
+						end,
+
+					},
+					lib.component.lsp({ lsp_client_names = { integrations = {conform=false} } }),
 					lib.component.file_info(),
 					lib.component.compiler_state(),
 					lib.component.nav(),

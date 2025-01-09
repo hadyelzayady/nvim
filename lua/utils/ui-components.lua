@@ -71,6 +71,9 @@ M.icons = {
     breakpoint_logpoint = "",
     stopped = "",
   },
+  format={
+	  formatter ="󰖷"
+  }
 }
 
 return M
