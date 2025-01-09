@@ -73,19 +73,19 @@ return {
 		config = require("plugins-options.mini-splitjoin").config,
 	},
 	{
-	  "echasnovski/mini.ai",
-	  version = false,
-	  event = "VeryLazy",
-	  dependencies = {
-	    {
-	      "nvim-treesitter/nvim-treesitter-textobjects",
-	      init = function()
-	        -- no need to load the plugin, since we only need its queries
-	        require("lazy.core.loader").disable_rtp_plugin("nvim-treesitter-textobjects")
-	      end,
-	    },
-	  },
-	  config = require("plugins-options.mini-ai").config,
+		"echasnovski/mini.ai",
+		version = false,
+		event = "VeryLazy",
+		dependencies = {
+			{
+				"nvim-treesitter/nvim-treesitter-textobjects",
+				init = function()
+					-- no need to load the plugin, since we only need its queries
+					require("lazy.core.loader").disable_rtp_plugin("nvim-treesitter-textobjects")
+				end,
+			},
+		},
+		config = require("plugins-options.mini-ai").config,
 	},
 	{
 		"MagicDuck/grug-far.nvim",
@@ -124,5 +124,9 @@ return {
 		"windwp/nvim-ts-autotag",
 		event = "VeryLazy",
 		config = require("plugins-options.ts-autotag").config
-	}
+	},
+	{
+		"b0o/schemastore.nvim",
+		ft = { "json", "yaml" },
+	},
 }
