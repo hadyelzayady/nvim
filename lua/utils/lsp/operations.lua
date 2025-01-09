@@ -110,6 +110,9 @@ function M.fixAll()
 			if clientName == "ts_ls" or clientName == "vtsls" or clientName == "eslint" then
 				require("utils.lsp.commands").for_client(clientName).fix_all()
 			end
+			if clientName == "biome" then
+				require("utils.lsp.commands").for_client(clientName).biome_fix_all()
+			end
 		end
 	end
 end

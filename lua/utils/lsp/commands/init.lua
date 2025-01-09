@@ -64,6 +64,7 @@ local source_action_kinds = {
 	sort_imports = "source.sortImports",
 	remove_unused_imports = "source.removeUnusedImports",
 	fix_all = "source.fixAll.ts",
+	biome_fix_all = "source.fixAll",
 	remove_unused = "source.removeUnused.ts",
 	add_missing_imports = "source.addMissingImports.ts",
 }
@@ -184,6 +185,7 @@ M.organize_imports = gen_code_action(source_action_kinds.organize_imports)
 M.sort_imports = gen_code_action(source_action_kinds.sort_imports)
 M.remove_unused_imports = gen_code_action(source_action_kinds.remove_unused_imports)
 M.fix_all = gen_code_action(source_action_kinds.fix_all)
+M.biome_fix_all = gen_code_action(source_action_kinds.biome_fix_all)
 M.remove_unused = gen_code_action(source_action_kinds.remove_unused)
 M.add_missing_imports = gen_code_action(source_action_kinds.add_missing_imports)
 
