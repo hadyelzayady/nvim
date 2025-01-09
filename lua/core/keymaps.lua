@@ -9,6 +9,8 @@ map("n", "<leader>y", '"+y', { noremap = true, silent = true })   -- Normal mode
 map("n", "<leader>yy", '"+yy', { noremap = true, silent = true }) -- Yank the whole line
 
 -- Paste from clipboard
+-- do not yank of paste
+map("x", "p", "P", { noremap = true, silent = true })
 map("n", "<leader>p", '"+p', { noremap = true, silent = true }) -- Normal mode paste
 map("n", "<leader>P", '"+P', { noremap = true, silent = true }) -- Paste before cursor
 map("v", "<leader>p", '"+p', { noremap = true, silent = true }) -- Visual mode paste
