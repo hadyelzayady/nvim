@@ -12,7 +12,7 @@ vim.g.maplocalleader = "\\"
 
 vim.opt.splitbelow = true         -- Horizontal splits will be below
 vim.opt.splitright = true         -- Vertical splits will be to the right
-vim.opt.signcolumn = "auto:1-3"   -- Always show sign column (otherwise it will shift text)
+vim.opt.signcolumn = "yes:1"   -- Always show sign column (otherwise it will shift text)
 
 -- jumps
 vim.opt.jumpoptions = "stack,view"

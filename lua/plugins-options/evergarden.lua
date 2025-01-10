@@ -3,7 +3,7 @@ function M.config()
 	require 'evergarden'.setup(
 		{
 			transparent_background = false,
-			variant = 'medium', -- 'hard'|'medium'|'soft'
+			variant = 'hard', -- 'hard'|'medium'|'soft'
 			overrides = {
 				DiffText = {
 					bg = "#000000"
