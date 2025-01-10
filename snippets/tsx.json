@@ -1,0 +1,22 @@
+{
+	"hook": {
+		"prefix": "fh",
+		"body": [
+			"interface Props{",
+			"}",
+			"function $TM_FILENAME_BASE(props:Props){",
+			"$0",
+			"}"
+		]
+	},
+	"component": {
+		"prefix": "fc",
+		"body": [
+			"interface Props{",
+			"}",
+			"function ${TM_FILENAME_BASE}(props:Props){",
+			"return <>$0</>",
+			"}"
+		]
+	}
+}
