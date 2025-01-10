@@ -9,13 +9,13 @@ function M.config()
 				vim.opt_local.wrap = false
 				vim.opt_local.list = false
 			end,
-			view_enter = function(view)
-				original_colorscheme = vim.g.colors_name
-				vim.cmd("colorscheme alabaster")
-			end,
-			view_leave = function()
-				vim.cmd("colorscheme " .. original_colorscheme)
-			end
+			-- view_enter = function(view)
+			-- 	original_colorscheme = vim.g.colors_name
+			-- 	vim.cmd("colorscheme default")
+			-- end,
+			-- view_leave = function()
+			-- 	-- require("plugins-options.evergarden").config()
+			-- end
 		}
 	})
 end
