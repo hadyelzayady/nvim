@@ -37,6 +37,11 @@ return {
 		end
 	},
 	{
+		"p00f/alabaster.nvim",
+		priority = 1000, -- Colorscheme plugin is loaded first before any other plugins,
+		lazy = false,
+	},
+	{
 		"echasnovski/mini.indentscope",
 		version = false,
 		event = "VeryLazy",

@@ -55,7 +55,7 @@ return {
 	-- root_dir = "/Users/hadyelzayady/Documents/projects/phelix-project-manager-portal-frontend",
 	root_dir = function(cb)
 		if not has_eslint_config() then
-			vim.notify('No ESLint config found, disabling ESLint LSP', vim.log.levels.WARN)
+			-- vim.notify('No ESLint config found, disabling ESLint LSP', vim.log.levels.WARN,{silent=true})
 			return nil
 		end
 		local bufnr = vim.api.nvim_get_current_buf()
@@ -165,7 +165,7 @@ return {
 	},
 	on_init = function(client)
 		if not has_eslint_config() then
-			vim.notify('No ESLint config found, disabling ESLint LSP', vim.log.levels.WARN)
+			-- vim.notify('No ESLint config found, disabling ESLint LSP', vim.log.levels.WARN,{silent=true})
 			client.stop() -- Stop the LSP client if no config is found
 			return
 		end
@@ -173,7 +173,7 @@ return {
 	end,
 	on_attach = function(client)
 		if not has_eslint_config() then
-			vim.notify('No ESLint config found, disabling ESLint LSP', vim.log.levels.WARN)
+			-- vim.notify('No ESLint config found, disabling ESLint LSP', vim.log.levels.WARN,{silent=true})
 			client.stop() -- Stop the LSP client if no config is found
 			return
 		end
