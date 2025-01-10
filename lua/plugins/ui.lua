@@ -20,21 +20,8 @@ return {
 	{
 		'comfysage/evergarden',
 		priority = 1000, -- Colorscheme plugin is loaded first before any other plugins
-		opts = {
-			transparent_background = false,
-			variant = 'medium', -- 'hard'|'medium'|'soft'
-			overrides = {
-				DiffText = {
-					bg = "#000000"
-				}
-
-			}, -- add custom overrides
-		},
 		lazy = false,
-		config = function(_, opts)
-			require 'evergarden'.setup(opts)
-			vim.cmd("colorscheme evergarden")
-		end
+		config = require("plugins-options.evergarden").config,
 	},
 	{
 		"p00f/alabaster.nvim",
