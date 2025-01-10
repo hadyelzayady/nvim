@@ -15,6 +15,7 @@ map("n", "<leader>P", '"+P', { noremap = true, silent = true }) -- Paste before 
 map("v", "<leader>p", '"+p', { noremap = true, silent = true }) -- Visual mode paste
 map("v", "<leader>P", '"+P', { noremap = true, silent = true }) -- Visual mode paste before selection
 map("n", "<c-p>", require('neoclip.fzf'), { desc="Clipbaord Manager",noremap = true, silent = true }) -- Visual mode paste before selection
+map( "n", "<leader>sy", [[:let @+ = @"<CR>]], { desc="Sync neovim clipboard into system clipboard",noremap = true, silent = true }) -- sync neovim clipboard into system clipboard
 
 -- Resize
 map("n", "<A-k>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
