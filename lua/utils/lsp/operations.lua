@@ -121,4 +121,13 @@ function M.toggle_inlay_hints()
 	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end
 
+function M.quickfix_document_diagnostics()
+	local diagnostics = vim.diagnostic.get(0) -- 0 means the current buffer
+	require("utils.lsp").populate_diagnostics_to_quickfix(diagnostics)
+end
+function M.quickfix_project_diagnostics()
+	local diagnostics = vim.diagnostic.get() -- 0 means the current buffer
+	require("utils.lsp").populate_diagnostics_to_quickfix(diagnostics)
+end
+
 return M

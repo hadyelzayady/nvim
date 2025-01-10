@@ -104,7 +104,6 @@ map({ "n", "v" }, "<leader>sv", "<cmd>FzfLua grep_visual previewer=builtin<cr>",
 map("n", "<leader>sg", "<cmd>FzfLua live_grep_glob previewer=builtin<cr>", { desc = "Grep" })
 
 -- Lsp
-
 map("n", "[w", function() vim.diagnostic.jump({ count = -vim.v.count1, severity = "WARN" }) end,
 	{ silent = true, desc = "Prev Warning" })
 map("n", "]w", function() vim.diagnostic.jump({ count = vim.v.count1, severity = "WARN" }) end,
@@ -113,6 +112,11 @@ map("n", "[e", function() vim.diagnostic.jump({ count = -vim.v.count1, severity 
 	{ silent = true, desc = "Prev Error" })
 map("n", "]e", function() vim.diagnostic.jump({ count = vim.v.count1, severity = "ERROR" }) end,
 	{ silent = true, desc = "Next Erro" })
+
+map("n", "<leader>xd", require("utils.lsp.operations").quickfix_document_diagnostics, { silent = true, desc = "Document Diagnostics" })
+map("n", "<leader>xD", require("utils.lsp.operations").quickfix_project_diagnostics, { silent = true, desc = "Project Diagnostics" })
+map("n", "<leader>ld", "<cmd>FzfLua lsp_document_diagnostics <cr>", { silent = true, desc = "Document Diagnostics(Fzf)" })
+map("n", "<leader>lD","<cmd>FzfLua lsp_workspace_diagnostics <cr>", { silent = true, desc = "Project Diagnostics(Fzf)" })
 map({ "n", "v" }, "<leader>lf", require("utils.lsp.operations").format, { silent = true, desc = "Format" })
 map("n", "gd", require("utils.lsp.operations").goto_definition, { desc = "Goto Definition" })
 map("n", "gvd", function()
@@ -147,4 +151,4 @@ map(
 	{ desc = "Toggle Inlayhints", silent = true }
 )
 -- map("n", "<leader>ltl", "<cmd>LspLensToggle<cr>", { desc = "Toggle function hints", silent = true })
-map({ "n", "i" }, "<C-s>", vim.lsp.buf.signature_help, opts)
+map({ "n", "i" }, "<C-s", vim.lsp.buf.signature_help, { silent = true, desc = "Signature Help" })
