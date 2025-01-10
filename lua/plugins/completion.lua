@@ -3,10 +3,18 @@ return {
 	{
 		'saghen/blink.cmp',
 		event = "InsertEnter",
-		dependencies = { 'rafamadriz/friendly-snippets' },
+		dependencies = { 'rafamadriz/friendly-snippets', "mikavilpas/blink-ripgrep.nvim" },
 		version = '*',
 		opts = {
-			keymap = { preset = 'enter' },
+			keymap = {
+				preset = 'enter',
+				["<c-g>"] = {
+					function()
+						-- invoke manually, requires blink >v0.8.0
+						require("blink-cmp").show({ providers = { "ripgrep" } })
+					end,
+				},
+			},
 			completion = {
 				list = {
 					selection = {
@@ -17,13 +25,24 @@ return {
 								not vim.tbl_contains(no_pre_select_filetypes, filetype)
 						end,
 					}
+				},
+				menu = {
+					draw = {
+						treesitter = { 'lsp' },
+						columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind", "source_name" } }
+					}
 				}
 			},
-
 			signature = { enabled = true },
 			sources = {
 				default = { 'lsp', 'path', 'snippets', 'buffer' },
-				cmdline = {}
+				cmdline = {},
+				providers = {
+					ripgrep = {
+						module = "blink-ripgrep",
+						name = "Ripgrep",
+					},
+				},
 			},
 
 			appearance = {
