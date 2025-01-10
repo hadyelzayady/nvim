@@ -6,27 +6,26 @@ return {
 		config = require("plugins-options.oil").config,
 	},
 	{
-		'echasnovski/mini.files',
+		"echasnovski/mini.files",
 		config = true,
 		version = false,
 		lazy = false,
 	},
-	--  {
-	--    "nvim-tree/nvim-tree.lua",
-	--    version = "*",
-	--    lazy = false,
-	-- enabled=false,
-	--    dependencies = { "nvim-tree/nvim-web-devicons" },
-	--    config = require("plugins-options.nvim-tree").config,
-	--  },
+	{
+		"nvim-tree/nvim-tree.lua",
+		version = "*",
+		lazy = false,
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		config = require("plugins-options.nvim-tree").config,
+	},
 	{
 		"kevinhwang91/nvim-bqf",
 		ft = "qf",
 		dependencies = {
 			{
 				"junegunn/fzf",
-				build = "./install --bin"
-			}
+				build = "./install --bin",
+			},
 		},
 	},
 	{
@@ -70,7 +69,7 @@ return {
 	{
 		"echasnovski/mini.bufremove",
 		version = false,
-		keys = { { "<space>d", desc = "Delete Buffer" }, { "<space>D", desc = "Force Delete Buffer" } },
+		lazy = false,
 		config = require("plugins-options.mini-bufremove").config,
 	},
 	{
@@ -97,7 +96,7 @@ return {
 		keys = { ";", "m" },
 		opts = {
 			show_icons = true,
-			leader_key = ";",  -- Recommended to be a single key
+			leader_key = ";", -- Recommended to be a single key
 			buffer_leader_key = "m", -- Per Buffer Mappings
 		},
 	},

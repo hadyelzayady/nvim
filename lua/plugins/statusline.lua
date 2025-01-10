@@ -49,6 +49,16 @@ return {
 							if vim.bo.modified then
 								extra = extra .. require("utils.ui-components").icons.file.modified
 							end
+							return " " .. extra
+						end,
+						hl = {
+							fg = colors.red, -- Make the modified icon red
+						},
+					},
+					{
+						-- Show an icon if the buffer is modified
+						provider = function()
+							local extra = ""
 							if lib.condition.file_read_only() then
 								extra = extra .. require("utils.ui-components").icons.file.readonly
 							end
@@ -56,7 +66,7 @@ return {
 							return " " .. extra
 						end,
 						hl = {
-							fg = colors.red, -- Make the modified icon red
+							-- fg = colors.red, -- Make the modified icon red
 						},
 					},
 				},

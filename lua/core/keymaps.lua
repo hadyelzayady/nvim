@@ -34,6 +34,8 @@ end, { desc = "Close Common Splits" })
 -- Navigation
 map("n", "<leader>'", function() require('fzf-lua').resume() end, { desc = "FzfLua Resume" })
 map("n", "<leader>e", function() MiniFiles.open(vim.api.nvim_buf_get_name(0)) end, { desc = "Toggle MiniFiles" })
+map("n", "<leader>W", "<cmd>NvimTreeFindFile<CR>", { desc = "NvimTree Find File Toggle" })
+map("n", "<leader>w", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle NvimTree" })
 map("n", "<C-e>", "<cmd>FzfLua oldfiles previewer=builtin<cr>", { desc = "Recent Files" })
 map("n", "<leader>ff", "<cmd>FzfLua files previewer=builtin<cr>", { desc = "Find File" })
 map("n", "<leader>fb", "<cmd>FzfLua buffers previewer=builtin<cr>", { desc = "Find Buffer" })
@@ -53,6 +55,8 @@ map("n", "<leader>xl", function() require("quicker").toggle({ loclist = true }) 
 map("n", "<leader>cS", "<cmd>AerialToggle<cr>", { silent = true, desc = "Symbole Outline" })
 map("n", "<leader>cs", "<cmd>AerialNavToggle<cr>", { silent = true, desc = "Symbole Nav" })
 
+map("n", "<leader>d", function() MiniBufremove.delete(0) end, { desc = "Delete Buffer" })
+map("n", "<leader>D", function() MiniBufremove.delete(0, true) end, { desc = "Force Delete Buffer" })
 -- Tab management
 map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
 map("n", "<leader><tab>n", "<cmd>tabnext<cr>", { desc = "Next Tab" })
