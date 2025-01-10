@@ -1,5 +1,4 @@
 require("utils.string")
-
 return {
 	{
 		"zeioth/heirline-components.nvim",
@@ -46,12 +45,15 @@ return {
 					{
 						-- Show an icon if the buffer is modified
 						provider = function()
+							local extra = ""
 							if vim.bo.modified then
-								return " " ..
-									require("utils.ui-components").icons.file
-									.modified -- Unicode icon for "modified" (or use any other)
+								extra = extra .. require("utils.ui-components").icons.file.modified
 							end
-							return ""
+							if lib.condition.file_read_only() then
+								extra = extra .. require("utils.ui-components").icons.file.readonly
+							end
+
+							return " " .. extra
 						end,
 						hl = {
 							fg = colors.red, -- Make the modified icon red
@@ -127,6 +129,10 @@ return {
 					lib.component.git_diff(),
 					lib.component.file_info({
 						filename = {}, -- if set, displays the filename.
+						file_read_only = { -- if set, displays a lock icon if the file is read only.
+							padding = { left = 1, right = 1 },
+							condition = lib.condition.file_read_only
+						},
 						filetype = false,
 						file_modified = {}, -- if set, displays a white dot if the file has been modified.
 					}),
@@ -159,7 +165,7 @@ return {
 						end,
 
 					},
-					lib.component.lsp({ lsp_client_names = { integrations = {conform=false} } }),
+					lib.component.lsp({ lsp_client_names = { integrations = { conform = false } } }),
 					lib.component.file_info(),
 					lib.component.compiler_state(),
 					lib.component.nav(),
