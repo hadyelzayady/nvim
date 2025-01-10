@@ -9,12 +9,12 @@ map("n", "<leader>y", '"+y', { noremap = true, silent = true })   -- Normal mode
 map("n", "<leader>yy", '"+yy', { noremap = true, silent = true }) -- Yank the whole line
 
 -- Paste from clipboard
--- do not yank of paste
-map("x", "p", "P", { noremap = true, silent = true })
+map("x", "p", "P", { noremap = true, silent = true }) -- do not yank of paste
 map("n", "<leader>p", '"+p', { noremap = true, silent = true }) -- Normal mode paste
 map("n", "<leader>P", '"+P', { noremap = true, silent = true }) -- Paste before cursor
 map("v", "<leader>p", '"+p', { noremap = true, silent = true }) -- Visual mode paste
 map("v", "<leader>P", '"+P', { noremap = true, silent = true }) -- Visual mode paste before selection
+map("n", "<c-p>", require('neoclip.fzf'), { desc="Clipbaord Manager",noremap = true, silent = true }) -- Visual mode paste before selection
 
 -- Resize
 map("n", "<A-k>", "<cmd>resize +2<cr>", { desc = "Increase window height" })

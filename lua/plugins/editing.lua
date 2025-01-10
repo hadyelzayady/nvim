@@ -129,4 +129,13 @@ return {
 		"b0o/schemastore.nvim",
 		ft = { "json", "yaml" },
 	},
+	{
+		"AckslD/nvim-neoclip.lua",
+		dependencies = {
+			{ 'ibhagwan/fzf-lua' },
+		},
+		config = function()
+			require('neoclip').setup()
+		end,
+	}
 }
