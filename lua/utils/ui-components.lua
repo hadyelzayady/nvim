@@ -26,6 +26,7 @@ M.icons = {
   },
   file = {
     modified = "●",
+	readonly=""
   },
   kinds = {
     Array = " ",
