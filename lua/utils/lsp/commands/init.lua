@@ -59,16 +59,6 @@ local function gen_win_command(name, params, handler)
 	end
 end
 
-local source_action_kinds = {
-	organize_imports = "source.organizeImports",
-	sort_imports = "source.sortImports",
-	remove_unused_imports = "source.removeUnusedImports",
-	fix_all = "source.fixAll.ts",
-	biome_fix_all = "source.fixAll",
-	remove_unused = "source.removeUnused.ts",
-	add_missing_imports = "source.addMissingImports.ts",
-}
-
 local function code_action(bufnr, client, kinds)
 	if type(kinds) == "string" then
 		kinds = { kinds }
@@ -97,8 +87,8 @@ local function code_action(bufnr, client, kinds)
 		}
 	end, diagnostics)
 	if client.name == "eslint" then
-		return async.request(client, 'workspace/executeCommand', {
-			command = 'eslint.applyAllFixes',
+		return async.request(client, "workspace/executeCommand", {
+			command = "eslint.applyAllFixes",
 			arguments = {
 				{
 					uri = vim.uri_from_bufnr(bufnr),
@@ -181,14 +171,36 @@ M.file_references = gen_buf_command("typescript.findAllFileReferences", function
 	return { params.uri }
 end, o.get().handlers.file_references)
 
-M.organize_imports = gen_code_action(source_action_kinds.organize_imports)
-M.sort_imports = gen_code_action(source_action_kinds.sort_imports)
-M.remove_unused_imports = gen_code_action(source_action_kinds.remove_unused_imports)
-M.fix_all = gen_code_action(source_action_kinds.fix_all)
-M.biome_fix_all = gen_code_action(source_action_kinds.biome_fix_all)
-M.remove_unused = gen_code_action(source_action_kinds.remove_unused)
-M.add_missing_imports = gen_code_action(source_action_kinds.add_missing_imports)
+local get_source_action_kinds = require("utils.lsp.commands.lsp-specific-commands").get_client_action
+local source_action_kinds = require("utils.lsp.commands.lsp-specific-commands").source_action_kinds
 
-M.source_actions = gen_code_action(vim.tbl_values(source_action_kinds))
+M.organize_imports = function(name)
+	clientName = name
+	gen_code_action(get_source_action_kinds(name, "organize_imports"))()
+end
+M.sort_imports = function(name)
+	clientName = name
+	gen_code_action(get_source_action_kinds(name, "sort_imports"))()
+end
+
+M.remove_unused_imports = function(name)
+	clientName = name
+	gen_code_action(get_source_action_kinds(name, "remove_unused_imports"))()
+end
+M.fix_all = function(name)
+	clientName = name
+	gen_code_action(get_source_action_kinds(name, "fix_all"))()
+end
+M.remove_unused = function(name)
+	clientName = name
+	gen_code_action(get_source_action_kinds(name, "remove_unused"))()
+end
+
+M.add_missing_imports = function(name)
+	clientName = name
+	gen_code_action(get_source_action_kinds(name, "add_missing_imports"))()
+end
+
+M.source_actions = gen_code_action(vim.tbl_values(source_action_kinds))()
 
 return M

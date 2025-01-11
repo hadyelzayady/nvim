@@ -72,7 +72,7 @@ function M.addMissingImports()
 	if #clients > 0 then
 		for _, clientName in ipairs(clients) do
 			if clientName == "ts_ls" or clientName == "vtsls" then
-				require("utils.lsp.commands").for_client(clientName).add_missing_imports()
+				require("utils.lsp.commands").add_missing_imports(clientName)
 				return
 			end
 		end
@@ -83,8 +83,8 @@ function M.removeUnusedImports()
 	local clients = require("utils.lsp").get_buffer_attached_lsp()
 	if #clients > 0 then
 		for _, clientName in ipairs(clients) do
-			if clientName == "ts_ls" or clientName == "vtsls" then
-				require("utils.lsp.commands").for_client(clientName).remove_unused_imports()
+			if clientName == "ts_ls" or clientName == "vtsls" or clientName == "jdtls" then
+				require("utils.lsp.commands").remove_unused_imports(clientName)
 				break
 			end
 		end
@@ -96,7 +96,7 @@ function M.removeUnused()
 	if #clients > 0 then
 		for _, clientName in ipairs(clients) do
 			if clientName == "ts_ls" or clientName == "vtsls" then
-				require("utils.lsp.commands").for_client(clientName).remove_unused()
+				require("utils.lsp.commands").remove_unused(clientName)
 				break
 			end
 		end
@@ -107,11 +107,8 @@ function M.fixAll()
 	local clients = require("utils.lsp").get_buffer_attached_lsp()
 	if #clients > 0 then
 		for _, clientName in ipairs(clients) do
-			if clientName == "ts_ls" or clientName == "vtsls" or clientName == "eslint" then
-				require("utils.lsp.commands").for_client(clientName).fix_all()
-			end
-			if clientName == "biome" then
-				require("utils.lsp.commands").for_client(clientName).biome_fix_all()
+			if clientName == "ts_ls" or clientName == "vtsls" or clientName == "eslint" or clientName == "biome" then
+				require("utils.lsp.commands").fix_all(clientName)
 			end
 		end
 	end
