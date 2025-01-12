@@ -7,9 +7,9 @@ return {
 	},
 	{
 		"echasnovski/mini.files",
-		config = true,
 		version = false,
 		lazy = false,
+		config = require("plugins-options.mini-files").config,
 	},
 	{
 		"nvim-tree/nvim-tree.lua",
