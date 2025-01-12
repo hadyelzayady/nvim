@@ -15,10 +15,10 @@ return {
 			vim.cmd("colorscheme ashen")
 			-- You may call the load function as well
 			require("ashen").load()
-		end
+		end,
 	},
 	{
-		'comfysage/evergarden',
+		"comfysage/evergarden",
 		priority = 1000, -- Colorscheme plugin is loaded first before any other plugins
 		lazy = false,
 		config = require("plugins-options.evergarden").config,
@@ -26,6 +26,14 @@ return {
 	{
 		"p00f/alabaster.nvim",
 		lazy = true,
+	},
+	{
+		"kvrohit/rasmus.nvim",
+		priority = 1000,
+		lazy = false,
+		-- config = function()
+		-- 	vim.cmd([[colorscheme rasmus]])
+		-- end,
 	},
 	{
 		"echasnovski/mini.indentscope",

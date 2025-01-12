@@ -54,6 +54,7 @@
   "pathlib.nvim": { "branch": "main", "commit": "57e5598af6fe253761c1b48e0b59b7cd6699e2c1" },
   "plenary.nvim": { "branch": "master", "commit": "2d9b06177a975543726ce5c73fca176cedbffe9d" },
   "quicker.nvim": { "branch": "master", "commit": "e4fb0b1862284757561d1d51091cdee907585948" },
+  "rasmus.nvim": { "branch": "main", "commit": "49f7ee7bf3eb00db52c77f84b15bc69f318bafc1" },
   "schemastore.nvim": { "branch": "main", "commit": "b992bb1821fabb11db7fea4ecc7f769b11678cb2" },
   "spring-boot.nvim": { "branch": "main", "commit": "218c0c26c14d99feca778e4d13f5ec3e8b1b60f0" },
   "telescope.nvim": { "branch": "master", "commit": "415af52339215926d705cccc08145f3782c4d132" },

@@ -27,8 +27,10 @@ vim.o.completeopt = "menu,menuone,noselect,noinsert,popup,fuzzy" -- modern compl
 
 vim.o.foldenable = true -- enable fold
 vim.o.foldlevel = 99 -- start editing with all folds opened
+vim.o.foldlevelstart = 99
 vim.o.foldmethod = "expr" -- use tree-sitter for folding method
 vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.o.foldcolumn = "0" -- '0' is not bad
 
 -- NOTE: Setting vim options can be opinionated.
 -- While options above are crucial to make this whole config work as expected,
@@ -39,6 +41,8 @@ vim.o.hlsearch = true -- Disable highlight on search
 vim.o.termguicolors = true -- enable rgb colors
 
 vim.o.cursorline = true -- enable cursor line
+vim.o.cursorcolumn = false
+vim.o.cursorlineopt = "line"
 
 vim.o.number = true -- enable line number
 vim.o.relativenumber = false -- and relative line number
@@ -74,3 +78,8 @@ vim.o.undolevels = 10000 -- 10x more undo levels
 vim.o.pumheight = 10        -- Limit popup menu height
 vim.o.laststatus = 3
 vim.o.showmode = false                              -- Don't show mode, it's redundant with a statusline
+
+-- performance optimize
+vim.o.updatetime = 300                                  -- Default is 4000ms
+vim.o.ttyfast = true                                    -- Optimize for fast terminals
+vim.o.lazyredraw = true                                 -- Redraw only when necessary
