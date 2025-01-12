@@ -55,8 +55,7 @@ return {
 		"johmsalas/text-case.nvim",
 		dependencies = { "nvim-telescope/telescope.nvim", cmd = { "Telescope" } },
 		config = require("plugins-options.text-case").config,
-		keys = { "ga", { "ga.", "<cmd>TextCaseOpenTelescope<CR>", mode = { "n", "x" }, desc = "Telescope" },
-		},
+		keys = { "ga", { "ga.", "<cmd>TextCaseOpenTelescope<CR>", mode = { "n", "x" }, desc = "Telescope" } },
 		cmd = {
 			"Subs",
 			"TextCaseOpenTelescope",
@@ -101,7 +100,7 @@ return {
 						transient = true,
 						prefills = {
 							filesFilter = ext and ext ~= "" and "*." .. ext or nil,
-							paths = vim.fn.expand("%")
+							paths = vim.fn.expand("%"),
 						},
 					})
 				end,
@@ -112,7 +111,7 @@ return {
 	},
 	{
 		"lambdalisue/vim-suda",
-		cmd = { "SudoWrite", "SudaRead" }
+		cmd = { "SudoWrite", "SudaRead" },
 	},
 	--  {
 	--    "nvim-neorg/neorg",
@@ -123,7 +122,7 @@ return {
 	{
 		"windwp/nvim-ts-autotag",
 		event = "VeryLazy",
-		config = require("plugins-options.ts-autotag").config
+		config = require("plugins-options.ts-autotag").config,
 	},
 	{
 		"b0o/schemastore.nvim",
@@ -132,10 +131,17 @@ return {
 	{
 		"AckslD/nvim-neoclip.lua",
 		dependencies = {
-			{ 'ibhagwan/fzf-lua' },
+			{ "ibhagwan/fzf-lua" },
 		},
 		config = function()
-			require('neoclip').setup()
+			require("neoclip").setup()
 		end,
-	}
+	},
+	{
+		"nvim-neorg/neorg",
+		-- ft = "norg",
+		lazy = false,
+		version = "*", -- Pin Neorg to the latest stable release
+		config = require("plugins-options.neorg").config,
+	},
 }
