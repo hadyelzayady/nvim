@@ -14,8 +14,8 @@ function M.config()
 			builtin = {
 				true,
 				["<Esc>"] = "hide",
-				["<c-space>"]  = "toggle-preview",
-			}
+				["<c-space>"] = "toggle-preview",
+			},
 		},
 		files = {
 			prompt = "Files❯ ",
@@ -31,7 +31,7 @@ function M.config()
 		oldfiles = {
 			prompt = "History❯ ",
 			cwd_only = true,
-			stat_file = true,      -- verify files exist on disk
+			stat_file = true, -- verify files exist on disk
 			include_current_session = true, -- include bufs from current session
 			fzf_opts = {
 				["--history"] = vim.fn.stdpath("data") .. "/fzf-lua-old-files-history",
@@ -56,17 +56,18 @@ function M.config()
 		grep = {
 			multiprocess = true, -- run command in a separate process
 			-- rg_opts = "--column --line-number --no-heading --color=always --smart-case --max-columns=4096 -e",
-			rg_glob = true,  -- default to glob parsing?
+			rg_glob = true, -- default to glob parsing?
 			glob_flag = "--iglob", -- for case sensitive globs use '--glob'
 			glob_separator = "%s%-%-", -- query separator pattern (lua): ' --'
 			fzf_opts = {
 				["--history"] = vim.fn.stdpath("data") .. "/fzf-lua-grep-history",
 			},
 			actions = {
-				['ctrl-q'] = {
+				["ctrl-q"] = {
 					fn = actions.file_edit_or_qf,
 				},
-			}
+			},
+			winopts = { preview = { hidden = false } },
 		},
 		git = {
 			branches = {
@@ -99,6 +100,12 @@ function M.config()
 				fzf_opts = {
 					["--history"] = vim.fn.stdpath("data") .. "/fzf-lua-branches",
 				},
+			},
+		},
+		lsp = {
+			symbols = {
+
+				winopts = { preview = { hidden = false } },
 			},
 		},
 	})
