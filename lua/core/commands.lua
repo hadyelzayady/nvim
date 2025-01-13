@@ -1,9 +1,9 @@
 vim.api.nvim_create_user_command("DiffBuf", function(args)
-  if vim.opt.diff._value == false then
-    vim.cmd("windo diffthis")
-  else
-    vim.cmd("windo diffoff")
-  end
+	if vim.opt.diff._value == false then
+		vim.cmd("windo diffthis")
+	else
+		vim.cmd("windo diffoff")
+	end
 end, { range = true })
 
 -- Function to open LazyGit in a new Kitty window and maximize it
