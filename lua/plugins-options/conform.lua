@@ -25,10 +25,15 @@ function M.config()
 			proto = { "buf" },
 			toml = { "taplo" },
 			nginx = { "nginxfmt" },
-
+			http = { "kulala" },
 			["_"] = { "trim_whitespace" },
 		},
 		formatters = {
+			kulala = {
+				command = "kulala-fmt",
+				args = { "$FILENAME" },
+				stdin = false,
+			},
 			biome = {
 				condition = function()
 					local plenary = require("plenary")

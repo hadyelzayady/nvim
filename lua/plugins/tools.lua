@@ -1,7 +1,7 @@
 return {
 	{
 		"tpope/vim-dadbod",
-		lazy=true
+		lazy = true,
 	},
 	{
 		"kristijanhusak/vim-dadbod-ui",
@@ -19,5 +19,17 @@ return {
 			-- Your DBUI configuration
 			vim.g.db_ui_use_nerd_fonts = 1
 		end,
+	},
+	{
+		"rest-nvim/rest.nvim",
+		lazy=false,
+		-- cmd = "Rest",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			opts = function(_, opts)
+				opts.ensure_installed = opts.ensure_installed or {}
+				table.insert(opts.ensure_installed, "http")
+			end,
+		},
 	},
 }
