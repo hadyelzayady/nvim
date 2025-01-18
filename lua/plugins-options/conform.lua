@@ -52,6 +52,7 @@ function M.config()
 			},
 		},
 	})
+	vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 end
 
 return M

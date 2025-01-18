@@ -16,12 +16,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		end
 	end,
 })
-vim.lsp.config('*', {
+vim.lsp.config("*", {
 	capabilities = vim.tbl_deep_extend("force", vim.lsp.protocol.make_client_capabilities(), {
-		textDocument = { completion = { completionItem = { snippetSupport = true } } } })
-})
+		textDocument = { completion = { completionItem = { snippetSupport = true } } },
+	}),
+}, require("lsp-file-operations").default_capabilities())
 -- you can find server configurations from lsp/*.lua files
-vim.lsp.enable({ "lua_ls", "css", 'cssmodules', "biome" })
+vim.lsp.enable({ "lua_ls", "css", "cssmodules", "biome" })
 vim.lsp.enable("vtsls")
 vim.lsp.enable("eslint")
 vim.lsp.enable("json")

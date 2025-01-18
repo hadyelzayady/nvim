@@ -127,4 +127,13 @@ function M.quickfix_project_diagnostics()
 	require("utils.lsp").populate_diagnostics_to_quickfix(diagnostics)
 end
 
+function M.toggle_symbole_usages(global)
+	if global then
+		---@return boolean True if active, false otherwise
+		require("symbol-usage").toggle_globally()
+		return
+	end
+	require("symbol-usage").toggle()
+end
+
 return M

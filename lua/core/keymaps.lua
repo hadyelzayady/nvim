@@ -3,9 +3,9 @@ local map = vim.keymap.set
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
 
 -- Copy to clipboard
-map("v", "<leader>y", '"+y', { noremap = true, silent = true })   -- Visual mode copy
+map("v", "<leader>y", '"+y', { noremap = true, silent = true }) -- Visual mode copy
 map("n", "<leader>Y", '"+yg_', { noremap = true, silent = true }) -- Copy to clipboard without moving cursor
-map("n", "<leader>y", '"+y', { noremap = true, silent = true })   -- Normal mode copy
+map("n", "<leader>y", '"+y', { noremap = true, silent = true }) -- Normal mode copy
 map("n", "<leader>yy", '"+yy', { noremap = true, silent = true }) -- Yank the whole line
 
 -- Paste from clipboard
@@ -14,8 +14,13 @@ map("n", "<leader>p", '"+p', { noremap = true, silent = true }) -- Normal mode p
 map("n", "<leader>P", '"+P', { noremap = true, silent = true }) -- Paste before cursor
 map("v", "<leader>p", '"+p', { noremap = true, silent = true }) -- Visual mode paste
 map("v", "<leader>P", '"+P', { noremap = true, silent = true }) -- Visual mode paste before selection
-map("n", "<c-p>", require('neoclip.fzf'), { desc="Clipbaord Manager",noremap = true, silent = true }) -- Visual mode paste before selection
-map( "n", "<leader>sy", [[:let @+ = @"<CR>]], { desc="Sync neovim clipboard into system clipboard",noremap = true, silent = true }) -- sync neovim clipboard into system clipboard
+map("n", "<c-p>", require("neoclip.fzf"), { desc = "Clipbaord Manager", noremap = true, silent = true }) -- Visual mode paste before selection
+map(
+	"n",
+	"<leader>sy",
+	[[:let @+ = @"<CR>]],
+	{ desc = "Sync neovim clipboard into system clipboard", noremap = true, silent = true }
+) -- sync neovim clipboard into system clipboard
 
 -- Resize
 map("n", "<A-k>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
@@ -24,16 +29,24 @@ map("n", "<A-h>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width
 map("n", "<A-l>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 
 -- Quickfix
-map("n", "<c-,>", function() vim.cmd("silent! cnext") end, { desc = "Next Quickfix Item" })
-map("n", "<c-.>", function() vim.cmd("silent! cprevious") end, { desc = "Prev Quickfix Item" })
+map("n", "<c-,>", function()
+	vim.cmd("silent! cnext")
+end, { desc = "Next Quickfix Item" })
+map("n", "<c-.>", function()
+	vim.cmd("silent! cprevious")
+end, { desc = "Prev Quickfix Item" })
 map("n", "<c-q>", function()
 	vim.cmd("cclose")
 	require("neogit").close()
 end, { desc = "Close Common Splits" })
 
 -- Navigation
-map("n", "<leader>'", function() require('fzf-lua').resume() end, { desc = "FzfLua Resume" })
-map("n", "<leader>e", function() MiniFiles.open(vim.api.nvim_buf_get_name(0)) end, { desc = "Toggle MiniFiles" })
+map("n", "<leader>'", function()
+	require("fzf-lua").resume()
+end, { desc = "FzfLua Resume" })
+map("n", "<leader>e", function()
+	MiniFiles.open(vim.api.nvim_buf_get_name(0))
+end, { desc = "Toggle MiniFiles" })
 map("n", "<leader>W", "<cmd>NvimTreeFindFile<CR>", { desc = "NvimTree Find File Toggle" })
 map("n", "<leader>w", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle NvimTree" })
 map("n", "<C-e>", "<cmd>FzfLua oldfiles previewer=builtin<cr>", { desc = "Recent Files" })
@@ -50,13 +63,21 @@ map("n", "<leader>jl", function()
 		pattern = "^",
 	})
 end, { desc = "Jump To Line" })
-map("n", "<leader>xq", function() require("quicker").toggle() end, { desc = "Toggle quickfix", })
-map("n", "<leader>xl", function() require("quicker").toggle({ loclist = true }) end, { desc = "Toggle loclist", })
+map("n", "<leader>xq", function()
+	require("quicker").toggle()
+end, { desc = "Toggle quickfix" })
+map("n", "<leader>xl", function()
+	require("quicker").toggle({ loclist = true })
+end, { desc = "Toggle loclist" })
 map("n", "<leader>cS", "<cmd>AerialToggle<cr>", { silent = true, desc = "Symbole Outline" })
 map("n", "<leader>cs", "<cmd>AerialNavToggle<cr>", { silent = true, desc = "Symbole Nav" })
 
-map("n", "<leader>d", function() MiniBufremove.delete(0) end, { desc = "Delete Buffer" })
-map("n", "<leader>D", function() MiniBufremove.delete(0, true) end, { desc = "Force Delete Buffer" })
+map("n", "<leader>d", function()
+	MiniBufremove.delete(0)
+end, { desc = "Delete Buffer" })
+map("n", "<leader>D", function()
+	MiniBufremove.delete(0, true)
+end, { desc = "Force Delete Buffer" })
 -- Tab management
 map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
 map("n", "<leader><tab>n", "<cmd>tabnext<cr>", { desc = "Next Tab" })
@@ -65,9 +86,15 @@ map("n", "<leader><tab>p", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
 -- Git
 map("n", "<leader>gn", "<cmd>Neogit<CR>", { desc = "Neogit" })
-map("n", "<leader>g,g", function() require("agitator").search_git_branch() end, { desc = "Grep in branch" })
-map("n", "<leader>g,f", function() require("agitator").open_file_git_branch() end, { desc = "Open file in branch" })
-map("n", "<leader>g,m", function() require("agitator").git_time_machine() end, { desc = "Time machine" })
+map("n", "<leader>g,g", function()
+	require("agitator").search_git_branch()
+end, { desc = "Grep in branch" })
+map("n", "<leader>g,f", function()
+	require("agitator").open_file_git_branch()
+end, { desc = "Open file in branch" })
+map("n", "<leader>g,m", function()
+	require("agitator").git_time_machine()
+end, { desc = "Time machine" })
 map("n", "<leader>gb", ":Gitsigns blame_line<cr>", { desc = "Blame Current Line" })
 map("n", "<leader>gB", ":Gitsigns toggle_current_line_blame<cr>", { desc = "Blame Toggle Show Current Line" })
 map("n", "<leader>gp", ":Gitsigns preview_hunk_inline<cr>", { desc = "Preview Hunk Inline" })
@@ -104,24 +131,52 @@ map("n", "<leader>qW", "<cmd>silent! w<cr>", { desc = "Save Current" })
 map("n", "<leader>sw", "<cmd>FzfLua grep_cword previewer=builtin<cr>", { desc = "Search Current Word (project)" })
 map("n", "<leader>sb", "<cmd>FzfLua grep_curbuf previewer=builtin<cr>", { desc = "Search Buffer" })
 map("n", "<leader>sp", "<cmd>FzfLua grep_project previewer=builtin<cr>", { desc = "Search Project" })
-map({ "n", "v" }, "<leader>sv", "<cmd>FzfLua grep_visual previewer=builtin<cr>",
-	{ desc = "Search Visual", noremap = true })
+map(
+	{ "n", "v" },
+	"<leader>sv",
+	"<cmd>FzfLua grep_visual previewer=builtin<cr>",
+	{ desc = "Search Visual", noremap = true }
+)
 map("n", "<leader>sg", "<cmd>FzfLua live_grep_glob previewer=builtin<cr>", { desc = "Grep" })
 
 -- Lsp
-map("n", "[w", function() vim.diagnostic.jump({ count = -vim.v.count1, severity = "WARN" }) end,
-	{ silent = true, desc = "Prev Warning" })
-map("n", "]w", function() vim.diagnostic.jump({ count = vim.v.count1, severity = "WARN" }) end,
-	{ silent = true, desc = "Next Warning" })
-map("n", "[e", function() vim.diagnostic.jump({ count = -vim.v.count1, severity = "ERROR" }) end,
-	{ silent = true, desc = "Prev Error" })
-map("n", "]e", function() vim.diagnostic.jump({ count = vim.v.count1, severity = "ERROR" }) end,
-	{ silent = true, desc = "Next Erro" })
+map("n", "[w", function()
+	vim.diagnostic.jump({ count = -vim.v.count1, severity = "WARN" })
+end, { silent = true, desc = "Prev Warning" })
+map("n", "]w", function()
+	vim.diagnostic.jump({ count = vim.v.count1, severity = "WARN" })
+end, { silent = true, desc = "Next Warning" })
+map("n", "[e", function()
+	vim.diagnostic.jump({ count = -vim.v.count1, severity = "ERROR" })
+end, { silent = true, desc = "Prev Error" })
+map("n", "]e", function()
+	vim.diagnostic.jump({ count = vim.v.count1, severity = "ERROR" })
+end, { silent = true, desc = "Next Erro" })
 
-map("n", "<leader>xd", require("utils.lsp.operations").quickfix_document_diagnostics, { silent = true, desc = "Document Diagnostics" })
-map("n", "<leader>xD", require("utils.lsp.operations").quickfix_project_diagnostics, { silent = true, desc = "Project Diagnostics" })
-map("n", "<leader>ld", "<cmd>FzfLua lsp_document_diagnostics <cr>", { silent = true, desc = "Document Diagnostics(Fzf)" })
-map("n", "<leader>lD","<cmd>FzfLua lsp_workspace_diagnostics <cr>", { silent = true, desc = "Project Diagnostics(Fzf)" })
+map(
+	"n",
+	"<leader>xd",
+	require("utils.lsp.operations").quickfix_document_diagnostics,
+	{ silent = true, desc = "Document Diagnostics" }
+)
+map(
+	"n",
+	"<leader>xD",
+	require("utils.lsp.operations").quickfix_project_diagnostics,
+	{ silent = true, desc = "Project Diagnostics" }
+)
+map(
+	"n",
+	"<leader>ld",
+	"<cmd>FzfLua lsp_document_diagnostics <cr>",
+	{ silent = true, desc = "Document Diagnostics(Fzf)" }
+)
+map(
+	"n",
+	"<leader>lD",
+	"<cmd>FzfLua lsp_workspace_diagnostics <cr>",
+	{ silent = true, desc = "Project Diagnostics(Fzf)" }
+)
 map({ "n", "v" }, "<leader>lf", require("utils.lsp.operations").format, { silent = true, desc = "Format" })
 map("n", "gd", require("utils.lsp.operations").goto_definition, { desc = "Goto Definition" })
 map("n", "gvd", function()
@@ -142,12 +197,7 @@ map("n", "<leader>cf", require("utils.lsp.operations").fixAll, { desc = "Fix All
 map("n", "<leader>cc", require("utils.lsp.operations").removeUnused, { desc = "Remove Unused" })
 map("n", "<leader>cC", require("utils.lsp.operations").removeUnusedImports, { desc = "Remove Unused Imports" })
 map("n", "<leader>ci", require("utils.lsp.operations").addMissingImports, { desc = "Add Missing Imports" })
-map(
-	"n",
-	"<leader>sS",
-	"<cmd>FzfLua lsp_live_workspace_symbols previewer=builtin<cr>",
-	{ desc = "Workspace Symbols" }
-)
+map("n", "<leader>sS", "<cmd>FzfLua lsp_live_workspace_symbols previewer=builtin<cr>", { desc = "Workspace Symbols" })
 map("n", "<leader>ss", "<cmd>FzfLua lsp_document_symbols<cr>", { desc = "Document Symbols" })
 map(
 	"n",
@@ -155,5 +205,15 @@ map(
 	require("utils.lsp.operations").toggle_inlay_hints,
 	{ desc = "Toggle Inlayhints", silent = true }
 )
+map("n", "<leader>ltl", function()
+	require("utils.lsp.operations").toggle_symbole_usages(false)
+end, { desc = "Toggle Symbole Lens (Buffer)", silent = true })
+map("n", "<leader>ltL", function()
+	require("utils.lsp.operations").toggle_symbole_usages(true)
+end, { desc = "Toggle Symbole Lens (Buffer)", silent = true })
+map("n", "<leader>ltr", function()
+	require("symbol-usage").refresh()
+end, { desc = "Refresh Symbole Usages", silent = true })
+
 -- map("n", "<leader>ltl", "<cmd>LspLensToggle<cr>", { desc = "Toggle function hints", silent = true })
 map({ "n", "i" }, "<C-s", vim.lsp.buf.signature_help, { silent = true, desc = "Signature Help" })
