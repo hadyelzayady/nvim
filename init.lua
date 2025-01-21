@@ -1,5 +1,6 @@
 vim.loader.enable()
 require("core.lazy")
+require("core.filtype")
 require("core.options")
 require("core.lsp")
 require("core.statusline")
