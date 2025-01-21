@@ -14,7 +14,7 @@ map("n", "<leader>p", '"+p', { noremap = true, silent = true }) -- Normal mode p
 map("n", "<leader>P", '"+P', { noremap = true, silent = true }) -- Paste before cursor
 map("v", "<leader>p", '"+p', { noremap = true, silent = true }) -- Visual mode paste
 map("v", "<leader>P", '"+P', { noremap = true, silent = true }) -- Visual mode paste before selection
-map("n", "<c-p>", require("neoclip.fzf"), { desc = "Clipbaord Manager", noremap = true, silent = true }) -- Visual mode paste before selection
+map("n", "<c-P>", require("neoclip.fzf"), { desc = "Clipbaord Manager", noremap = true, silent = true }) -- Visual mode paste before selection
 map(
 	"n",
 	"<leader>sy",

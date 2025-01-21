@@ -21,3 +21,21 @@ autocmd("BufReadPost", {
 		end
 	end,
 })
+
+local function prefix_last_commit_message()
+	local cmd = "git log -1 --pretty=%B"
+	local commit_message = vim.fn.system(cmd)
+
+	if vim.v.shell_error == 0 then
+		local trimmed_message = commit_message:gsub("%s+$", "")
+		local keys = trimmed_message:gsub("\n", "\r")
+		vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(keys, true, false, true), "n", false)
+	else
+		print("Error: Unable to fetch last commit message. Are you in a Git repository?")
+	end
+end
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "gitcommit",
+	callback = prefix_last_commit_message,
+})
