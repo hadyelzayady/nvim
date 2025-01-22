@@ -100,4 +100,11 @@ return {
 			buffer_leader_key = "m", -- Per Buffer Mappings
 		},
 	},
+	{
+		"nacro90/numb.nvim",
+		lazy = false,
+		config = function()
+			require("numb").setup()
+		end,
+	},
 }

@@ -27,9 +27,10 @@ return {
 		priority = 1000,
 		-- you can set set configuration options here
 		config = function()
-		    vim.g.zenbones_darken_comments = 100
-		    vim.cmd.colorscheme('duckbones')
-		end
+			vim.g.duckbones_darken_comments = 100
+			vim.g.duckbones_lighten_cursor_line = 15
+			vim.cmd.colorscheme("duckbones")
+		end,
 	},
 	{
 		"comfysage/evergarden",
