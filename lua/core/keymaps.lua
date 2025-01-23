@@ -129,7 +129,9 @@ map("n", "<leader>qW", "<cmd>silent! w<cr>", { desc = "Save Current" })
 
 -- search
 map("n", "<leader>sw", "<cmd>FzfLua grep_cword previewer=builtin<cr>", { desc = "Search Current Word (project)" })
-map("n", "<leader>sb", "<cmd>FzfLua grep_curbuf previewer=builtin<cr>", { desc = "Search Buffer" })
+map("n", "<leader>sb", function()
+	require("fzf-lua").grep_curbuf({ previewer = "builtin", winopts = { preview = { hidden = false } } })
+end, { desc = "Search Buffer" })
 map("n", "<leader>sp", "<cmd>FzfLua grep_project previewer=builtin<cr>", { desc = "Search Project" })
 map(
 	{ "n", "v" },
