@@ -22,7 +22,11 @@ return {
 	},
 	{
 		"emmanueltouzery/agitator.nvim",
-		dependencies={"nvim-telescope/telescope.nvim"},
+		dependencies = { "nvim-telescope/telescope.nvim" },
 		lazy = true,
+	},
+	{
+		"tpope/vim-fugitive",
+		lazy = false,
 	},
 }

@@ -70,6 +70,7 @@
   "vim-dadbod": { "branch": "master", "commit": "96997dac981d50717a63d4dbd48d4a43e09ecf57" },
   "vim-dadbod-completion": { "branch": "master", "commit": "95cbcf21ea7a5c8c025f387280c2e261b8cb3a89" },
   "vim-dadbod-ui": { "branch": "master", "commit": "65454e2011c029922c2c972d63f8bf04282de033" },
+  "vim-fugitive": { "branch": "master", "commit": "d74a7cff4cfcf84f83cc7eccfa365488f3bbabc2" },
   "vim-suda": { "branch": "master", "commit": "9adda7d195222d4e2854efb2a88005a120296c47" },
   "which-key.nvim": { "branch": "main", "commit": "1f8d414f61e0b05958c342df9b6a4c89ce268766" },
   "zenbones.nvim": { "branch": "main", "commit": "9ef4241c50ea24026b732512223dbc55589ce2c4" }
