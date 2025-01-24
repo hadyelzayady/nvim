@@ -93,6 +93,7 @@ map("n", "<leader>g,d","<cmd>AdvancedGitSearch diff_branch_file<cr>", { desc = "
 map("n", "<leader>g,b", function() require("agitator").search_git_branch() end, { desc = "Grep in branch" })
 map("n", "<leader>g,f", function() require("agitator").open_file_git_branch() end, { desc = "Open file in branch" })
 map("n", "<leader>g,m", function() require("agitator").git_time_machine() end, { desc = "Time machine" })
+map("n", "<leader>g,c", "<cmd>GhReviewComments<cr>", {desc = "GitHub Review Comments"} )
 
 map("n", "<leader>gb", ":Gitsigns blame_line<cr>", { desc = "Blame Current Line" })
 map("n", "<leader>gB", ":Gitsigns toggle_current_line_blame<cr>", { desc = "Blame Toggle Show Current Line" })
