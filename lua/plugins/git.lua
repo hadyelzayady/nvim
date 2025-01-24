@@ -22,7 +22,28 @@ return {
 	},
 	{
 		"emmanueltouzery/agitator.nvim",
-		dependencies={"nvim-telescope/telescope.nvim"},
+		dependencies = { "nvim-telescope/telescope.nvim" },
 		lazy = true,
+	},
+	{
+		"tpope/vim-fugitive",
+		lazy = false,
+	},
+	{
+		"aaronhallaert/advanced-git-search.nvim",
+		cmd = { "AdvancedGitSearch" },
+		config = function()
+			require("advanced_git_search.fzf").setup({
+				-- fugitive or diffview
+				diff_plugin = "diffview",
+				-- Insert Config here
+			})
+		end,
+		dependencies = {
+			"ibhagwan/fzf-lua",
+			"tpope/vim-fugitive",
+			"tpope/vim-rhubarb",
+			"sindrets/diffview.nvim",
+		},
 	},
 }
