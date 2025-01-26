@@ -13,6 +13,7 @@ M.opts = {
 		{ "<leader>j", group = "Jump" }, -- group
 		{ "<leader>q", group = "Quit/Save" }, -- group
 		{ "<leader>lt", group = "Toggle" }, -- group
+		{ "<leader>,", group = "Log" }, -- group
 	},
 }
 

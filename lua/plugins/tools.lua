@@ -22,7 +22,7 @@ return {
 	},
 	{
 		"rest-nvim/rest.nvim",
-		lazy=false,
+		lazy = false,
 		-- cmd = "Rest",
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
@@ -31,5 +31,10 @@ return {
 				table.insert(opts.ensure_installed, "http")
 			end,
 		},
+	},
+	{
+		"chrisgrieser/nvim-chainsaw",
+		event = "VeryLazy",
+		opts = {}, -- required even if left empty
 	},
 }

@@ -219,3 +219,10 @@ end, { desc = "Refresh Symbole Usages", silent = true })
 
 -- map("n", "<leader>ltl", "<cmd>LspLensToggle<cr>", { desc = "Toggle function hints", silent = true })
 map({ "n", "i" }, "<C-s", vim.lsp.buf.signature_help, { silent = true, desc = "Signature Help" })
+
+-- Logs
+map("n", "<leader>,v", require("chainsaw").variableLog, { silent = true, desc = "Variable" })
+map("n", "<leader>,l", require("chainsaw").messageLog, { silent = true, desc = "Message" })
+map("n", "<leader>,o", require("chainsaw").objectLog, { silent = true, desc = "Object" })
+map("n", "<leader>,t", require("chainsaw").timeLog, { silent = true, desc = "Time" })
+map("n", "<leader>,x", require("chainsaw").removeLogs, { silent = true, desc = "Clear" })

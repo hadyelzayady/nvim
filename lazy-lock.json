@@ -39,6 +39,7 @@
   "nui.nvim": { "branch": "main", "commit": "53e907ffe5eedebdca1cd503b00aa8692068ca46" },
   "numb.nvim": { "branch": "master", "commit": "7f564e638d3ba367abf1ec91181965b9882dd509" },
   "nvim-bqf": { "branch": "main", "commit": "ebb6d2689e4427452180f17c53f29f7e460236f1" },
+  "nvim-chainsaw": { "branch": "main", "commit": "f155fc296278fae3001cd27a5095f86460d80f84" },
   "nvim-dap": { "branch": "master", "commit": "99807078c5089ed30e0547aa4b52c5867933f426" },
   "nvim-dr-lsp": { "branch": "main", "commit": "162c915eaf61d40ca1b4eec079037f42e9fdefcf" },
   "nvim-java": { "branch": "main", "commit": "4d810a546c262ca8f60228dc98ba51f81f5649c6" },
