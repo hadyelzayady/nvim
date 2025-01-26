@@ -7,7 +7,7 @@ function M.config()
 		"max-perf",
 		winopts = {
 			preview = {
-				hidden = "hidden", -- Disable preview by default
+				-- hidden = "hidden", -- Disable preview by default
 			},
 		},
 		keymap = {
