@@ -72,4 +72,10 @@ return {
 	-- 	dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.icons" },
 	-- 	opts = {},
 	-- },
+	{
+		"davidmh/mdx.nvim",
+		lazy = false,
+		config = true,
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+	},
 }
