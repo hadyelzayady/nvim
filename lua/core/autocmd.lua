@@ -35,7 +35,7 @@ local function prefix_last_commit_message()
 	end
 end
 
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "gitcommit",
-	callback = prefix_last_commit_message,
-})
+-- vim.api.nvim_create_autocmd("FileType", {
+-- 	pattern = "gitcommit",
+-- 	callback = prefix_last_commit_message,
+-- })
