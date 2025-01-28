@@ -19,6 +19,7 @@ function M.config()
 			scss = { "prettierd" },
 			css = { "biome", "prettierd", stop_after_first = true },
 			html = { "prettierd" },
+			mdx = { "prettierd" },
 
 			cpp = { "clang_format" },
 			sh = { "shfmt" },
@@ -43,12 +44,42 @@ function M.config()
 				end,
 			},
 			prettierd = {
-				condition = function()
+				condition = function(_, filedata)
+					if vim.bo.filetype == "mdx" then
+						return true
+					end
 					local plenary = require("plenary")
 					local biome_path = plenary.path:new(vim.loop.cwd() .. "/biome.json")
 					local biome_path2 = plenary.path:new(vim.loop.cwd() .. "/biome.jsonc")
 					return not biome_path:exists() and not biome_path2:exists()
 				end,
+			},
+			injected = {
+				options = {
+					-- Set to true to ignore errors
+					ignore_errors = true,
+					-- Map of treesitter language to filetype
+					lang_to_ft = {
+						bash = "sh",
+					},
+					-- Map of treesitter language to file extension
+					-- A temporary file name with this extension will be generated during formatting
+					-- because some formatters care about the filename.
+					lang_to_ext = {
+						bash = "sh",
+						c_sharp = "cs",
+						elixir = "exs",
+						javascript = "js",
+						julia = "jl",
+						latex = "tex",
+						markdown = "md",
+						python = "py",
+						ruby = "rb",
+						rust = "rs",
+						teal = "tl",
+						typescript = "ts",
+					},
+				},
 			},
 		},
 	})
