@@ -67,11 +67,14 @@ return {
 		config = require("plugins-options.dressing").config,
 		event = "VeryLazy",
 	},
-	-- {
-	-- 	"MeanderingProgrammer/render-markdown.nvim",
-	-- 	dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.icons" },
-	-- 	opts = {},
-	-- },
+	{
+		"MeanderingProgrammer/render-markdown.nvim",
+		dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.icons" },
+		lazy = false,
+		opts = {
+			file_types = { "markdown", "mdx" },
+		},
+	},
 	{
 		"davidmh/mdx.nvim",
 		lazy = false,
