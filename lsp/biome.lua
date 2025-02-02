@@ -1,9 +1,10 @@
 local util = require("utils.lsp.lspconfig")
 local function has_biome_config()
-	local eslint_files = {
+	local biome_files = {
 		"biome.json",
+		"biome.jsonc",
 	}
-	for _, file in ipairs(eslint_files) do
+	for _, file in ipairs(biome_files) do
 		if vim.fn.glob(file) ~= "" then
 			return true
 		end
@@ -51,6 +52,6 @@ return {
 		end
 		local fname = vim.fs.normalize(bufname)
 		root_file = util.insert_package_json(root_file, "eslintConfig", fname)
-		cb(util.root_pattern(".git", "biome.json")(fname))
+		cb(util.root_pattern(".git", "biome.json", "biome.jsonc")(fname))
 	end,
 }
