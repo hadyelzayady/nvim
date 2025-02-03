@@ -29,6 +29,6 @@ vim.diagnostic.config({
 	float = require("core.diagnostics").float,
 	-- Disable signs in the gutter.
 	signs = false,
-	update_in_insert = true,
 	virtual_lines = false,
+	update_in_insert = false,
 })

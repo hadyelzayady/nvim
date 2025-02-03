@@ -14,8 +14,10 @@ return {
 						require("blink-cmp").show({ providers = { "ripgrep" } })
 					end,
 				},
+				["<A-y>"] = require("minuet").make_blink_map(),
 			},
 			completion = {
+				trigger = { prefetch_on_insert = false },
 				list = {
 					selection = {
 						auto_insert = false,
@@ -48,12 +50,17 @@ return {
 			},
 			signature = { enabled = true },
 			sources = {
-				default = { "lsp", "path", "snippets", "buffer" },
+				default = { "lsp", "path", "snippets", "buffer", "minuet" },
 				cmdline = {},
 				providers = {
 					ripgrep = {
 						module = "blink-ripgrep",
 						name = "Ripgrep",
+					},
+					minuet = {
+						name = "minuet",
+						module = "minuet.blink",
+						score_offset = 8, -- Gives minuet higher priority among suggestions
 					},
 				},
 			},
