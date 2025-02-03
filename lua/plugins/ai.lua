@@ -6,6 +6,18 @@ return {
 		config = function()
 			local tools = require("llm.common.tools")
 			require("llm").setup({
+				url = "https://models.inference.ai.azure.com/chat/completions",
+				model = "gpt-4o",
+				api_type = "openai",
+
+				prompt = "You are a helpful assistant.",
+
+				prefix = {
+					user = { text = "😃 ", hl = "Title" },
+					assistant = { text = "⚡ ", hl = "Added" },
+				},
+
+				style = "float", -- right | left | above | below | float
 				app_handler = {
 					OptimizeCode = {
 						handler = tools.side_by_side_handler,
@@ -96,7 +108,7 @@ return {
 					},
 					CodeExplain = {
 						handler = tools.flexi_handler,
-						prompt = "Explain the following code, please only return the explanation, and answer in Chinese",
+						prompt = "Explain the following code, please only return the explanation, and answer in English",
 						-- opts = {
 						-- 	fetch_key = function()
 						-- 		return switch("enable_glm")
@@ -112,14 +124,14 @@ return {
 						prompt = function()
 							return string.format(
 								[[You are an expert at following the Conventional Commit specification. Given the git diff listed below, please generate a commit message for me:
-1. Start with an action verb (e.g., feat, fix, refactor, chore, etc.), followed by a colon.
+1. Start with an action verb (e.g., feat(scope), fix(scope), refactor(scope), chore(scope), etc.), followed by a colon.
 2. Briefly mention the file or module name that was changed.
 3. Describe the specific changes made.
 
 Examples:
-- feat: update common/util.py, added test cases for util.py
-- fix: resolve bug in user/auth.py related to login validation
-- refactor: optimize database queries in models/query.py
+- feat(order-details) update common/util.py, added test cases for util.py
+- fix(order-details) resolve bug in user/auth.py related to login validation
+- refactor(order-details): optimize database queries in models/query.py
 
 Based on this format, generate appropriate commit messages. Respond with message only. DO NOT format the message in Markdown code blocks, DO NOT use backticks:
 
@@ -132,15 +144,35 @@ Based on this format, generate appropriate commit messages. Respond with message
 						end,
 					},
 				},
+  -- stylua: ignore
+        keys = {
+          -- The keyboard mapping for the input window.
+          ["Input:Cancel"]      = { mode = "n", key = "<C-c>" },
+          ["Input:Submit"]      = { mode = "n", key = "<cr>" },
+          ["Input:Resend"]      = { mode = "n", key = "<C-r>" },
+
+          -- only works when "save_session = true"
+          ["Input:HistoryNext"] = { mode = "n", key = "<C-j>" },
+          ["Input:HistoryPrev"] = { mode = "n", key = "<C-k>" },
+
+          -- The keyboard mapping for the output window in "split" style.
+          ["Output:Ask"]        = { mode = "n", key = "i" },
+          ["Output:Cancel"]     = { mode = "n", key = "<C-c>" },
+          ["Output:Resend"]     = { mode = "n", key = "<C-r>" },
+
+          -- The keyboard mapping for the output and input windows in "float" style.
+          ["Session:Toggle"]    = { mode = "n", key = "<leader>ac" },
+          ["Session:Close"]     = { mode = "n", key = "<esc>" },
+        },
 			})
 		end,
 		keys = {
-			{ "<leader>ac", mode = "n", "<cmd>LLMSessionToggle<cr>" },
-			{ "<leader>ae", mode = "v", "<cmd>LLMAppHandler CodeExplain<cr>" },
-			{ "<leader>at", mode = "x", "<cmd>LLMAppHandler TestCode<cr>" },
-			{ "<leader>ao", mode = "x", "<cmd>LLMAppHandler OptimCompare<cr>" },
-			{ "<leader>au", mode = "n", "<cmd>LLMAppHandler UserInfo<cr>" },
-			{ "<leader>ag", mode = "n", "<cmd>LLMAppHandler CommitMsg<cr>" },
+			{ "<leader>ac", mode = "n", "<cmd>LLMSessionToggle<cr>", desc = "Chat" },
+			{ "<leader>ae", mode = "v", "<cmd>LLMAppHandler CodeExplain<cr>", desc = "Explain Code" },
+			{ "<leader>at", mode = "x", "<cmd>LLMAppHandler TestCode<cr>", desc = "Test Code" },
+			{ "<leader>ao", mode = "x", "<cmd>LLMAppHandler OptimCompare<cr>", desc = "Optimize Compare" },
+			{ "<leader>au", mode = "n", "<cmd>LLMAppHandler UserInfo<cr>", "User Info" },
+			{ "<leader>ag", mode = "n", "<cmd>LLMAppHandler CommitMsg<cr>", "commit Message" },
 			-- { "<leader>ao", mode = "x", "<cmd>LLMAppHandler OptimizeCode<cr>" },
 		},
 	},
