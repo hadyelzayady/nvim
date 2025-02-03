@@ -88,12 +88,23 @@ map("n", "<leader><tab>p", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 map("n", "<leader>gn", "<cmd>Neogit<CR>", { desc = "Neogit" })
 
 map("n", "<leader>g,g", "<cmd>AdvancedGitSearch search_log_content<cr>", { desc = "Grep in current branch history" })
-map("n", "<leader>g,G", "<cmd>AdvancedGitSearch search_log_content_file<cr>", { desc = "Grep in current branch history for current file" })
-map("n", "<leader>g,d","<cmd>AdvancedGitSearch diff_branch_file<cr>", { desc = "Diff File With Branch" })
-map("n", "<leader>g,b", function() require("agitator").search_git_branch() end, { desc = "Grep in branch" })
-map("n", "<leader>g,f", function() require("agitator").open_file_git_branch() end, { desc = "Open file in branch" })
-map("n", "<leader>g,m", function() require("agitator").git_time_machine() end, { desc = "Time machine" })
-map("n", "<leader>g,c", "<cmd>GhReviewComments<cr>", {desc = "GitHub Review Comments"} )
+map(
+	"n",
+	"<leader>g,G",
+	"<cmd>AdvancedGitSearch search_log_content_file<cr>",
+	{ desc = "Grep in current branch history for current file" }
+)
+map("n", "<leader>g,d", "<cmd>AdvancedGitSearch diff_branch_file<cr>", { desc = "Diff File With Branch" })
+map("n", "<leader>g,b", function()
+	require("agitator").search_git_branch()
+end, { desc = "Grep in branch" })
+map("n", "<leader>g,f", function()
+	require("agitator").open_file_git_branch()
+end, { desc = "Open file in branch" })
+map("n", "<leader>g,m", function()
+	require("agitator").git_time_machine()
+end, { desc = "Time machine" })
+map("n", "<leader>g,c", "<cmd>GhReviewComments<cr>", { desc = "GitHub Review Comments" })
 
 map("n", "<leader>gb", ":Gitsigns blame_line<cr>", { desc = "Blame Current Line" })
 map("n", "<leader>gB", ":Gitsigns toggle_current_line_blame<cr>", { desc = "Blame Toggle Show Current Line" })
@@ -226,3 +237,7 @@ map("n", "<leader>,l", require("chainsaw").messageLog, { silent = true, desc = "
 map("n", "<leader>,o", require("chainsaw").objectLog, { silent = true, desc = "Object" })
 map("n", "<leader>,t", require("chainsaw").timeLog, { silent = true, desc = "Time" })
 map("n", "<leader>,x", require("chainsaw").removeLogs, { silent = true, desc = "Clear" })
+
+vim.keymap.set("i", "<C-x><C-o>", function()
+	require("llm").request_completion()
+end, { desc = "Trigger LLM Completion" })

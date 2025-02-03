@@ -171,9 +171,14 @@ Based on this format, generate appropriate commit messages. Respond with message
 			{ "<leader>ae", mode = "v", "<cmd>LLMAppHandler CodeExplain<cr>", desc = "Explain Code" },
 			{ "<leader>at", mode = "x", "<cmd>LLMAppHandler TestCode<cr>", desc = "Test Code" },
 			{ "<leader>ao", mode = "x", "<cmd>LLMAppHandler OptimCompare<cr>", desc = "Optimize Compare" },
-			{ "<leader>au", mode = "n", "<cmd>LLMAppHandler UserInfo<cr>", "User Info" },
-			{ "<leader>ag", mode = "n", "<cmd>LLMAppHandler CommitMsg<cr>", "commit Message" },
+			-- { "<leader>au", mode = "n", "<cmd>LLMAppHandler UserInfo<cr>", desc = "User Info" },
+			{ "<leader>ag", mode = "n", "<cmd>LLMAppHandler CommitMsg<cr>", desc = "Commit Message" },
 			-- { "<leader>ao", mode = "x", "<cmd>LLMAppHandler OptimizeCode<cr>" },
 		},
+	},
+	{
+		"milanglacier/minuet-ai.nvim",
+		lazy = false,
+		config = require("plugins-options.minuet").config,
 	},
 }

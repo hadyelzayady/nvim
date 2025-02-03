@@ -46,5 +46,5 @@ vim.diagnostic.config({
 	},
 	-- Disable signs in the gutter.
 	signs = false,
-	update_in_insert = true,
+	update_in_insert = false,
 })
