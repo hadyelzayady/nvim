@@ -23,28 +23,12 @@ for name in pairs(require("utils.ui-components").icons.diagnostics) do
 	vim.fn.sign_define(name, { text = "", texthl = name, numhl = name })
 end
 
-local diagnostic_utils = require("utils.lsp.diagnostics")
-local diagnostic_icons = require("utils.ui-components").icons.diagnostics
 vim.diagnostic.config({
-	virtual_text = {
-		prefix = function(diagnostic)
-			return diagnostic_icons
-			[diagnostic_utils.diagnostic_key_icon_name_map[vim.diagnostic.severity[diagnostic.severity]]]
-		end,
-		spacing = 2,
-	},
+	virtual_text = require("core.diagnostics").virtual_text,
 	severity_sort = true,
-	float = {
-		border = "rounded",
-		source = true,
-		-- Show severity icons as prefixes.
-		prefix = function(diag)
-			local level = diagnostic_utils.diagnostic_key_icon_name_map[vim.diagnostic.severity[diag.severity]]
-			local prefix = string.format(" %s ", diagnostic_icons[level])
-			return prefix, "Diagnostic" .. level:gsub("^%l", string.upper)
-		end,
-	},
+	float = require("core.diagnostics").float,
 	-- Disable signs in the gutter.
 	signs = false,
 	update_in_insert = true,
+	virtual_lines = false,
 })
