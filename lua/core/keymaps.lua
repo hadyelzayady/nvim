@@ -86,6 +86,7 @@ map("n", "<leader><tab>p", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
 -- Git
 map("n", "<leader>gn", "<cmd>Neogit<CR>", { desc = "Neogit" })
+map("n", "<leader>ga", "<cmd>CoAuthor<CR>", { desc = "Co-Author" })
 
 map("n", "<leader>g,g", "<cmd>AdvancedGitSearch search_log_content<cr>", { desc = "Grep in current branch history" })
 map(
