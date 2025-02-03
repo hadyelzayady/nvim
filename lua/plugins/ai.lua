@@ -125,7 +125,7 @@ return {
 							return string.format(
 								[[You are an expert at following the Conventional Commit specification. Given the git diff listed below, please generate a commit message for me:
 1. Start with an action verb (e.g., feat(scope), fix(scope), refactor(scope), chore(scope), etc.), followed by a colon.
-2. Briefly mention the file or module name that was changed.
+2. Briefly mention the file or module name that was changed if only changes files are less than 3.
 3. Describe the specific changes made.
 
 Examples:
