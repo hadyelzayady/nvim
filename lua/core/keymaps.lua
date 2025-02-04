@@ -86,6 +86,7 @@ map("n", "<leader><tab>p", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
 -- Git
 map("n", "<leader>gn", "<cmd>Neogit<CR>", { desc = "Neogit" })
+map("n", "<leader>ga", "<cmd>CoAuthor<CR>", { desc = "Co-Author" })
 
 map("n", "<leader>g,g", "<cmd>AdvancedGitSearch search_log_content<cr>", { desc = "Grep in current branch history" })
 map(
@@ -190,6 +191,16 @@ map(
 	"<cmd>FzfLua lsp_workspace_diagnostics <cr>",
 	{ silent = true, desc = "Project Diagnostics(Fzf)" }
 )
+
+map("n", "gK", function()
+	local new_config = not vim.diagnostic.config().virtual_lines
+	local virtual_text = not new_config
+	if virtual_text then
+		virtual_text = require("core.diagnostics").virtual_text
+	end
+	vim.diagnostic.config({ virtual_lines = new_config, virtual_text = virtual_text })
+end, { desc = "Toggle diagnostic virtual_lines" })
+
 map({ "n", "v" }, "<leader>lf", require("utils.lsp.operations").format, { silent = true, desc = "Format" })
 map("n", "gd", require("utils.lsp.operations").goto_definition, { desc = "Goto Definition" })
 map("n", "gvd", function()
