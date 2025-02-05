@@ -58,7 +58,7 @@ vim.opt.listchars = { -- NOTE: using `vim.opt` instead of `vim.o` to pass rich o
 	-- leadmultispace="...|"
 }
 
-vim.opt.diffopt:append("linematch:60") -- second stage diff to align lines
+vim.opt.diffopt="internal,filler,closeoff,linematch:60,algorithm:histogram,indent-heuristic" -- second stage diff to align lines
 
 vim.o.confirm = true -- show dialog for unsaved file(s) before quit
 vim.o.updatetime = 200 -- save swap file with 200ms debouncing

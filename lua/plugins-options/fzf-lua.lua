@@ -15,6 +15,7 @@ function M.config()
 				true,
 				["<Esc>"] = "hide",
 				["<c-space>"] = "toggle-preview",
+				["ctrl-g"] = actions.toggle_ignore,
 			},
 		},
 		files = {
@@ -26,6 +27,7 @@ function M.config()
 			},
 			actions = {
 				["ctrl-q"] = actions.file_sel_to_qf,
+				["ctrl-g"] = actions.toggle_ignore,
 			},
 		},
 		oldfiles = {
@@ -66,6 +68,7 @@ function M.config()
 				["ctrl-q"] = {
 					fn = actions.file_edit_or_qf,
 				},
+				["ctrl-g"] = actions.toggle_ignore,
 			},
 			winopts = { preview = { hidden = false } },
 		},

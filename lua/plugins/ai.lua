@@ -124,13 +124,14 @@ return {
 						prompt = function()
 							return string.format(
 								[[You are an expert at following the Conventional Commit specification. Given the git diff listed below, please generate a commit message for me:
-1. Start with an action verb (e.g., feat(scope), fix(scope), refactor(scope), chore(scope), etc.), followed by a colon.
-2. Briefly mention the file or module name that was changed if only changes files are less than 3.
-3. Describe the specific changes made.
+1. Start with an action verb (e.g., feat, fix, refactor, chore, etc.).
+2. Include a scope in parentheses if applicable
+3. Provide a concise summary of the change
+4. Mention specific Most important functions, components, or files affected with max three files
 
 Examples:
-- feat(order-details) update common/util.py, added test cases for util.py
-- fix(order-details) resolve bug in user/auth.py related to login validation
+- feat(order-details): update common/util.py, added test cases for util.py
+- fix(order-details): resolve bug in user/auth.py related to login validation
 - refactor(order-details): optimize database queries in models/query.py
 
 Based on this format, generate appropriate commit messages. Respond with message only. DO NOT format the message in Markdown code blocks, DO NOT use backticks:
