@@ -11,13 +11,7 @@ local function has_biome_config()
 	end
 	return false
 end
-local root_file = {
-	"tsconfig.json",
-	"jsconfig.json",
-	"package.json",
-	".git",
-	"biome.json",
-}
+
 ---@type vim.lsp.Config
 return {
 	cmd = { "bunx", "biome", "lsp-proxy" },
@@ -38,7 +32,7 @@ return {
 	},
 
 	root_dir = function(cb)
-		if not has_biome_config() then
+		if not has_biome_config() or require("utils.lsp.setup").global_ignored() then
 			-- vim.notify('No ESLint config found, disabling ESLint LSP', vim.log.levels.WARN,{silent=true})
 			return nil
 		end
@@ -51,7 +45,6 @@ return {
 			return
 		end
 		local fname = vim.fs.normalize(bufname)
-		root_file = util.insert_package_json(root_file, "eslintConfig", fname)
 		cb(util.root_pattern(".git", "biome.json", "biome.jsonc")(fname))
 	end,
 }
