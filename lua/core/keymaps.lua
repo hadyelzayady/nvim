@@ -215,7 +215,7 @@ map("n", "gI", require("utils.lsp.operations").goto_implementations, { desc = "G
 map("n", "<leader>li", require("utils.lsp.operations").goto_incoming_calls, { desc = "Goto Incoming Calls" })
 map("n", "<leader>lo", require("utils.lsp.operations").goto_outgoing_calls, { desc = "Goto Outgoing Calls" })
 map("n", "<leader>lr", require("utils.lsp.operations").rename, { silent = true, desc = "Rename" })
-map("n", "<leader>la", vim.lsp.buf.code_action, { silent = true, desc = "Code Actions" })
+map({ "n", "v" }, "<leader>la", vim.lsp.buf.code_action, { silent = true, desc = "Code Actions" })
 map("n", "<leader>lR", require("utils.lsp.operations").rename_file, { desc = "Rename File" })
 map("n", "<leader>cf", require("utils.lsp.operations").fixAll, { desc = "Fix All" })
 map("n", "<leader>cc", require("utils.lsp.operations").removeUnused, { desc = "Remove Unused" })
