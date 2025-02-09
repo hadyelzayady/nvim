@@ -2,6 +2,10 @@ local util = require("utils.lsp.lspconfig")
 return {
 	cmd = { "docker-langserver", "--stdio" },
 	root_dir = function(cb)
+		if require("utils.lsp.setup").global_ignored() then
+			-- vim.notify('No ESLint config found, disabling ESLint LSP', vim.log.levels.WARN,{silent=true})
+			return nil
+		end
 		local bufnr = vim.api.nvim_get_current_buf()
 		if not vim.api.nvim_buf_is_valid(bufnr) then
 			return
