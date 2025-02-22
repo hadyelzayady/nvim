@@ -1,6 +1,6 @@
 local M = {}
 
-local function label(path)
+local function label()
 	return vim.fs.basename(vim.loop.cwd() or "")
 end
 local VIEW_WIDTH_FIXED = 30
@@ -21,9 +21,9 @@ function M.toggle_width_adaptive()
 end
 
 function M.config()
-	local icons = require("utils.ui-components").icons
 	require("nvim-tree").setup({
-		filters = { custom = { "^.git$" } },
+		disable_netrw = true,
+		hijack_cursor = true, -- Keeps the cursor on the first letter of the filename when moving in the tree.
 		filesystem_watchers = {
 			ignore_dirs = {
 				"node_modules",
@@ -34,51 +34,6 @@ function M.config()
 		renderer = {
 			root_folder_label = label,
 			group_empty = true,
-
-			icons = {
-
-				git_placement = "after",
-				modified_placement = "before",
-				glyphs = {
-					folder = {
-						arrow_closed = "",
-						arrow_open = "",
-						default = icons.folder.closed,
-						open = icons.folder.opened,
-						empty = "",
-						empty_open = icons.folder.empty,
-						symlink = "",
-						symlink_open = "",
-					},
-					git = {
-						unstaged = icons.git.unstaged,
-						staged = icons.git.staged,
-						unmerged = icons.git.conflict,
-						renamed = icons.git.renamed,
-						untracked = icons.git.untracked,
-						deleted = icons.git.removed,
-						ignored = icons.git.ignored,
-					},
-				},
-			},
-		},
-		modified = {
-			enable = true,
-		},
-		diagnostics = {
-			enable = true,
-			show_on_dirs = true,
-			icons = {
-				hint = icons.diagnostics.Hint,
-				info = icons.diagnostics.Info,
-				warning = icons.diagnostics.Warn,
-				error = icons.diagnostics.Error,
-			},
-		},
-		-- Here is where we enable case-insensitive filtering
-		hijack_directories = {
-			enable = false,
-			auto_open = false,
 		},
 		view = {
 			width = {
@@ -88,5 +43,4 @@ function M.config()
 		},
 	})
 end
-
 return M

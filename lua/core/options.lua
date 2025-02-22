@@ -1,85 +1,77 @@
--- disable language provider support (lua and vimscript plugins only)
+local opt= vim.opt
+
+--=================   Disable Providers ========================
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_node_provider = 0
 vim.g.loaded_python_provider = 0
 vim.g.loaded_python3_provider = 0
-vim.g.loaded_netrw = 0
-vim.g.loaded_netrwPlugin = 0
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
+--=================   UI ========================
+opt.number = true            -- Show line numbers
+opt.relativenumber = true    -- Relative line numbers (easier for jumping)
+opt.cursorline = true        -- Highlight the current line
+opt.signcolumn = "yes"       -- Always show sign column to prevent shifting
+opt.wrap = false             -- Disable line wrapping
+opt.scrolloff = 8            -- Keep 8 lines visible above/below cursor
+opt.sidescrolloff = 8        -- Keep 8 columns visible left/right of cursor
+opt.termguicolors = true     -- Enable 24-bit RGB colors
 
-vim.opt.splitbelow = true         -- Horizontal splits will be below
-vim.opt.splitright = true         -- Vertical splits will be to the right
-vim.opt.signcolumn = "yes:1"   -- Always show sign column (otherwise it will shift text)
+--=================   Fold ========================
+opt.foldenable = true       -- enable fold
+opt.foldlevel = 99          -- start editing with all folds opened
+opt.foldlevelstart = 99
+opt.foldmethod = "expr"     -- use tree-sitter for folding method
+opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+opt.foldcolumn = "0"        -- '0' is not bad
 
--- jumps
-vim.opt.jumpoptions = "stack,view"
+--=================   Editing ========================
+opt.smartindent = true       -- Auto-indent new lines intelligently
+opt.expandtab = true         -- Use spaces instead of tabs
+opt.shiftwidth = 4           -- Indentation width (use 4 spaces)
+opt.tabstop = 4              -- Number of spaces per tab
+opt.softtabstop = 4          -- Spaces per tab when pressing <Tab>
+opt.ignorecase = true        -- Ignore case when searching
+opt.smartcase = true         -- But respect case if search includes uppercase
+opt.incsearch = true         -- Incremental search
+opt.hlsearch = false         -- Don't highlight search results after pressing Enter
+opt.mouse = "a"              -- Enable mouse support in all modes
 
--- performance optimize
-vim.opt.updatetime = 300                                  -- Default is 4000ms
-vim.opt.ttyfast = true                                    -- Optimize for fast terminals
-vim.opt.lazyredraw = true                                 -- Redraw only when necessary
+--=================   Clipboard/Undo ========================
+opt.clipboard = "unnamedplus" -- Use system clipboard
+opt.undofile = true           -- Enable persistent undo
+opt.undodir = vim.fn.stdpath("data") .. "/undo" -- Set undo directory
 
--- general options
-vim.o.completeopt = "menu,menuone,noselect,noinsert,popup,fuzzy" -- modern completion menu
+--=================   Performance ========================
+opt.updatetime = 250          -- Faster UI updates (default is 4000ms)
+opt.timeoutlen = 300          -- Faster leader key timeout
+opt.lazyredraw = true         -- Avoid unnecessary screen redraws
+opt.redrawtime = 10000        -- Increase max redraw time for large files
+opt.synmaxcol = 200           -- Limit syntax highlighting for long lines
 
-vim.o.foldenable = true -- enable fold
-vim.o.foldlevel = 99 -- start editing with all folds opened
-vim.o.foldlevelstart = 99
-vim.o.foldmethod = "expr" -- use tree-sitter for folding method
-vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.o.foldcolumn = "0" -- '0' is not bad
+--=================   Split/Windows ========================
+opt.splitright = true         -- New vertical split opens to the right
+opt.splitbelow = true         -- New horizontal split opens below
+opt.equalalways = true       -- Prevent auto-resizing of splits
 
--- NOTE: Setting vim options can be opinionated.
--- While options above are crucial to make this whole config work as expected,
--- below are just list of options I think most users will satisfy.
--- Feel free to modify as your preference.
+--=================   Backup/Swap ========================
+opt.swapfile = false          -- Disable swap files
+opt.backup = false            -- Disable backup files
+opt.writebackup = false       -- Disable write backup
 
-vim.o.hlsearch = true -- Disable highlight on search
-vim.o.termguicolors = true -- enable rgb colors
+--=================   Diff ========================
+opt.diffopt:append({
+  "vertical",                  -- Show diffs in vertical splits
+  "iwhite",                    -- Ignore whitespace changes
+  "hiddenoff",                 -- Do not hide buffers when viewing diffs
+  "algorithm:histogram",       -- Use the histogram algorithm for better diffs
+  "indent-heuristic",          -- Improve diff detection for indented lines
+  "linematch:60",              -- Align similar lines (Neovim 0.9+ feature)
+})
 
-vim.o.cursorline = true -- enable cursor line
-vim.o.cursorcolumn = false
-vim.o.cursorlineopt = "line"
-
-vim.o.number = true -- enable line number
-vim.o.relativenumber = false -- and relative line number
-
-vim.o.pumheight = 10 -- max height of completion menu
-
-vim.o.list = true -- use special characters to represent things like tabs or trailing spaces
-vim.opt.listchars = { -- NOTE: using `vim.opt` instead of `vim.o` to pass rich object
-	tab = "▏ ",
-	trail = "·",
-	extends = "»",
-	precedes = "«",
-	-- leadmultispace="...|"
-}
-
-vim.opt.diffopt="internal,filler,closeoff,linematch:60,algorithm:histogram,indent-heuristic" -- second stage diff to align lines
-
-vim.o.confirm = true -- show dialog for unsaved file(s) before quit
-vim.o.updatetime = 200 -- save swap file with 200ms debouncing
-
-vim.o.ignorecase = true -- case-insensitive search
-vim.o.smartcase = true -- , until search pattern contains upper case characters
-
-vim.o.smartindent = true -- auto-indenting when starting a new line
-vim.o.shiftround = true -- round indent to multiple of 'shiftwidth'
-vim.o.shiftwidth = 0 -- 0 to follow the 'tabstop' value
-vim.o.tabstop = 4 -- tab width
-
-vim.o.undofile = true -- enable persistent undo
-vim.o.undolevels = 10000 -- 10x more undo levels
-
--- status
-vim.o.pumheight = 10        -- Limit popup menu height
-vim.o.laststatus = 3
-vim.o.showmode = false                              -- Don't show mode, it's redundant with a statusline
-
--- performance optimize
-vim.o.updatetime = 300                                  -- Default is 4000ms
-vim.o.ttyfast = true                                    -- Optimize for fast terminals
-vim.o.lazyredraw = true                                 -- Redraw only when necessary
+--=================   Statusline ========================
+opt.pumheight = 10        -- Limit popup menu height
+opt.laststatus = 3        -- global statusline
+opt.showmode = false      -- Don't show mode, it's redundant with a statusline

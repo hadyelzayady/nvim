@@ -1,7 +1,5 @@
 local M = {}
-
 function M.config()
-	require("mini.bufremove").setup()
+	require("mini.diff").setup()
 end
-
 return M

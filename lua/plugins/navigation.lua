@@ -6,12 +6,6 @@ return {
 		config = require("plugins-options.oil").config,
 	},
 	{
-		"echasnovski/mini.files",
-		version = false,
-		lazy = false,
-		config = require("plugins-options.mini-files").config,
-	},
-	{
 		"nvim-tree/nvim-tree.lua",
 		version = "*",
 		lazy = false,
@@ -19,18 +13,14 @@ return {
 		config = require("plugins-options.nvim-tree").config,
 	},
 	{
-		"kevinhwang91/nvim-bqf",
-		ft = "qf",
-		dependencies = {
-			{
-				"junegunn/fzf",
-				build = "./install --bin",
-			},
-		},
+		"ibhagwan/fzf-lua",
+		dependencies = { "echasnovski/mini.icons" },
+		cmd = { "FzfLua" },
+		config = require("plugins-options.fzf-lua").config,
 	},
 	{
 		"stevearc/quicker.nvim",
-		event = "FileType qf",
+		ft = "qf",
 		opts = {
 			keys = {
 				{
@@ -51,37 +41,6 @@ return {
 		},
 	},
 	{
-		"chrishrb/gx.nvim",
-		keys = { { "gx", "<cmd>Browse<cr>", mode = { "n", "x" } } },
-		cmd = { "Browse" },
-		init = function()
-			vim.g.netrw_nogx = 1
-		end,
-		dependencies = { "nvim-lua/plenary.nvim" },
-		config = require("plugins-options.gx").config,
-	},
-	{
-		"ibhagwan/fzf-lua",
-		dependencies = { "echasnovski/mini.icons" },
-		cmd = { "FzfLua" },
-		config = require("plugins-options.fzf-lua").config,
-	},
-	{
-		"echasnovski/mini.bufremove",
-		version = false,
-		lazy = false,
-		config = require("plugins-options.mini-bufremove").config,
-	},
-	{
-		"stevearc/aerial.nvim",
-		event = "VeryLazy",
-		config = require("plugins-options.aerial").config,
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
-			"nvim-tree/nvim-web-devicons",
-		},
-	},
-	{
 		"folke/flash.nvim",
 		event = "VeryLazy",
 		keys = require("plugins-options.flash").keys,
@@ -89,22 +48,9 @@ return {
 		vscode = false,
 	},
 	{
-		"otavioschwanck/arrow.nvim",
-		dependencies = {
-			{ "echasnovski/mini.icons" },
-		},
-		keys = { ";", "m" },
-		opts = {
-			show_icons = true,
-			leader_key = ";", -- Recommended to be a single key
-			buffer_leader_key = "m", -- Per Buffer Mappings
-		},
-	},
-	{
-		"nacro90/numb.nvim",
+		"echasnovski/mini.bufremove",
+		version = false,
 		lazy = false,
-		config = function()
-			require("numb").setup()
-		end,
+		config = require("plugins-options.mini-bufremove").config,
 	},
 }
