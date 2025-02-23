@@ -1,11 +1,14 @@
-local util = require("utils.lsp.lspconfig")
-
 ---@type vim.lsp.Config
 return {
 	cmd = { "vtsls", "--stdio" },
 	root_markers = { "tsconfig.json", "jsconfig.json", "package.json", ".git" },
 	filetypes = {
-		"javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx"
+		"javascript",
+		"javascriptreact",
+		"javascript.jsx",
+		"typescript",
+		"typescriptreact",
+		"typescript.tsx",
 	},
 	single_file_support = true,
 	settings = {
@@ -18,7 +21,7 @@ return {
 				propertyDeclarationTypes = { enabled = true },
 				functionLikeReturnTypes = { enabled = true },
 				enumMemberValues = { enabled = true },
-			}
+			},
 		},
 		javascript = {
 			updateImportsOnFileMove = "always",

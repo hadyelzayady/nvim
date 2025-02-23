@@ -31,3 +31,13 @@ end
 vim.api.nvim_create_user_command("Lazygit", OpenLazyGitInKittyMaximizedWindow, {})
 vim.api.nvim_create_user_command("Gitui", OpenGitUIInKittyMaximizedWindow, {})
 -- vim.api.nvim_create_user_command("nadd", OpenGitUIInKittyMaximizedWindow, {})
+
+vim.api.nvim_create_user_command("NextGitDiff", function()
+	vim.cmd("cnext") -- Move to the next file in quickfix
+	vim.cmd("vert Gdiffsplit") -- Open diff in a vertical split
+end, {})
+
+vim.api.nvim_create_user_command("PrevGitDiff", function()
+	vim.cmd("cprev") -- Move to the previous file in quickfix
+	vim.cmd("vert Gdiffsplit") -- Open diff in a vertical split
+end, {})

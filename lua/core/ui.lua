@@ -47,13 +47,3 @@ for name in pairs(require("utils.ui-components").icons.diagnostics) do
 	name = "DiagnosticSign" .. name
 	vim.fn.sign_define(name, { text = "", texthl = name, numhl = name })
 end
-
-vim.diagnostic.config({
-	virtual_text = require("core.diagnostics").virtual_text,
-	severity_sort = true,
-	float = require("core.diagnostics").float,
-	-- Disable signs in the gutter.
-	signs = false,
-	virtual_lines = false,
-	update_in_insert = false,
-})

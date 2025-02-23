@@ -1,4 +1,5 @@
 return {
+
 	{
 		"max397574/better-escape.nvim",
 		config = require("plugins-options.better-escape").config,
@@ -6,7 +7,6 @@ return {
 	},
 	{
 		"folke/ts-comments.nvim",
-		opts = {},
 		event = "VeryLazy",
 	},
 	{
@@ -19,52 +19,8 @@ return {
 		"echasnovski/mini.pairs",
 		event = "InsertEnter",
 		version = false,
-		opts = {
-			-- skip autopair when next character is one of these
-			skip_next = [=[[%w%%%'%[%"%.%`%$]]=],
-			-- skip autopair when next character is closing pair
-			-- and there are more closing pairs than opening pairs
-			skip_unbalanced = true,
-			-- better deal with markdown code blocks
-			markdown = true,
-			mappings = {
-				-- restrict ' with < and & for rust
-				["'"] = { neigh_pattern = "[^%a\\|<|&]." },
-				-- Add | for rust iterations
-				["|"] = { action = "closeopen", pair = "||", neigh_pattern = "[(][)]", register = { cr = false } },
-			},
-		},
 		config = require("plugins-options.mini-pairs").config,
 	},
-	--  {
-	--    "altermo/ultimate-autopair.nvim",
-	--    event = { "InsertEnter", "CmdlineEnter" },
-	--    branch = "v0.6", --recommended as each new version will have breaking changes
-	--    opts = function()
-	--      return {
-	--
-	--        fastwarp = {
-	--
-	--          map = "<D-e>", --string or table
-	--        },
-	--        --Config goes here
-	--      }
-	--    end,
-	--  },
-	{
-		"johmsalas/text-case.nvim",
-		dependencies = { "nvim-telescope/telescope.nvim", cmd = { "Telescope" } },
-		config = require("plugins-options.text-case").config,
-		keys = { "ga", { "ga.", "<cmd>TextCaseOpenTelescope<CR>", mode = { "n", "x" }, desc = "Telescope" } },
-		cmd = {
-			"Subs",
-			"TextCaseOpenTelescope",
-			"TextCaseOpenTelescopeQuickChange",
-			"TextCaseOpenTelescopeLSPChange",
-			"TextCaseStartReplacingCommand",
-		},
-	},
-	--
 	{
 		"echasnovski/mini.splitjoin",
 		version = false,
@@ -87,61 +43,20 @@ return {
 		config = require("plugins-options.mini-ai").config,
 	},
 	{
-		"MagicDuck/grug-far.nvim",
-		opts = { headerMaxWidth = 80 },
-		cmd = "GrugFar",
-		keys = {
-			{
-				"<leader>sr",
-				function()
-					local grug = require("grug-far")
-					local ext = vim.bo.buftype == "" and vim.fn.expand("%:e")
-					grug.open({
-						transient = true,
-						prefills = {
-							filesFilter = ext and ext ~= "" and "*." .. ext or nil,
-							paths = vim.fn.expand("%"),
-						},
-					})
-				end,
-				mode = { "n", "v" },
-				desc = "Search and Replace",
-			},
+		"johmsalas/text-case.nvim",
+		dependencies = { "nvim-telescope/telescope.nvim", cmd = { "Telescope" } },
+		config = require("plugins-options.text-case").config,
+		keys = { "ga", { "ga.", "<cmd>TextCaseOpenTelescope<CR>", mode = { "n", "x" }, desc = "Telescope" } },
+		cmd = {
+			"Subs",
+			"TextCaseOpenTelescope",
+			"TextCaseOpenTelescopeQuickChange",
+			"TextCaseOpenTelescopeLSPChange",
+			"TextCaseStartReplacingCommand",
 		},
 	},
 	{
 		"lambdalisue/vim-suda",
 		cmd = { "SudoWrite", "SudaRead" },
-	},
-	--  {
-	--    "nvim-neorg/neorg",
-	--    lazy = false,  -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
-	--    version = "*", -- Pin Neorg to the latest stable release
-	--    config = require("plugins-options.neorg").config
-	--  }
-	{
-		"windwp/nvim-ts-autotag",
-		event = "VeryLazy",
-		config = require("plugins-options.ts-autotag").config,
-	},
-	{
-		"b0o/schemastore.nvim",
-		ft = { "json", "yaml" },
-	},
-	{
-		"AckslD/nvim-neoclip.lua",
-		dependencies = {
-			{ "ibhagwan/fzf-lua" },
-		},
-		config = function()
-			require("neoclip").setup()
-		end,
-	},
-	{
-		"nvim-neorg/neorg",
-		-- ft = "norg",
-		lazy = false,
-		version = "*", -- Pin Neorg to the latest stable release
-		config = require("plugins-options.neorg").config,
 	},
 }

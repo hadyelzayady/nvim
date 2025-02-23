@@ -3,20 +3,22 @@ return {
 	cmd = { "vscode-css-language-server", "--stdio" },
 	root_markers = { "tsconfig.json", "jsconfig.json", "package.json", ".git" },
 	filetypes = {
-		"css", "scss", "less"
+		"css",
+		"scss",
+		"less",
 	},
 	init_options = {
 		hostInfo = "neovim",
 	},
 	settings = {
 		css = {
-			validate = true
+			validate = true,
 		},
 		less = {
-			validate = true
+			validate = true,
 		},
 		scss = {
-			validate = true
-		}
-	}
+			validate = true,
+		},
+	},
 }

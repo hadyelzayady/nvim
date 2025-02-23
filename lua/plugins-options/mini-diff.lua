@@ -1,7 +1,5 @@
 local M = {}
-
 function M.config()
-    require("gitsigns").setup()
+	require("mini.diff").setup()
 end
-
 return M
