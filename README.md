@@ -1,5 +1,6 @@
 # TODO
 - [] Ai integration (auto-complete,refactor, optimize,add tests, suggest variable names in java,  chat, write prompt in comment)
+- [] show line completion in virtual line
 - [] add dictionay blink source for txt or readme files
 - [] support grammar check in markdown
 - [] support spell check

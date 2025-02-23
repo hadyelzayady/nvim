@@ -46,6 +46,7 @@ opt.smartcase = true         -- But respect case if search includes uppercase
 opt.incsearch = true         -- Incremental search
 opt.hlsearch = false         -- Don't highlight search results after pressing Enter
 opt.mouse = "a"              -- Enable mouse support in all modes
+opt.confirm = true           -- show dialog for unsaved file(s) before quit
 
 --=================   Clipboard/Undo ========================
 opt.clipboard = "unnamedplus" -- Use system clipboard
@@ -62,7 +63,7 @@ opt.synmaxcol = 200           -- Limit syntax highlighting for long lines
 --=================   Split/Windows ========================
 opt.splitright = true         -- New vertical split opens to the right
 opt.splitbelow = true         -- New horizontal split opens below
-opt.equalalways = true       -- Prevent auto-resizing of splits
+opt.equalalways = true        -- Prevent auto-resizing of splits
 
 --=================   Backup/Swap ========================
 opt.swapfile = false          -- Disable swap files
@@ -80,6 +81,6 @@ opt.diffopt:append({
 })
 
 --=================   Statusline ========================
-opt.pumheight = 10        -- Limit popup menu height
--- opt.laststatus = 3        -- global statusline
-opt.showmode = false      -- Don't show mode, it's redundant with a statusline
+opt.pumheight = 10             -- Limit popup menu height
+-- opt.laststatus = 3          -- global statusline
+opt.showmode = false           -- Don't show mode, it's redundant with a statusline

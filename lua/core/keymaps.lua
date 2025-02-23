@@ -244,6 +244,6 @@ map("n", "<leader>,o", require("chainsaw").objectLog, { silent = true, desc = "O
 map("n", "<leader>,t", require("chainsaw").timeLog, { silent = true, desc = "Time" })
 map("n", "<leader>,x", require("chainsaw").removeLogs, { silent = true, desc = "Clear" })
 
-vim.keymap.set("i", "<C-x><C-o>", function()
-    require("llm").request_completion()
-end, { desc = "Trigger LLM Completion" })
+-- vim.keymap.set("i", "<C-x><C-o>", function()
+--     require("llm").request_completion()
+-- end, { desc = "Trigger LLM Completion" })
