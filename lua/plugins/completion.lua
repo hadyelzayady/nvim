@@ -48,9 +48,11 @@ return {
                 },
             },
             signature = { enabled = true },
+            cmdline={
+                enabled=false
+            },
             sources = {
                 default = { "lsp", "path", "snippets", "buffer" },
-                cmdline = {},
                 providers = {
                     ripgrep = {
                         module = "blink-ripgrep",
