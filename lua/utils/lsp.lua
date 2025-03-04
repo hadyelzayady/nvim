@@ -9,6 +9,8 @@ function M.root_dir(root_markers)
         if not root_dir or root_dir:match("node_modules") then
             return nil
         end -- Ignore node_modules
+        print(root_dir)
+        print(vim.fs.dirname(root_dir))
         return cb(vim.fs.dirname(root_dir))
     end
 end

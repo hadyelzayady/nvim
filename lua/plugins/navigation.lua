@@ -15,7 +15,7 @@ return {
     {
         "ibhagwan/fzf-lua",
         dependencies = { "echasnovski/mini.icons" },
-        cmd = { "FzfLua" },
+        event = "VeryLazy",
         config = require("plugins-options.fzf-lua").config,
     },
     {
@@ -61,7 +61,7 @@ return {
         keys = { ";", "m" },
         opts = {
             show_icons = true,
-            leader_key = ";", -- Recommended to be a single key
+            leader_key = ";",        -- Recommended to be a single key
             buffer_leader_key = "m", -- Per Buffer Mappings
         },
     },
