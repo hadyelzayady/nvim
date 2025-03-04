@@ -75,4 +75,14 @@ return {
         dependencies = { "nvim-lua/plenary.nvim" },
         config = require("plugins-options.gx").config,
     },
+    {
+        'stevearc/aerial.nvim',
+        opts = {},
+        event = "VeryLazy",
+        -- Optional dependencies
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+            "nvim-tree/nvim-web-devicons"
+        },
+    }
 }
