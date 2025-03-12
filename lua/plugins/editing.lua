@@ -1,62 +1,73 @@
 return {
 
-	{
-		"max397574/better-escape.nvim",
-		config = require("plugins-options.better-escape").config,
-		event = "InsertEnter",
-	},
-	{
-		"folke/ts-comments.nvim",
-		event = "VeryLazy",
-	},
-	{
-		"echasnovski/mini.surround",
-		version = false,
-		config = require("plugins-options.mini-surround").config,
-		keys = { { "s", mode = { "v", "n" } } },
-	},
-	{
-		"echasnovski/mini.pairs",
-		event = "InsertEnter",
-		version = false,
-		config = require("plugins-options.mini-pairs").config,
-	},
-	{
-		"echasnovski/mini.splitjoin",
-		version = false,
-		keys = { "gs", "gS", "gJ" },
-		config = require("plugins-options.mini-splitjoin").config,
-	},
-	{
-		"echasnovski/mini.ai",
-		version = false,
-		event = "VeryLazy",
-		dependencies = {
-			{
-				"nvim-treesitter/nvim-treesitter-textobjects",
-				init = function()
-					-- no need to load the plugin, since we only need its queries
-					require("lazy.core.loader").disable_rtp_plugin("nvim-treesitter-textobjects")
-				end,
-			},
-		},
-		config = require("plugins-options.mini-ai").config,
-	},
-	{
-		"johmsalas/text-case.nvim",
-		dependencies = { "nvim-telescope/telescope.nvim", cmd = { "Telescope" } },
-		config = require("plugins-options.text-case").config,
-		keys = { "ga", { "ga.", "<cmd>TextCaseOpenTelescope<CR>", mode = { "n", "x" }, desc = "Telescope" } },
-		cmd = {
-			"Subs",
-			"TextCaseOpenTelescope",
-			"TextCaseOpenTelescopeQuickChange",
-			"TextCaseOpenTelescopeLSPChange",
-			"TextCaseStartReplacingCommand",
-		},
-	},
-	{
-		"lambdalisue/vim-suda",
-		cmd = { "SudoWrite", "SudaRead" },
-	},
+    {
+        "max397574/better-escape.nvim",
+        config = require("plugins-options.better-escape").config,
+        event = "InsertEnter",
+    },
+    {
+        "folke/ts-comments.nvim",
+        event = "VeryLazy",
+    },
+    {
+        "echasnovski/mini.surround",
+        version = false,
+        config = require("plugins-options.mini-surround").config,
+        keys = { { "s", mode = { "v", "n" } } },
+    },
+    {
+        "echasnovski/mini.pairs",
+        event = "InsertEnter",
+        version = false,
+        config = require("plugins-options.mini-pairs").config,
+    },
+    {
+        "echasnovski/mini.splitjoin",
+        version = false,
+        keys = { "gs", "gS", "gJ" },
+        config = require("plugins-options.mini-splitjoin").config,
+    },
+    {
+        "echasnovski/mini.ai",
+        version = false,
+        event = "VeryLazy",
+        dependencies = {
+            {
+                "nvim-treesitter/nvim-treesitter-textobjects",
+                init = function()
+                    -- no need to load the plugin, since we only need its queries
+                    require("lazy.core.loader").disable_rtp_plugin("nvim-treesitter-textobjects")
+                end,
+            },
+        },
+        config = require("plugins-options.mini-ai").config,
+    },
+    {
+        "johmsalas/text-case.nvim",
+        dependencies = { "nvim-telescope/telescope.nvim", cmd = { "Telescope" } },
+        config = require("plugins-options.text-case").config,
+        keys = { "ga", { "ga.", "<cmd>TextCaseOpenTelescope<CR>", mode = { "n", "x" }, desc = "Telescope" } },
+        cmd = {
+            "Subs",
+            "TextCaseOpenTelescope",
+            "TextCaseOpenTelescopeQuickChange",
+            "TextCaseOpenTelescopeLSPChange",
+            "TextCaseStartReplacingCommand",
+        },
+    },
+    {
+        "lambdalisue/vim-suda",
+        cmd = { "SudoWrite", "SudaRead" },
+    },
+    {
+        'kevinhwang91/nvim-fundo',
+        dependencies = { 'kevinhwang91/promise-async' },
+        build = function() require('fundo').install() end,
+        lazy = false,
+        config = true
+    },
+    {
+        'mbbill/undotree',
+        cmd = "UndotreeToggle"
+    }
 }
