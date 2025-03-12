@@ -1,6 +1,6 @@
 local M = {}
 function M.root_dir(root_markers)
-    return function(cb)
+    return function(_bufnr,cb)
         local root_dir = vim.fs.find(root_markers, {
             upward = true,
             stop = vim.uv.os_homedir(), -- Prevents searching beyond the home directory

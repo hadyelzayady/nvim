@@ -72,6 +72,10 @@ opt.writebackup = false       -- Disable write backup
 
 --=================   Diff ========================
 opt.diffopt:append({
+  "internal",
+  "filler",
+  "closeoff",
+  "context:12",
   "vertical",                  -- Show diffs in vertical splits
   "iwhite",                    -- Ignore whitespace changes
   "hiddenoff",                 -- Do not hide buffers when viewing diffs
