@@ -1,41 +1,38 @@
---[[ :h 'statusline'
-This is default statusline value:
+function GitFileStatus()
+  local file = vim.fn.expand('%:p') -- Get absolute file path
+  if file == '' then return '' end
+  local cmd = "git status --porcelain " .. vim.fn.shellescape(file)
+  local status = vim.fn.system(cmd):sub(1, 2)
 
-```lua
-vim.o.statusline = "%f %h%w%m%r%=%-14.(%l,%c%V%) %P"
-```
-
-below is simple example of custom statusline using neovim APIs
-
-See `:h 'statusline'` for more information about statusline.
-]]
-
----Show attached LSP clients in `[name1, name2]` format.
----Long server names will be modified. For example, `lua-language-server` will be shorten to `lua-ls`
----Returns an empty string if there aren't any attached LSP clients.
----@return string
-local function lsp_status()
-	local attached_clients = vim.lsp.get_clients({ bufnr = 0 })
-	if #attached_clients == 0 then
-		return ""
-	end
-	local names = vim.iter(attached_clients)
-		:map(function(client)
-			local name = client.name:gsub("language.server", "ls")
-			return name
-		end)
-		:totable()
-	return "[" .. table.concat(names, ", ") .. "]"
+  local symbols = {
+    [" M"] = " ",  -- Modified
+    ["M "] = " ",  -- Staged
+    ["??"] = " ",  -- Untracked
+    [" D"] = " ",  -- Deleted
+    ["A "] = " ",  -- Added
+    [" R"] = " ",  -- Renamed
+  }
+  return symbols[status] or ''
 end
-function _G.statusline()
-	return table.concat({
-		"%f",
-		"%h%w%m%r",
-		"%{FugitiveStatusline()}",
-		"%=",
-		lsp_status(),
-		" %-14(%l,%c%V%)",
-		"%P",
-	}, " ")
+
+function GitAheadBehind()
+  local status = vim.fn.system('git rev-list --left-right --count HEAD...@{upstream} 2>/dev/null')
+  local ahead, behind = status:match('(%d+)%s+(%d+)')
+  ahead, behind = tonumber(ahead), tonumber(behind)
+  local result = ''
+  if ahead and ahead > 0 then result = result .. '⇡ ' .. ahead .. ' ' end
+  if behind and behind > 0 then result = result .. '⇣ ' .. behind end
+  return result
 end
-vim.o.statusline = "%{%v:lua._G.statusline()%}"
+
+function GitBranch()
+    local branch= vim.fn.FugitiveHead()
+    if branch then
+      return '[ ' .. branch .. GitAheadBehind() ..']'
+    end
+  return  ""
+
+end
+
+
+vim.o.statusline = '%{v:lua.GitBranch()}%{v:lua.GitFileStatus()} %= %l:%c %p%%'

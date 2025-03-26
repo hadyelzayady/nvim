@@ -1,0 +1,7 @@
+require("core.lazy")
+require("core.options")
+require("core.winbar")
+require("core.statusline")
+require("core.autocmd")
+require("core.commands")
+-- require("core.keymaps")
