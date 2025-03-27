@@ -9,11 +9,11 @@ return {
     --     lazy = false,
     --     config = require("plugins-options.mini-diff").config,
     -- },
-    -- {
-    --     "emmanueltouzery/agitator.nvim",
-    --     dependencies = { "nvim-telescope/telescope.nvim" },
-    --     lazy = true,
-    -- },
+    {
+        "emmanueltouzery/agitator.nvim",
+        dependencies = { "nvim-telescope/telescope.nvim" },
+        lazy = true,
+    },
     {
         "sindrets/diffview.nvim",
         dependencies = { "nvim-tree/nvim-web-devicons" },
