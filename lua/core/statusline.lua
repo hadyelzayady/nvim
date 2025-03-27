@@ -69,7 +69,7 @@ function formatter()
 	local formatters = {}
 	for _, value in ipairs(active) do
 		if value.available then
-            table.insert(formatters, value.name)
+			table.insert(formatters, value.name)
 		end
 	end
 	return "🎨[" .. table.concat(formatters, ", ") .. "]"
