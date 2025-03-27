@@ -9,7 +9,7 @@ function M.setup()
 		capabilities = M.capabilities,
 	})
 	-- you can find server configurations from lsp/*.lua files
-	-- vim.lsp.enable({ "lua_ls", "css", "cssmodules", "biome" })
+	vim.lsp.enable({ "lua_ls"})
 	-- vim.lsp.enable("vtsls")
 	-- vim.lsp.enable("eslint")
 	-- vim.lsp.enable("json")

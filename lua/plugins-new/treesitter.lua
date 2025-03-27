@@ -4,5 +4,5 @@ return {
         build = ":TSUpdate",
         event = "VeryLazy",
         config = require("plugins-options.treesitter").config,
-    },
+    }
 }
