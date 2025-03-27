@@ -194,7 +194,7 @@ map("n", "<leader>sg", "<cmd>FzfLua live_grep_glob<cr>", { desc = "Grep" })
 --     vim.diagnostic.config({ virtual_lines = new_config, virtual_text = virtual_text })
 -- end, { desc = "Toggle diagnostic virtual_lines" })
 --
--- map({ "n", "v" }, "<leader>lf", require("utils.lsp-operations").format, { silent = true, desc = "Format" })
+map({ "n", "v" }, "<leader>lf", require("utils.lsp-operations").format, { silent = true, desc = "Format" })
 -- map("n", "gd", require("utils.lsp-operations").goto_definition, { desc = "Goto Definition" })
 -- map("n", "gvd", function()
 --     vim.cmd("vsplit")

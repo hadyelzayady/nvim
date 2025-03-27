@@ -1,6 +1,7 @@
 local M = {}
 function M.config()
 	local js_like_formatters = { "biome", "prettierd", stop_after_first = true }
+
 	require("conform").setup({
 		default_format_opts = {
 			lsp_format = "fallback",

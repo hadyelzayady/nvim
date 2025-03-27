@@ -52,6 +52,13 @@ function statusline_mode()
   return color
 end
 
+function lsp()
+  local clients = require("utils.lsp").get_buffer_attached_lsp()
+  if next(clients) == nil then
+    return ""
+  end
+  return " [" .. table.concat(clients, ", ") .. "]"
+end
 -- vim.api.nvim_set_hl(0, "StatusNormal", { fg = "#98c379", bold = true })
 -- vim.api.nvim_set_hl(0, "StatusInsert", { fg = "#e06c75", bold = true })
 -- vim.api.nvim_set_hl(0, "StatusVisual", { fg = "#c678dd", bold = true })
@@ -65,4 +72,4 @@ end
 -- vim.api.nvim_set_hl(0, "StatusSeparator", { fg = "#565f89", bg = "#1a1b26" })
 -- vim.api.nvim_set_hl(0, "StatusLineInfo",  { fg = "#bb9af7", bg = "#1a1b26", bold = true })
 
-vim.o.statusline = '%{%v:lua.statusline_mode()%}%{%v:lua.GitBranch()%}%{%v:lua.GitFileStatus()%} %= %l:%c %p%%'
+vim.o.statusline = '%{%v:lua.statusline_mode()%}%{%v:lua.GitBranch()%}%{%v:lua.GitFileStatus()%} %= %{v:lua.lsp()} %l:%c %p%%'
