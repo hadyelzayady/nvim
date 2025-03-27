@@ -21,8 +21,8 @@ function GitAheadBehind()
   local ahead, behind = status:match('(%d+)%s+(%d+)')
   ahead, behind = tonumber(ahead), tonumber(behind)
   local result = ''
-  if ahead and ahead > 0 then result = result .. '⇡' .. ahead .. ' ' end
-  if behind and behind > 0 then result = result .. '⇣' .. behind end
+  if ahead and ahead > 0 then result = result .. ' ⇡' .. ahead .. ' ' end
+  if behind and behind > 0 then result = result .. ' ⇣' .. behind end
   return result
 end
 
