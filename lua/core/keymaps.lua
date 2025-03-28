@@ -147,18 +147,18 @@ map(
 map("n", "<leader>sg", "<cmd>FzfLua live_grep_glob<cr>", { desc = "Grep" })
 --
 -- -- Lsp
--- map("n", "[w", function()
---     vim.diagnostic.jump({ count = -vim.v.count1, severity = "WARN" })
--- end, { silent = true, desc = "Prev Warning" })
--- map("n", "]w", function()
---     vim.diagnostic.jump({ count = vim.v.count1, severity = "WARN" })
--- end, { silent = true, desc = "Next Warning" })
--- map("n", "[e", function()
---     vim.diagnostic.jump({ count = -vim.v.count1, severity = "ERROR" })
--- end, { silent = true, desc = "Prev Error" })
--- map("n", "]e", function()
---     vim.diagnostic.jump({ count = vim.v.count1, severity = "ERROR" })
--- end, { silent = true, desc = "Next Erro" })
+map("n", "[w", function()
+    vim.diagnostic.jump({ count = -vim.v.count1, severity = "WARN" })
+end, { silent = true, desc = "Prev Warning" })
+map("n", "]w", function()
+    vim.diagnostic.jump({ count = vim.v.count1, severity = "WARN" })
+end, { silent = true, desc = "Next Warning" })
+map("n", "[e", function()
+    vim.diagnostic.jump({ count = -vim.v.count1, severity = "ERROR" })
+end, { silent = true, desc = "Prev Error" })
+map("n", "]e", function()
+    vim.diagnostic.jump({ count = vim.v.count1, severity = "ERROR" })
+end, { silent = true, desc = "Next Error" })
 --
 -- map(
 --     "n",
