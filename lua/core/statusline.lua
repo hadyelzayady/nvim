@@ -53,7 +53,6 @@ local mode_colors = {
 
 function statusline_mode()
 	local mode_code = vim.api.nvim_get_mode().mode
-	local mode = mode_colors[mode_code] or mode_code
 	local color = mode_colors[mode_code]
 	return color
 end
@@ -90,7 +89,7 @@ end
 
 local severity_map = {
 	[vim.diagnostic.severity.ERROR] = "Error",
-	[vim.diagnostic.severity.WARN] = "Warning",
+	[vim.diagnostic.severity.WARN] = "Warn",
 	[vim.diagnostic.severity.INFO] = "Info",
 	[vim.diagnostic.severity.HINT] = "Hint",
 }

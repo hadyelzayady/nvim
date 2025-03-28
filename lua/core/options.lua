@@ -29,7 +29,7 @@ opt.listchars = {
 
 vim.cmd.colorscheme("habamax")
 --=================   Fold ========================
-opt.foldenable = true       -- enable fold
+opt.foldenable = false       -- enable fold
 opt.foldlevel = 99          -- start editing with all folds opened
 opt.foldlevelstart = 99
 opt.foldmethod = "expr"     -- use tree-sitter for folding method

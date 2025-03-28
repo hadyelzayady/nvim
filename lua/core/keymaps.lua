@@ -112,15 +112,15 @@ end, { desc = "Time machine" })
 -- map("n", "<leader>gS", ":Gitsigns undo_stage_hunk<cr>", { desc = "UnStage Hunk" })
 -- map("n", "<leader>gl", ":Gitsigns setqflist<cr>", { desc = "Quickfix Changes" })
 --
--- map("n", "<leader>gd", ":DiffviewOpen<cr>", { desc = "Diff" })
--- map("n", "<leader>gD", ":DiffviewOpen -- %<cr>", { desc = "Diff file" })
--- map("n", "<leader>gc", "<cmd>FzfLua git_branches<CR>", { desc = "Checkout Branch" })
--- map("n", "<leader>gh", ":DiffviewFileHistory %<CR>", { desc = "Buffer History" })
--- map("v", "<leader>gh", ":'<,'>DiffviewFileHistory %<CR>", { desc = "Range Buffer History" })
+map("n", "<leader>gd", ":DiffviewOpen<cr>", { desc = "Diff" })
+map("n", "<leader>gD", ":DiffviewOpen -- %<cr>", { desc = "Diff file" })
+map("n", "<leader>gc", "<cmd>FzfLua git_branches<CR>", { desc = "Checkout Branch" })
+map("n", "<leader>gh", ":DiffviewFileHistory %<CR>", { desc = "Buffer History" })
+map("v", "<leader>gh", ":'<,'>DiffviewFileHistory %<CR>", { desc = "Range Buffer History" })
 map("n", "<leader>gg", "<cmd>Lazygit<CR>", { desc = "Lazygit", silent = true })
 map("n", "<leader>gG", "<cmd>Git<CR>", { desc = "Fugitive", silent = true })
 --
--- map("n", "<leader>h", ":UndotreeToggle <CR>", { desc = "File Local History" })
+map("n", "<leader>h", ":UndotreeToggle <CR>", { desc = "File Local History" })
 -- -- toggle
 -- map("n", "<leader>tf", "<cmd>set foldenable!<cr>", { noremap = true, silent = true, desc = "Toggle Fold" }) -- Visual mode paste before selection
 --

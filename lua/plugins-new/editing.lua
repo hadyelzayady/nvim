@@ -16,4 +16,8 @@ return {
 		keys = { "gs", "gS", "gJ" },
 		config = require("plugins-options.mini-splitjoin").config,
 	},
+	{
+		"mbbill/undotree",
+		cmd = "UndotreeToggle",
+	},
 }
