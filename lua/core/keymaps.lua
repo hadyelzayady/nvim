@@ -35,10 +35,10 @@ map("n", "<A-l>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width
 -- map("n", "<c-.>", function()
 --     vim.cmd("silent! cprevious")
 -- end, { desc = "Prev Quickfix Item" })
--- map("n", "<c-q>", function()
---     vim.cmd("cclose")
---     -- require("neogit").close()
--- end, { desc = "Close Common Splits" })
+map("n", "<c-q>", function()
+    vim.cmd("cclose")
+    -- require("neogit").close()
+end, { desc = "Close Common Splits" })
 
 -- Navigation
 map("n", "<leader>'", function()
@@ -195,7 +195,7 @@ map("n", "<leader>sg", "<cmd>FzfLua live_grep_glob<cr>", { desc = "Grep" })
 -- end, { desc = "Toggle diagnostic virtual_lines" })
 --
 map({ "n", "v" }, "<leader>lf", require("utils.lsp-operations").format, { silent = true, desc = "Format" })
--- map("n", "gd", require("utils.lsp-operations").goto_definition, { desc = "Goto Definition" })
+map("n", "gd", require("utils.lsp-operations").goto_definition, { desc = "Goto Definition" })
 -- map("n", "gvd", function()
 --     vim.cmd("vsplit")
 --     require("utils.lsp-operations").goto_definition()

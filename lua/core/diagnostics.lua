@@ -3,14 +3,14 @@ local M = {}
 local diagnostic_utils = require("utils.lsp.diagnostics")
 local diagnostic_icons = require("utils.ui-components").icons.diagnostics
 
-M.virtual_text = {
+local virtual_text = {
 	prefix = function(diagnostic)
 		return diagnostic_icons[diagnostic_utils.diagnostic_key_icon_name_map[vim.diagnostic.severity[diagnostic.severity]]]
 	end,
 	spacing = 2,
 }
 
-M.float = {
+local float = {
 	border = "rounded",
 	source = true,
 	-- Show severity icons as prefixes.
@@ -21,4 +21,15 @@ M.float = {
 	end,
 }
 
+local diagnostic = require("utils.diagnostics")
+
+vim.diagnostic.config({
+	virtual_text = virtual_text,
+	severity_sort = true,
+	float = float,
+	-- Disable signs in the gutter.
+	signs = false,
+	virtual_lines = false,
+	update_in_insert = false,
+})
 return M

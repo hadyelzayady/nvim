@@ -1,4 +1,5 @@
 local icons = require("utils.ui-components").icons
+
 function GitFileStatus()
 	local file = vim.fn.expand("%:p") -- Get absolute file path
 	if file == "" then
@@ -34,20 +35,20 @@ end
 
 function GitBranch()
 	local branch = vim.fn.FugitiveHead()
-	if branch then
+	if branch and branch ~= "" then
 		return "[ " .. branch .. GitAheadBehind() .. "]"
 	end
 	return ""
 end
 local mode_colors = {
-	n = "%#StatusNormal# NORMAL ",
-	i = "%#StatusInsert# INSERT ",
-	v = "%#StatusVisual# VISUAL ",
-	V = "%#StatusMode# V-LINE ",
-	[""] = "%#StatusMode# V-BLOCK ",
-	c = "%#StatusMode# COMMAND ",
-	R = "%#StatusMode# REPLACE ",
-	t = "%#StatusMode# TERMINAL ",
+	n = "%#StatusNormal# N ",
+	i = "%#StatusInsert# I ",
+	v = "%#StatusVisual# V ",
+	V = "%#StatusMode# V-L ",
+	[""] = "%#StatusMode# V-B ",
+	c = "%#StatusMode# C ",
+	R = "%#StatusMode# R ",
+	t = "%#StatusMode# T ",
 }
 
 function statusline_mode()
@@ -87,5 +88,28 @@ end
 -- vim.api.nvim_set_hl(0, "StatusSeparator", { fg = "#565f89", bg = "#1a1b26" })
 -- vim.api.nvim_set_hl(0, "StatusLineInfo",  { fg = "#bb9af7", bg = "#1a1b26", bold = true })
 
+local severity_map = {
+	[vim.diagnostic.severity.ERROR] = "Error",
+	[vim.diagnostic.severity.WARN] = "Warning",
+	[vim.diagnostic.severity.INFO] = "Info",
+	[vim.diagnostic.severity.HINT] = "Hint",
+}
+
+local function getDiagnosticLevelStatus(severity)
+	local count = #vim.diagnostic.get(0, { severity = severity })
+	local severityText = severity_map[severity]
+	if count > 0 then
+		return "%#DiagnosticSign" .. severityText .. "#" .. icons.diagnostics[severityText] .. count .. " "
+	end
+	return ""
+end
+function DiagnosticsStatus()
+	return table.concat({
+		getDiagnosticLevelStatus(vim.diagnostic.severity.ERROR),
+		getDiagnosticLevelStatus(vim.diagnostic.severity.WARN),
+		getDiagnosticLevelStatus(vim.diagnostic.severity.INFO),
+		getDiagnosticLevelStatus(vim.diagnostic.severity.HINT),
+	})
+end
 vim.o.statusline =
-	"%{%v:lua.statusline_mode()%}%{%v:lua.GitBranch()%}%{%v:lua.GitFileStatus()%} %= %{v:lua.formatter()} %{v:lua.lsp()} %l:%c %p%%"
+	"%{%v:lua.statusline_mode()%}%{%v:lua.GitBranch()%}%{%v:lua.GitFileStatus()%} %= %{%v:lua.DiagnosticsStatus()%} %= %{v:lua.formatter()} %{v:lua.lsp()}  %l:%c %p%%"
