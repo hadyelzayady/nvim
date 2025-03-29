@@ -4,6 +4,7 @@
   "arrow.nvim": { "branch": "master", "commit": "9608ce6d7e6935efd423946a319f7f4041cbde93" },
   "better-escape.nvim": { "branch": "master", "commit": "199dcc2643dec5d8dbdab4ec672cf405224dcb3b" },
   "conform.nvim": { "branch": "master", "commit": "f9ef25a7ef00267b7d13bfc00b0dea22d78702d5" },
+  "copilot.lua": { "branch": "master", "commit": "0d56d43d2d2c0c8cf897a338be402bd639a906ae" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
   "flash.nvim": { "branch": "main", "commit": "3c942666f115e2811e959eabbdd361a025db8b63" },
   "fzf-lua": { "branch": "main", "commit": "160e32d9bd7e5a146ae305bd995450faa6087b11" },
