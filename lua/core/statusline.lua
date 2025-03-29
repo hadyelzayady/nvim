@@ -94,11 +94,17 @@ function DiagnosticsStatus()
 	})
 end
 
+function LspProgress()
+	local messages = vim.lsp.status()
+	return messages
+end
+
 vim.o.statusline = table.concat({
 	"%{%v:lua.StatuslineMode()%}",
 	"%#StatusLineGit# %{%v:lua.GitBranch()%} %{%v:lua.GitFileStatus()%}",
 	"%=", -- Align center
 	"%#StatusLineInfo# %{%v:lua.DiagnosticsStatus()%}",
 	"%=", -- Align right
+	"%{%v:lua.LspProgress()%}",
 	"%#StatusLineLSP# %{v:lua.Formatter()} %{v:lua.Lsp()} %y %l:%c %p%%",
 })
