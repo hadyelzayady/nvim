@@ -20,9 +20,9 @@ return {
         config = require("plugins-options.diffview").config,
         cmd = require("plugins-options.diffview").cmd,
     },
-    -- {
-    --     "lewis6991/gitsigns.nvim",
-    --     event = "VeryLazy",
-    --     config = require("plugins-options.gitsigns").config,
-    -- },
+    {
+        "lewis6991/gitsigns.nvim",
+        event = "VeryLazy",
+        config = require("plugins-options.gitsigns").config,
+    },
 }
