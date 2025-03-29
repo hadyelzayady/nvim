@@ -2,6 +2,13 @@ local M = {}
 
 local diagnostic_icons = require("utils.ui-components").icons.diagnostics
 
+M.severity_to_text_map = {
+	[vim.diagnostic.severity.ERROR] = "Error",
+	[vim.diagnostic.severity.WARN] = "Warn",
+	[vim.diagnostic.severity.INFO] = "Info",
+	[vim.diagnostic.severity.HINT] = "Hint",
+}
+
 M.diagnostic_key_icon_name_map = {
 	ERROR = "Error",
 	WARN = "Warn",
@@ -44,7 +51,8 @@ function M.toggle_virtual_lines()
 		vim.diagnostic.config({ virtual_text = false, virtual_lines = { current_line = virtual_text.current_line } })
 	else
 		if virtual_lines then
-			local new_virtual_text = vim.tbl_extend("force", M.virtual_text, { current_line = virtual_lines.current_line })
+			local new_virtual_text =
+				vim.tbl_extend("force", M.virtual_text, { current_line = virtual_lines.current_line })
 			vim.diagnostic.config({ virtual_text = new_virtual_text, virtual_lines = false })
 		end
 	end

@@ -1,5 +1,6 @@
 require("core.lazy")
 require("core.options")
+require("core.highlights")
 require("core.winbar")
 require("core.statusline")
 require("core.autocmd")
