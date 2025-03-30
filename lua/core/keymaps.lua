@@ -37,6 +37,7 @@ map("n", "<A-l>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width
 -- end, { desc = "Prev Quickfix Item" })
 map("n", "<c-q>", function()
     vim.cmd("cclose")
+    vim.cmd("CloseFugitive")
     -- require("neogit").close()
 end, { desc = "Close Common Splits" })
 
