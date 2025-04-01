@@ -1,36 +1,11 @@
 local icons = require("utils.ui-components").icons
 
 function GitFileStatus()
-	local file = vim.fn.expand("%:p") -- Get absolute file path
-	if file == "" then
-		return ""
-	end
-	local cmd = "git status --porcelain " .. vim.fn.shellescape(file)
-	local status = vim.fn.system(cmd):sub(1, 2)
-
-	local symbols = {
-		[" M"] = icons.git.modified, -- Modified
-		["M "] = icons.git.staged, -- Staged
-		["??"] = icons.git.untracked, -- Untracked
-		[" D"] = icons.git.removed, -- Deleted
-		["A "] = icons.git.added, -- Added
-		[" R"] = icons.git.renamed, -- Renamed
-	}
-	return symbols[status] or ""
+    return require("utils.statusline.gitstatus").GitFileStatus()
 end
 
 function GitAheadBehind()
-	local status = vim.fn.system("git rev-list --left-right --count HEAD...@{upstream} 2>/dev/null")
-	local ahead, behind = status:match("(%d+)%s+(%d+)")
-	ahead, behind = tonumber(ahead), tonumber(behind)
-	local result = ""
-	if ahead and ahead > 0 then
-		result = result .. " ⇡" .. ahead .. " "
-	end
-	if behind and behind > 0 then
-		result = result .. " ⇣" .. behind
-	end
-	return result
+    return require("utils.statusline.gitstatus").GitAheadBehind()
 end
 
 function GitBranch()
