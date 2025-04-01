@@ -2,49 +2,21 @@ local map = vim.keymap.set
 
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
 
--- -- Copy to clipboard
--- map("v", "<leader>y", '"+y', { noremap = true, silent = true })   -- Visual mode copy
--- map("n", "<leader>Y", '"+yg_', { noremap = true, silent = true }) -- Copy to clipboard without moving cursor
--- map("n", "<leader>y", '"+y', { noremap = true, silent = true })   -- Normal mode copy
--- map("n", "<leader>yy", '"+yy', { noremap = true, silent = true }) -- Yank the whole line
---
--- -- Paste from clipboard
--- map("x", "p", "P", { noremap = true, silent = true })           -- do not yank of paste
--- map("n", "<leader>p", '"+p', { noremap = true, silent = true }) -- Normal mode paste
--- map("n", "<leader>P", '"+P', { noremap = true, silent = true }) -- Paste before cursor
--- map("v", "<leader>p", '"+p', { noremap = true, silent = true }) -- Visual mode paste
--- map("v", "<leader>P", '"+P', { noremap = true, silent = true }) -- Visual mode paste before selection
--- map("n", "<c-P>", require("neoclip.fzf"), { desc = "Clipbaord Manager", noremap = true, silent = true }) -- Visual mode paste before selection
--- map(
---     "n",
---     "<leader>sy",
---     [[:let @+ = @"<CR>]],
---     { desc = "Sync neovim clipboard into system clipboard", noremap = true, silent = true }
--- ) -- sync neovim clipboard into system clipboard
-
--- Resize
+--=================  Resize ========================
 map("n", "<A-k>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
 map("n", "<A-j>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
 map("n", "<A-h>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
 map("n", "<A-l>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 
--- -- Quickfix
--- map("n", "<c-,>", function()
---     vim.cmd("silent! cnext")
--- end, { desc = "Next Quickfix Item" })
--- map("n", "<c-.>", function()
---     vim.cmd("silent! cprevious")
--- end, { desc = "Prev Quickfix Item" })
+--=================  Close ========================
 map("n", "<c-q>", function()
     vim.cmd("cclose")
     vim.cmd("CloseFugitive")
     -- require("neogit").close()
 end, { desc = "Close Common Splits" })
 
--- Navigation
-map("n", "<leader>'", function()
-    require("fzf-lua").resume()
-end, { desc = "FzfLua Resume" })
+--=================  Navigation ========================
+map("n", "<leader>'", function() require("fzf-lua").resume() end, { desc = "FzfLua Resume" })
 map("n", "<leader>E", "<cmd>NvimTreeFindFile<CR>", { desc = "NvimTree Find File Toggle" })
 map("n", "<leader>e", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle NvimTree" })
 map("n", "<C-e>", "<cmd>FzfLua oldfiles<cr>", { desc = "Recent Files" })
@@ -61,31 +33,20 @@ map("n", "<leader>jl", function()
         pattern = "^",
     })
 end, { desc = "Jump To Line" })
--- map("n", "<leader>xq", function()
---     require("quicker").toggle()
--- end, { desc = "Toggle quickfix" })
--- map("n", "<leader>xl", function()
---     require("quicker").toggle({ loclist = true })
--- end, { desc = "Toggle loclist" })
+
 map("n", "<leader>cS", "<cmd>AerialToggle<cr>", { silent = true, desc = "Symbole Outline" })
 map("n", "<leader>cs", "<cmd>AerialNavToggle<cr>", { silent = true, desc = "Symbole Nav" })
+map("n", "<leader>d", function() MiniBufremove.delete(0) end, { desc = "Delete Buffer" })
+map("n", "<leader>D", function() MiniBufremove.delete(0, true) end, { desc = "Force Delete Buffer" })
 
-map("n", "<leader>d", function()
-    MiniBufremove.delete(0)
-end, { desc = "Delete Buffer" })
-map("n", "<leader>D", function()
-    MiniBufremove.delete(0, true)
-end, { desc = "Force Delete Buffer" })
--- -- Tab management
+--=================  Tab Management ========================
 map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
 map("n", "<leader><tab>n", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 map("n", "<leader><tab>p", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
---
--- -- Git
--- map("n", "<leader>gn", "<cmd>Git<CR>", { desc = "Neogit" })
--- map("n", "<leader>ga", "<cmd>CoAuthor<CR>", { desc = "Co-Author" })
---
+
+--=================  Git ========================
+map("n", "<leader>ga", "<cmd>GitAuthors<CR>", { desc = "Co-Author" })
 map("n", "<leader>g,g", "<cmd>FzfLua git_commits<cr>", { desc = "Branch Commits" })
 map("n", "<leader>g,G", "<cmd>FzfLua git_bcommits<cr>", { desc = "Buffer Commits (in current branch)" })
 map("n", "<leader>g,d", "<cmd>AdvancedGitSearch diff_branch_file<cr>", { desc = "Diff File With Branch" })
@@ -219,32 +180,10 @@ map("n", "<leader>ci", require("utils.lsp-operations").addMissingImports, { desc
 map("n", "<leader>ltd", function()
     vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end, { desc = "Toggle Diagnostics", silent = true })
--- map(
---     "n",
---     "<leader>lth",
---     require("utils.lsp-operations").toggle_inlay_hints,
---     { desc = "Toggle Inlayhints", silent = true }
--- )
--- map("n", "<leader>ltl", function()
---     require("utils.lsp-operations").toggle_symbole_usages(false)
--- end, { desc = "Toggle Symbole Lens (Buffer)", silent = true })
--- map("n", "<leader>ltL", function()
---     require("utils.lsp-operations").toggle_symbole_usages(true)
--- end, { desc = "Toggle Symbole Lens (Global)", silent = true })
--- map("n", "<leader>ltr", function()
---     require("symbol-usage").refresh()
--- end, { desc = "Refresh Symbole Usages", silent = true })
---
--- -- map("n", "<leader>ltl", "<cmd>LspLensToggle<cr>", { desc = "Toggle function hints", silent = true })
--- map({ "n", "i" }, "<C-s", vim.lsp.buf.signature_help, { silent = true, desc = "Signature Help" })
---
+
 -- -- Logs
 map("n", "<leader>,v", ":lua require('chainsaw').variableLog()<cr>", { silent = true, desc = "Variable" })
 map("n", "<leader>,l", ":lua require('chainsaw').messageLog()<cr>", { silent = true, desc = "Message" })
 map("n", "<leader>,o", ":lua require('chainsaw').objectLog()<cr>", { silent = true, desc = "Object" })
 map("n", "<leader>,t", ":lua require('chainsaw').timeLog()<cr>", { silent = true, desc = "Time" })
 map("n", "<leader>,x", ":lua require('chainsaw').removeLogs()<cr>", { silent = true, desc = "Clear" })
---
--- vim.keymap.set("i", "<C-x><C-o>", function()
---     require("llm").request_completion()
--- end, { desc = "Trigger LLM Completion" })
