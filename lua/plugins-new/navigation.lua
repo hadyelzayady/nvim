@@ -50,7 +50,7 @@ return {
 	{
 		"echasnovski/mini.bufremove",
 		version = false,
-		lazy = false,
+		event = "VeryLazy",
 		config = require("plugins-options.mini-bufremove").config,
 	},
 	{
