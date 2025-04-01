@@ -1,5 +1,5 @@
 {
-  "aerial.nvim": { "branch": "master", "commit": "1d3cf8bd8c321b70a9f61e7872c2fca8890fd151" },
+  "aerial.nvim": { "branch": "master", "commit": "44684bf429dc40e97a6d00ffa09043ac3f692186" },
   "agitator.nvim": { "branch": "main", "commit": "36abea264878b57d1cce615df5b74e667fea0818" },
   "arrow.nvim": { "branch": "master", "commit": "6e0f726f55f99332dd726a53effd6813786b6d49" },
   "better-escape.nvim": { "branch": "master", "commit": "9738a470d93e2e52815bc46b4042372ca198cbd6" },
@@ -22,7 +22,7 @@
   "mini.surround": { "branch": "main", "commit": "97796f68a8698d9b63ac3927da0d0bf5c3a0876b" },
   "nvim-chainsaw": { "branch": "main", "commit": "e88e413b4ae460d7cfc3cf3456e13b0a9b462764" },
   "nvim-tree.lua": { "branch": "master", "commit": "6709463b2d18e77f7a946027917aa00d4aaed6f4" },
-  "nvim-treesitter": { "branch": "master", "commit": "9be6836ebeb88a536055bf1ce0961eef68da4bc6" },
+  "nvim-treesitter": { "branch": "master", "commit": "4b390e1e46ca2e6220f14641cb840bbf9ad5446f" },
   "nvim-treesitter-textobjects": { "branch": "master", "commit": "9937e5e356e5b227ec56d83d0a9d0a0f6bc9cad4" },
   "nvim-web-devicons": { "branch": "master", "commit": "4c3a5848ee0b09ecdea73adcd2a689190aeb728c" },
   "oil.nvim": { "branch": "master", "commit": "302bbaceeafc690e6419e0c8296e804d60cb9446" },
