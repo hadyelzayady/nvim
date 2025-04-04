@@ -19,6 +19,7 @@ opt.scrolloff = 8            -- Keep 8 lines visible above/below cursor
 opt.sidescrolloff = 8        -- Keep 8 columns visible left/right of cursor
 opt.termguicolors = true     -- Enable 24-bit RGB colors
 opt.list=true
+opt.winborder="rounded"       -- use rouned border for all floating windows
 opt.listchars = {
 	tab = "▏ ",
 	trail = "·",
