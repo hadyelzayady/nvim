@@ -1,11 +1,11 @@
 local icons = require("utils.ui-components").icons
 
 function GitFileStatus()
-    return require("utils.statusline.gitstatus").GitFileStatus()
+	return require("utils.statusline.gitstatus").GitFileStatus()
 end
 
 function GitAheadBehind()
-    return require("utils.statusline.gitstatus").GitAheadBehind()
+	return require("utils.statusline.gitstatus").GitAheadBehind()
 end
 
 function GitBranch()
@@ -41,12 +41,18 @@ function Lsp()
 end
 
 function Formatter()
+	if vim.bo.readonly then
+		return ""
+	end
 	local active = require("conform").list_formatters_to_run()
 	local formatters = {}
 	for _, value in ipairs(active) do
 		if value.available then
 			table.insert(formatters, value.name)
 		end
+	end
+	if #formatters == 0 then
+		return ""
 	end
 	return "🎨[" .. table.concat(formatters, ", ") .. "]"
 end
