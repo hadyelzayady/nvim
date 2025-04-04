@@ -155,7 +155,7 @@ map("n", "<leader>ldc", function()
 end, { desc = "Toggle Current Line Diagnostics" })
 map("n", "<leader>ldt", function()
 	vim.diagnostic.enable(not vim.diagnostic.is_enabled())
-end, { desc = "Toggle Current Line Diagnostics" })
+end, { desc = "Toggle Diagnostics" })
 --
 map({ "n", "v" }, "<leader>lf", require("utils.lsp-operations").format, { silent = true, desc = "Format" })
 map("n", "gd", require("utils.lsp-operations").goto_definition, { desc = "Goto Definition" })
