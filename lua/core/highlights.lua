@@ -8,4 +8,8 @@ vim.cmd([[
   hi StatusLineLSP guifg=#5E81AC guibg=#3B4252
   hi StatusLine guifg=#ffffff guibg=#3B4252
   hi StatusLineNC guifg=#ffffff guibg=#2E3440
+  hi WinSeparator guifg=#444444 guibg=NONE
+  hi FloatBorder guifg=#444444 guibg=NONE
+  hi Pmenu guibg=#222222 guifg=#cccccc
+  hi PmenuSel guibg=#444444 guifg=#ffffff
 ]])
