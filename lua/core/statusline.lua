@@ -86,22 +86,22 @@ function StatuslineSelection()
     local mode = vim.fn.mode()
     if mode == "V" or mode == "v" or mode == "\22" then
         local _, start_lnum, _, _ = unpack(vim.fn.getpos("v")) -- Visual selection start
-        local _, end_lnum, _, _ = unpack(vim.fn.getpos(".")) -- Visual selection end
+        local _, end_lnum, _, _ = unpack(vim.fn.getpos("."))   -- Visual selection end
         local lines_selected = math.abs(end_lnum - start_lnum) + 1
-        return " [" .. lines_selected .. "L] "           -- Display selected lines count
+        return " [" .. lines_selected .. "L] "                 -- Display selected lines count
     end
     return ""
 end
 
 vim.o.statusline = table.concat({
-    "%{%v:lua.StatuslineMode()%}",
-    "%#StatusLineGit# %{%v:lua.GitBranch()%} %{get(b:,'gitsigns_status','')}",
-    "%=", -- Align center
-    "%#StatusLineInfo# %{%v:lua.DiagnosticsStatus()%}",
-    "%=", -- Align right
-    "%{%v:lua.LspProgress()%}",
-    "%#StatusLineLSP# %{v:lua.Formatter()} %{v:lua.Lsp()}",
-    " %y",
-    "%{v:lua.StatuslineSelection()}",
-    " %l:%c %p%% / %L",
+	"%{%v:lua.StatuslineMode()%}",
+	"%#StatusLineGit# %{%v:lua.GitBranch()%} %{%v:lua.GitFileStatus()%}",
+	"%=", -- Align center
+	"%#StatusLineInfo# %{%v:lua.DiagnosticsStatus()%}",
+	"%=", -- Align right
+	"%{%v:lua.LspProgress()%}",
+	"%#StatusLineLSP# %{v:lua.Formatter()} %{v:lua.Lsp()}",
+	" %y",
+	"%{v:lua.StatuslineSelection()}",
+	" %l:%c %p%% / %L",
 })
