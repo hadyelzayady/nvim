@@ -55,7 +55,7 @@ return {
 	},
 	-- https://eslint.org/docs/user-guide/configuring/configuration-files#configuration-file-formats
 	-- root_dir = "/Users/hadyelzayady/Documents/projects/phelix-project-manager-portal-frontend",
-	root_dir = function(bufnr,cb)
+	root_dir = function(bufnr, cb)
 		if not has_eslint_config() then
 			-- vim.notify('No ESLint config found, disabling ESLint LSP', vim.log.levels.WARN,{silent=true})
 			return nil
