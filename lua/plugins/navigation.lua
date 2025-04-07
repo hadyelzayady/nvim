@@ -24,6 +24,16 @@ return {
 		opts = require("plugins-options.quicker").opts,
 	},
 	{
+		"kevinhwang91/nvim-bqf",
+		ft = "qf",
+		dependencies = {
+			{
+				"junegunn/fzf",
+				build = "./install --bin",
+			},
+		},
+	},
+	{
 		"folke/flash.nvim",
 		keys = require("plugins-options.flash").keys,
 		config = require("plugins-options.flash").config,
