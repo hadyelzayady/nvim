@@ -17,6 +17,6 @@ return {
 	{
 		"rmagatti/goto-preview",
 		dependencies = { "rmagatti/logger.nvim" },
-		config = true,
+		config = require("plugins-options.goto-preview").config,
 	},
 }
