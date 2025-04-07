@@ -178,7 +178,19 @@ map("n", "<leader>ci", require("utils.lsp-operations").addMissingImports, { desc
 map("n", "<leader>ltd", function()
 	vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end, { desc = "Toggle Diagnostics", silent = true })
-
+-- Preview
+-- stylua: ignore
+map("n", "gpd","<cmd>lua require('goto-preview').goto_preview_definition()<CR>",{desc="Preview Definition"})
+-- stylua: ignore
+map("n", "gpt","<cmd>lua require('goto-preview').goto_preview_type_definition()<CR>",{desc="Preview Type Definition"})
+-- stylua: ignore
+map("n", "gpi","<cmd>lua require('goto-preview').goto_preview_implementation()<CR>",{desc="Preview Implementation"})
+-- stylua: ignore
+map("n", "gpD","<cmd>lua require('goto-preview').goto_preview_declaration()<CR>",{desc="Preview Declaration"})
+-- stylua: ignore
+map("n", "gP","<cmd>lua require('goto-preview').close_all_win()<CR>",{desc="Close All Preview"})
+-- stylua: ignore
+map("n", "gpr","<cmd>lua require('goto-preview').goto_preview_references()<CR>",{desc="Preview References"})
 --=================  Logs ===================
 map("n", "<leader>,v", ":lua require('chainsaw').variableLog()<cr>", { silent = true, desc = "Variable" })
 map("n", "<leader>,l", ":lua require('chainsaw').messageLog()<cr>", { silent = true, desc = "Message" })

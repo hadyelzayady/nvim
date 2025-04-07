@@ -14,4 +14,9 @@ return {
 		config = require("plugins-options.nvim-java").config,
 		dependencies = { "neovim/nvim-lspconfig" },
 	},
+	{
+		"rmagatti/goto-preview",
+		dependencies = { "rmagatti/logger.nvim" },
+		config = true,
+	},
 }
