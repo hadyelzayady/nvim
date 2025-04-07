@@ -2,7 +2,6 @@ local icons = require("utils.ui-components").icons
 
 function GitFileStatus()
 	return vim.b.gitsigns_status or ""
-	-- return require("utils.statusline.gitstatus").GitFileStatus()
 end
 
 function GitAheadBehind()

@@ -1,34 +1,6 @@
-local git_status = "" -- Cached Git status
 local git_ahead_behind = "" -- Cached Git status
 
 local last_update = 0 -- Last update time
-
-local icons = require("utils.ui-components").icons
-
-local symbols = {
-	[" M"] = icons.git.modified, -- Modified
-	["M "] = icons.git.staged, -- Staged
-	["??"] = icons.git.untracked, -- Untracked
-	[" D"] = icons.git.removed, -- Deleted
-	["A "] = icons.git.added, -- Added
-	[" R"] = icons.git.renamed, -- Renamed
-}
--- Function to update Git status asynchronously
-local function update_git_status()
-	local now = vim.loop.now()
-	if now - last_update < 2000 then -- Update only every 2 seconds
-		return
-	end
-	last_update = now
-
-	-- Run git status asynchronously
-	vim.system({ "git", "status", "--porcelain" }, { text = true }, function(result)
-		if result.code == 0 and result.stdout then
-			local status = result.stdout:sub(1, 2)
-			git_status = symbols[status] or ""
-		end
-	end)
-end
 
 local function update_git_ahead_behind()
 	local now = vim.loop.now()
@@ -62,7 +34,6 @@ end
 -- Run update on events instead of every redraw
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "CursorHold" }, {
 	callback = function()
-		update_git_status()
 		update_git_ahead_behind()
 		vim.schedule(function()
 			vim.cmd("redrawstatus")
@@ -71,10 +42,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "CursorHold" }, {
 })
 
 local M = {}
--- Statusline function
-function M.GitFileStatus()
-	return git_status
-end
+
 function M.GitAheadBehind()
 	return git_ahead_behind
 end
