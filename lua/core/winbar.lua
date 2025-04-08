@@ -1,32 +1,54 @@
-local ts = require("nvim-treesitter")
-
 vim.o.winbar = "%f %r%m %{%v:lua.Winbar()%}"
--- Define abbreviations for Treesitter patterns
-local pattern_abbreviations = {
-	["function"] = "f",
-	["class"] = "C",
-	["method"] = "m",
-	["variable"] = "v",
-	["parameter"] = "p",
-	["property"] = "P",
-	["module"] = "M",
-	["interface"] = "I",
-	["struct"] = "S",
-}
-
--- Function to abbreviate Treesitter statusline output
-local function abbreviated_treesitter_statusline(ts_status)
-	-- Replace long names with abbreviations
-	for long, short in pairs(pattern_abbreviations) do
-		ts_status = ts_status:gsub("%f[%a]" .. long .. "%f[%A]", short)
-	end
-
-	return ts_status
-end
 function Winbar()
-	local ts_context = ts.statusline({ indicator_size = 100 }) or ""
-	if ts_context then
-		return " " .. abbreviated_treesitter_statusline(ts_context)
+	local ts_utils = require("nvim-treesitter.ts_utils")
+	local parsers = require("nvim-treesitter.parsers")
+	local api = vim.api
+
+	if not parsers.has_parser() then
+		return ""
 	end
-	return ""
+
+	local cursor_node = ts_utils.get_node_at_cursor()
+	if not cursor_node then
+		return ""
+	end
+
+	local context = {}
+	local function get_node_text(node)
+		if vim.treesitter.query ~= nil then
+			return ts_utils.get_node_text(node, api.nvim_get_current_buf())
+		end
+		return ""
+	end
+
+	while cursor_node do
+		local node_type = cursor_node:type()
+		local possible_cursor_node = cursor_node
+		if node_type == "arrow_function" then
+			possible_cursor_node = cursor_node:parent()
+		end
+		if
+			node_type == "function_declaration"
+			or node_type == "method_declaration"
+			or node_type == "class_declaration"
+			or node_type == "interface_declaration"
+			or node_type == "constructor_declaration"
+			or node_type == "arrow_function"
+		then
+			local name_node = possible_cursor_node:field("name")[1]
+			if name_node then
+				table.insert(context, 1, get_node_text(name_node))
+			end
+		end
+		cursor_node = cursor_node:parent()
+	end
+
+	if #context == 0 then
+		return ""
+	end
+	local parts = {}
+	for _, item in ipairs(context) do
+		table.insert(parts, table.concat(item, ""))
+	end
+	return " " .. table.concat(parts, " -> ")
 end
