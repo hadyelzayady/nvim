@@ -16,7 +16,7 @@ function Winbar()
 	local context = {}
 	local function get_node_text(node)
 		if vim.treesitter.query ~= nil then
-			return ts_utils.get_node_text(node, api.nvim_get_current_buf())
+			return vim.treesitter.get_node_text(node, api.nvim_get_current_buf())
 		end
 		return ""
 	end
@@ -46,9 +46,5 @@ function Winbar()
 	if #context == 0 then
 		return ""
 	end
-	local parts = {}
-	for _, item in ipairs(context) do
-		table.insert(parts, table.concat(item, ""))
-	end
-	return " " .. table.concat(parts, " -> ")
+	return " " .. table.concat(context, " -> ")
 end
