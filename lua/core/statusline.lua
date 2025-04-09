@@ -1,7 +1,7 @@
 local icons = require("utils.ui-components").icons
 
 function GitFileStatus()
-	return require("utils.statusline.gitstatus").GitFileStatus()
+	return vim.b.gitsigns_status or ""
 end
 
 function GitAheadBehind()
@@ -15,6 +15,7 @@ function GitBranch()
 	end
 	return ""
 end
+
 local mode_colors = {
 	n = "%#StatusLineNormal# N ",
 	i = "%#StatusLineInsert# I ",

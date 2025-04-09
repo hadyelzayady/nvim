@@ -75,6 +75,7 @@ opt.writebackup = false       -- Disable write backup
 --=================   Diff ========================
 opt.diffopt = {
 	"inline:char",
+    "internal",
     "indent-heuristic",       -- Use heuristic for indenting
 	"filler",
 	"closeoff",

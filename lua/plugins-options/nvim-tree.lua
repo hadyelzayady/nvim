@@ -32,6 +32,11 @@ function M.config()
 				"dist",
 			},
 		},
+		filters = {
+			exclude = {
+				".env.development.local",
+			},
+		},
 		renderer = {
 			root_folder_label = label,
 			group_empty = true,
@@ -57,7 +62,7 @@ function M.config()
 						ignored = icons.git.ignored,
 					},
 				},
-			}
+			},
 		},
 		modified = {
 			enable = true,

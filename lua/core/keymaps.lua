@@ -38,12 +38,10 @@ end, { desc = "Jump To Line" })
 
 map("n", "<leader>cS", "<cmd>AerialToggle<cr>", { silent = true, desc = "Symbole Outline" })
 map("n", "<leader>cs", "<cmd>AerialNavToggle<cr>", { silent = true, desc = "Symbole Nav" })
-map("n", "<leader>d", function()
-	MiniBufremove.delete(0)
-end, { desc = "Delete Buffer" })
-map("n", "<leader>D", function()
-	MiniBufremove.delete(0, true)
-end, { desc = "Force Delete Buffer" })
+-- stylua: ignore
+map("n", "<leader>d", function() MiniBufremove.delete(0) end, { desc = "Delete Buffer" })
+-- stylua: ignore
+map("n", "<leader>D", function() MiniBufremove.delete(0, true) end, { desc = "Force Delete Buffer" })
 
 --=================  Tab Management ===================
 map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
@@ -56,15 +54,12 @@ map("n", "<leader>ga", "<cmd>GitAuthors<CR>", { desc = "Co-Author" })
 map("n", "<leader>g,g", "<cmd>FzfLua git_commits<cr>", { desc = "Branch Commits" })
 map("n", "<leader>g,G", "<cmd>FzfLua git_bcommits<cr>", { desc = "Buffer Commits (in current branch)" })
 map("n", "<leader>g,d", "<cmd>AdvancedGitSearch diff_branch_file<cr>", { desc = "Diff File With Branch" })
-map("n", "<leader>g,b", function()
-	require("agitator").search_git_branch()
-end, { desc = "Grep in branch" })
-map("n", "<leader>g,f", function()
-	require("agitator").open_file_git_branch()
-end, { desc = "Open file in branch" })
-map("n", "<leader>g,m", function()
-	require("agitator").git_time_machine()
-end, { desc = "Time machine" })
+-- stylua: ignore
+map("n", "<leader>g,b", function() require("agitator").search_git_branch() end, { desc = "Grep in branch" })
+-- stylua: ignore
+map("n", "<leader>g,f", function() require("agitator").open_file_git_branch() end, { desc = "Open file in branch" })
+-- stylua: ignore
+map("n", "<leader>g,m", function() require("agitator").git_time_machine() end, { desc = "Time machine" })
 map("n", "<leader>gk", ":Git! push<cr>", { desc = "Push" })
 map("n", "<leader>gj", ":Git! pull<cr>", { desc = "Pull" })
 map("n", "<leader>gb", ":Gitsigns blame_line<cr>", { desc = "Blame Current Line" })
@@ -90,7 +85,16 @@ map("n", "<leader>h", ":UndotreeToggle <CR>", { desc = "File Local History" })
 
 --=================  Toggle ===================
 map("n", "<leader>tf", "<cmd>set foldenable!<cr>", { noremap = true, silent = true, desc = "Toggle Fold" }) -- Visual mode paste before selection
-map("n", "<leader>ltd", "<cmd>set foldenable!<cr>", { noremap = true, silent = true, desc = "Toggle Fold" }) -- Visual mode paste before selection
+-- stylua: ignore
+map( "n", "<leader>tdw", require("utils.diff").toggle_diffopt("iwhite"), { noremap = true, silent = true, desc = "White Space" }) -- Visual mode paste before selection
+-- stylua: ignore
+map( "n", "<leader>tdb", require("utils.diff").toggle_diffopt("iblank"), { noremap = true, silent = true, desc = "Blank Lines" }) -- Visual mode paste before selection
+-- stylua: ignore
+map("n", "<leader>tdc", require("utils.diff").toggle_diffopt("icase"), { noremap = true, silent = true, desc = "Case" }) -- Visual mode paste before selection
+-- stylua: ignore
+map( "n", "<leader>tdi", require("utils.diff").toggle_diffopt("internal"), { noremap = true, silent = true, desc = "Internal" }) -- Visual mode paste before selection
+-- stylua: ignore
+map( "n", "<leader>ltd", require("utils.diff").toggle_diffopt("iwhite"), { noremap = true, silent = true, desc = "Toggle Fold" }) -- Visual mode paste before selection
 
 --=================  Quit/Session ===================
 map("n", "<leader>qq", "<cmd>q<cr>", { desc = "Quit" })
@@ -109,18 +113,14 @@ map({ "n", "v" }, "<leader>sv", "<cmd>FzfLua grep_visual<cr>", { desc = "Search 
 map("n", "<leader>sg", "<cmd>FzfLua live_grep_glob<cr>", { desc = "Grep" })
 
 --=================  Lsp ===================
-map("n", "[w", function()
-	vim.diagnostic.jump({ count = -vim.v.count1, severity = "WARN" })
-end, { silent = true, desc = "Prev Warning" })
-map("n", "]w", function()
-	vim.diagnostic.jump({ count = vim.v.count1, severity = "WARN" })
-end, { silent = true, desc = "Next Warning" })
-map("n", "[e", function()
-	vim.diagnostic.jump({ count = -vim.v.count1, severity = "ERROR" })
-end, { silent = true, desc = "Prev Error" })
-map("n", "]e", function()
-	vim.diagnostic.jump({ count = vim.v.count1, severity = "ERROR" })
-end, { silent = true, desc = "Next Error" })
+-- stylua: ignore
+map("n", "[w", function() vim.diagnostic.jump({ count = -vim.v.count1, severity = "WARN" }) end, { silent = true, desc = "Prev Warning" })
+-- stylua: ignore
+map("n", "]w", function() vim.diagnostic.jump({ count = vim.v.count1, severity = "WARN" }) end, { silent = true, desc = "Next Warning" })
+-- stylua: ignore
+map("n", "[e", function() vim.diagnostic.jump({ count = -vim.v.count1, severity = "ERROR" }) end, { silent = true, desc = "Prev Error" })
+-- stylua: ignore
+map("n", "]e", function() vim.diagnostic.jump({ count = vim.v.count1, severity = "ERROR" }) end, { silent = true, desc = "Next Error" })
 -- map(
 --     "n",
 --     "<leader>xd",
@@ -146,16 +146,12 @@ end, { silent = true, desc = "Next Error" })
 --     { silent = true, desc = "Project Diagnostics(Fzf)" }
 -- )
 --
-map("n", "<leader>ldv", function()
-	require("utils.diagnostics").toggle_virtual_lines()
-end, { desc = "Toggle diagnostic virtual_lines" })
-
-map("n", "<leader>ldc", function()
-	require("utils.diagnostics").toggle_current_line()
-end, { desc = "Toggle Current Line Diagnostics" })
-map("n", "<leader>ldt", function()
-	vim.diagnostic.enable(not vim.diagnostic.is_enabled())
-end, { desc = "Toggle Diagnostics" })
+-- stylua: ignore
+map("n", "<leader>ldv", function() require("utils.diagnostics").toggle_virtual_lines() end, { desc = "Toggle diagnostic virtual_lines" })
+-- stylua: ignore
+map("n", "<leader>ldc", function() require("utils.diagnostics").toggle_current_line() end, { desc = "Toggle Current Line Diagnostics" })
+-- stylua: ignore
+map("n", "<leader>ldt", function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end, { desc = "Toggle Diagnostics" })
 --
 map({ "n", "v" }, "<leader>lf", require("utils.lsp-operations").format, { silent = true, desc = "Format" })
 map("n", "gd", require("utils.lsp-operations").goto_definition, { desc = "Goto Definition" })
@@ -182,7 +178,19 @@ map("n", "<leader>ci", require("utils.lsp-operations").addMissingImports, { desc
 map("n", "<leader>ltd", function()
 	vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end, { desc = "Toggle Diagnostics", silent = true })
-
+-- Preview
+-- stylua: ignore
+map("n", "gpd","<cmd>lua require('goto-preview').goto_preview_definition()<CR>",{desc="Preview Definition"})
+-- stylua: ignore
+map("n", "gpt","<cmd>lua require('goto-preview').goto_preview_type_definition()<CR>",{desc="Preview Type Definition"})
+-- stylua: ignore
+map("n", "gpi","<cmd>lua require('goto-preview').goto_preview_implementation()<CR>",{desc="Preview Implementation"})
+-- stylua: ignore
+map("n", "gpD","<cmd>lua require('goto-preview').goto_preview_declaration()<CR>",{desc="Preview Declaration"})
+-- stylua: ignore
+map("n", "gP","<cmd>lua require('goto-preview').close_all_win()<CR>",{desc="Close All Preview"})
+-- stylua: ignore
+map("n", "gpr","<cmd>lua require('goto-preview').goto_preview_references()<CR>",{desc="Preview References"})
 --=================  Logs ===================
 map("n", "<leader>,v", ":lua require('chainsaw').variableLog()<cr>", { silent = true, desc = "Variable" })
 map("n", "<leader>,l", ":lua require('chainsaw').messageLog()<cr>", { silent = true, desc = "Message" })

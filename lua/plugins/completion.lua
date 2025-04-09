@@ -15,6 +15,11 @@ return {
 						require("blink-cmp").show({ providers = { "ripgrep" } })
 					end,
 				},
+				["<c-l>"] = {
+					function()
+						require("blink-cmp").show({ providers = { "lsp" } })
+					end,
+				},
 			},
 			appearance = {
 				kind_icons = require("utils.ui-components").icons.kinds,
@@ -32,7 +37,7 @@ return {
 				},
 			},
 			sources = {
-				default = { "lsp", "path", "snippets", "buffer", "ripgrep" },
+				default = { "lsp", "path", "snippets", "buffer" },
 				providers = {
 					ripgrep = {
 						module = "blink-ripgrep",
