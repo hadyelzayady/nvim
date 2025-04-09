@@ -41,7 +41,7 @@ function Lsp()
 end
 
 function Formatter()
-	if vim.bo.readonly then
+	if not vim.bo.modifiable then
 		return ""
 	end
 	local active = require("conform").list_formatters_to_run()
