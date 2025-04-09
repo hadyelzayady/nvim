@@ -24,9 +24,12 @@ function Winbar()
 	while cursor_node do
 		local node_type = cursor_node:type()
 		local possible_cursor_node = cursor_node
-		if node_type == "arrow_function" then
+		if node_type == "jsx_element" or node_type == "jsx_self_closing_element" then
+			possible_cursor_node = cursor_node:field("open_tag")[1] or cursor_node
+		elseif node_type == "arrow_function" then
 			possible_cursor_node = cursor_node:parent()
 		end
+
 		if
 			node_type == "function_declaration"
 			or node_type == "method_declaration"
@@ -34,6 +37,8 @@ function Winbar()
 			or node_type == "interface_declaration"
 			or node_type == "constructor_declaration"
 			or node_type == "arrow_function"
+			or node_type == "jsx_element"
+			or node_type == "jsx_self_closing_element"
 		then
 			local name_node = possible_cursor_node:field("name")[1]
 			if name_node then

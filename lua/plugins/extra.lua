@@ -38,4 +38,10 @@ return {
 			},
 		},
 	},
+	{
+		"echasnovski/mini.indentscope",
+		version = false,
+		event = "VeryLazy",
+		config = require("plugins-options.mini-indentscope").config,
+	},
 }

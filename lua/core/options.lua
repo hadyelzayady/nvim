@@ -11,7 +11,7 @@ vim.g.loaded_netrwPlugin = 1
 
 --=================   UI ========================
 opt.number = true            -- Show line numbers
-opt.relativenumber = true    -- Relative line numbers (easier for jumping)
+opt.relativenumber = false    -- Relative line numbers (easier for jumping)
 opt.cursorline = true        -- Highlight the current line
 opt.signcolumn = "yes"       -- Always show sign column to prevent shifting
 opt.wrap = false             -- Disable line wrapping
@@ -25,7 +25,8 @@ opt.listchars = {
 	trail = "·",
 	extends = "»",
 	precedes = "«",
-	-- leadmultispace="...|"
+    -- lead="␣",
+    -- leadmultispace="...|"
 }
 
 vim.cmd.colorscheme("habamax")
