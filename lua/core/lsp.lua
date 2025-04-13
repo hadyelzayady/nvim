@@ -17,6 +17,7 @@ function M.setup()
     vim.lsp.enable("compose")
     vim.lsp.enable("dockerls")
     vim.lsp.enable("cssmodules")
+    vim.lsp.enable("biome")
 end
 
 return M

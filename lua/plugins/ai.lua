@@ -18,4 +18,13 @@ return {
 			})
 		end,
 	},
+	{
+		"olimorris/codecompanion.nvim",
+		opts = {},
+		lazy = false,
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+		},
+	},
 }

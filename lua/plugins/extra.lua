@@ -44,4 +44,11 @@ return {
 		event = "VeryLazy",
 		config = require("plugins-options.mini-indentscope").config,
 	},
+	{
+		"epwalsh/obsidian.nvim",
+		version = "*", -- recommended, use latest release instead of latest commit
+		ft = "markdown",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		opts = require("plugins-options.obsidian").opts,
+	},
 }

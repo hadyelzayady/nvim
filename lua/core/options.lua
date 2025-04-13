@@ -10,8 +10,9 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 --=================   UI ========================
+opt.conceallevel = 2         -- Hide characters until needed
 opt.number = true            -- Show line numbers
-opt.relativenumber = false    -- Relative line numbers (easier for jumping)
+opt.relativenumber = false   -- Relative line numbers (easier for jumping)
 opt.cursorline = true        -- Highlight the current line
 opt.signcolumn = "yes"       -- Always show sign column to prevent shifting
 opt.wrap = false             -- Disable line wrapping
