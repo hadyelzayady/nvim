@@ -1,5 +1,17 @@
-vim.o.winbar = "%f %r%m %{%v:lua.Winbar()%}"
-function Winbar()
+vim.o.winbar = "%{%v:lua.FilePath()%} %r%m %{%v:lua.TsContext()%}"
+
+function FilePath()
+	local filename = vim.fn.expand("%:f")
+	local modified = vim.bo.modified
+
+	if modified then
+		return "%#@comment.warning#" .. filename .. "%*"
+	else
+		return filename
+	end
+end
+
+function TsContext()
 	local ts_utils = require("nvim-treesitter.ts_utils")
 	local parsers = require("nvim-treesitter.parsers")
 	local api = vim.api
