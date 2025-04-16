@@ -43,7 +43,7 @@ return {
 	},
 	{
 		"lambdalisue/vim-suda",
-		cmd = { "SudoWrite", "SudaRead" },
+		cmd = { "SudaWrite", "SudaRead" },
 	},
 	{
 		"johmsalas/text-case.nvim",
