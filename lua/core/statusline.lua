@@ -102,5 +102,5 @@ vim.o.statusline = table.concat({
 	"%#StatusLineLSP# %{v:lua.Formatter()} %{v:lua.Lsp()}",
 	" %y",
 	"%{v:lua.StatuslineSelection()}",
-	" %l:%c %p%% / %L",
+	" %l:%c / %L",
 })

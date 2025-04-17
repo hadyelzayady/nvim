@@ -21,7 +21,7 @@ return {
 	{
 		"olimorris/codecompanion.nvim",
 		opts = {},
-		lazy = false,
+		event = "InsertEnter",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",

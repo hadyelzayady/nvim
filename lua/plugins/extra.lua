@@ -51,4 +51,11 @@ return {
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = require("plugins-options.obsidian").opts,
 	},
+
+	{
+		"MeanderingProgrammer/render-markdown.nvim",
+		ft = "markdown",
+		dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.icons" },
+		opts = {},
+	},
 }
