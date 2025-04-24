@@ -1,5 +1,7 @@
 local M = {}
 M.opts = {
+    -- as I use render-markdown plugin
+    ui = { enable = false },
 	workspaces = {
 		{
 			name = "personal",
@@ -8,6 +10,9 @@ M.opts = {
 	},
 	picker = {
 		name = "fzf-lua",
+	},
+	completion = {
+		nvim_cmp = false, -- disable!
 	},
 }
 return M
