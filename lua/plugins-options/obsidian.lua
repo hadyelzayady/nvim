@@ -3,7 +3,7 @@ M.opts = {
 	workspaces = {
 		{
 			name = "personal",
-			path = "~/gdrive/obsidian-vaults/personal",
+			path = "~/vaults/personal",
 		},
 	},
 	picker = {
