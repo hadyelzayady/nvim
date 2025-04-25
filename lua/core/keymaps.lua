@@ -8,6 +8,11 @@ map("n", "<A-j>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
 map("n", "<A-h>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
 map("n", "<A-l>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 
+--=================== Clipbaord =======================
+-- to not copy to clipboard when paste
+map("v", "p", '"_dP', { noremap = true, silent = true })
+map("v", "P", '"_dP', { noremap = true, silent = true })
+
 --=================  Close ============================
 map("n", "<c-q>", function()
 	vim.cmd("cclose")
