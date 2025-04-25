@@ -86,7 +86,7 @@ map("v", "<leader>gh", ":'<,'>DiffviewFileHistory %<CR>", { desc = "Range Buffer
 map("n", "<leader>gg", "<cmd>Lazygit<CR>", { desc = "Lazygit", silent = true })
 map("n", "<leader>gG", "<cmd>Git<CR>", { desc = "Fugitive", silent = true })
 
-map("n", "<leader>h", ":UndotreeToggle <CR>", { desc = "File Local History" })
+map("n", "<leader>h", "<cmd>lua require('undotree').toggle()<cr>", { desc = "File Local History" })
 
 --=================  Toggle ===================
 map("n", "<leader>tf", "<cmd>set foldenable!<cr>", { noremap = true, silent = true, desc = "Toggle Fold" }) -- Visual mode paste before selection

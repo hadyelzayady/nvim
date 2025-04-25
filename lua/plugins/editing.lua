@@ -38,8 +38,9 @@ return {
 		config = require("plugins-options.mini-ai").config,
 	},
 	{
-		"mbbill/undotree",
-		cmd = "UndotreeToggle",
+		"ruskei/undotree",
+		dependencies = "nvim-lua/plenary.nvim",
+		config = require("plugins-options.undotree").config,
 	},
 	{
 		"lambdalisue/vim-suda",
