@@ -70,8 +70,7 @@ return {
 	{
 		"stevearc/aerial.nvim",
 		opts = {},
-		event = "VeryLazy",
-		-- Optional dependencies
+		cmd = { "AerialToggle", "AerialNavToggle" },
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
 			"nvim-tree/nvim-web-devicons",

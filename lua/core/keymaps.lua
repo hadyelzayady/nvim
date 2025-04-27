@@ -8,6 +8,11 @@ map("n", "<A-j>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
 map("n", "<A-h>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
 map("n", "<A-l>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 
+--=================== Clipbaord =======================
+-- to not copy to clipboard when paste
+map("v", "p", '"_dP', { noremap = true, silent = true })
+map("v", "P", '"_dP', { noremap = true, silent = true })
+
 --=================  Close ============================
 map("n", "<c-q>", function()
 	vim.cmd("cclose")
@@ -81,7 +86,7 @@ map("v", "<leader>gh", ":'<,'>DiffviewFileHistory %<CR>", { desc = "Range Buffer
 map("n", "<leader>gg", "<cmd>Lazygit<CR>", { desc = "Lazygit", silent = true })
 map("n", "<leader>gG", "<cmd>Git<CR>", { desc = "Fugitive", silent = true })
 
-map("n", "<leader>h", ":UndotreeToggle <CR>", { desc = "File Local History" })
+map("n", "<leader>h", "<cmd>lua require('undotree').toggle()<cr>", { desc = "File Local History" })
 
 --=================  Toggle ===================
 map("n", "<leader>tf", "<cmd>set foldenable!<cr>", { noremap = true, silent = true, desc = "Toggle Fold" }) -- Visual mode paste before selection
