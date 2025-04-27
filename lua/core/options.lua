@@ -15,6 +15,7 @@ opt.number = true            -- Show line numbers
 opt.relativenumber = false   -- Relative line numbers (easier for jumping)
 opt.cursorline = true        -- Highlight the current line
 opt.signcolumn = "yes"       -- Always show sign column to prevent shifting
+opt.jumpoptions = "stack,view"
 opt.wrap = true               -- Enable line wrapping
 opt.linebreak = true          -- Wrap at word boundaries
 opt.showbreak = "↪ "          -- Optional: Indicator for wrapped lines
