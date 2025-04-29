@@ -26,12 +26,6 @@ autocmd("BufReadPost", {
 		end
 	end,
 })
-autocmd("LspProgress", {
-	group = augroup("lsp"),
-	callback = function()
-		vim.cmd("redrawstatus")
-	end,
-})
 
 autocmd("BufWritePost", {
 	group = augroup("undotree"),

@@ -1,4 +1,9 @@
 local icons = require("utils.ui-components").icons
+local autocmd = vim.api.nvim_create_autocmd
+
+local function augroup(name)
+	return vim.api.nvim_create_augroup("hady_" .. name, { clear = true })
+end
 
 function GitFileStatus()
 	return vim.b.gitsigns_status or ""
@@ -81,6 +86,12 @@ function LspProgress()
 	return messages
 end
 
+autocmd("LspProgress", {
+	group = augroup("lsp"),
+	callback = function()
+		vim.cmd("redrawstatus")
+	end,
+})
 function StatuslineSelection()
 	local mode = vim.fn.mode()
 	if mode == "V" or mode == "v" or mode == "\22" then
