@@ -86,12 +86,6 @@ function LspProgress()
 	return messages
 end
 
-autocmd("LspProgress", {
-	group = augroup("lsp"),
-	callback = function()
-		vim.cmd("redrawstatus")
-	end,
-})
 function StatuslineSelection()
 	local mode = vim.fn.mode()
 	if mode == "V" or mode == "v" or mode == "\22" then
@@ -103,12 +97,25 @@ function StatuslineSelection()
 	return ""
 end
 
+require("utils.statusline.codecompanion").init()
+function CodeCompanionProgress()
+	return require("utils.statusline.codecompanion").get_codecompanion_status()
+end
+--============== update =============================
+autocmd("LspProgress", {
+	group = augroup("lsp"),
+	callback = function()
+		vim.cmd("redrawstatus")
+	end,
+})
+
 vim.o.statusline = table.concat({
 	"%{%v:lua.StatuslineMode()%}",
 	"%#StatusLineGit# %{%v:lua.GitBranch()%} %{%v:lua.GitFileStatus()%}",
 	"%=", -- Align center
 	"%#StatusLineInfo# %{%v:lua.DiagnosticsStatus()%}",
 	"%=", -- Align right
+	"%{%v:lua.CodeCompanionProgress()%}",
 	"%{%v:lua.LspProgress()%}",
 	"%#StatusLineLSP# %{v:lua.Formatter()} %{v:lua.Lsp()}",
 	" %y",
