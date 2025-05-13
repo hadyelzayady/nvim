@@ -61,6 +61,7 @@ return {
 	},
 	{
 		"MagicDuck/grug-far.nvim",
+		lazy = false,
 		config = function()
 			-- optional setup call to override plugin options
 			-- alternatively you can set options with vim.g.grug_far = { ... }
