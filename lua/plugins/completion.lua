@@ -38,11 +38,16 @@ return {
 			},
 			sources = {
 				default = { "lsp", "path", "snippets", "buffer" },
+				per_filetype = {
+					sql = { "snippets", "dadbod", "buffer" },
+				},
 				providers = {
 					ripgrep = {
 						module = "blink-ripgrep",
 						name = "Ripgrep",
 					},
+
+					dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
 				},
 			},
 
