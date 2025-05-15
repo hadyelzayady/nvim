@@ -28,6 +28,7 @@ function M.config()
 			toml = { "taplo" },
 			nginx = { "nginxfmt" },
 			http = { "kulala" },
+            go= { "gofmt" },
 			["_"] = { "trim_whitespace" },
 		},
 		formatters = {

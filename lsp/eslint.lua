@@ -41,7 +41,7 @@ local function has_eslint_config()
 	return false
 end
 return {
-	cmd = { "vscode-eslint-language-server", "--stdio" },
+	cmd = { "bunx", "vscode-eslint-language-server", "--stdio" },
 	filetypes = {
 		"javascript",
 		"javascriptreact",

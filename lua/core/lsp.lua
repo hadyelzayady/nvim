@@ -18,6 +18,8 @@ function M.setup()
     vim.lsp.enable("dockerls")
     vim.lsp.enable("cssmodules")
     vim.lsp.enable("biome")
+    vim.lsp.enable("gopls")
+    vim.lsp.enable("protols")
 end
 
 return M
