@@ -17,10 +17,11 @@ function M.config()
 			typescriptreact = js_like_formatters,
 			json = js_like_formatters,
 			jsonc = js_like_formatters,
-			scss = { "prettierd" },
+			scss = { "biome","prettierd",stop_after_first = true },
 			css = { "biome", "prettierd", stop_after_first = true },
 			html = { "prettierd" },
 			mdx = { "prettierd" },
+            sql={"pg_format"},
 
 			cpp = { "clang_format" },
 			sh = { "shfmt" },
