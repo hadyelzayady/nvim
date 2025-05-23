@@ -12,7 +12,7 @@ return {
 		"nvim-java/nvim-java",
 		lazy = false,
 		config = require("plugins-options.nvim-java").config,
-		dependencies = { "neovim/nvim-lspconfig" },
+		dependencies = { "neovim/nvim-lspconfig", "mason-org/mason.nvim" },
 	},
 	{
 		"rmagatti/goto-preview",
@@ -26,5 +26,10 @@ return {
 		config = function()
 			require("lsp-file-operations").setup()
 		end,
+	},
+	{
+		"mason-org/mason.nvim",
+		lazy = false,
+		opts = {},
 	},
 }

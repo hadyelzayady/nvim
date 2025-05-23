@@ -6,21 +6,11 @@ vim.api.nvim_create_user_command("DiffBuf", function(args)
 	end
 end, { range = true })
 
-local previous_layout = nil
 -- Function to open LazyGit in a new Kitty window and maximize it
 function OpenLazyGitInKittyMaximizedWindow()
 	vim.system({ "kitty", "@", "ls" }, { text = true }, function(output)
 		vim.system({ "kitty", "@", "launch", "--type=overlay", "--cwd=current", "lazygit" })
 	end)
-end
-
-function ReturnToPreviousKittyLayout()
-	if previous_layout then
-		vim.system({ "kitty", "@", "goto-layout", previous_layout })
-		previous_layout = nil -- Clear after use
-	else
-		print("No previous layout saved.")
-	end
 end
 
 -- Function to open LazyGit in a new Kitty window and maximize it
@@ -30,17 +20,6 @@ end
 
 vim.api.nvim_create_user_command("Lazygit", OpenLazyGitInKittyMaximizedWindow, {})
 vim.api.nvim_create_user_command("Gitui", OpenGitUIInKittyMaximizedWindow, {})
--- vim.api.nvim_create_user_command("nadd", OpenGitUIInKittyMaximizedWindow, {})
-
-vim.api.nvim_create_user_command("NextGitDiff", function()
-	vim.cmd("cnext") -- Move to the next file in quickfix
-	vim.cmd("vert Gdiffsplit") -- Open diff in a vertical split
-end, {})
-
-vim.api.nvim_create_user_command("PrevGitDiff", function()
-	vim.cmd("cprev") -- Move to the previous file in quickfix
-	vim.cmd("vert Gdiffsplit") -- Open diff in a vertical split
-end, {})
 
 vim.api.nvim_create_user_command("CloseFugitive", function()
 	for _, win in ipairs(vim.api.nvim_list_wins()) do
