@@ -27,9 +27,4 @@ return {
 			require("lsp-file-operations").setup()
 		end,
 	},
-	{
-		"mason-org/mason.nvim",
-		lazy = false,
-		opts = {},
-	},
 }

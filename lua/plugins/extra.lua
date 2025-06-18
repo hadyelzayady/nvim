@@ -46,6 +46,7 @@ return {
 	},
 	{
 		"epwalsh/obsidian.nvim",
+            enabled=false,
 		version = "*", -- recommended, use latest release instead of latest commit
 		ft = "markdown",
 		dependencies = { "nvim-lua/plenary.nvim" },

@@ -21,6 +21,7 @@ function M.config()
 			css = { "biome", "prettierd", stop_after_first = true },
 			html = { "prettierd" },
 			mdx = { "prettierd" },
+            nix={"nixfmt"},
 
 			cpp = { "clang_format" },
 			sh = { "shfmt" },
