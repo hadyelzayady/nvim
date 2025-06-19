@@ -24,12 +24,12 @@ function M.setup()
 end
 
 vim.diagnostic.config({
-	virtual_text = diagnostic.virtual_text,
+	-- virtual_text = diagnostic.virtual_text,
 	severity_sort = true,
-	float = diagnostic.float,
+	-- float = diagnostic.float,
 	-- Disable signs in the gutter.
 	signs = false,
 	virtual_lines = false,
-	update_in_insert = false,
+	update_in_insert = true,
 })
 return M

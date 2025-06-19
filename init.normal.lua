@@ -1,3 +1,3 @@
 vim.loader.enable()
-require("lazy")
 require("core")
+require("plugins.lazy")
