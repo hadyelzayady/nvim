@@ -1,3 +1,6 @@
 vim.loader.enable()
+
 require("core")
-require("plugins.lazy")
+require("mappings")
+--require("lsp")
+require("ui")

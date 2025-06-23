@@ -17,6 +17,8 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_tutor_mode_plugin = 1
 vim.g.loaded_matchit = 1
 
+vim.opt.wrap = true
+vim.opt.number = true -- Show line numbers
 -- General UI perf
 vim.opt.foldmethod = "manual"
 vim.opt.modelines = 0

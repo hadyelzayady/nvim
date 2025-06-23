@@ -24,18 +24,18 @@ vim.g.maplocalleader = "\\"
 
 -- Setup lazy.nvim
 require("lazy").setup({
-{
-  "vhyrro/luarocks.nvim",
-  priority = 1000, -- must load early
-  config = true,
-},
+	{
+		"vhyrro/luarocks.nvim",
+		priority = 1000, -- must load early
+		config = true,
+	},
 	spec = {
 		-- import your plugins
-		{ import = "plugins/list" },
+		{ import = "plugins" },
 	},
-    rocks={
-enabled = false
-    },
+	rocks = {
+		enabled = false,
+	},
 	-- Configure any other settings here. See the documentation for more details.
 	-- colorscheme that will be used when installing plugins.
 	install = { colorscheme = { "habamax" } },

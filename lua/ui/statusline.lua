@@ -1,4 +1,4 @@
-local icons = require("utils.ui-components").icons
+-- local icons = require("utils.ui-components").icons
 local autocmd = vim.api.nvim_create_autocmd
 
 local function augroup(name)
@@ -10,14 +10,14 @@ function GitFileStatus()
 end
 
 function GitAheadBehind()
-	return require("utils.statusline.gitstatus").GitAheadBehind()
+	-- return require("utils.statusline.gitstatus").GitAheadBehind()
 end
 
 function GitBranch()
-	local branch = vim.fn.FugitiveHead()
-	if branch and branch ~= "" then
-		return "[ " .. branch .. GitAheadBehind() .. "]"
-	end
+	-- local branch = vim.fn.FugitiveHead()
+	-- if branch and branch ~= "" then
+	-- 	return "[ " .. branch .. GitAheadBehind() .. "]"
+	-- end
 	return ""
 end
 
@@ -39,36 +39,36 @@ function StatuslineMode()
 end
 
 function Lsp()
-	local clients = require("utils.lsp").get_buffer_attached_lsp()
-	if next(clients) == nil then
-		return ""
-	end
-	return " [" .. table.concat(clients, ", ") .. "]"
+	-- local clients = require("utils.lsp").get_buffer_attached_lsp()
+	-- if next(clients) == nil then
+	-- 	return ""
+	-- end
+	-- return " [" .. table.concat(clients, ", ") .. "]"
 end
 
 function Formatter()
 	if not vim.bo.modifiable then
 		return ""
 	end
-	local active = require("conform").list_formatters_to_run()
-	local formatters = {}
-	for _, value in ipairs(active) do
-		if value.available then
-			table.insert(formatters, value.name)
-		end
-	end
-	if #formatters == 0 then
-		return ""
-	end
-	return "🎨[" .. table.concat(formatters, ", ") .. "]"
+	-- -- local active = require("conform").list_formatters_to_run()
+	-- local formatters = {}
+	-- for _, value in ipairs(active) do
+	-- 	if value.available then
+	-- 		table.insert(formatters, value.name)
+	-- 	end
+	-- end
+	-- if #formatters == 0 then
+	-- 	return ""
+	-- end
+	-- return "🎨[" .. table.concat(formatters, ", ") .. "]"
 end
 
 local function getDiagnosticLevelStatus(severity)
 	local count = #vim.diagnostic.get(0, { severity = severity })
-	local severityText = require("utils.diagnostics").severity_to_text_map[severity]
-	if count > 0 then
-		return "%#DiagnosticSign" .. severityText .. "#" .. icons.diagnostics[severityText] .. count .. " "
-	end
+	-- local severityText = require("utils.diagnostics").severity_to_text_map[severity]
+	-- if count > 0 then
+	-- 	return "%#DiagnosticSign" .. severityText .. "#" .. icons.diagnostics[severityText] .. count .. " "
+	-- end
 	return ""
 end
 
@@ -97,9 +97,9 @@ function StatuslineSelection()
 	return ""
 end
 
-require("utils.statusline.codecompanion").init()
+-- require("utils.statusline.codecompanion").init()
 function CodeCompanionProgress()
-	return require("utils.statusline.codecompanion").get_codecompanion_status()
+	-- return require("utils.statusline.codecompanion").get_codecompanion_status()
 end
 --============== update =============================
 autocmd("LspProgress", {

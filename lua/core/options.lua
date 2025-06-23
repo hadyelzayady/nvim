@@ -11,7 +11,7 @@ g.loaded_netrw = 1
 g.loaded_netrwPlugin = 1
 -- Disable all these legacy plugins/features
 for _, plugin in ipairs({
-	"gzip",
+    "gzip",
 	"zip",
 	"zipPlugin",
 	"tar",
@@ -32,7 +32,7 @@ for _, plugin in ipairs({
 	"logiPat",
 	"rrhelper",
 	"rplugin",
-	"loaded_remote_plugins",
+	"remote_plugins",
 }) do
 	vim.g["loaded_" .. plugin] = 1
 end
@@ -98,7 +98,8 @@ opt.lazyredraw = true -- Avoid unnecessary screen redraws
 opt.redrawtime = 1000 -- Increase max redraw time for large files
 opt.synmaxcol = 200 -- Limit syntax highlighting for long lines
 opt.ttyfast = true -- Enable fast terminal mode
-g.did_load_filetypes = 1 -- skip vimscripts for filetype detection
+opt.filetype="on"
+g.did_load_filetypes = nil -- skip vimscripts for filetype detection
 vim.cmd("syntax off") -- Disable syntax highlighting for performance as we use treesitter
 
 --=================   Split/Windows ========================
