@@ -49,6 +49,7 @@ return {
 		version = "*", -- recommended, use latest release instead of latest commit
 		ft = "markdown",
 		dependencies = { "nvim-lua/plenary.nvim" },
+		enabled = false,
 		opts = require("plugins-options.obsidian").opts,
 	},
 

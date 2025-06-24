@@ -32,4 +32,8 @@ return {
 		lazy = false,
 		opts = {},
 	},
+	{
+		"nanotee/sqls.nvim",
+		ft = "sql",
+	},
 }

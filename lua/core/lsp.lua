@@ -6,10 +6,17 @@ M.capabilities = vim.tbl_deep_extend("force", vim.lsp.protocol.make_client_capab
 })
 
 function M.setup()
+	-- require("java").setup({
+	-- 	jdk = {
+	-- 		auto_install = false,
+	-- 	},
+	-- })
 	vim.lsp.config("*", {
 		capabilities = M.capabilities,
 	})
-	-- you can find server configurations from lsp/*.lua files
+	vim.lsp.config("sqls", {
+		root_markers = { ".git" },
+	})
 	vim.lsp.enable("lua_ls")
 	vim.lsp.enable("vtsls")
 	vim.lsp.enable("eslint")
@@ -21,6 +28,7 @@ function M.setup()
 	vim.lsp.enable("biome")
 	vim.lsp.enable("gopls")
 	vim.lsp.enable("protols")
+	vim.lsp.enable("sqls")
 end
 
 return M

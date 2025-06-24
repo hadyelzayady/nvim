@@ -30,9 +30,8 @@ autocmd("BufReadPost", {
 autocmd("BufWritePost", {
 	group = augroup("undotree"),
 	callback = function()
-		for _, win in ipairs(vim.api.nvim_list_wins()) do
-			local buf = vim.api.nvim_win_get_buf(win)
-			local ft = vim.api.nvim_buf_get_option(buf, "filetype")
+		for _ in ipairs(vim.api.nvim_list_wins()) do
+			local ft = vim.api.nvim_get_option_value("filetype", { scope = "local" })
 			if ft == "undotree" then
 				require("undotree").toggle()
 				require("undotree").toggle()
