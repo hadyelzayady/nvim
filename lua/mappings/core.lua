@@ -1,5 +1,6 @@
 local map = vim.keymap.set
 
+map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
 map("n", "<leader>qq", "<cmd>q<cr>", { desc = "Quit" })
 map("n", "<leader>qQ", "<cmd>qa<cr>", { desc = "Quit all" })
 map("n", "<leader>Q", "<cmd>silent! qa!<cr>", { desc = "Force Quit all" })

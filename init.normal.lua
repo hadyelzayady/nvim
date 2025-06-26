@@ -2,5 +2,5 @@ vim.loader.enable()
 
 require("core")
 require("mappings")
---require("lsp")
+require("lsp")
 require("ui")

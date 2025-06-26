@@ -17,14 +17,14 @@ M.diagnostic_key_icon_name_map = {
 	INFO = "Info",
 }
 
-local virtual_text = {
+M.virtual_text = {
 	prefix = function(diagnostic)
 		return diagnostic_icons[M.diagnostic_key_icon_name_map[vim.diagnostic.severity[diagnostic.severity]]]
 	end,
 	spacing = 2,
 }
 
-local float = {
+M.float = {
 	border = "rounded",
 	source = true,
 	-- Show severity icons as prefixes.
@@ -36,12 +36,12 @@ local float = {
 }
 
 function M.toggle_current_line()
-	local current_virtual_text = vim.diagnostic.config().virtual_text
+	local virtual_text = vim.diagnostic.config().virtual_text
 	local virtual_lines = vim.diagnostic.config().virtual_lines
-	if current_virtual_text then
-		if type(current_virtual_text) == "table" then
-			current_virtual_text.current_line = not current_virtual_text.current_line
-			vim.diagnostic.config({ virtual_text = current_virtual_text })
+	if virtual_text then
+		if type(virtual_text) == "table" then
+			virtual_text.current_line = not virtual_text.current_line
+			vim.diagnostic.config({ virtual_text = virtual_text })
 		end
 	else
 		if virtual_lines then
@@ -53,10 +53,10 @@ function M.toggle_current_line()
 	end
 end
 function M.toggle_virtual_lines()
-	local current_virtual_text = vim.diagnostic.config().virtual_text
+	local virtual_text = vim.diagnostic.config().virtual_text
 	local virtual_lines = vim.diagnostic.config().virtual_lines
 	if virtual_text then
-		vim.diagnostic.config({ virtual_text = false, virtual_lines = { current_line = current_virtual_text.current_line } })
+		vim.diagnostic.config({ virtual_text = false, virtual_lines = { current_line = virtual_text.current_line } })
 	else
 		if virtual_lines then
 			local new_virtual_text =
@@ -65,17 +65,4 @@ function M.toggle_virtual_lines()
 		end
 	end
 end
-
-function M.setup()
-
-vim.diagnostic.config({
-	virtual_text = virtual_text,
-	severity_sort = true,
-	float = float,
-	signs = false,
-	virtual_lines = false,
-	update_in_insert = true,
-})
-end
-
 return M

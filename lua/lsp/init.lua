@@ -1,7 +1,9 @@
-vim.lsp.enable("lua_ls")
+require("lsp.diagnostics").setup()
 
 vim.lsp.config("*", {
 	capabilities = require("lsp.capabilities"),
 })
 
-require("lsp.diagnostics")
+
+vim.lsp.enable("lua_ls")
+

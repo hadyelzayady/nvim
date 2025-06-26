@@ -8,7 +8,7 @@ end, { range = true })
 
 -- Function to open LazyGit in a new Kitty window and maximize it
 function OpenLazyGitInKittyMaximizedWindow()
-	vim.system({ "kitty", "@", "ls" }, { text = true }, function(output)
+	vim.system({ "kitty", "@", "ls" }, { text = true }, function()
 		vim.system({ "kitty", "@", "launch", "--type=overlay", "--cwd=current", "lazygit" })
 	end)
 end
