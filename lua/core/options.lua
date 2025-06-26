@@ -38,7 +38,7 @@ for _, plugin in ipairs({
 end
 
 --=================   UI ========================
-vim.opt.shortmess:append("Ic")
+vim.opt.shortmess:append("IcFW")
 vim.opt.cmdheight = 1
 
 opt.conceallevel = 2 -- Hide characters until needed

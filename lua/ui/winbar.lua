@@ -1,4 +1,4 @@
-vim.o.winbar = "%{%v:lua.FilePath()%} %r%m %{%v:lua.TsContext()%}"
+vim.o.winbar = "%#MyWinBar# %{%v:lua.FilePath()%} %r%m %{%v:lua.TsContext()%}"
 
 function FilePath()
 	local filename = vim.fn.expand("%:f")

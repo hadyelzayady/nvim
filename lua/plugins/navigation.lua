@@ -18,8 +18,13 @@ return {
         "chrishrb/gx.nvim",
         keys = { { "gx", "<cmd>Browse<cr>", mode = { "n", "x" } } },
         cmd = { "Browse" },
-        dependencies = { "nvim-lua/plenary.nvim" }, -- Required for Neovim < 0.10.0
         submodules = false,
         opts = require("plugins.config.gx").opts
     },
+	{
+		"stevearc/oil.nvim",
+		cmd = { "Oil" },
+		dependencies = { "echasnovski/mini.icons" },
+		opts = require("plugins.config.oil").opts,
+	},
 }

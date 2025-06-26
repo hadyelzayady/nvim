@@ -4,8 +4,8 @@ map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsea
 map("n", "<leader>qq", "<cmd>q<cr>", { desc = "Quit" })
 map("n", "<leader>qQ", "<cmd>qa<cr>", { desc = "Quit all" })
 map("n", "<leader>Q", "<cmd>silent! qa!<cr>", { desc = "Force Quit all" })
-map("n", "<leader>w", "<cmd>silent! wall<cr>", { desc = "Save All" })
-map("n", "<leader>W", "<cmd>silent! w<cr>", { desc = "Save Current" })
+map("n", "<leader>qw", "<cmd>silent! wall<cr>", { desc = "Save All" })
+map("n", "<leader>qW", "<cmd>silent! w<cr>", { desc = "Save Current" })
 
 
 --=================  Resize ==========================
