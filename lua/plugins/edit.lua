@@ -1,27 +1,27 @@
 return {
-    {
-        "max397574/better-escape.nvim",
-        opts = require("plugins.config.better-escape").opts,
-        event = "InsertEnter",
-    },
-    {
-        "echasnovski/mini.pairs",
-        event = "InsertEnter",
-        version = false,
-        config = require("plugins.config.mini-pairs").config,
-    },
-    {
-        "echasnovski/mini.splitjoin",
-        version = false,
-        keys = { "gs", "gS", "gJ" },
-        opts = require("plugins.config.mini-splitjoin").opts,
-    },
-    {
-        "echasnovski/mini.surround",
-        version = false,
-        opts = require("plugins.config.mini-surround").opts,
-        keys = { { "s", mode = { "v", "n" } } },
-    },
+	{
+		"max397574/better-escape.nvim",
+		opts = require("plugins.config.better-escape").opts,
+		event = "InsertEnter",
+	},
+	{
+		"echasnovski/mini.pairs",
+		event = "InsertEnter",
+		version = false,
+		config = require("plugins.config.mini-pairs").config,
+	},
+	{
+		"echasnovski/mini.splitjoin",
+		version = false,
+		keys = { "gs", "gS", "gJ" },
+		opts = require("plugins.config.mini-splitjoin").opts,
+	},
+	{
+		"echasnovski/mini.surround",
+		version = false,
+		opts = require("plugins.config.mini-surround").opts,
+		keys = { { "s", mode = { "v", "n" } } },
+	},
 	{
 		"echasnovski/mini.ai",
 		version = false,
@@ -36,5 +36,10 @@ return {
 			},
 		},
 		opts = require("plugins.config.mini-ai").opts,
+	},
+	{
+		"MagicDuck/grug-far.nvim",
+		opts = require("plugins.config.grug-far").opts,
+		cmd = { "GrugFar", "GrugFarWithin" },
 	},
 }
