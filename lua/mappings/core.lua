@@ -30,3 +30,11 @@ map("n", "<leader><tab>p", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
 --=================  Toggle ===================
 map("n", "<leader>tf", "<cmd>set foldenable!<cr>", { noremap = true, silent = true, desc = "Toggle Fold" }) -- Visual mode paste before selection
+
+
+--=================== Close =======================
+map("n", "<c-q>", function()
+	vim.cmd("cclose")
+	vim.cmd("CloseFugitive")
+	-- require("neogit").close()
+end, { desc = "Close Common Splits" })

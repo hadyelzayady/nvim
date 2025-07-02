@@ -1,6 +1,7 @@
 local map = vim.keymap.set
 
 map("n", "<leader>gg", "<cmd>Lazygit<CR>", { desc = "Lazygit", silent = true })
+map("n", "<leader>gG", "<cmd>Git<CR>", { desc = "Git", silent = true })
 
 map("n", "[c", "<cmd>Gitsigns prev_hunk <CR>", { desc = "Prev Hunk", silent = true })
 
