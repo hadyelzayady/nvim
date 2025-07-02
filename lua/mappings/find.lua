@@ -4,6 +4,11 @@ local map = vim.keymap.set
 map("n", "<leader>ff", "<cmd>FzfLua files resume=true<CR>", { desc = "Find Files" })
 map("n", "<leader>sg", "<cmd>FzfLua live_grep resume=true<CR>", { desc = "Grep Files" })
 
+map("n", "<leader>sb", function()
+	require("fzf-lua").grep_curbuf({ previewer = "builtin", winopts = { preview = { hidden = false } } })
+end, { desc = "Search Buffer" })
+
+
 map("n", "<C-e>", "<cmd>FzfLua oldfiles<cr>", { desc = "Recent Files" })
 
 

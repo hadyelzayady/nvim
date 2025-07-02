@@ -32,6 +32,36 @@ return {
 		"echasnovski/mini.bufremove",
 		version = false,
 		event = "VeryLazy",
-        config=true
+		config = true,
 	},
+	{
+		"stevearc/aerial.nvim",
+		opts = require("plugins.config.aerial").opts,
+		cmd = { "AerialToggle", "AerialNavToggle" },
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			"nvim-tree/nvim-web-devicons",
+		},
+	},
+	{
+		"stevearc/quicker.nvim",
+		ft = "qf",
+		config = true,
+	},
+	{
+		"kevinhwang91/nvim-bqf",
+		ft = "qf",
+		dependencies = {
+			{
+				"junegunn/fzf",
+				build = "./install --bin",
+			},
+		},
+	},
+	-- {
+	-- 	"folke/flash.nvim",
+	-- 	keys = require("plugins-options.flash").keys,
+	-- 	config = require("plugins-options.flash").config,
+	-- 	vscode = false,
+	-- },
 }

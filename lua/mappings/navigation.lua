@@ -8,3 +8,6 @@ map("n", "<leader>d", function()
 end, { desc = "Delete Buffer" })
 -- stylua: ignore
 map("n", "<leader>D", function() MiniBufremove.delete(0, true) end, { desc = "Force Delete Buffer" })
+
+map("n", "<leader>cS", "<cmd>AerialToggle<cr>", { silent = true, desc = "Symbole Outline" })
+map("n", "<leader>cs", "<cmd>AerialNavToggle<cr>", { silent = true, desc = "Symbole Nav" })
