@@ -23,6 +23,7 @@ return {
 	{
 		"stevearc/conform.nvim",
 		lazy = true,
+		---@diagnostic disable-next-line: different-requires
 		opts = require("plugins.config.conform").opts,
 	},
 }

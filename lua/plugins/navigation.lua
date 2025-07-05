@@ -2,6 +2,7 @@ return {
 	{
 		"ibhagwan/fzf-lua",
 		cmd = "FzfLua",
+		---@diagnostic disable-next-line: different-requires
 		config = require("plugins.config.fzf-lua").config,
 		dependencies = { "echasnovski/mini.icons" },
 	},
