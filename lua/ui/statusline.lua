@@ -99,8 +99,16 @@ end
 
 -- require("utils.statusline.codecompanion").init()
 function CodeCompanionProgress()
-    return ''
+	return ""
 	-- return require("utils.statusline.codecompanion").get_codecompanion_status()
+end
+
+function ChainsnowLogs()
+	local count = require("chainsaw.visuals.statusline").countInBuffer()
+    if string.len(count) > 0 then
+        return "%#Label#|| " .. count .. " "
+    end
+	return ""
 end
 --============== update =============================
 autocmd("LspProgress", {
@@ -115,6 +123,7 @@ vim.o.statusline = table.concat({
 	"%#StatusLineGit# %{%v:lua.GitBranch()%} %{%v:lua.GitFileStatus()%}",
 	"%=", -- Align center
 	"%#StatusLineInfo# %{%v:lua.DiagnosticsStatus()%}",
+	"%{%v:lua.ChainsnowLogs()%}",
 	"%=", -- Align right
 	"%{%v:lua.CodeCompanionProgress()%}",
 	"%{%v:lua.LspProgress()%}",
