@@ -6,10 +6,10 @@ end, { silent = true, desc = "Format" })
 
 -- ====================  Code Navigation ================
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition" })
-vim.keymap.set("n", "grr", function()
+vim.keymap.set("n", "gru", function()
 	vim.lsp.buf.references({ includeDeclaration = false })
-end, { desc = "Go to Definition" })
-vim.keymap.set("n", "grs", "<cmd>LspSymbolUsages<cr>", { desc = "Symbol Usages" })
+end, { desc = "Go to References" })
+vim.keymap.set("n", "grr", "<cmd>LspSymbolUsages<cr>", { desc = "Symbol Usages" })
 
 -- ===================== Code Actions =======================
 
