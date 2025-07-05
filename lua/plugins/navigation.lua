@@ -15,8 +15,7 @@ return {
 		"ms-jpq/chadtree",
 		build = "python3 -m chadtree deps",
 		branch = "chad",
-		lazy = true,
-		cmd = { "CHADopen" },
+		event = "VeryLazy",
 		config = require("plugins.config.chadtree").config,
 	},
 	{
