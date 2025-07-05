@@ -1,7 +1,7 @@
 local map = vim.keymap.set
 
 -- fzf-lua
-map("n", "<leader>ff", "<cmd>FzfLua files resume=true<CR>", { desc = "Find Files" })
+map("n", "<leader>ff", "<cmd>FzfLuaFiles<CR>", { desc = "Find Files" })
 map("n", "<leader>sg", "<cmd>FzfLua live_grep resume=true<CR>", { desc = "Grep Files" })
 
 map("n", "<leader>sb", function()

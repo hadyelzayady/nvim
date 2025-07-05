@@ -7,6 +7,11 @@ return {
 		dependencies = { "echasnovski/mini.icons" },
 	},
 	{
+		"otavioschwanck/fzf-lua-enchanted-files",
+		dependencies = { "ibhagwan/fzf-lua" },
+		opts = {},
+	},
+	{
 		"ms-jpq/chadtree",
 		build = "python3 -m chadtree deps",
 		branch = "chad",
