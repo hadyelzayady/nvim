@@ -50,7 +50,7 @@ function Formatter()
 	if not vim.bo.modifiable then
 		return ""
 	end
-	---@diagnostic disable-next-line: different-requires
+---@diagnostic disable-next-line: different-requires
 	local active = require("conform").list_formatters_to_run()
 	local formatters = {}
 	for _, value in ipairs(active) do
@@ -90,8 +90,8 @@ end
 function StatuslineSelection()
 	local mode = vim.fn.mode()
 	if mode == "V" or mode == "v" or mode == "\22" then
-		local _, start_lnum, _, _ = table.unpack(vim.fn.getpos("v")) -- Visual selection start
-		local _, end_lnum, _, _ = table.unpack(vim.fn.getpos(".")) -- Visual selection end
+		local _, start_lnum, _, _ = unpack(vim.fn.getpos("v")) -- Visual selection start
+		local _, end_lnum, _, _ = unpack(vim.fn.getpos(".")) -- Visual selection end
 		local lines_selected = math.abs(end_lnum - start_lnum) + 1
 		return " [" .. lines_selected .. "L] " -- Display selected lines count
 	end
@@ -106,9 +106,9 @@ end
 
 function ChainsnowLogs()
 	local count = require("chainsaw.visuals.statusline").countInBuffer()
-	if string.len(count) > 0 then
-		return "%#Label#|| " .. count .. " "
-	end
+    if string.len(count) > 0 then
+        return "%#Label#|| " .. count .. " "
+    end
 	return ""
 end
 --============== update =============================

@@ -46,7 +46,7 @@ vim.api.nvim_create_user_command("GitAuthors", function()
 			["default"] = function(selected)
 				local author = selected[1]
 				-- Get current cursor position
-				local row, _col = table.unpack(vim.api.nvim_win_get_cursor(0))
+				local row, _col = unpack(vim.api.nvim_win_get_cursor(0))
 				local bufnr = vim.api.nvim_get_current_buf()
 				-- Insert new line after the current cursor position
 				vim.api.nvim_buf_set_lines(bufnr, row, row, false, { "", "Co-authored-by: " .. author })
