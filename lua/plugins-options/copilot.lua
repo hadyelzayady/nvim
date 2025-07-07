@@ -11,7 +11,7 @@ function M.config()
 				dismiss = "<C-x>", -- Dismiss suggestion
 			},
 		},
-		-- copilot_node_command = ""
+		copilot_node_command = vim.fn.expand("$HOME") .. "/.local/state/fnm_multishells/6652_1744129457797/bin/node", -- Node.js version must be > 20
 	})
 end
 return M

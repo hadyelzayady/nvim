@@ -11,6 +11,7 @@ return {
 	{
 		"nvim-java/nvim-java",
 		lazy = false,
+		enabled = false,
 		config = require("plugins-options.nvim-java").config,
 		dependencies = { "neovim/nvim-lspconfig", "mason-org/mason.nvim" },
 	},
