@@ -33,10 +33,12 @@ local handlers = {
 
 		if type == "jsx_element" or type == "jsx_self_closing_element" then
 			name_node = node:field("open_tag")[1]
-			for child in name_node:iter_children() do
-				if child:type() == "identifier" or child:type() == "jsx_identifier" then
-					name_node = child
-					break
+			if name_node then
+				for child in name_node:iter_children() do
+					if child:type() == "identifier" or child:type() == "jsx_identifier" then
+						name_node = child
+						break
+					end
 				end
 			end
 		elseif type == "arrow_function" then

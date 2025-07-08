@@ -9,7 +9,7 @@ map("n", "<leader>sb", function()
 end, { desc = "Search Buffer" })
 
 
-map("n", "<C-e>", "<cmd>FzfLuaFiles<cr>", { desc = "Recent Files" })
+map("n", "<C-e>", "<cmd>FzfLua oldfiles<cr>", { desc = "Recent Files" })
 
 
 
