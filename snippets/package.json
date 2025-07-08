@@ -13,7 +13,11 @@
 			{
 				"language": "typescript",
 				"path": "./tsx.json"
-			}
+			},
+            {
+                "language": "javascriptreact",
+                "path": "./jsx.json"
+            }
 		]
 	}
 }
