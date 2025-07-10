@@ -11,3 +11,8 @@ map("n", "<leader>D", function() MiniBufremove.delete(0, true) end, { desc = "Fo
 
 map("n", "<leader>cS", "<cmd>AerialToggle<cr>", { silent = true, desc = "Symbole Outline" })
 map("n", "<leader>cs", "<cmd>AerialNavToggle<cr>", { silent = true, desc = "Symbole Nav" })
+
+--================= Fuzzy =========================
+map("n", "<leader>ff", "<cmd>FzfLuaFiles<CR>", { desc = "Find Files" })
+
+map("n", "<C-e>", "<cmd>FzfLua oldfiles<cr>", { desc = "Recent Files" })

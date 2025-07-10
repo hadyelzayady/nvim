@@ -1,15 +1,9 @@
 local map = vim.keymap.set
 
--- fzf-lua
-map("n", "<leader>ff", "<cmd>FzfLuaFiles<CR>", { desc = "Find Files" })
-map("n", "<leader>sg", "<cmd>FzfLua live_grep resume=true<CR>", { desc = "Grep Files" })
-
+map("n", "<leader>sw", "<cmd>FzfLua grep_cword<cr>", { desc = "Search Current Word (project)" })
 map("n", "<leader>sb", function()
 	require("fzf-lua").grep_curbuf({ previewer = "builtin", winopts = { preview = { hidden = false } } })
 end, { desc = "Search Buffer" })
-
-
-map("n", "<C-e>", "<cmd>FzfLua oldfiles<cr>", { desc = "Recent Files" })
-
-
-
+map("n", "<leader>sp", "<cmd>FzfLua grep_project<cr>", { desc = "Search Project" })
+map({ "n", "v" }, "<leader>sv", "<cmd>FzfLua grep_visual<cr>", { desc = "Search Visual", noremap = true })
+map("n", "<leader>sg", "<cmd>FzfLua live_grep_glob<cr>", { desc = "Grep" })
