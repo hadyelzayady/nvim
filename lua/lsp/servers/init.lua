@@ -5,5 +5,6 @@ function M.setup()
 		capabilities = require("lsp.capabilities"),
 	})
 	require("lsp.servers.biome").setup()
+	require("lsp.servers.json").setup()
 end
 return M

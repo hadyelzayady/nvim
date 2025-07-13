@@ -1,7 +1,7 @@
 vim.api.nvim_create_user_command("LspSymbolUsages", function(args)
 	local bufnr = vim.api.nvim_get_current_buf()
 
-	local client = vim.lsp.get_clients({ bufnr = bufnr })[1]
+	local client = vim.lsp.get_clients({ bufnr = bufnr, method = "textDocument/references" })[1]
 	if not client then
 		vim.notify("No LSP client attached", vim.log.levels.ERROR)
 		return

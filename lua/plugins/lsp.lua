@@ -14,4 +14,8 @@ return {
 		dependencies = { "neovim/nvim-lspconfig" },
 		opts = {},
 	},
+	{
+		"b0o/schemastore.nvim",
+		ft = { "json", "yaml" },
+	},
 }

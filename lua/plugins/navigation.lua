@@ -9,7 +9,9 @@ return {
 	{
 		"otavioschwanck/fzf-lua-enchanted-files",
 		dependencies = { "ibhagwan/fzf-lua" },
-		opts = {},
+		opts = {
+			auto_history = true,
+		},
 	},
 	{
 		"ms-jpq/chadtree",

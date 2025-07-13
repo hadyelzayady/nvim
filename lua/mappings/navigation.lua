@@ -16,3 +16,4 @@ map("n", "<leader>cs", "<cmd>AerialNavToggle<cr>", { silent = true, desc = "Symb
 map("n", "<leader>ff", "<cmd>FzfLuaFiles<CR>", { desc = "Find Files" })
 
 map("n", "<C-e>", "<cmd>FzfLua oldfiles<cr>", { desc = "Recent Files" })
+map("n", "<leader>'", "<cmd>FzfLua resume<CR>", { desc = "Fzf Resume" })

@@ -50,7 +50,7 @@ function Formatter()
 	if not vim.bo.modifiable then
 		return ""
 	end
----@diagnostic disable-next-line: different-requires
+	---@diagnostic disable-next-line: different-requires
 	local active = require("conform").list_formatters_to_run()
 	local formatters = {}
 	for _, value in ipairs(active) do
@@ -98,17 +98,16 @@ function StatuslineSelection()
 	return ""
 end
 
--- require("utils.statusline.codecompanion").init()
+require("utils.statusline.codecompanion").init()
 function CodeCompanionProgress()
-	return ""
-	-- return require("utils.statusline.codecompanion").get_codecompanion_status()
+	return require("utils.statusline.codecompanion").get_codecompanion_status()
 end
 
 function ChainsnowLogs()
 	local count = require("chainsaw.visuals.statusline").countInBuffer()
-    if string.len(count) > 0 then
-        return "%#Label#|| " .. count .. " "
-    end
+	if string.len(count) > 0 then
+		return "%#Label#|| " .. count .. " "
+	end
 	return ""
 end
 --============== update =============================
