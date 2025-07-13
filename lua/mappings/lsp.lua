@@ -6,6 +6,7 @@ end, { silent = true, desc = "Format" })
 
 -- ====================  Code Navigation ================
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition" })
+vim.keymap.set("n", "gI", vim.lsp.buf.implementation, { desc = "Go to Implementation" })
 vim.keymap.set("n", "gru", function()
 	vim.lsp.buf.references({ includeDeclaration = false })
 end, { desc = "Go to References" })
