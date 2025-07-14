@@ -1,7 +1,7 @@
 local M = {}
 function M.config()
 	require("colorizer").setup({
-		filetypes = { "*" }, -- Filetype options.  Accepts table like `user_default_options`
+		filetypes = { "css", "scss", "javascriptreact", "typescriptreact" }, -- Filetype options.  Accepts table like `user_default_options`
 		buftypes = {}, -- Buftype options.  Accepts table like `user_default_options`
 		-- Boolean | List of usercommands to enable.  See User commands section.
 		user_commands = true, -- Enable all or some usercommands
