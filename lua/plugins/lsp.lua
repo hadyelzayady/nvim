@@ -12,6 +12,7 @@ return {
 	{
 		"nvim-java/nvim-java",
 		dependencies = { "neovim/nvim-lspconfig" },
+		enabled = false,
 		opts = {},
 	},
 	{

@@ -1,7 +1,11 @@
 return {
 	{
 		"saghen/blink.cmp",
-		dependencies = { "rafamadriz/friendly-snippets", "mikavilpas/blink-ripgrep.nvim" },
+		dependencies = {
+			"rafamadriz/friendly-snippets",
+			"mikavilpas/blink-ripgrep.nvim",
+			"Kaiser-Yang/blink-cmp-git",
+		},
 		version = "1.*",
 		event = "InsertEnter",
 		build = "cargo build --release",
@@ -37,7 +41,7 @@ return {
 				},
 			},
 			sources = {
-				default = { "lsp", "path", "snippets", "buffer" },
+				default = { "git", "lsp", "path", "snippets", "buffer" },
 				per_filetype = {
 					sql = { "snippets", "dadbod", "buffer" },
 				},
@@ -46,8 +50,18 @@ return {
 						module = "blink-ripgrep",
 						name = "Ripgrep",
 					},
-
-					-- dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
+					git = {
+						module = "blink-cmp-git",
+						name = "Git",
+						-- only enable this source when filetype is gitcommit, markdown, or 'octo'
+						enabled = function()
+							return vim.tbl_contains({ "octo", "gitcommit", "markdown" }, vim.bo.filetype)
+						end,
+						--- @module 'blink-cmp-git'
+						--- @type blink-cmp-git.Options
+						opts = {},
+					},
+					dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
 				},
 			},
 
