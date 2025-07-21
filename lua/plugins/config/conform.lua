@@ -42,6 +42,7 @@ M.opts = {
 		html = { "prettierd" },
 		mdx = { "prettierd" },
 		nix = { "nixfmt" },
+		sql = { "pg_format" },
 
 		cpp = { "clang_format" },
 		sh = { "shfmt" },
