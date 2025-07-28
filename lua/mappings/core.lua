@@ -6,6 +6,7 @@ map("n", "<leader>qQ", "<cmd>qa<cr>", { desc = "Quit all" })
 map("n", "<leader>Q", "<cmd>silent! qa!<cr>", { desc = "Force Quit all" })
 map("n", "<leader>qw", "<cmd>silent! wall<cr>", { desc = "Save All" })
 map("n", "<leader>qW", "<cmd>silent! w<cr>", { desc = "Save Current" })
+map("n", "<leader>n", "<cmd>enew<cr>", { desc = "New File" })
 
 --=================  Resize ==========================
 map("n", "<A-k>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
