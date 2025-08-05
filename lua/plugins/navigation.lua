@@ -7,6 +7,15 @@ return {
 		dependencies = { "echasnovski/mini.icons" },
 	},
 	{
+		"dmtrKovalenko/fff.nvim",
+		build = "cargo build --release",
+		-- or if you are using nixos
+		-- build = "nix run .#release",
+		opts = {
+			-- pass here all the options
+		},
+	},
+	{
 		"otavioschwanck/fzf-lua-enchanted-files",
 		dependencies = { "ibhagwan/fzf-lua" },
 		opts = {
@@ -58,6 +67,7 @@ return {
 	{
 		"kevinhwang91/nvim-bqf",
 		ft = "qf",
+		opts = require("plugins.config.bqf").opts,
 		dependencies = {
 			{
 				"junegunn/fzf",

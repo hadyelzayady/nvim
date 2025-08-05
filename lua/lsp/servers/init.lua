@@ -6,5 +6,6 @@ function M.setup()
 	})
 	require("lsp.servers.biome").setup()
 	require("lsp.servers.json").setup()
+	require("lsp.servers.postgres").setup()
 end
 return M

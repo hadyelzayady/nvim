@@ -43,7 +43,7 @@ return {
 			sources = {
 				default = { "git", "lsp", "path", "snippets", "buffer" },
 				per_filetype = {
-					sql = { "snippets", "dadbod", "buffer" },
+					sql = { "lsp", "snippets", "dadbod", "buffer" },
 				},
 				providers = {
 					ripgrep = {

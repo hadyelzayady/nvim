@@ -16,4 +16,15 @@ return {
 			vim.g.db_ui_use_nerd_fonts = 1
 		end,
 	},
+	{
+		"kndndrj/nvim-dbee",
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+		},
+		cmd = { "Dbee" },
+		build = function()
+			require("dbee").install()
+		end,
+		config = require("plugins.config.dbee").config,
+	},
 }
