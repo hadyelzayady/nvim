@@ -7,6 +7,12 @@ return {
 		dependencies = { "echasnovski/mini.icons" },
 	},
 	{
+		"elanmed/fzf-lua-frecency.nvim",
+		dependencies = { "ibhagwan/fzf-lua" },
+		config = true,
+	},
+
+	{
 		"dmtrKovalenko/fff.nvim",
 		build = "cargo build --release",
 		-- or if you are using nixos

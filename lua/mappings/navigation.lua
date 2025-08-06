@@ -13,9 +13,7 @@ map("n", "<leader>cS", "<cmd>AerialToggle<cr>", { silent = true, desc = "Symbole
 map("n", "<leader>cs", "<cmd>AerialNavToggle<cr>", { silent = true, desc = "Symbole Nav" })
 
 --================= Fuzzy =========================
-map("n", "<leader>ff", function()
-	require("fff").find_files()
-end, { desc = "Find Files" })
+map("n", "<leader>ff", "<cmd>FzfLua frecency cwd_only=true<cr>", { desc = "Find Files" })
 map("n", "<leader>fq", "<cmd>FzfLua quickfix<CR>", { desc = "Fzf Quickfix" })
 
 map("n", "<C-e>", "<cmd>FzfLua oldfiles<cr>", { desc = "Recent Files" })

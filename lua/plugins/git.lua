@@ -18,4 +18,14 @@ return {
 		"lewis6991/gitsigns.nvim",
 		event = "VeryLazy",
 	},
+	{
+		"NeogitOrg/neogit",
+		cmd = "Neogit",
+		opts = require("plugins.config.neogit").opts,
+		dependencies = {
+			"nvim-lua/plenary.nvim", -- required
+			"sindrets/diffview.nvim", -- optional - Diff integration
+			"ibhagwan/fzf-lua", -- optional
+		},
+	},
 }
