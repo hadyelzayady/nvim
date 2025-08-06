@@ -3,6 +3,7 @@ return {
 		"neovim/nvim-lspconfig",
 		lazy = true,
 		event = { "BufReadPre", "BufNewFile" },
+		dependencies = { "nvim-java/nvim-java" },
 	},
 	{
 		"stevearc/conform.nvim",
@@ -19,12 +20,14 @@ return {
 	{
 		"nvim-java/nvim-java",
 		dependencies = {
-			"neovim/nvim-lspconfig",
-			-- { "logrusx/nvim-java-core", branch = "migrate-to-official-mason-repo" },
 			{ "mason-org/mason.nvim", opts = {} },
 		},
 		-- enabled = false,
-		opts = {},
+		config = function()
+			require("java").setup()
+			require("lspconfig").jdtls.setup({})
+            vim.lsp.enable("jdtls")
+		end,
 	},
 	{
 		"b0o/schemastore.nvim",
