@@ -86,6 +86,9 @@ function DiagnosticsStatus()
 end
 
 function LspProgress()
+	if vim.bo.filetype == "CHADTree" then
+		return ""
+	end
 	local messages = vim.lsp.status()
 	return messages
 end
@@ -117,6 +120,9 @@ end
 autocmd("LspProgress", {
 	group = augroup("lsp"),
 	callback = function()
+		if vim.bo.filetype == "CHADTree" then
+			return
+		end
 		vim.cmd("redrawstatus")
 	end,
 })

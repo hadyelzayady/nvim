@@ -12,7 +12,7 @@ vim.keymap.set("n", "gru", function()
 end, { desc = "Go to References" })
 vim.keymap.set("n", "grr", "<cmd>LspSymbolUsages<cr>", { desc = "Symbol Usages" })
 vim.keymap.set("n", "grs", vim.lsp.buf.document_symbol, { desc = "Document Symbols" })
-vim.keymap.set("n", "grS",  vim.lsp.buf.workspace_symbol, { desc = "Workspace Symbols" })
+vim.keymap.set("n", "grS",  "<cmd>FzfLua lsp_live_workspace_symbols<cr>", { desc = "Workspace Symbols" })
 
 -- ===================== Code Actions =======================
 
