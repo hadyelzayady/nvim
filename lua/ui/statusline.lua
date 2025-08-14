@@ -1,3 +1,4 @@
+require("utils.statusline.unsavedbuffer")
 local icons = require("ui.icons").icons
 local autocmd = vim.api.nvim_create_autocmd
 
@@ -130,6 +131,7 @@ autocmd("LspProgress", {
 vim.o.statusline = table.concat({
 	"%{%v:lua.StatuslineMode()%}",
 	"%#StatusLineGit# %{%v:lua.GitBranch()%} %{%v:lua.GitFileStatus()%}",
+	"%#StatuslineUnsaved# %{v:lua.HasUnsavedBuffers()}",
 	"%=", -- Align center
 	"%#StatusLineInfo# %{%v:lua.DiagnosticsStatus()%}",
 	"%{%v:lua.ChainsnowLogs()%}",
