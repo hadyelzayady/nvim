@@ -13,7 +13,7 @@ function M.config()
 		-- load java test plugins
 		java_test = {
 			enable = true,
-			version = "0.43.1",
+			version = "0.40.1",
 		},
 
 		-- load java debugger plugins
@@ -24,16 +24,25 @@ function M.config()
 
 		spring_boot_tools = {
 			enable = true,
-			version = "1.59.0",
+			version = "1.55.1",
 		},
 
 		jdk = {
 			-- install jdk using mason.nvim
 			auto_install = false,
-			version = "24.0.0",
+			version = "17.0.2",
 		},
 	})
-	require("lspconfig").jdtls.setup({})
+	require("lspconfig").jdtls.setup({
+		settings = {
+			java = {
+				inlayHints = {
+					parameterNames = { enabled = "all" },
+				},
+				signatureHelp = { enabled = true },
+			},
+		},
+	})
 	vim.lsp.enable("jdtls")
 end
 

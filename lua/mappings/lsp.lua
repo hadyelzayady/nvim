@@ -5,21 +5,26 @@ map({ "n", "v" }, "<leader>lf", function()
 end, { silent = true, desc = "Format" })
 
 -- ====================  Code Navigation ================
-vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition" })
-vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Go to Declaration" })
-vim.keymap.set("n", "gru", function()
+map("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition" })
+map("n", "gD", vim.lsp.buf.declaration, { desc = "Go to Declaration" })
+map("n", "gru", function()
 	vim.lsp.buf.references({ includeDeclaration = false })
 end, { desc = "Go to References" })
-vim.keymap.set("n", "grr", "<cmd>LspSymbolUsages<cr>", { desc = "Symbol Usages" })
-vim.keymap.set("n", "grs", vim.lsp.buf.document_symbol, { desc = "Document Symbols" })
-vim.keymap.set("n", "grS",  "<cmd>FzfLua lsp_live_workspace_symbols<cr>", { desc = "Workspace Symbols" })
+map("n", "grr", "<cmd>LspSymbolUsages<cr>", { desc = "Symbol Usages" })
+map("n", "grs", vim.lsp.buf.document_symbol, { desc = "Document Symbols" })
+map("n", "grS", "<cmd>FzfLua lsp_live_workspace_symbols<cr>", { desc = "Workspace Symbols" })
 
 -- ===================== Code Actions =======================
 
-vim.keymap.set("n", "<leader>ci", "<cmd>LspAddMissingImports<cr>", { desc = "Add Missing Imports" })
-vim.keymap.set("n", "<leader>cc", "<cmd>LspRemoveUnused<cr>", { desc = "Remove Unused" })
-vim.keymap.set("n", "<leader>cC", "<cmd>LspRemoveUnusedImports<cr>", { desc = "Remove Unused Imports" })
-vim.keymap.set("n", "<leader>cf", "<cmd>LspFixAll<cr>", { desc = "Fix All" })
+map("n", "<leader>ci", "<cmd>LspAddMissingImports<cr>", { desc = "Add Missing Imports" })
+map("n", "<leader>cc", "<cmd>LspRemoveUnused<cr>", { desc = "Remove Unused" })
+map("n", "<leader>cC", "<cmd>LspRemoveUnusedImports<cr>", { desc = "Remove Unused Imports" })
+map("n", "<leader>cf", "<cmd>LspFixAll<cr>", { desc = "Fix All" })
+
+-- ===================== Inlayhints =======================
+map("n", "<leader>lth", function()
+	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end, { desc = "Toggle Inlay Hints" })
 
 -- =================== Diagnostic Navigation===================
 map("n", "[w", function()
