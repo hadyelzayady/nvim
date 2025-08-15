@@ -1,7 +1,7 @@
 vim.o.winbar = "%#MyWinBar# %{%v:lua.FilePath()%} %r%m %#WinBarContext# %{%v:lua.TsContext()%}"
 
 function FilePath()
-	local filename = vim.fn.expand("%:f")
+	local filename = vim.fn.expand("%:.")
 	local modified = vim.bo.modified
 
 	if modified then

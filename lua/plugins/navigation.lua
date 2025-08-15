@@ -15,9 +15,7 @@ return {
 	{
 		"dmtrKovalenko/fff.nvim",
 		-- build = "cargo build --release",
-		-- or if you are using nixos
 		build = "nix run .#release",
-		enabled = false,
 		opts = {
 			-- pass here all the options
 		},
@@ -26,6 +24,7 @@ return {
 		"otavioschwanck/fzf-lua-enchanted-files",
 		enabled = false,
 		dependencies = { "ibhagwan/fzf-lua" },
+		-- enabled = false,
 		opts = {
 			auto_history = true,
 		},

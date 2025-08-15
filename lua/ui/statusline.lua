@@ -1,3 +1,4 @@
+require("utils.statusline.unsavedbuffer")
 local icons = require("ui.icons").icons
 local autocmd = vim.api.nvim_create_autocmd
 
@@ -86,6 +87,9 @@ function DiagnosticsStatus()
 end
 
 function LspProgress()
+	if vim.bo.filetype == "CHADTree" then
+		return ""
+	end
 	local messages = vim.lsp.status()
 	return messages
 end
@@ -117,6 +121,9 @@ end
 autocmd("LspProgress", {
 	group = augroup("lsp"),
 	callback = function()
+		if vim.bo.filetype == "CHADTree" then
+			return
+		end
 		vim.cmd("redrawstatus")
 	end,
 })
@@ -124,6 +131,7 @@ autocmd("LspProgress", {
 vim.o.statusline = table.concat({
 	"%{%v:lua.StatuslineMode()%}",
 	"%#StatusLineGit# %{%v:lua.GitBranch()%} %{%v:lua.GitFileStatus()%}",
+	"%#StatuslineUnsaved# %{v:lua.HasUnsavedBuffers()}",
 	"%=", -- Align center
 	"%#StatusLineInfo# %{%v:lua.DiagnosticsStatus()%}",
 	"%{%v:lua.ChainsnowLogs()%}",
