@@ -30,7 +30,7 @@ function M.config()
 			-- names, RGB, RGBA, RRGGBB, RRGGBBAA, AARRGGBB, rgb_fn, hsl_fn
 			css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
 			-- Tailwind colors.  boolean|'normal'|'lsp'|'both'.  True sets to 'normal'
-			tailwind = false, -- Enable tailwind colors
+			tailwind = true, -- Enable tailwind colors
 			tailwind_opts = { -- Options for highlighting tailwind names
 				update_names = false, -- When using tailwind = 'both', update tailwind names from LSP results.  See tailwind section
 			},
@@ -39,11 +39,11 @@ function M.config()
 			-- Highlighting mode.  'background'|'foreground'|'virtualtext'
 			mode = "virtualtext", -- Set the display mode
 			-- Virtualtext character to use
-			virtualtext = "■",
+			virtualtext = "",
 			-- Display virtualtext inline with color.  boolean|'before'|'after'.  True sets to 'after'
-			virtualtext_inline = false,
+			virtualtext_inline = true,
 			-- Virtualtext highlight mode: 'background'|'foreground'
-			virtualtext_mode = "foreground",
+			virtualtext_mode = "background",
 			-- update color values even if buffer is not focused
 			-- example use: cmp_menu, cmp_docs
 			always_update = false,
