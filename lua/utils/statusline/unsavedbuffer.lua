@@ -16,5 +16,5 @@ vim.api.nvim_create_autocmd({ "BufModifiedSet", "BufWritePost" }, {
 
 -- Function for statusline
 function _G.HasUnsavedBuffers()
-	return has_unsaved and "Unsaved" or ""
+	return has_unsaved and " Unsaved" or ""
 end

@@ -34,12 +34,18 @@ function M.config()
 		},
 	})
 	require("lspconfig").jdtls.setup({
+		on_init = function(client)
+			client.config.capabilities.textDocument.codeLens = { dynamicRegistration = true }
+		end,
 		settings = {
 			java = {
+				contentProvider = { preferred = "fernflower" },
 				inlayHints = {
 					parameterNames = { enabled = "all" },
 				},
 				signatureHelp = { enabled = true },
+				implementationsCodeLens = { enabled = true },
+				referencesCodeLens = { enabled = true, showOnAllFunctions = true },
 			},
 		},
 	})

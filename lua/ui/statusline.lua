@@ -131,7 +131,7 @@ autocmd("LspProgress", {
 vim.o.statusline = table.concat({
 	"%{%v:lua.StatuslineMode()%}",
 	"%#StatusLineGit# %{%v:lua.GitBranch()%} %{%v:lua.GitFileStatus()%}",
-	"%#StatuslineUnsaved# %{v:lua.HasUnsavedBuffers()}",
+	"%#StatuslineUnsaved#%{v:lua.HasUnsavedBuffers()}",
 	"%=", -- Align center
 	"%#StatusLineInfo# %{%v:lua.DiagnosticsStatus()%}",
 	"%{%v:lua.ChainsnowLogs()%}",
