@@ -1,5 +1,4 @@
-local M={}
-
+local M = {}
 
 function M.config()
 require('nvim-treesitter.configs').setup {

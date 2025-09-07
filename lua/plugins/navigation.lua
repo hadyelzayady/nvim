@@ -23,6 +23,7 @@ return {
 	},
 	{
 		"otavioschwanck/fzf-lua-enchanted-files",
+		enabled = true,
 		dependencies = { "ibhagwan/fzf-lua" },
 		-- enabled = false,
 		opts = {
