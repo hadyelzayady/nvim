@@ -16,7 +16,7 @@ end
 
 local js_like_formatters = function(bufnr)
 	if require("conform").get_formatter_info("biome", bufnr).available then
-		return { "biome", "biome-check" }
+		return { "biome", "biome-check", "trim_whitespace" }
 	else
 		return { "prettierd" }
 	end

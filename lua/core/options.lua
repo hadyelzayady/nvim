@@ -108,7 +108,7 @@ opt.splitbelow = true -- New horizontal split opens below
 opt.equalalways = true -- Prevent auto-resizing of splits
 
 --=================   Backup/Swap ========================
-opt.swapfile = false -- Disable swap files
+opt.swapfile = true -- Disable swap files
 opt.backup = false -- Disable backup files
 opt.writebackup = false -- Disable write backup
 

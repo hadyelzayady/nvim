@@ -16,13 +16,13 @@ return {
 		"dmtrKovalenko/fff.nvim",
 		-- build = "cargo build --release",
 		build = "nix run .#release",
+		enabled = false,
 		opts = {
 			-- pass here all the options
 		},
 	},
 	{
 		"otavioschwanck/fzf-lua-enchanted-files",
-		enabled = false,
 		dependencies = { "ibhagwan/fzf-lua" },
 		-- enabled = false,
 		opts = {
