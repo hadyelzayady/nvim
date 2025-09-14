@@ -18,6 +18,9 @@ function GitBranch()
 	if vim.bo.filetype == "CHADTree" then
 		return ""
 	end
+    -- if vim.opt_local.diff._value then
+    --     return "Diff: " ..  ""
+    -- end
 	local branch = vim.fn.FugitiveHead()
 	if branch and branch ~= "" then
 		return "[ " .. branch .. GitAheadBehind() .. "]"

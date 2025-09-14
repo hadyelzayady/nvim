@@ -1,6 +1,11 @@
 local set = vim.api.nvim_set_hl
 local ns = 0 -- global namespace
 
+local x = {
+	1,
+	2,
+	3,
+}
 set(ns, "StatusLineNormal", { fg = "#ffffff", bg = "#4C566A" })
 set(ns, "StatusLineInsert", { fg = "#ffffff", bg = "#A3BE8C" })
 set(ns, "StatusLineVisual", { fg = "#ffffff", bg = "#B48EAD" })
@@ -17,3 +22,4 @@ set(ns, "PmenuSel", { fg = "#ffffff", bg = "#444444" })
 set(ns, "MyWinBar", { fg = "#ffffff", bg = "#1f1f2e" })
 set(ns, "WinBarContext", { fg = "#cccccc", bg = "#222222" })
 set(0, "StatuslineUnsaved", { fg = "#ff66ff", bold = true })
+set(ns, "Folded", { fg = "#9e9e9e", bg = "#444444" })

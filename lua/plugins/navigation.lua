@@ -14,8 +14,8 @@ return {
 
 	{
 		"dmtrKovalenko/fff.nvim",
-		-- build = "cargo build --release",
-		build = "nix run .#release",
+		build = "cargo build --release",
+		-- build = "nix run .#release",
 		opts = {
 			-- pass here all the options
 		},
