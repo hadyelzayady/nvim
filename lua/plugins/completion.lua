@@ -5,6 +5,7 @@ return {
 			"rafamadriz/friendly-snippets",
 			"mikavilpas/blink-ripgrep.nvim",
 			"Kaiser-Yang/blink-cmp-git",
+			"alexandre-abrioux/blink-cmp-npm.nvim",
 		},
 		version = "1.*",
 		event = "InsertEnter",
@@ -42,7 +43,7 @@ return {
 				},
 			},
 			sources = {
-				default = { "git", "lsp", "path", "snippets", "buffer" },
+				default = { "git", "npm", "lsp", "path", "snippets", "buffer" },
 				per_filetype = {
 					sql = { "lsp", "snippets", "dadbod", "buffer" },
 				},
@@ -63,6 +64,21 @@ return {
 						opts = {},
 					},
 					dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
+					npm = {
+						name = "npm",
+						module = "blink-cmp-npm",
+						async = true,
+						-- optional - make blink-cmp-npm completions top priority (see `:h blink.cmp`)
+						score_offset = 100,
+						-- optional - blink-cmp-npm config
+						---@module "blink-cmp-npm"
+						---@type blink-cmp-npm.Options
+						opts = {
+							ignore = {},
+							only_semantic_versions = true,
+							only_latest_version = false,
+						},
+					},
 				},
 			},
 
