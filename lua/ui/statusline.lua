@@ -136,7 +136,7 @@ vim.o.statusline = table.concat({
 	"%#StatusLineGit# %{%v:lua.GitBranch()%} %{%v:lua.GitFileStatus()%}",
 	"%#StatuslineUnsaved#%{v:lua.HasUnsavedBuffers()}",
 	"%=", -- Align center
-	"%#StatusLineInfo# %{%v:lua.DiagnosticsStatus()%}",
+	"%#StatusLineInfo#%{%v:lua.DiagnosticsStatus()%}",
 	"%{%v:lua.ChainsnowLogs()%}",
 	"%=", -- Align right
 	"%{%v:lua.CodeCompanionProgress()%}",
