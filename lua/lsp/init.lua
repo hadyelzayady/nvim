@@ -4,6 +4,7 @@ require("lsp.commands")
 
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("ts_ls")
+vim.lsp.enable("yamlls")
 vim.lsp.enable("biome")
 vim.lsp.enable("cssmodules_ls")
 vim.lsp.enable("css_variables")
