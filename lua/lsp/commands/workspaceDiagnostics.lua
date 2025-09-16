@@ -1,12 +1,22 @@
+local M = {}
+M.loading = {
+	biome = false,
+	tsc = false,
+}
 local supported_clients = {
 	biome = {
 		isEnabled = function()
 			return vim.fn.filereadable("biome.json") == 1 or vim.fn.filereadable("biome.jsonc") == 1
 		end,
 		run = function(onResult)
+			M.loading.biome = true
 			vim.fn.jobstart("npx biome check --reporter=github .", {
 				stdout_buffered = true,
 				stderr_buffered = true,
+				on_exit = function()
+					M.loading.biome = false
+					vim.cmd("redrawstatus")
+				end,
 				on_stderr = function(_, output)
 					-- vim.notify(
 					-- 	table.concat(output, "\n"),
@@ -45,9 +55,14 @@ local supported_clients = {
 			return vim.fn.filereadable("tsconfig.json") == 1
 		end,
 		run = function(onResult)
+			M.loading.tsc = true
 			vim.fn.jobstart("npx tsc --noEmit", {
 				stdout_buffered = true,
 				stderr_buffered = true,
+				on_exit = function()
+					M.loading.tsc = false
+					vim.cmd("redrawstatus")
+				end,
 				on_stderr = function(_, output)
 					vim.notify(
 						table.concat(output, "\n"),
@@ -111,3 +126,4 @@ vim.api.nvim_create_user_command("WorkspaceDiagnostics", function(args)
 		end
 	end
 end, {})
+return M

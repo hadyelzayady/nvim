@@ -18,9 +18,9 @@ function GitBranch()
 	if vim.bo.filetype == "CHADTree" then
 		return ""
 	end
-    -- if vim.opt_local.diff._value then
-    --     return "Diff: " ..  ""
-    -- end
+	-- if vim.opt_local.diff._value then
+	--     return "Diff: " ..  ""
+	-- end
 	local branch = vim.fn.FugitiveHead()
 	if branch and branch ~= "" then
 		return "[ " .. branch .. GitAheadBehind() .. "]"
@@ -80,6 +80,23 @@ local function getDiagnosticLevelStatus(severity)
 	return ""
 end
 
+function GetLoadingProjectDiag()
+	local project_diag_status = require("lsp.commands.workspaceDiagnostics").loading
+	local pending = {}
+	for key, v in pairs(project_diag_status) do
+		if v then
+			pending[#pending + 1] = key
+		end
+	end
+	local loading_status = ""
+	if #pending > 0 then
+		loading_status = "Project Diag : "
+		for _, v in ipairs(pending) do
+			loading_status = loading_status .. v .. " "
+		end
+	end
+	return loading_status
+end
 function DiagnosticsStatus()
 	return table.concat({
 		getDiagnosticLevelStatus(vim.diagnostic.severity.ERROR),
@@ -136,6 +153,7 @@ vim.o.statusline = table.concat({
 	"%#StatusLineGit# %{%v:lua.GitBranch()%} %{%v:lua.GitFileStatus()%}",
 	"%#StatuslineUnsaved#%{v:lua.HasUnsavedBuffers()}",
 	"%=", -- Align center
+	"%{%v:lua.GetLoadingProjectDiag()%}",
 	"%#StatusLineInfo#%{%v:lua.DiagnosticsStatus()%}",
 	"%{%v:lua.ChainsnowLogs()%}",
 	"%=", -- Align right
