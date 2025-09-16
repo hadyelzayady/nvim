@@ -42,3 +42,5 @@ end, { silent = true, desc = "Prev Error" })
 map("n", "]e", function()
 	vim.diagnostic.jump({ count = vim.v.count1, severity = "ERROR" })
 end, { silent = true, desc = "Next Error" })
+
+map("n", "<leader>lD", "<cmd>WorkspaceDiagnostics<cr>", { desc = "Request workspace diagnostics" })
