@@ -120,7 +120,7 @@ vim.api.nvim_create_user_command("WorkspaceDiagnostics", function(args)
 					vim.fn.setqflist({}, "a", { title = "Project Diagnostics" })
 					vim.cmd("copen")
 				else
-					vim.notify("No issues", vim.log.levels.INFO)
+					vim.notify(name .. ": No issues", vim.log.levels.INFO)
 				end
 			end)
 		end
