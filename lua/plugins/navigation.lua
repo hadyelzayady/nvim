@@ -7,6 +7,12 @@ return {
 		dependencies = { "echasnovski/mini.icons" },
 	},
 	{
+		"A7Lavinraj/fyler.nvim",
+		dependencies = { "nvim-mini/mini.icons" },
+		branch = "stable",
+		opts = {},
+	},
+	{
 		"elanmed/fzf-lua-frecency.nvim",
 		dependencies = { "ibhagwan/fzf-lua" },
 		config = true,
@@ -17,6 +23,9 @@ return {
 		build = "cargo build --release",
 		-- build = "nix run .#release",
 		opts = {
+			layout = {
+				prompt_position = "top", -- or 'top'
+			},
 			-- pass here all the options
 		},
 	},

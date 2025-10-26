@@ -10,6 +10,6 @@ M.opts = {
 			dismiss = "<C-x>", -- Dismiss suggestion
 		},
 	},
-	copilot_node_command = { "nix", "run", "nixpkgs#nodejs_22", "--" },
+	copilot_node_command = vim.fn.expand("$HOME") .. "/.local/state/fnm_multishells/6652_1744129457797/bin/node", -- Node.js version must be > 20
 }
 return M

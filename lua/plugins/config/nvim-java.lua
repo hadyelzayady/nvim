@@ -33,7 +33,8 @@ function M.config()
 			version = "17.0.2",
 		},
 	})
-	require("lspconfig").jdtls.setup({
+	vim.lsp.config("jdtls", {
+
 		on_init = function(client)
 			client.config.capabilities.textDocument.codeLens = { dynamicRegistration = true }
 		end,
