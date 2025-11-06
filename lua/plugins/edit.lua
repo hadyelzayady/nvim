@@ -42,4 +42,8 @@ return {
 		opts = require("plugins.config.grug-far").opts,
 		cmd = { "GrugFar", "GrugFarWithin" },
 	},
+	{
+		"windwp/nvim-ts-autotag",
+		config = require("plugins.config.autotag").config,
+	},
 }

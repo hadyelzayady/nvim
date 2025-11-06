@@ -14,6 +14,7 @@ M.opts = {
 		{ "<leader>j", group = "Jump" }, -- group
 		{ "<leader>q", group = "Quit/Save" }, -- group
 		{ "<leader>lt", group = "Toggle" }, -- group
+		{ "<leader>ltd", group = "Diagnostics" }, -- group
 		{ "<leader>td", group = "DiffOpts" }, -- group
 		{ "<leader>r", group = "Run/Debug/Test" }, -- group
 		{ "<leader>,", group = "Log" }, -- group

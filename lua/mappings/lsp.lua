@@ -24,7 +24,45 @@ map("n", "<leader>cf", "<cmd>LspFixAll<cr>", { desc = "Fix All" })
 -- ===================== Inlayhints =======================
 map("n", "<leader>lth", function()
 	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-end, { desc = "Toggle Inlay Hints" })
+end, { desc = "Inlay Hints" })
+
+map("n", "<leader>ltdl", function()
+	local config = vim.diagnostic.config()
+	local current = config.virtual_lines or false
+	vim.diagnostic.config({ virtual_lines = not current, virtual_text = current })
+end, { desc = "Virtual Lines/Text" })
+
+map("n", "<leader>ltdt", function()
+	local config = vim.diagnostic.config()
+	local current = config.virtual_lines or config.virtual_text or false
+	vim.diagnostic.config({ virtual_lines = not current, virtual_text = not current })
+end, { desc = "On/Off" })
+
+map("n", "<leader>ltdc", function()
+	local config = vim.diagnostic.config()
+	local is_enabled = config.virtual_lines
+
+	local newConfig = {}
+	if is_enabled then
+		local is_current_line = type(config.virtual_lines) == "table" and config.virtual_lines.current_line
+		if is_current_line then
+			newConfig.virtual_lines = { current_line = false }
+		else
+			newConfig.virtual_lines = { current_line = true }
+		end
+	end
+
+	local is_enabled_text = config.virtual_text
+	if is_enabled_text then
+		local is_current_line = type(config.virtual_text) == "table" and config.virtual_text.current_line
+		if is_current_line then
+			newConfig.virtual_text = { current_line = false }
+		else
+			newConfig.virtual_text = { current_line = true }
+		end
+	end
+	vim.diagnostic.config(newConfig)
+end, { desc = "Current Line" })
 
 -- =================== Diagnostic Navigation===================
 map("n", "[w", function()
