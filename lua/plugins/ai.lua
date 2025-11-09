@@ -4,6 +4,7 @@ return {
 		cmd = "Copilot",
 		event = "InsertEnter",
 		opts = require("plugins.config.copilot").opts,
+		dependencies = { "copilotlsp-nvim/copilot-lsp" },
 	},
 	{
 		"olimorris/codecompanion.nvim",
