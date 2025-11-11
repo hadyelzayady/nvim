@@ -29,7 +29,11 @@ end, { desc = "Inlay Hints" })
 map("n", "<leader>ltdl", function()
 	local config = vim.diagnostic.config()
 	local current = config.virtual_lines or false
-	vim.diagnostic.config({ virtual_lines = not current, virtual_text = current })
+	local new_current = type(config.virtual_text) == "table"
+			and config.virtual_text.current_line
+			and { current_line = not current }
+		or not current
+	vim.diagnostic.config({ virtual_lines = new_current, virtual_text = current })
 end, { desc = "Virtual Lines/Text" })
 
 map("n", "<leader>ltdt", function()
