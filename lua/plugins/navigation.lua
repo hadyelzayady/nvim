@@ -9,41 +9,20 @@ return {
 	{
 		"A7Lavinraj/fyler.nvim",
 		dependencies = { "nvim-mini/mini.icons" },
-		branch = "stable",
+		enabled = false,
+		branch = "main",
 		opts = {},
 	},
 	{
-		"elanmed/fzf-lua-frecency.nvim",
-		dependencies = { "ibhagwan/fzf-lua" },
-		config = true,
-	},
-
-	{
-		"dmtrKovalenko/fff.nvim",
-		build = "cargo build --release",
-		-- build = "nix run .#release",
-		opts = {
-			layout = {
-				prompt_position = "top", -- or 'top'
-			},
-			-- pass here all the options
+		"nvim-tree/nvim-tree.lua",
+		version = "*",
+		lazy = false,
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
 		},
-	},
-	{
-		"otavioschwanck/fzf-lua-enchanted-files",
-		enabled = true,
-		dependencies = { "ibhagwan/fzf-lua" },
-		-- enabled = false,
-		opts = {
-			auto_history = true,
-		},
-	},
-	{
-		"ms-jpq/chadtree",
-		build = "python3 -m chadtree deps",
-		branch = "chad",
-		event = "VeryLazy",
-		config = require("plugins.config.chadtree").config,
+		config = function()
+			require("nvim-tree").setup({})
+		end,
 	},
 	{
 
@@ -53,12 +32,6 @@ return {
 		cmd = { "Browse" },
 		submodules = false,
 		opts = require("plugins.config.gx").opts,
-	},
-	{
-		"stevearc/oil.nvim",
-		cmd = { "Oil" },
-		dependencies = { "echasnovski/mini.icons" },
-		opts = require("plugins.config.oil").opts,
 	},
 	{
 		"echasnovski/mini.bufremove",
@@ -102,10 +75,4 @@ return {
 			})
 		end,
 	},
-	-- {
-	-- 	"folke/flash.nvim",
-	-- 	keys = require("plugins-options.flash").keys,
-	-- 	config = require("plugins-options.flash").config,
-	-- 	vscode = false,
-	-- },
 }

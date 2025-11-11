@@ -3,7 +3,10 @@ return {
 		"neovim/nvim-lspconfig",
 		lazy = true,
 		event = { "BufReadPre", "BufNewFile" },
-		dependencies = { "nvim-java/nvim-java" },
+		dependencies = {
+			-- "nvim-java/nvim-java" ,
+			"yioneko/nvim-vtsls",
+		},
 	},
 	{
 		"stevearc/conform.nvim",
@@ -18,19 +21,25 @@ return {
 		config = true, -- necessary as per https://github.com/rmagatti/goto-preview/issues/88
 	},
 	{
-		"nvim-java/nvim-java",
-		dependencies = {
-			{ "mason-org/mason.nvim", opts = {} },
-		},
-		-- enabled = false,
-		config = function()
-			require("java").setup()
-			require("lspconfig").jdtls.setup({})
-            -- vim.lsp.enable("jdtls")
-		end,
-	},
-	{
 		"b0o/schemastore.nvim",
 		ft = { "json", "yaml" },
+	},
+	{
+		"yioneko/nvim-vtsls",
+	},
+	{
+		{
+			"antosha417/nvim-lsp-file-operations",
+			dependencies = {
+				"nvim-lua/plenary.nvim",
+				-- Uncomment whichever supported plugin(s) you use
+				"nvim-tree/nvim-tree.lua",
+				-- "nvim-neo-tree/neo-tree.nvim",
+				-- "simonmclean/triptych.nvim"
+			},
+			config = function()
+				require("lsp-file-operations").setup()
+			end,
+		},
 	},
 }

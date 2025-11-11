@@ -113,18 +113,18 @@ opt.backup = false -- Disable backup files
 opt.writebackup = false -- Disable write backup
 
 --=================   Diff ========================
-opt.diffopt = {
-	"inline:word",
-	"internal",
-	"indent-heuristic", -- Use heuristic for indenting
-	"filler",
-	"closeoff",
-	"context:12",
-	"vertical", -- Show diffs in vertical splits
-	"hiddenoff", -- Do not hide buffers when viewing diffs
-	"algorithm:histogram", -- Use the histogram algorithm for better diffs
-	"linematch:60", -- Align similar lines (Neovim 0.9+ feature)
-}
+-- opt.diffopt = {
+-- 	"inline:word",
+-- 	"internal",
+-- 	"indent-heuristic", -- Use heuristic for indenting
+-- 	"filler",
+-- 	"closeoff",
+-- 	"context:12",
+-- 	"vertical", -- Show diffs in vertical splits
+-- 	"hiddenoff", -- Do not hide buffers when viewing diffs
+-- 	"algorithm:histogram", -- Use the histogram algorithm for better diffs
+-- 	"linematch:60", -- Align similar lines (Neovim 0.9+ feature)
+-- }
 
 --=================   Statusline ========================
 opt.pumheight = 10 -- Limit popup menu height
