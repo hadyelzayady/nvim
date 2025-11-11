@@ -1,18 +1,21 @@
 return {
 	{
 		"mfussenegger/nvim-dap",
+		lazy = true,
 	},
 	{
 		"igorlfs/nvim-dap-view",
 		dependencies = {
 			"mfussenegger/nvim-dap",
 		},
+		cmd = { "DapViewOpen" },
 		---@module 'dap-view'
 		---@type dapview.Config
 		opts = {},
 	},
 	{
 		"nvim-neotest/neotest",
+		lazy = true,
 		dependencies = {
 			"nvim-neotest/nvim-nio",
 			"nvim-lua/plenary.nvim",

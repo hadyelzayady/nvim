@@ -16,6 +16,7 @@ return {
 	},
 	{
 		"pwntester/octo.nvim",
+		cmd = { "Octo" },
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"ibhagwan/fzf-lua",
@@ -26,5 +27,6 @@ return {
 	{
 		"lewis6991/gitsigns.nvim",
 		event = "VeryLazy",
+		opts = require("plugins.config.gitsigns").opts,
 	},
 }
