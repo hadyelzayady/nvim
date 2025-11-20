@@ -25,4 +25,11 @@ return {
 		},
 		config = require("plugins.config.neotest").config,
 	},
+	{
+		"chriswritescode-dev/consolelog.nvim",
+		enabled = false,
+		config = function()
+			require("consolelog").setup()
+		end,
+	},
 }

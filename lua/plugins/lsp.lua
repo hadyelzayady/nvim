@@ -16,7 +16,7 @@ return {
 	{
 		"rmagatti/goto-preview",
 		dependencies = { "rmagatti/logger.nvim" },
-		event = "BufEnter",
+		keys = { "gpd", "gpr", "gpi" },
 		opts = require("plugins.config.goto-preview").opts,
 		config = true, -- necessary as per https://github.com/rmagatti/goto-preview/issues/88
 	},
@@ -34,6 +34,7 @@ return {
 				"nvim-lua/plenary.nvim",
 				"nvim-tree/nvim-tree.lua",
 			},
+			event = "VeryLazy",
 			config = function()
 				require("lsp-file-operations").setup()
 			end,

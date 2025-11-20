@@ -2,6 +2,7 @@ return {
 	{
 		"tpope/vim-fugitive",
 		lazy = false,
+		event = "VeryLazy",
 	},
 	{
 		"emmanueltouzery/agitator.nvim",
@@ -26,7 +27,7 @@ return {
 	},
 	{
 		"lewis6991/gitsigns.nvim",
-		event = "VeryLazy",
+		event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 		opts = require("plugins.config.gitsigns").opts,
 	},
 }
