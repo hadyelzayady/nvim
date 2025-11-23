@@ -5,4 +5,7 @@ return {
 		config = require("plugins.config.treesitter").config,
 		build = ":TSUpdate",
 	},
+	{
+		"liangxianzhe/floating-input.nvim",
+	},
 }

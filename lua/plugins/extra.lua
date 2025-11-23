@@ -9,4 +9,9 @@ return {
 		keys = { "<space>," },
 		opts = {},
 	},
+	{
+		"rmagatti/auto-session",
+		lazy = false,
+		opts = require("plugins.config.autosession").opts,
+	},
 }

@@ -4,8 +4,7 @@ function M.config()
 	local fzf = require("fzf-lua")
 	local actions = require("fzf-lua.actions")
 	fzf.setup({
-		"hide",
-		"max-perf",
+		{ "hide" },
 		previewers = {
 			-- builtin = {
 			--     extensions = {
@@ -16,7 +15,7 @@ function M.config()
 			-- },
 		},
 		winopts = {
-			preview = { default = "builtin" },
+			-- preview = { default = "builtin" },
 		},
 		keymap = {
 			builtin = {
@@ -29,6 +28,7 @@ function M.config()
 			prompt = "Files❯ ",
 			multiprocess = true, -- run command in a separate process
 			cwd_prompt = false,
+			file_icons = false,
 			fzf_opts = {
 				["--history"] = vim.fn.stdpath("data") .. "/fzf-lua-files-history",
 			},
@@ -39,6 +39,7 @@ function M.config()
 			cwd_only = true,
 			stat_file = true, -- verify files exist on disk
 			include_current_session = true, -- include bufs from current session
+			file_icons = false,
 			fzf_opts = {
 				["--history"] = vim.fn.stdpath("data") .. "/fzf-lua-old-files-history",
 			},
@@ -47,6 +48,7 @@ function M.config()
 		buffers = {
 			prompt = "Buffers❯ ",
 			sort_lastused = true, -- sort buffers() by last used
+			file_icons = false,
 			show_unloaded = true, -- show unloaded buffers
 			cwd_only = true, -- buffers for the cwd only
 			fzf_opts = {
@@ -59,6 +61,7 @@ function M.config()
 			rg_glob = true, -- default to glob parsing?
 			glob_flag = "--iglob", -- for case sensitive globs use '--glob'
 			glob_separator = "%s%-%-", -- query separator pattern (lua): ' --'
+			file_icons = false,
 			fzf_opts = {
 				["--history"] = vim.fn.stdpath("data") .. "/fzf-lua-grep-history",
 			},
