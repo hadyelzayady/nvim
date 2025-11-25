@@ -1,8 +1,19 @@
 return {
 	{
 		"tpope/vim-fugitive",
-		lazy = false,
-		event = "VeryLazy",
+		cmd = {
+			"Git",
+			"Gstatus",
+			"Gblame",
+			"Gdiffsplit",
+			"Gvdiffsplit",
+			"Gbrowse",
+			"Gread",
+			"Gwrite",
+			"GDelete",
+			"GMove",
+			"GRename",
+		},
 	},
 	{
 		"emmanueltouzery/agitator.nvim",
@@ -29,5 +40,10 @@ return {
 		"lewis6991/gitsigns.nvim",
 		event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 		opts = require("plugins.config.gitsigns").opts,
+	},
+	{
+		"esmuellert/vscode-diff.nvim",
+		enabled = false,
+		dependencies = { "MunifTanjim/nui.nvim" },
 	},
 }

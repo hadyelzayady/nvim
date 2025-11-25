@@ -16,7 +16,7 @@ return {
 	{
 		"nvim-tree/nvim-tree.lua",
 		version = "*",
-		lazy = false,
+		cmd = { "NvimTreeToggle", "NvimTreeFindFile" },
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 		},
@@ -65,7 +65,8 @@ return {
 	{
 		"s1n7ax/nvim-window-picker",
 		name = "window-picker",
-		event = "VeryLazy",
+		lazy = true,
+		dependencies = { "nvim-tree/nvim-tree.lua" },
 		version = "2.*",
 		config = function()
 			require("window-picker").setup({

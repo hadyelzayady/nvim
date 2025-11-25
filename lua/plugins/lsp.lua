@@ -3,10 +3,6 @@ return {
 		"neovim/nvim-lspconfig",
 		lazy = true,
 		event = { "BufReadPre", "BufNewFile" },
-		dependencies = {
-			-- "nvim-java/nvim-java" ,
-			"yioneko/nvim-vtsls",
-		},
 	},
 	{
 		"stevearc/conform.nvim",
@@ -26,18 +22,32 @@ return {
 	},
 	{
 		"yioneko/nvim-vtsls",
+		ft = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
 	},
 	{
-		{
-			"antosha417/nvim-lsp-file-operations",
-			dependencies = {
-				"nvim-lua/plenary.nvim",
-				"nvim-tree/nvim-tree.lua",
-			},
-			event = "VeryLazy",
-			config = function()
-				require("lsp-file-operations").setup()
-			end,
+		"mfussenegger/nvim-jdtls",
+		ft = { "java" },
+		dependencies = { { "mason-org/mason.nvim", opts = {}, dependencies = { "ibhagwan/fzf-lua" } } },
+	},
+	{
+		"JavaHello/spring-boot.nvim",
+		ft = { "java", "yaml", "jproperties" },
+		dependencies = {
+			"mfussenegger/nvim-jdtls", -- or nvim-java, nvim-lspconfig
+			"ibhagwan/fzf-lua", -- 可选，用于符号选择等UI功能。也可以使用其他选择器（例如 telescope.nvim）。
 		},
+		opts = {},
+	},
+	{
+		"antosha417/nvim-lsp-file-operations",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-tree.lua",
+		},
+		lazy = true,
+		config = function()
+			require("lsp-file-operations").setup()
+			require("lsp.servers").addLspFileOperations()
+		end,
 	},
 }

@@ -1,8 +1,11 @@
 return {
 	{
 		"folke/which-key.nvim",
-		event = "VeryLazy",
 		opts = require("plugins.config.whichkey").opts,
+		event = "VeryLazy",
+		cond = function()
+			return vim.o.columns > 80 -- skip for small windows
+		end,
 	},
 	{
 		"chrisgrieser/nvim-chainsaw",

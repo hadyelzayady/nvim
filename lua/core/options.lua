@@ -34,7 +34,7 @@ for _, plugin in ipairs({
 	"rplugin",
 	"remote_plugins",
 }) do
-	vim.g["loaded_" .. plugin] = 0
+	vim.g["loaded_" .. plugin] = 1
 end
 
 --=================   UI ========================

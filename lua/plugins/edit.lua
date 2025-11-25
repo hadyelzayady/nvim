@@ -29,6 +29,7 @@ return {
 		dependencies = {
 			{
 				"nvim-treesitter/nvim-treesitter-textobjects",
+				event = "VeryLazy",
 				init = function()
 					-- no need to load the plugin, since we only need its queries
 					require("lazy.core.loader").disable_rtp_plugin("nvim-treesitter-textobjects")
@@ -44,6 +45,7 @@ return {
 	},
 	{
 		"windwp/nvim-ts-autotag",
+		enabled = false,
 		config = require("plugins.config.autotag").config,
 	},
 }
