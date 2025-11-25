@@ -1,19 +1,19 @@
 return {
 	{
 		"tpope/vim-fugitive",
-		cmd = {
-			"Git",
-			"Gstatus",
-			"Gblame",
-			"Gdiffsplit",
-			"Gvdiffsplit",
-			"Gbrowse",
-			"Gread",
-			"Gwrite",
-			"GDelete",
-			"GMove",
-			"GRename",
-		},
+		-- cmd = {
+		-- 	"Git",
+		-- 	"Gstatus",
+		-- 	"Gblame",
+		-- 	"Gdiffsplit",
+		-- 	"Gvdiffsplit",
+		-- 	"Gbrowse",
+		-- 	"Gread",
+		-- 	"Gwrite",
+		-- 	"GDelete",
+		-- 	"GMove",
+		-- 	"GRename",
+		-- },
 	},
 	{
 		"emmanueltouzery/agitator.nvim",

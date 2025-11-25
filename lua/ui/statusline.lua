@@ -2,6 +2,15 @@ require("utils.statusline.unsavedbuffer")
 local icons = require("ui.icons").icons
 local autocmd = vim.api.nvim_create_autocmd
 
+local name_to_abb = {
+	["biome"] = "B",
+	["biome-check"] = "BC",
+	["trim_whitespace"] = "TW",
+	["eslint_d"] = "ES",
+	["stylua"] = "SL",
+	["cssmodules_ls"] = "CSSM",
+	["vtsls"] = "VTS",
+}
 local function augroup(name)
 	return vim.api.nvim_create_augroup("hady_" .. name, { clear = true })
 end
@@ -14,6 +23,22 @@ function GitAheadBehind()
 	return require("utils.statusline.gitstatus").GitAheadBehind()
 end
 
+local function shorten_branch(branch)
+  local ticket = branch:match("(%u+%-%d+)")
+  local name = branch:match("([^/]+)$") or branch
+
+  if ticket and name then
+    local rest = name:gsub(ticket .. "%-?", "")
+    local words = {}
+    for w in rest:gmatch("[^%-]+") do
+      words[#words+1] = w
+      if #words == 3 then break end
+    end
+    return ticket .. "-" .. table.concat(words, "-")
+  end
+
+  return name
+end
 function GitBranch()
 	if vim.bo.filetype == "CHADTree" then
 		return ""
@@ -23,7 +48,7 @@ function GitBranch()
 	-- end
 	local branch = vim.fn.FugitiveHead()
 	if branch and branch ~= "" then
-		return "[ " .. branch .. GitAheadBehind() .. "]"
+		return "[ " .. shorten_branch(branch) .. GitAheadBehind() .. "]"
 	end
 	return ""
 end
@@ -50,6 +75,10 @@ function Lsp()
 	if next(clients) == nil then
 		return ""
 	end
+    -- map client names to abbreviations
+    for i, name in ipairs(clients) do
+        clients[i] = name_to_abb[name] or name
+    end
 	return " [" .. table.concat(clients, ", ") .. "]"
 end
 
@@ -62,7 +91,7 @@ function Formatter()
 	local formatters = {}
 	for _, value in ipairs(active) do
 		if value.available then
-			table.insert(formatters, value.name)
+			table.insert(formatters, name_to_abb[value.name] or value.name)
 		end
 	end
 	if #formatters == 0 then
