@@ -16,7 +16,8 @@ map("n", "<leader>cs", "<cmd>AerialNavToggle<cr>", { silent = true, desc = "Symb
 --================= Fuzzy =========================
 -- map("n", "<leader>ff", "<cmd>FzfLua frecency cwd_only=true<cr>", { desc = "Find Files" })
 -- map("n", "<leader>ff", require("fff").find_files, { desc = "Find Files" })
-map("n", "<leader>ff", "<cmd>FzfLua files<cr>", { desc = "Find Files" })
+-- map("n", "<leader>ff", "<cmd>FzfLua files<cr>", { desc = "Find Files" })
+map("n", "<leader>ff", "<cmd>lua require('fzf-lua-frecency').frecency({ cwd_only = true,})<cr>", { desc = "Live Grep" })
 map("n", "<leader>fq", "<cmd>FzfLua quickfix<CR>", { desc = "Fzf Quickfix" })
 map("n", "<leader>fb", "<cmd>FzfLua buffers<CR>", { desc = "Fzf Buffers" })
 

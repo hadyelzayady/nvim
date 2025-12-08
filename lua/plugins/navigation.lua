@@ -7,6 +7,11 @@ return {
 		dependencies = { "echasnovski/mini.icons" },
 	},
 	{
+		"elanmed/fzf-lua-frecency.nvim",
+		lazy = true,
+	},
+
+	{
 		"A7Lavinraj/fyler.nvim",
 		dependencies = { "nvim-mini/mini.icons" },
 		enabled = false,
@@ -16,7 +21,7 @@ return {
 	{
 		"nvim-tree/nvim-tree.lua",
 		version = "*",
-		cmd = { "NvimTreeToggle", "NvimTreeFindFile","NvimTreeFindFileToggle" },
+		cmd = { "NvimTreeToggle", "NvimTreeFindFile", "NvimTreeFindFileToggle" },
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 		},
