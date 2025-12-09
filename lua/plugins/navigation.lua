@@ -9,8 +9,10 @@ return {
 	{
 		"elanmed/fzf-lua-frecency.nvim",
 		lazy = true,
+		opts = {
+			display_score = false,
+		},
 	},
-
 	{
 		"A7Lavinraj/fyler.nvim",
 		dependencies = { "nvim-mini/mini.icons" },
