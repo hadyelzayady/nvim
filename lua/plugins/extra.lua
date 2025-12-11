@@ -17,4 +17,10 @@ return {
 		lazy = false,
 		opts = require("plugins.config.autosession").opts,
 	},
+	{
+		"vuki656/package-info.nvim",
+		dependencies = "MunifTanjim/nui.nvim",
+		opts = require("plugins.config.package-info").opts,
+		lazy = true,
+	},
 }

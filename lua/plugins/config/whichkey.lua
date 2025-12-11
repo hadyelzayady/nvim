@@ -9,6 +9,7 @@ M.opts = {
 		{ "<leader>f", group = "Find" }, -- group
 		{ "<leader>s", group = "Search/Replace" }, -- group
 		{ "<leader>c", group = "Code" }, -- group
+		{ "<leader>p", group = "Package Manager" }, -- group
 		{ "<leader>l", group = "Lsp" }, -- group
 		{ "<leader>o", group = "Open" }, -- group
 		{ "<leader>j", group = "Jump" }, -- group

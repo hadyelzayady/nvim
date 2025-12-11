@@ -1,6 +1,7 @@
 local map = vim.keymap.set
 
 map("n", "<leader>sw", "<cmd>FzfLua grep_cword<cr>", { desc = "Search Current Word (project)" })
+map("n", "<leader>s'", "<cmd>FzfLua grep resume=true<cr>", { desc = "Resume Grep" })
 map("n", "<leader>sb", function()
 	require("fzf-lua").grep_curbuf({ previewer = "builtin", winopts = { preview = { hidden = false } } })
 end, { desc = "Search Buffer" })
