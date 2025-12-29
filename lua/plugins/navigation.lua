@@ -1,7 +1,7 @@
 return {
 	{
 		"ibhagwan/fzf-lua",
-		cmd = "FzfLua",
+		-- cmd = "FzfLua",
 		---@diagnostic disable-next-line: different-requires
 		config = require("plugins.config.fzf-lua").config,
 		dependencies = { "echasnovski/mini.icons" },
@@ -11,7 +11,12 @@ return {
 		lazy = true,
 		opts = {
 			display_score = false,
+			db_dir = vim.fs.joinpath(vim.fn.stdpath("data"), "fzf-lua-frecency"),
+			stat_file = true,
 		},
+		config = function(_, opts)
+			require("fzf-lua-frecency").setup(opts)
+		end,
 	},
 	{
 		"A7Lavinraj/fyler.nvim",

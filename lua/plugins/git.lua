@@ -46,4 +46,28 @@ return {
 		enabled = false,
 		dependencies = { "MunifTanjim/nui.nvim" },
 	},
+	{
+		"otavioschwanck/github-pr-reviewer.nvim",
+		opts = {
+			-- options here
+		},
+		keys = {
+			{ "<leader>P", "<cmd>PRReviewMenu<cr>", desc = "PR Review Menu" },
+			{ "<leader>P", ":<C-u>'<,'>PRSuggestChange<CR>", desc = "Suggest change", mode = "v" },
+		},
+	},
+	{
+		"Juksuu/worktrees.nvim",
+		opts = {},
+	},
+	{
+		"NeogitOrg/neogit",
+		cmd = "Neogit",
+		opts = require("plugins.config.neogit").opts,
+		dependencies = {
+			"nvim-lua/plenary.nvim", -- required
+			"sindrets/diffview.nvim", -- optional - Diff integration
+			"ibhagwan/fzf-lua", -- optional
+		},
+	},
 }

@@ -15,6 +15,7 @@ return {
 	{
 		"rmagatti/auto-session",
 		lazy = false,
+		enabled = true,
 		opts = require("plugins.config.autosession").opts,
 	},
 	{

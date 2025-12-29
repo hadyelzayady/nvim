@@ -11,7 +11,7 @@ g.loaded_netrw = 1
 g.loaded_netrwPlugin = 1
 -- Disable all these legacy plugins/features
 for _, plugin in ipairs({
-    "gzip",
+	"gzip",
 	"zip",
 	"zipPlugin",
 	"tar",
@@ -98,7 +98,7 @@ opt.lazyredraw = true -- Avoid unnecessary screen redraws
 opt.redrawtime = 1000 -- Increase max redraw time for large files
 opt.synmaxcol = 200 -- Limit syntax highlighting for long lines
 opt.ttyfast = true -- Enable fast terminal mode
-opt.filetype="on"
+opt.filetype = "on"
 g.did_load_filetypes = nil -- skip vimscripts for filetype detection
 vim.cmd("syntax off") -- Disable syntax highlighting for performance as we use treesitter
 
@@ -130,3 +130,5 @@ opt.writebackup = false -- Disable write backup
 opt.pumheight = 10 -- Limit popup menu height
 -- opt.laststatus = 3          -- global statusline
 opt.showmode = false -- Don't show mode, it's redundant with a statusline
+
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"

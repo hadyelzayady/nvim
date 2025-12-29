@@ -1,6 +1,7 @@
 local M = {}
 M.opts = {
 	suppressed_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
+	cwd_change_handling = true, -- Automatically save/restore sessions when changing directories
 	git_use_branch_name = true,
 	git_auto_restore_on_branch_change = true,
 	session_lens = {

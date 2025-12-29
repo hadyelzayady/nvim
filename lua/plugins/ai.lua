@@ -8,7 +8,6 @@ return {
 	{
 		"olimorris/codecompanion.nvim",
 		opts = require("plugins.config.codecompanion").opts,
-		version = "v17.33.0",
 		cmd = {
 			"CodeCompanion",
 			"CodeCompanionChat",

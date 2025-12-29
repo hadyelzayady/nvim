@@ -57,7 +57,7 @@ return {
 						name = "Git",
 						-- only enable this source when filetype is gitcommit, markdown, or 'octo'
 						enabled = function()
-							return vim.tbl_contains({ "octo", "gitcommit", "markdown" }, vim.bo.filetype)
+							return vim.tbl_contains({ "octo", "gitcommit", "markdown", "NvimTree" }, vim.bo.filetype)
 						end,
 						--- @module 'blink-cmp-git'
 						--- @type blink-cmp-git.Options
