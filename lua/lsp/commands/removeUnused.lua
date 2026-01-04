@@ -5,10 +5,16 @@ vim.api.nvim_create_user_command("LspRemoveUnusedImports", function(args)
 	for _, client in ipairs(clients) do
 		if client.name == "vtsls" then
 			require("vtsls").commands.remove_unused_imports()
+			return
 		end
 		if client.name == "ts_ls" then
 			params.context = { only = { "source.removeUnusedImports.ts" } }
 			require("lsp.commands.utils").executeBufferCodeAction(client, params)
+			return
+		end
+		if client.name == "typescript-tools" then
+			vim.cmd("TSToolsRemoveUnusedImports")
+			return
 		end
 	end
 end, { range = true })
@@ -20,10 +26,16 @@ vim.api.nvim_create_user_command("LspRemoveUnused", function(args)
 	for _, client in ipairs(clients) do
 		if client.name == "vtsls" then
 			require("vtsls").commands.remove_unused()
+			return
 		end
 		if client.name == "ts_ls" then
 			params.context = { only = { "source.removeUnused.ts" } }
 			require("lsp.commands.utils").executeBufferCodeAction(client, params)
+			return
+		end
+		if client.name == "typescript-tools" then
+			vim.cmd("TSToolsRemoveUnused")
+			return
 		end
 	end
 end, { range = true })

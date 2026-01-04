@@ -3,12 +3,18 @@ vim.api.nvim_create_user_command("LspAddMissingImports", function(args)
 	local params = vim.lsp.util.make_range_params(0, "utf-8")
 	local clients = vim.lsp.get_clients({ bufnr })
 	for _, client in ipairs(clients) do
-        if client.name == "vtsls" then
-            require('vtsls').commands.add_missing_imports()
-        end
+		if client.name == "vtsls" then
+			require("vtsls").commands.add_missing_imports()
+			return
+		end
 		if client.name == "ts_ls" then
 			params.context = { only = { "source.addMissingImports.ts" } }
 			require("lsp.commands.utils").executeBufferCodeAction(client, params)
+			return
 		end
+        if client.name == "typescript-tools" then
+            vim.cmd("TSToolsAddMissingImports")
+            return
+        end
 	end
 end, { range = true })

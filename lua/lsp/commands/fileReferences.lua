@@ -5,9 +5,15 @@ vim.api.nvim_create_user_command("LspFileReferences", function(args)
 	for _, client in ipairs(clients) do
 		if client.name == "vtsls" then
 			require("vtsls").commands.file_references()
+			return
 		end
 		if client.name == "ts_ls" then
 			client:exec_cmd("typescript.findAllFileReferences", { bufnr = bufnr })
+			return
+		end
+		if client.name == "typescript-tools" then
+			vim.cmd("TSToolsFileReferences")
+			return
 		end
 	end
 end, { range = true })

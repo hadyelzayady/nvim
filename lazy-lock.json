@@ -61,6 +61,7 @@
   "scribble.nvim": { "branch": "main", "commit": "d539a3708c3c631dc08c2129f0a423fa3bdb02b9" },
   "spring-boot.nvim": { "branch": "main", "commit": "affc5d16f1de9bbcbb260a31e74ee1037d4903a0" },
   "telescope.nvim": { "branch": "master", "commit": "3333a52ff548ba0a68af6d8da1e54f9cd96e9179" },
+  "typescript-tools.nvim": { "branch": "master", "commit": "c2f5910074103705661e9651aa841e0d7eea9932" },
   "vim-fugitive": { "branch": "master", "commit": "61b51c09b7c9ce04e821f6cf76ea4f6f903e3cf4" },
   "vscode-diff.nvim": { "branch": "main", "commit": "b7298f84f0769edabdebab7f048ddc8cdedf3d7f" },
   "which-key.nvim": { "branch": "main", "commit": "3aab2147e74890957785941f0c1ad87d0a44c15a" },
