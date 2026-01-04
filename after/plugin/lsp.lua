@@ -3,6 +3,6 @@ vim.api.nvim_create_autocmd("FileType", {
 	callback = function()
 		-- vim.notify('h', nil, { title = "🪚 java", ft = "lua" })
 		-- print("Starting Java LSP setup...")
-		require("lsp.servers.java").setup()
+		-- require("lsp.servers.java").setup()
 	end,
 })

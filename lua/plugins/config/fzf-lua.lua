@@ -5,6 +5,7 @@ function M.config()
 	local actions = require("fzf-lua.actions")
 	fzf.setup({
 		{ "hide" },
+		ui_select = true,
 		previewers = {
 			-- builtin = {
 			--     extensions = {
@@ -115,9 +116,12 @@ function M.config()
 					end,
 				},
 			},
+			worktrees = {
+
+				winopts = { preview = { hidden = true } },
+			},
 		},
 	})
-	fzf.register_ui_select()
 end
 
 return M

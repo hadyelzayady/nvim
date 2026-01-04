@@ -17,19 +17,29 @@ map("n", "<leader>cs", "<cmd>AerialNavToggle<cr>", { silent = true, desc = "Symb
 -- map("n", "<leader>ff", "<cmd>FzfLua frecency cwd_only=true<cr>", { desc = "Find Files" })
 -- map("n", "<leader>ff", require("fff").find_files, { desc = "Find Files" })
 -- map("n", "<leader>ff", "<cmd>FzfLua files<cr>", { desc = "Find Files" })
-map(
-	"n",
-	"<leader>ff",
-	"<cmd>lua require('fzf-lua-frecency').frecency({ cwd_only = true,})<cr>",
-	{ desc = "Find Files" }
-)
-map("n", "<C-e>", "<cmd>lua require('fzf-lua-frecency').frecency({ cwd_only = true,})<cr>", { desc = "Find Files" })
-map(
-	"n",
-	"<leader>f'",
-	"<cmd>lua require('fzf-lua-frecency').frecency({ cwd_only = true,resume=true})<cr>",
-	{ desc = "Files Resume" }
-)
+map("n", "<leader>ff", function()
+	Files(false)
+end, { desc = "Find Files" })
+function Files(resume)
+	require("fzf-lua-frecency").frecency({
+		cwd_only = true,
+		resume = resume,
+		prompt = "Files❯ ",
+		multiprocess = true, -- run command in a separate process
+		cwd_prompt = false,
+		file_icons = false,
+		fzf_opts = {
+			["--history"] = vim.fn.stdpath("data") .. "/fzf-lua-files-history",
+		},
+		winopts = { preview = { hidden = true } },
+	})
+end
+map("n", "<C-e>", function()
+	Files(false)
+end, { desc = "Find Files" })
+map("n", "<leader>f'", function()
+	Files(true)
+end, { desc = "Files Resume" })
 map("n", "<leader>fq", "<cmd>FzfLua quickfix<CR>", { desc = "Fzf Quickfix" })
 map("n", "<leader>fb", "<cmd>FzfLua buffers<CR>", { desc = "Fzf Buffers" })
 
