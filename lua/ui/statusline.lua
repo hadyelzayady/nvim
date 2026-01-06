@@ -10,6 +10,7 @@ local name_to_abb = {
 	["stylua"] = "SL",
 	["cssmodules_ls"] = "CSSM",
 	["vtsls"] = "VTS",
+	["typescript-tools"] = "TS",
 }
 local function augroup(name)
 	return vim.api.nvim_create_augroup("hady_" .. name, { clear = true })

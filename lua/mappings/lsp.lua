@@ -10,7 +10,7 @@ map("n", "gD", vim.lsp.buf.declaration, { desc = "Go to Declaration" })
 map("n", "gru", function()
 	vim.lsp.buf.references({ includeDeclaration = false })
 end, { desc = "Go to References" })
-map("n", "grR", "<cmd>VtsExec file_references<cr>", { desc = "File References" })
+map("n", "grR", "<cmd>LspFileReferences<cr>", { desc = "File References" })
 map("n", "grs", vim.lsp.buf.document_symbol, { desc = "Document Symbols" })
 map("n", "grS", "<cmd>FzfLua lsp_live_workspace_symbols<cr>", { desc = "Workspace Symbols" })
 
