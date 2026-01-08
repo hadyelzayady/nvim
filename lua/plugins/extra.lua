@@ -24,4 +24,11 @@ return {
 		opts = require("plugins.config.package-info").opts,
 		lazy = true,
 	},
+	{
+		"brianhuster/live-preview.nvim",
+		dependencies = {
+			"ibhagwan/fzf-lua",
+		},
+		cmd = { "LivePreview" },
+	},
 }
