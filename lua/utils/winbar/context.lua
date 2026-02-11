@@ -41,7 +41,7 @@ local handlers = {
 					end
 				end
 			end
-		elseif type == "arrow_function" then
+		elseif type == "arrow_function" or type=="property" then
 			node = node:parent()
 		end
 

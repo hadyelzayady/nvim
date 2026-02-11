@@ -54,6 +54,13 @@ return {
 	{
 		"pmizio/typescript-tools.nvim",
 		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+		enabled = false,
 		opts = {},
+	},
+	{
+		"idelice/nvim-jls",
+		opts = {
+			jls_dir = "/Users/hadyelzayady/JLS",
+		},
 	},
 }

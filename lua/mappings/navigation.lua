@@ -18,7 +18,7 @@ map("n", "<leader>cs", "<cmd>AerialNavToggle<cr>", { silent = true, desc = "Symb
 -- map("n", "<leader>ff", require("fff").find_files, { desc = "Find Files" })
 -- map("n", "<leader>ff", "<cmd>FzfLua files<cr>", { desc = "Find Files" })
 map("n", "<leader>ff", function()
-	Files(false)
+    require("fzf-lua").files()
 end, { desc = "Find Files" })
 function Files(resume)
 	require("fzf-lua-frecency").frecency({

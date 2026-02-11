@@ -6,6 +6,8 @@ function M.config()
 	fzf.setup({
 		{ "hide" },
 		ui_select = true,
+		fzf_bin = "sk",
+		fzf_opts = { ["--algo"] = "frizbee" },
 		previewers = {
 			-- builtin = {
 			--     extensions = {
