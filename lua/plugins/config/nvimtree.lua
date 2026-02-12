@@ -3,20 +3,14 @@ local M = {}
 local function label()
 	return vim.fs.basename(vim.loop.cwd() or "")
 end
-local VIEW_WIDTH_FIXED = 30
-local view_width_max = VIEW_WIDTH_FIXED -- fixed to start
+local adaptive_size = true
 -- get current view width
 local function get_view_width_max()
 	return view_width_max
 end
 -- toggle the width and redraw
 function M.toggle_width_adaptive()
-	if view_width_max == -1 then
-		view_width_max = VIEW_WIDTH_FIXED
-	else
-		view_width_max = -1
-	end
-
+    adaptive_size=not adaptive_size
 	require("nvim-tree.api").tree.reload()
 end
 
@@ -68,10 +62,11 @@ function M.config()
 			enable = true,
 		},
 		view = {
-			width = {
-				min = 30,
-				max = get_view_width_max,
-			},
+			adaptive_size = adaptive_size,
+			-- width = {
+			-- 	min = 30,
+			-- 	max = get_view_width_max,
+			-- },
 		},
 	})
 end
