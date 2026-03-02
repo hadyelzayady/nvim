@@ -4,13 +4,9 @@ local function label()
 	return vim.fs.basename(vim.loop.cwd() or "")
 end
 local adaptive_size = true
--- get current view width
-local function get_view_width_max()
-	return view_width_max
-end
 -- toggle the width and redraw
 function M.toggle_width_adaptive()
-    adaptive_size=not adaptive_size
+	adaptive_size = not adaptive_size
 	require("nvim-tree.api").tree.reload()
 end
 
@@ -30,6 +26,9 @@ function M.config()
 			exclude = {
 				".env.development.local",
 			},
+		},
+		git = {
+			enable = false,
 		},
 		renderer = {
 			root_folder_label = label,

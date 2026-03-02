@@ -45,7 +45,7 @@ return {
 			sources = {
 				default = { "git", "npm", "lsp", "path", "snippets", "buffer" },
 				per_filetype = {
-					sql = { "lsp", "snippets", "dadbod", "buffer" },
+					sql = { "lsp", "snippets", "buffer" },
 				},
 				providers = {
 					ripgrep = {
@@ -63,7 +63,7 @@ return {
 						--- @type blink-cmp-git.Options
 						opts = {},
 					},
-					dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
+					-- dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
 					npm = {
 						name = "npm",
 						module = "blink-cmp-npm",

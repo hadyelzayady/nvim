@@ -21,7 +21,7 @@ return {
 		lazy = true,
 	},
 	{
-		"sindrets/diffview.nvim",
+		"dlyongemallo/diffview.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		opts = require("plugins.config.diffview").opts,
 		cmd = require("plugins.config.diffview").cmd,
@@ -66,7 +66,7 @@ return {
 		opts = require("plugins.config.neogit").opts,
 		dependencies = {
 			"nvim-lua/plenary.nvim", -- required
-			"sindrets/diffview.nvim", -- optional - Diff integration
+			"dlyongemallo/diffview.nvim", -- optional - Diff integration
 			"ibhagwan/fzf-lua", -- optional
 		},
 	},

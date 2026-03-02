@@ -9,4 +9,9 @@ return {
 		"liangxianzhe/floating-input.nvim",
 		event = "VeryLazy",
 	},
+	{
+
+		"brenoprata10/nvim-highlight-colors",
+		opts = {},
+	},
 }

@@ -1,6 +1,7 @@
 local M = {}
 function M.setup()
 	vim.lsp.config("ts_ls", {
+		-- cmd = { "bun", "run", "--bun", "typescript-language-server", "--stdio" },
 		on_init = function(client)
 			client.config.capabilities.textDocument.codeLens = { dynamicRegistration = true }
 		end,

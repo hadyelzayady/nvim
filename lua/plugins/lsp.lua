@@ -22,7 +22,7 @@ return {
 	},
 	{
 		"yioneko/nvim-vtsls",
-		enabled = false,
+		enabled = true,
 		ft = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
 	},
 	{

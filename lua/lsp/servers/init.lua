@@ -7,9 +7,9 @@ function M.setup()
 	require("lsp.servers.biome").setup()
 	require("lsp.servers.json").setup()
 	require("lsp.servers.postgres").setup()
-	require("lsp.servers.ts_ls").setup()
+	-- require("lsp.servers.ts_ls").setup()
 	require("lsp.servers.eslint").setup()
-	-- require("lsp.servers.vtsls").setup()
+	require("lsp.servers.vtsls").setup()
 end
 
 function M.addLspFileOperations()

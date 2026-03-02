@@ -25,19 +25,10 @@ function GitAheadBehind()
 end
 
 local function shorten_branch(branch)
-  local ticket = branch:match("(%u+%-%d+)")
   local name = branch:match("([^/]+)$") or branch
-
-  if ticket and name then
-    local rest = name:gsub(ticket .. "%-?", "")
-    local words = {}
-    for w in rest:gmatch("[^%-]+") do
-      words[#words+1] = w
-      if #words == 3 then break end
-    end
-    return ticket .. "-" .. table.concat(words, "-")
+  if #name > 40 then
+    name = name:sub(1, 40)
   end
-
   return name
 end
 function GitBranch()
