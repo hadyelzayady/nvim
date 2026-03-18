@@ -1,8 +1,0 @@
-require("mappings.core")
-require("mappings.find")
-require("mappings.git")
-require("mappings.navigation")
-require("mappings.lsp")
-require("mappings.logs")
-require("mappings.productivity")
-require("mappings.run")

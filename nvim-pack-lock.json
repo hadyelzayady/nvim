@@ -1,0 +1,44 @@
+{
+  "plugins": {
+    "conform.nvim": {
+      "rev": "e969e302bced7ffb9a0a0323629f31feb0ca35a6",
+      "src": "https://github.com/stevearc/conform.nvim"
+    },
+    "fff.nvim": {
+      "rev": "10a27f96784d81fa4d7fdddc18efe501c3968cbf",
+      "src": "https://github.com/dmtrKovalenko/fff.nvim"
+    },
+    "friendly-snippets": {
+      "rev": "6cd7280adead7f586db6fccbd15d2cac7e2188b9",
+      "src": "https://github.com/rafamadriz/friendly-snippets"
+    },
+    "gx.nvim": {
+      "rev": "ba9c408fc0130fc4548760c3933a81b58fc50de8",
+      "src": "https://github.com/chrishrb/gx.nvim"
+    },
+    "mini.misc": {
+      "rev": "de8947231c29012271722651aa07f6749c41d1ed",
+      "src": "https://github.com/nvim-mini/mini.misc"
+    },
+    "mini.nvim": {
+      "rev": "a95dc67ecff78de138543a20c20f29f47111b122",
+      "src": "https://github.com/nvim-mini/mini.nvim"
+    },
+    "nvim-lspconfig": {
+      "rev": "ead0f5f342d8d323441e7d4b88f0fc436a81ad5f",
+      "src": "https://github.com/neovim/nvim-lspconfig"
+    },
+    "nvim-treesitter": {
+      "rev": "6bc51d020a5e06b7e20ea82dbc47196d3d3027c7",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter"
+    },
+    "nvim-treesitter-textobjects": {
+      "rev": "a0e182ae21fda68c59d1f36c9ed45600aef50311",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
+    },
+    "plenary.nvim": {
+      "rev": "b9fd5226c2f76c951fc8ed5923d85e4de065e509",
+      "src": "https://github.com/nvim-lua/plenary.nvim"
+    }
+  }
+}
