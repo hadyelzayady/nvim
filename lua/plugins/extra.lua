@@ -40,4 +40,5 @@ return {
 			end, { desc = "Choose Morph UI" })
 		end,
 	},
+	{ "joryeugene/dadbod-grip.nvim", version = "*" },
 }
