@@ -1,7 +1,8 @@
 local M = {}
 
-local ts_utils = require("nvim-treesitter.ts_utils")
-local parsers = require("nvim-treesitter.parsers")
+local ts = require("nvim-treesitter")
+-- local ts_utils = require("nvim-treesitter.ts_utils")
+-- local parsers = require("nvim-treesitter.parsers")
 local api = vim.api
 
 local default_match_types = {
@@ -35,13 +36,16 @@ local handlers = {
 			name_node = node:field("open_tag")[1]
 			if name_node then
 				for child in name_node:iter_children() do
+					if child:type() == "member_expression" then
+						name_node = child:field("object")[1]
+					end
 					if child:type() == "identifier" or child:type() == "jsx_identifier" then
 						name_node = child
 						break
 					end
 				end
 			end
-		elseif type == "arrow_function" or type=="property" then
+		elseif type == "arrow_function" or type == "property" then
 			node = node:parent()
 		end
 
@@ -54,11 +58,13 @@ local handlers = {
 }
 
 function M.context()
-	if not parsers.has_parser() then
+	local ok, parser = pcall(vim.treesitter.get_parser, 0)
+
+	if not ok then
 		return ""
 	end
+	local node = vim.treesitter.get_node()
 
-	local node = ts_utils.get_node_at_cursor()
 	if not node then
 		return ""
 	end

@@ -3,8 +3,8 @@ local M = {}
 M.opts = {
 	hooks = {
 		diff_buf_read = function()
-			vim.opt_local.wrap = false
-			vim.opt_local.list = false
+			-- vim.opt_local.wrap = false
+			-- vim.opt_local.list = false
 		end,
 	},
 }

@@ -25,15 +25,99 @@ function GitAheadBehind()
 end
 
 local function shorten_branch(branch)
-  local name = branch:match("([^/]+)$") or branch
-  if #name > 40 then
-    name = name:sub(1, 40)
-  end
-  return name
+	local name = branch:match("([^/]+)$") or branch
+	if #name > 40 then
+		name = name:sub(1, 40)
+	end
+	return name
+end
+
+local function git_heads_for_commit(commit)
+	local refs = vim.fn.systemlist({ "git", "for-each-ref", "--points-at", commit, "--format=%(refname:short)" })
+	-- Remove empty lines and whitespace
+	local heads = {}
+	for _, ref in ipairs(refs) do
+		ref = vim.trim(ref)
+		if ref ~= "" then
+			table.insert(heads, ref)
+		end
+	end
+	return heads
+end
+
+local function log_to_file(filename, content)
+	local f = io.open(filename, "a")
+	if f then
+		f:write(content .. "\n")
+		f:close()
+	end
+end
+
+local function get_diffview_branch()
+	local ok, lib = pcall(require, "diffview.lib")
+	if not ok then
+		return nil
+	end
+	local view = lib.get_current_view()
+	if not view then
+		return nil
+	end
+
+	local curwin = vim.api.nvim_get_current_win()
+
+	-- Try to identify left (a) vs right (b) side
+	local layout = view.cur_layout or (view.panels and view.panels[1])
+	-- StandardView uses cur_layout with .a and .b
+	if layout and layout.a and layout.b then
+		local a_win = layout.a.id
+		local b_win = layout.b.id
+
+		local rev_arg = view.rev_arg or ""
+		-- Parse rev_arg: "v1" means v1..HEAD, "v1..v2" means left=v1, right=v2
+		local left_rev, right_rev
+		local r1, r2 = rev_arg:match("^(.+)%.%.%.?(.+)$")
+		if r1 and r2 then
+			left_rev = r1
+			right_rev = r2
+		elseif rev_arg ~= "" then
+			left_rev = rev_arg
+			right_rev = "current worktree"
+		end
+
+		if curwin == a_win and left_rev then
+			return shorten_branch(left_rev)
+		elseif curwin == b_win and right_rev then
+			return shorten_branch(right_rev)
+		elseif rev_arg ~= "" then
+			return shorten_branch(rev_arg)
+		end
+	end
+
+	-- Fallback: just show rev_arg
+	if view.rev_arg and view.rev_arg ~= "" then
+		return shorten_branch(view.rev_arg)
+	end
+	return nil
 end
 function GitBranch()
 	if vim.bo.filetype == "CHADTree" then
 		return ""
+	end
+
+	if vim.opt_local.diff._value then
+
+		local label = get_diffview_branch()
+		if label then
+			return "[ " .. label .. " ]"
+		end
+		-- local ok, lib = pcall(require, "diffview.lib")
+		-- if ok then
+		-- 	local view = lib.get_current_view()
+		-- 	local diffArgs = view.rev_arg
+		-- 	if view and diffArgs then
+		-- 		return diffArgs
+		-- 	end
+		-- end
 	end
 	-- if vim.opt_local.diff._value then
 	--     return "Diff: " ..  ""
@@ -67,10 +151,10 @@ function Lsp()
 	if next(clients) == nil then
 		return ""
 	end
-    -- map client names to abbreviations
-    for i, name in ipairs(clients) do
-        clients[i] = name_to_abb[name] or name
-    end
+	-- map client names to abbreviations
+	for i, name in ipairs(clients) do
+		clients[i] = name_to_abb[name] or name
+	end
 	return " [" .. table.concat(clients, ", ") .. "]"
 end
 

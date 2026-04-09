@@ -61,10 +61,7 @@ M.opts = {
 		},
 		biome = {
 			condition = function()
-				local plenary = require("plenary")
-				local biome_path = plenary.path:new(vim.loop.cwd() .. "/biome.json")
-				local biome_path2 = plenary.path:new(vim.loop.cwd() .. "/biome.jsonc")
-				return biome_path:exists() or biome_path2:exists()
+                return true
 			end,
 		},
 		prettierd = {

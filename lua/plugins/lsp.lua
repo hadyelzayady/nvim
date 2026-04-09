@@ -61,6 +61,9 @@ return {
 		"idelice/nvim-jls",
 		opts = {
 			jls_dir = "/Users/hadyelzayady/JLS",
+			root_markers = {
+				".git",
+			},
 		},
 	},
 }
