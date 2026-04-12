@@ -1,17 +1,13 @@
--- Check file size if a file is passed on the command line
-local args = vim.fn.argv()
-if #args > 0 then
-	local file = args[1]
-	local stat = vim.loop.fs_stat(file)
-	if stat and stat.size > 100 * 1024 * 1024 then -- 100MB
-		print("Large file mode: performance features disabled")
-		dofile(vim.fn.stdpath("config") .. "/init.largefile.lua")
-		return
-	end
-end
+vim.loader.enable()
 
--- Load normal config if not already loaded
-if not vim.g.did_load_normal_config then
-	vim.g.did_load_normal_config = true
-	dofile(vim.fn.stdpath("config") .. "/init.normal.lua")
+_G.Config = {}
+
+local gr = vim.api.nvim_create_augroup("custom-config", {})
+Config.new_autocmd = function(event, pattern, callback, desc)
+	local opts = { group = gr, pattern = pattern, callback = callback, desc = desc }
+	vim.api.nvim_create_autocmd(event, opts)
 end
+require("options")
+require("keymaps")
+require("treesitter")
+require("autocmd")
