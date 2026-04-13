@@ -140,7 +140,7 @@ map("n", "<leader>fk", ":FzfLua keymaps<CR>", opts)
 map("n", "<leader>e", ":Fyler kind=split_left_most<CR>", opts)
 
 --=============== Conform (Formatter) ===============
-map("n", "<leader>f", ":Format<CR>", opts)
+-- map("n", "<leader>f", ":Format<CR>", opts)
 map("n", "<leader>fm", ":FormatWrite<CR>", opts)
 
 --=============== Aerial (Code Outline) ===============

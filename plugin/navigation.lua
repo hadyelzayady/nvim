@@ -5,4 +5,5 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-mini/mini.icons" },
 	{ src = "https://github.com/ms-jpq/chadtree" },
 	{ src = "https://github.com/A7Lavinraj/fyler.nvim" },
+	{ src = "https://github.com/chrishrb/gx.nvim" },
 })

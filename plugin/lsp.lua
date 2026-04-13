@@ -27,11 +27,11 @@ for type, icon in pairs(signs) do
 end
 
 --=============== LSP Handlers =============--
-vim.lsp.handlers["textDocument/hover"] = function(_, result, ctx, config)
-	config = config or {}
-	config.border = config.border or "rounded"
-	return vim.lsp.handlers.hover(_, result, ctx, config)
-end
+-- vim.lsp.handlers["textDocument/hover"] = function(_, result, ctx, config)
+-- 	config = config or {}
+-- 	config.border = config.border or "rounded"
+-- 	return vim.lsp.handlers.hover(_, result, ctx, config)
+-- end
 
 vim.lsp.handlers["textDocument/signatureHelp"] = function(_, result, ctx, config)
 	config = config or {}

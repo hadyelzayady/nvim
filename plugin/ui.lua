@@ -31,6 +31,11 @@ opt.laststatus = 3 -- Global statusline
 
 --=============== UI Highlights ===============
 -- Native theme colors (v0.12+)
+
+local set = vim.api.nvim_set_hl
+local ns = 0 -- global namespace
+
+set(ns, "FloatBorder", { fg = "#444444", bg = "NONE" })
 vim.cmd([[
   " Link groups to base highlights
   highlight! link @keyword Keyword
