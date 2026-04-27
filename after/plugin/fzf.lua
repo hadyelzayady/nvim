@@ -1,0 +1,2 @@
+vim.fn["fzf#install"]()
+
