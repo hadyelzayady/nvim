@@ -28,10 +28,28 @@ vim.pack.add({
 --=============== Inlay Hint =============--
 vim.lsp.inlay_hint.enable = true
 
+local on_attach = function(ev)
+	local client = vim.lsp.get_client_by_id(ev.data.client_id)
+	if client.server_capabilities.linkedEditingRangeProvider then
+		vim.lsp.linked_editing_range.enable(true, { client_id = ev.data.client_id })
+	end
+end
+Config.new_autocmd("LspAttach", nil, on_attach, "linked editing range")
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
+capabilities.general.positionEncodings = { "utf-16" }
+
+vim.lsp.config("*", {
+	capabilities = capabilities,
+})
 --=============== Load LSP Servers =============--
 local lsp_servers = {
 	"lua_ls",
 	"vtsls",
+	"somesass_ls",
+	"cssmodules_ls",
 	-- "tsgo",
 }
 

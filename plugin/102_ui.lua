@@ -4,6 +4,7 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-mini/mini.clue" },
 	{ src = "https://github.com/junegunn/fzf" },
 	{ src = "https://github.com/kevinhwang91/nvim-bqf" },
+	{ src = "https://github.com/stevearc/quicker.nvim" },
 })
 --======================== Mini Icons =================================
 -- Set up to not prefer extension-based icon for some extensions

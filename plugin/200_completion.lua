@@ -1,6 +1,9 @@
 vim.o.completeopt = "menuone,preselect,fuzzy,nosort" -- Use custom behavior
 vim.pack.add({
-	{ src = "https://github.com/ms-jpq/coq_nvim", version = "coq" },
-	{ src = "https://github.com/ms-jpq/coq.artifacts", version = "artifacts" },
-	{ src = "https://github.com/ms-jpq/coq.thirdparty", version = "3p" },
+	{ src = "https://github.com/saghen/blink.lib" },
+	{ src = "https://github.com/rafamadriz/friendly-snippets" },
+	{ src = "https://github.com/mikavilpas/blink-ripgrep.nvim" },
+	{ src = "https://github.com/Kaiser-Yang/blink-cmp-git" },
+	{ src = "https://github.com/alexandre-abrioux/blink-cmp-npm.nvim" },
+	{ src = "https://github.com/saghen/blink.cmp" },
 })

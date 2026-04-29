@@ -48,6 +48,7 @@ opt.pumborder = "single" -- Use border in popup menu
 opt.pumheight = 10 -- Make popup menu smaller
 opt.pummaxwidth = 100 -- Make popup menu not too wide
 opt.shortmess = "CFOSWaco" -- Disable some built-in completion messages
+opt.signcolumn = "yes" -- Always show sign column to prevent shifting
 
 -- Native filetype detection (v0.11+)
 g.did_load_filetypes = false

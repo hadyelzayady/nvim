@@ -5,4 +5,5 @@ vim.pack.add({
 	{ src = "https://github.com/A7Lavinraj/fyler.nvim" },
 	{ src = "https://github.com/chrishrb/gx.nvim" },
 	{ src = "https://github.com/dmtrKovalenko/fff.nvim" },
+	{ src = "https://github.com/echasnovski/mini.bufremove" },
 })
