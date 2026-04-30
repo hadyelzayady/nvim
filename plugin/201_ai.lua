@@ -1,5 +1,4 @@
 vim.pack.add({
-	{ src = "https://github.com/carlos-algms/agentic.nvim" },
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 	{ src = "https://github.com/ravitemer/codecompanion-history.nvim" },
 	{ src = "https://github.com/olimorris/codecompanion.nvim" },
