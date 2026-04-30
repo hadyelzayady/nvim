@@ -100,4 +100,5 @@ vim.diagnostic.config({
 	},
 })
 
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 require("vim._core.ui2").enable()

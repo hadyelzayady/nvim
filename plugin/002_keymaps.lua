@@ -86,11 +86,22 @@ nmap_leader("u", ":Atone toggle<cr>", "UndoTree")
 
 -- ================================================LSP ==============================================
 
+nmap_leader("ci", "<cmd>LspAddMissingImports<cr>", "Add Missing Imports")
+nmap_leader("cc", "<cmd>LspRemoveUnused<cr>", "Remove Unused")
+nmap_leader("cC", "<cmd>LspRemoveUnusedImports<cr>", "Remove Unused Imports")
+nmap_leader("cf", "<cmd>LspFixAll<cr>", "Fix All")
+nmap_leader("lth", function()
+	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end, "Inlay Hints")
+
 nmap("gd", vim.lsp.buf.definition, "Go to Definition")
 nmap("gD", vim.lsp.buf.declaration, "Go to Declaration")
 nmap("gru", function()
 	vim.lsp.buf.references({ includeDeclaration = false })
 end, "Go to References")
+map("n", "grR", "<cmd>LspFileReferences<cr>", { desc = "File References" })
+map("n", "grs", vim.lsp.buf.document_symbol, { desc = "Document Symbols" })
+map("n", "grS", "<cmd>FzfLua lsp_live_workspace_symbols<cr>", { desc = "Workspace Symbols" })
 nvmap_leader("lf", "<cmd>lua require('conform').format({ async = true, lsp_fallback = true })<cr>", "Format")
 
 nmap_leader("cS", "<cmd>AerialToggle<cr>", "Symbole Outline")

@@ -5,6 +5,7 @@ vim.pack.add({
 	{ src = "https://github.com/junegunn/fzf" },
 	{ src = "https://github.com/kevinhwang91/nvim-bqf" },
 	{ src = "https://github.com/stevearc/quicker.nvim" },
+	{ src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" },
 })
 --======================== Mini Icons =================================
 -- Set up to not prefer extension-based icon for some extensions
