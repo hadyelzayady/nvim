@@ -1,1 +1,1 @@
-require("mini.git").setup()
+-- require("mini.git").setup()

@@ -12,3 +12,13 @@ vim.api.nvim_create_user_command("Lazygit", function()
 		vim.system({ "kitty", "@", "launch", "--type=overlay", "--cwd=current", "lazygit" })
 	end)
 end, {})
+
+vim.api.nvim_create_user_command("DiffBuf", function()
+	if vim.opt.diff._value == false then
+		vim.cmd("windo diffthis")
+	else
+		vim.cmd("windo diffoff")
+	end
+end, { range = true })
+
+

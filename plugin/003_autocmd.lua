@@ -1,7 +1,9 @@
 local au = vim.api.nvim_create_augroup("GlobalSettings", { clear = true })
 
+local autocmd = vim.api.nvim_create_autocmd
+
 -- Highlight on yank
-vim.api.nvim_create_autocmd({ "TextYankPost" }, {
+autocmd({ "TextYankPost" }, {
 	group = au,
 	callback = function()
 		vim.highlight.on_yank({ higroup = "IncSearch", timeout = 150 })
@@ -9,7 +11,7 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 })
 
 -- Check for external file changes
-vim.api.nvim_create_autocmd({ "FileChangedShellPost" }, {
+autocmd({ "FileChangedShellPost" }, {
 	group = au,
 	callback = function()
 		vim.notify("File changed outside of Neovim", vim.log.levels.WARN)
@@ -17,7 +19,7 @@ vim.api.nvim_create_autocmd({ "FileChangedShellPost" }, {
 })
 
 -- Restore cursor position on file open
-vim.api.nvim_create_autocmd({ "BufReadPost" }, {
+autocmd({ "BufReadPost" }, {
 	group = au,
 	callback = function()
 		local exclude = { "gitcommit" }
@@ -32,7 +34,7 @@ vim.api.nvim_create_autocmd({ "BufReadPost" }, {
 	end,
 })
 
-vim.api.nvim_create_autocmd("FileType", {
+autocmd("FileType", {
 	pattern = { "*" },
 	callback = function(args)
 		local lang = vim.treesitter.language.get_lang(args.match)
@@ -55,4 +57,7 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
-
+autocmd("VimResized", {
+	pattern = "*",
+	command = "tabdo wincmd =",
+})

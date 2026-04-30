@@ -33,10 +33,12 @@ nmap("ff", "<cmd>lua require('fff').find_files()<CR>", "fff")
 --=============== File Tree ===============
 nmap_leader("e", ":FylerToggle<CR>", "Toggle File Tree")
 nmap_leader("d", ":lua MiniBufremove.delete(0)<cr>", "Delete Buffer")
-nmap_leader("D", "lua MiniBufremove.delete(0, true)<cr>", "Force Delete Buffer")
+nmap_leader("D", ":lua MiniBufremove.delete(0, true)<cr>", "Force Delete Buffer")
+nmap("<C-l>", ":lua require('scribble').toggle()<cr>", "Toggle Scribble")
 
 --================== Window/Buffers ====================
 nmap("<c-w>C", ":tabclose<cr>", "Close Tab")
+nmap("<c-w>t", ":tabnew<cr>", "Tab New")
 
 --======================= Save/Write ===========================
 nmap_leader("x", ":xit<CR>", "Quit")
