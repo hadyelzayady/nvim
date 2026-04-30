@@ -79,6 +79,10 @@
       "src": "https://github.com/ms-jpq/coq_nvim",
       "version": "'coq'"
     },
+    "dadbod-grip.nvim": {
+      "rev": "3ee0a6d0000bebee89692a39e0d16605c5e17306",
+      "src": "https://github.com/joryeugene/dadbod-grip.nvim"
+    },
     "diffview.nvim": {
       "rev": "385f26fd6a50e3b0b11cc9623f1f96cde00ef08c",
       "src": "https://github.com/dlyongemallo/diffview.nvim"

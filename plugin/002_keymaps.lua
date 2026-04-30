@@ -17,6 +17,9 @@ end
 local xmap_leader = function(suffix, rhs, desc)
 	vim.keymap.set("x", "<Leader>" .. suffix, rhs, { desc = desc })
 end
+local nxmap = function(lhs, rhs, desc)
+	vim.keymap.set({ "x", "n" }, lhs, rhs, { desc = desc, silent = true, noremap = true })
+end
 
 --=============== Leader Keys ===============
 vim.g.mapleader = " "
@@ -26,14 +29,16 @@ vim.g.maplocalleader = "\\"
 nmap_leader("ff", ":FzfLua files<CR>", "Files")
 nmap_leader("fw", ":FzfLua grep_cword<CR>", "Grep CWord")
 nmap_leader("f'", ":FzfLua resume<CR>", "Resume")
+nmap_leader("fS", ":FzfLua grep_curbuf<CR>", "Grep Current Buffer")
 nmap_leader("fs", ":FzfLua live_grep<CR>", "Live Grep")
 vmap_leader("fs", "<cmd>FzfLua grep_visual<CR>", "Grep Visual")
 nmap("ff", "<cmd>lua require('fff').find_files()<CR>", "fff")
+nxmap("gx", "<cmd>Browse<cr>", "Browse")
 
 --=============== File Tree ===============
 nmap_leader("e", ":FylerToggle<CR>", "Toggle File Tree")
-nmap_leader("d", ":lua MiniBufremove.delete(0)<cr>", "Delete Buffer")
-nmap_leader("D", ":lua MiniBufremove.delete(0, true)<cr>", "Force Delete Buffer")
+nmap_leader("bd", ":lua MiniBufremove.delete(0)<cr>", "Delete Buffer")
+nmap_leader("bD", ":lua MiniBufremove.delete(0, true)<cr>", "Force Delete Buffer")
 nmap("<C-l>", ":lua require('scribble').toggle()<cr>", "Toggle Scribble")
 
 --================== Window/Buffers ====================
