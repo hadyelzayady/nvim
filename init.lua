@@ -1,3 +1,4 @@
+vim.loader.enable()
 _G.Config = {}
 
 local gr = vim.api.nvim_create_augroup("custom-config", {})
