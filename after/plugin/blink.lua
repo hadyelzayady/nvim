@@ -33,7 +33,7 @@
 -- Config.new_autocmd("InsertEnter", nil, load_blink, "Lazy load blink on InsertEnter")
 
 local cmp = require("blink.cmp")
-cmp.build():wait(60000)
+-- cmp.build():wait(60000)
 cmp.setup({
 	sources = {
 		providers = {
@@ -42,6 +42,9 @@ cmp.setup({
 		per_filetype = {
 			sql = { "dadbod_grip", "snippets", "buffer" },
 		},
+	},
+	fuzzy = {
+		implementation = "lua",
 	},
 	completion = {
 		documentation = { auto_show = true },
