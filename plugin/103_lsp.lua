@@ -1,4 +1,5 @@
 vim.pack.add({
+	{ src = "https://github.com/b0o/schemastore.nvim" },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/stevearc/conform.nvim" },
 })
@@ -50,6 +51,8 @@ local lsp_servers = {
 	"vtsls",
 	"somesass_ls",
 	"cssmodules_ls",
+	"yamlls",
+	"jsonls",
 	-- "tsgo",
 }
 

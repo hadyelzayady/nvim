@@ -37,7 +37,7 @@ require("conform").setup({
 		typescriptreact = js_like_formatters,
 		json = js_like_formatters,
 		jsonc = js_like_formatters,
-		scss = { "prettierd" },
+		scss = { "biome" },
 		css = js_like_formatters,
 		html = { "prettierd" },
 		mdx = { "prettierd" },

@@ -23,8 +23,8 @@ for _, plugin in ipairs({
 	"netrwPlugin",
 	"netrwSettings",
 	"netrwFileHandlers",
-	"matchit",
-	"matchparen",
+	-- "matchit",
+	-- "matchparen",
 	"2html_plugin",
 	"shada_plugin",
 	"tutor_mode_plugin",
@@ -57,6 +57,7 @@ opt.syntax = "off"
 
 --=============== Editing ===============
 opt.smartindent = true
+opt.breakindent=true -- break indent to same level as the line being broken
 opt.expandtab = true
 opt.shiftwidth = 4
 opt.tabstop = 4

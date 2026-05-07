@@ -36,7 +36,9 @@ nmap("ff", "<cmd>lua require('fff').find_files()<CR>", "fff")
 nxmap("gx", "<cmd>Browse<cr>", "Browse")
 
 --=============== File Tree ===============
-nmap_leader("e", ":FylerToggle<CR>", "Toggle File Tree")
+nmap_leader("e", ":<CR>", "Toggle File Tree")
+nmap_leader("e", "<cmd>NvimTreeFindFileToggle<CR>", "File Tree")
+nmap_leader("E", "<cmd>NvimTreeFindFile<CR>", "File Tree")
 nmap_leader("bd", ":lua MiniBufremove.delete(0)<cr>", "Delete Buffer")
 nmap_leader("bD", ":lua MiniBufremove.delete(0, true)<cr>", "Force Delete Buffer")
 nmap("<C-l>", function()
@@ -87,6 +89,11 @@ nmap_leader("g,m", function()
 end, "Time machine")
 
 nmap_leader("gR", ":Gread<cr>", "Reset Buffer")
+nmap_leader("gW", function()
+	local neogit = require("neogit")
+	neogit.open()
+	neogit.open({ "worktree" })
+end, "Work Tree")
 nmap_leader("gw", ":FzfLua git_worktrees<cr>", "Pick Work Tree")
 
 nmap("[c", "<cmd>Gitsigns prev_hunk <CR>", "Prev Hunk")

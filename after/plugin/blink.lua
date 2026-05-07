@@ -48,6 +48,14 @@ cmp.setup({
 	},
 	completion = {
 		documentation = { auto_show = true },
+		list = {
+			selection = {
+				preselect = function(ctx)
+					local win_cfg = vim.api.nvim_win_get_config(0)
+					return not (win_cfg.relative ~= "" and vim.bo.filetype == "")
+				end,
+			},
+		},
 		menu = {
 			draw = {
 				columns = {
