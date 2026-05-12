@@ -19,7 +19,7 @@ require("nvim-tree").setup({
 		},
 	},
 	git = {
-		enable = false,
+		enable = true,
 	},
 	renderer = {
 		root_folder_label = label,

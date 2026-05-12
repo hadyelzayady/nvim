@@ -53,6 +53,7 @@ local lsp_servers = {
 	"cssmodules_ls",
 	"yamlls",
 	"jsonls",
+    "biome"
 	-- "tsgo",
 }
 

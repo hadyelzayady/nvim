@@ -22,6 +22,26 @@ local git_ahead_behind = "" -- Cached Git status
 
 local last_update = 0 -- Last update time
 
+local codeCompanion_processing = false
+local group = vim.api.nvim_create_augroup("CodeCompanionHooks", {})
+vim.api.nvim_create_autocmd({ "User" }, {
+	pattern = "CodeCompanionRequest*",
+	group = group,
+	callback = function(request)
+		if request.match == "CodeCompanionRequestStarted" then
+			codeCompanion_processing = true
+		elseif request.match == "CodeCompanionRequestFinished" then
+			codeCompanion_processing = false
+		end
+	end,
+})
+local function get_codecompanion_status()
+	if codeCompanion_processing then
+		return string.format("CodeCompanion: processing...")
+	end
+	return ""
+end
+
 local function update_git_ahead_behind()
 	local now = vim.loop.now()
 	if now - last_update < 2000 then -- Update only every 2 seconds
@@ -202,13 +222,14 @@ require("mini.statusline").setup({
 			local fileinfo = MiniStatusline.section_fileinfo({ trunc_width = 120 })
 			local location = MiniStatusline.section_location({ trunc_width = 75 })
 			local search = MiniStatusline.section_searchcount({ trunc_width = 75 })
+            local codecompanion = get_codecompanion_status()
 
 			return MiniStatusline.combine_groups({
 				{ hl = mode_hl, strings = { mode } },
 				{ hl = "MiniStatuslineDevinfo", strings = { git, diff } },
 				"%<", -- Mark general truncate point
-				-- { hl = "MiniStatuslineDevinfo" or "", strings = { git } },
 				"%=", -- End left alignment
+				{ hl = "MiniStatuslineProgressInfo", strings = { codecompanion } },
 				{ hl = "MiniStatuslineDevinfo", strings = { diagnostics, lsp } },
 				{ hl = "MiniStatuslineFileinfo", strings = { fileinfo } },
 				{ hl = mode_hl, strings = { search, location } },

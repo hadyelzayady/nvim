@@ -39,7 +39,7 @@ require("conform").setup({
 		jsonc = js_like_formatters,
 		scss = { "biome" },
 		css = js_like_formatters,
-		html = { "prettierd" },
+		html = { "biome" },
 		mdx = { "prettierd" },
 		nix = { "nixfmt" },
 		sql = { "pg_format" },

@@ -3,5 +3,5 @@ vim.keymap.set("n", "<leader>c", function()
 end, { noremap = true, silent = true, buffer = true })
 
 vim.keymap.set("n", "<leader>C", function()
-	require("codecompanion").prompt("commitChat")
+	require("codecompanion").prompt("commit")
 end, { noremap = true, silent = true, buffer = true })
