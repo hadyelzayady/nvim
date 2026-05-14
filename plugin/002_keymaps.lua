@@ -25,6 +25,8 @@ end
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
+-- not override clipboard when paste in visual mode
+vim.keymap.set("v", "p", '"_dP')
 --======================== find/search =================================
 nmap_leader("ff", ":FzfLua files<CR>", "Files")
 nmap_leader("fw", ":FzfLua grep_cword<CR>", "Grep CWord")

@@ -144,6 +144,16 @@ function GitBranch()
 	return ""
 end
 
+local function lsp_progress()
+	local spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
+	-- Fetch current LSP status
+	local status = vim.lsp.status()
+	if status == "" then
+		return ""
+	end
+	return spinner[math.floor(vim.uv.hrtime() / (1e6 * 80)) % #spinner + 1] .. " " .. status
+end
+
 require("mini.statusline").setup({
 	content = {
 		active = function()
@@ -222,7 +232,8 @@ require("mini.statusline").setup({
 			local fileinfo = MiniStatusline.section_fileinfo({ trunc_width = 120 })
 			local location = MiniStatusline.section_location({ trunc_width = 75 })
 			local search = MiniStatusline.section_searchcount({ trunc_width = 75 })
-            local codecompanion = get_codecompanion_status()
+			local codecompanion = get_codecompanion_status()
+			local lsp_progress = lsp_progress()
 
 			return MiniStatusline.combine_groups({
 				{ hl = mode_hl, strings = { mode } },
@@ -230,7 +241,7 @@ require("mini.statusline").setup({
 				"%<", -- Mark general truncate point
 				"%=", -- End left alignment
 				{ hl = "MiniStatuslineProgressInfo", strings = { codecompanion } },
-				{ hl = "MiniStatuslineDevinfo", strings = { diagnostics, lsp } },
+				{ hl = "MiniStatuslineDevinfo", strings = { lsp_progress, diagnostics, lsp } },
 				{ hl = "MiniStatuslineFileinfo", strings = { fileinfo } },
 				{ hl = mode_hl, strings = { search, location } },
 			})
