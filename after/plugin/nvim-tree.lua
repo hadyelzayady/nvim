@@ -2,8 +2,13 @@ local function label()
 	return vim.fs.basename(vim.loop.cwd() or "")
 end
 
+local ok, mod = pcall(require,"nvim-tree")
+
+if ok and mod.setup then
+    mod.setup(setup_opts or {})
+
 local adaptive_size = true
-require("nvim-tree").setup({
+mod.setup({
 	disable_netrw = true,
 	hijack_cursor = true, -- Keeps the cursor on the first letter of the filename when moving in the tree.
 	filesystem_watchers = {
@@ -65,3 +70,4 @@ require("nvim-tree").setup({
 		-- },
 	},
 })
+end

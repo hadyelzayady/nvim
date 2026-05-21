@@ -1,17 +1,21 @@
-require("codecompanion").setup({
-	strategies = {
-		chat = {
-			adapter = "copilot",
-		},
-		inline = {
-			adapter = "copilot",
-		},
-	},
+local ok, mod = pcall(require,"codecompanion")
 
-	extensions = {
-		history = {
+if ok and mod.setup then
+    mod.setup({
+        strategies = {
+            chat = {
+                adapter = "copilot",
+            },
+            inline = {
+                adapter = "copilot",
+            },
+        },
 
-			enabled = true,
-		},
-	},
-})
+        extensions = {
+            history = {
+
+                enabled = true,
+            },
+        },
+    })
+end

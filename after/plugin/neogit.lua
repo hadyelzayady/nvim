@@ -1,4 +1,7 @@
-require("neogit").setup({
+local ok, mod = pcall(require,"neogit")
+
+if ok and mod.setup then
+mod.setup({
 	kind = "split_below",
 	integrations = {
 		telescope = false,
@@ -7,3 +10,4 @@ require("neogit").setup({
 		snacks = false,
 	},
 })
+end

@@ -1,4 +1,8 @@
-require("nvim-treesitter").setup({
+local ok, mod = pcall(require,"nvim-treesitter")
+
+if ok and mod.setup then
+
+mod.setup({
 	highlight = {
 		enable = true,
 		-- disable = function(lang, buf)
@@ -20,3 +24,4 @@ require("nvim-treesitter").setup({
 		},
 	},
 })
+end

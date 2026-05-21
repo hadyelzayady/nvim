@@ -18,7 +18,11 @@ local function toggle_fyler()
 	fyler.open()
 end
 
-require("fyler").setup({
+local ok, mod = pcall(require,"fyler")
+
+if ok and mod.setup then
+
+mod.setup({
 	views = {
 		finder = {
 			close_on_select = false,
@@ -49,3 +53,4 @@ require("fyler").setup({
 })
 
 vim.api.nvim_create_user_command("FylerToggle", toggle_fyler, {})
+end

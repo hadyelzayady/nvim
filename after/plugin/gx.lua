@@ -1,4 +1,7 @@
-require("gx").setup({
+local ok, mod = pcall(require,"gx")
+
+if ok and mod.setup then
+mod.setup({
 	handlers = {
 		github = true, -- open github issues
 		brewfile = false, -- open Homebrew formulaes and casks
@@ -9,3 +12,4 @@ require("gx").setup({
 		search_engine = "google", -- you can select between google, bing, duckduckgo, and ecosia
 	},
 })
+end

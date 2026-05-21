@@ -1,3 +1,7 @@
+
+local ok, mod = pcall(require,"fzf-lua")
+
+if ok and mod.setup then
 local fzf = require("fzf-lua")
 local actions = require("fzf-lua.actions")
 fzf.setup({
@@ -120,3 +124,4 @@ fzf.setup({
 		},
 	},
 })
+end

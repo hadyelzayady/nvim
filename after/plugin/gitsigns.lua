@@ -1,4 +1,7 @@
-require("gitsigns").setup({
+local ok, mod = pcall(require,"gitsigns")
+
+if ok and mod.setup then
+mod.setup({
 	signs = {
 		add = { text = "┃" },
 		change = { text = "┃" },
@@ -47,3 +50,4 @@ require("gitsigns").setup({
 		col = 1,
 	},
 })
+end
