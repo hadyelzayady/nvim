@@ -3,13 +3,11 @@ local au = vim.api.nvim_create_augroup("GlobalSettings", { clear = true })
 local autocmd = vim.api.nvim_create_autocmd
 
 -- Highlight on yank
-autocmd({ "TextYankPost" }, {
-	group = au,
-	callback = function()
-		vim.highlight.on_yank({ higroup = "IncSearch", timeout = 150 })
-	end,
+autocmd('TextYankPost', {
+  callback = function()
+    vim.hl.hl_op()
+  end,
 })
-
 -- Check for external file changes
 autocmd({ "FileChangedShellPost" }, {
 	group = au,
@@ -78,3 +76,108 @@ autocmd("VimResized", {
 	pattern = "*",
 	command = "tabdo wincmd =",
 })
+
+-- Lazy load octo on first :Octo command
+autocmd("CmdUndefined", {
+	group = au,
+	pattern = "Octo",
+	once = true,
+	callback = function()
+		Config.lazy_require("octo", {
+			picker = "fzf-lua",
+			use_local_fs = true,
+		})
+	end,
+})
+
+-- Lazy load codecompanion on first :CodeCompanion* command
+autocmd("CmdUndefined", {
+	group = au,
+	pattern = "CodeCompanion*",
+	once = true,
+	callback = function()
+		Config.lazy_require("codecompanion", {
+			strategies = {
+				chat = { adapter = "copilot" },
+				inline = { adapter = "copilot" },
+			},
+			extensions = {
+				history = { enabled = true },
+			},
+		})
+	end,
+})
+
+-- Lazy load codediff on first :CodeDiff command
+autocmd("CmdUndefined", {
+	group = au,
+	pattern = "CodeDiff",
+	once = true,
+	callback = function()
+		Config.lazy_require("codediff", { diff = { compute_moves = true } })
+	end,
+})
+
+-- Lazy load copilot on first InsertEnter
+autocmd("InsertEnter", {
+	group = au,
+	once = true,
+	callback = function()
+		Config.lazy_require("copilot", {
+			filetypes = { sql = true },
+			should_attach = function()
+				return true
+			end,
+			nes = { enabled = false },
+			suggestion = {
+				enabled = true,
+				auto_trigger = true,
+				keymap = {
+					accept = "<Tab>",
+					next = "<C-j>",
+					prev = "<C-k>",
+					dismiss = "<C-x>",
+				},
+			},
+		})
+	end,
+})
+
+-- Lazy load dadbod-grip on first :GripConnect command
+autocmd("CmdUndefined", {
+	group = au,
+	pattern = "GripConnect",
+	once = true,
+	callback = function()
+		Config.lazy_require("dadbod-grip")
+	end,
+})
+
+-- FylerToggle: lazy loads fyler on first use
+vim.api.nvim_create_user_command("FylerToggle", function()
+	local fyler = Config.lazy_require("fyler", {
+		views = {
+			finder = {
+				close_on_select = false,
+				default_explorer = true,
+				delete_to_trash = true,
+				columns_order = { "link", "git", "diagnostic" },
+				win = {
+					kind = "split_left_most",
+					kinds = {
+						split_left_most = { width = "13%" },
+					},
+					win_opts = { cursorline = true },
+				},
+			},
+		},
+	})
+	for _, win in ipairs(vim.api.nvim_list_wins()) do
+		local buf = vim.api.nvim_win_get_buf(win)
+		if vim.bo[buf].filetype == "fyler" then
+			vim.api.nvim_win_close(win, false)
+			return
+		end
+	end
+	fyler.open()
+end, {})
