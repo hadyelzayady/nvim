@@ -1,4 +1,5 @@
 vim.pack.add({
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 	{ src = "https://github.com/nvim-mini/mini.icons" },
 	{ src = "https://github.com/nvim-mini/mini.clue" },
@@ -6,6 +7,7 @@ vim.pack.add({
 	{ src = "https://github.com/kevinhwang91/nvim-bqf" },
 	{ src = "https://github.com/stevearc/quicker.nvim" },
 	{ src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" },
+	{ src = "https://github.com/nvim-mini/mini.ai" },
 })
 --======================== Mini Icons =================================
 -- Set up to not prefer extension-based icon for some extensions
