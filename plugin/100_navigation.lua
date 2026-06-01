@@ -12,10 +12,10 @@ vim.api.nvim_create_autocmd("PackChanged", {
 	callback = function(ev)
 		local name, kind = ev.data.spec.name, ev.data.kind
 		if name == "fff.nvim" and (kind == "install" or kind == "update") then
-            if name == 'fff.nvim' and (kind == 'install' or kind == 'update') then
-              if not ev.data.active then vim.cmd.packadd('fff.nvim') end
-              require('fff.download').download_or_build_binary()
-            end
+			if not ev.data.active then
+				vim.cmd.packadd("fff.nvim")
+			end
+			require("fff.download").download_or_build_binary()
 		else
 			if name == "fzf" and (kind == "install" or kind == "update") then
 				vim.fn["fzf#install"]()
@@ -23,22 +23,3 @@ vim.api.nvim_create_autocmd("PackChanged", {
 		end
 	end,
 })
-
-vim.api.nvim_create_autocmd('PackChanged', {
-  callback = function(ev)
-    local name, kind = ev.data.spec.name, ev.data.kind
-    if name == 'fff.nvim' and (kind == 'install' or kind == 'update') then
-      if not ev.data.active then vim.cmd.packadd('fff.nvim') end
-      require('fff.download').download_or_build_binary()
-    end
-  end,
-})
-
-vim.g.fff = {
-    layout = {
-        prompt_position = "top", -- or 'top'
-    },
-    debug = {
-        enabled = false, -- we expect your collaboration at least during the beta
-    },
-}
