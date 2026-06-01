@@ -81,6 +81,8 @@ nmap_leader("gD", ":DiffviewOpen -- %<cr>", "Diff file")
 nmap_leader("gh", "<cmd>DiffviewFileHistory %<CR>", "Buffer History")
 vmap_leader("gh", ":'<,'>DiffviewFileHistory %<CR>", "Range Buffer History")
 nmap_leader("gg", ":Lazygit<cr>", "LazyGit")
+nmap_leader("gk", ":Git! push<cr>", "Push")
+nmap_leader("gj", ":Git! pull<cr>", "Pull")
 
 nmap_leader("g,b", function()
 	vim.pack.add({ { src = "https://github.com/nvim-telescope/telescope.nvim" } })
