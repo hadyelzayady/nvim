@@ -35,11 +35,25 @@ vim.api.nvim_create_autocmd({ "User" }, {
 		end
 	end,
 })
+local codeCompanion_model = ""
+vim.api.nvim_create_autocmd({ "User" }, {
+	pattern = "CodeCompanionChatModel",
+	group = group,
+	callback = function(request)
+		if request and request.data.adapter and request.data.adapter.model then
+			codeCompanion_model = request.data.adapter.model.name or ""
+		end
+	end,
+})
 local function get_codecompanion_status()
-	if codeCompanion_processing then
-		return string.format("CodeCompanion: processing...")
+	if vim.bo.filetype ~= "codecompanion" then
+		return ""
 	end
-	return ""
+	if codeCompanion_processing then
+		return string.format("CodeCompanion [%s]: processing...", codeCompanion_model)
+	else
+		return string.format("Model: %s", codeCompanion_model)
+	end
 end
 
 local function update_git_ahead_behind()
