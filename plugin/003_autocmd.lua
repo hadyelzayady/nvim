@@ -90,24 +90,6 @@ autocmd("CmdUndefined", {
 	end,
 })
 
--- Lazy load codecompanion on first :CodeCompanion* command
-autocmd("CmdUndefined", {
-	group = au,
-	pattern = "CodeCompanion*",
-	once = true,
-	callback = function()
-		Config.lazy_require("codecompanion", {
-			strategies = {
-				chat = { adapter = "copilot" },
-				inline = { adapter = "copilot" },
-			},
-			extensions = {
-				history = { enabled = true },
-			},
-		})
-	end,
-})
-
 -- Lazy load codediff on first :CodeDiff command
 autocmd("CmdUndefined", {
 	group = au,

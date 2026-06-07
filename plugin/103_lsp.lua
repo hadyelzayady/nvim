@@ -2,6 +2,7 @@ vim.pack.add({
 	{ src = "https://github.com/b0o/schemastore.nvim" },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/stevearc/conform.nvim" },
+	{ src = "https://github.com/rmagatti/goto-preview" },
 })
 
 -- LSP configuration using vim.lsp.config (Neovim 0.11+)
