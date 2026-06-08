@@ -60,7 +60,6 @@ nmap("<c-w>C", ":tabclose<cr>", "Close Tab")
 nmap("<c-w>t", ":tabnew<cr>", "Tab New")
 
 --======================= Save/Write ===========================
-nmap_leader("x", ":xit<CR>", "Quit")
 nmap_leader("qq", "<cmd>q<cr>", "Quit")
 nmap_leader("qQ", "<cmd>qa<cr>", "Quit All")
 nmap_leader("Q", "<cmd>silent! qa!<cr>", "Force Quit all")
@@ -166,6 +165,7 @@ nmap("[w", ":lua vim.diagnostic.jump({ count = -vim.v.count1, severity = 'WARN' 
 nmap("]w", ":lua vim.diagnostic.jump({ count = vim.v.count1, severity = 'WARN' })<cr>", "Next Warning")
 nmap("[e", ":lua vim.diagnostic.jump({ count = -vim.v.count1, severity = 'ERROR' })<cr>", "Prev Error")
 nmap("]e", ":lua vim.diagnostic.jump({ count = vim.v.count1, severity = 'ERROR' })<cr>", "Next Error")
+nmap_leader("xx", ":lua vim.diagnostic.setqflist({open = true})<cr>", "Document Diagnostics")
 
 -- ==================== Debug/Log ==========================
 nmap_leader(",v", function()
