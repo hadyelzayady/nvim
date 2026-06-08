@@ -3,6 +3,8 @@ vim.pack.add({
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/stevearc/conform.nvim" },
 	{ src = "https://github.com/rmagatti/goto-preview" },
+	{ src = "https://github.com/nvim-lua/plenary.nvim" },
+	{ src = "https://github.com/antosha417/nvim-lsp-file-operations" },
 })
 
 -- LSP configuration using vim.lsp.config (Neovim 0.11+)
@@ -32,7 +34,7 @@ vim.lsp.inlay_hint.enable = true
 
 local on_attach = function(ev)
 	local client = vim.lsp.get_client_by_id(ev.data.client_id)
-	if client.server_capabilities.linkedEditingRangeProvider then
+	if client and client.server_capabilities.linkedEditingRangeProvider then
 		vim.lsp.linked_editing_range.enable(true, { client_id = ev.data.client_id })
 	end
 end
@@ -42,6 +44,13 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
 capabilities.general.positionEncodings = { "utf-16" }
+capabilities = vim.tbl_deep_extend(
+	"force",
+	capabilities,
+	-- returns configured operations if setup() was already called
+	-- or default operations if not
+	require("lsp-file-operations").default_capabilities()
+)
 
 vim.lsp.config("*", {
 	capabilities = capabilities,

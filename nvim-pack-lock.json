@@ -25,7 +25,7 @@
       "src": "https://github.com/alexandre-abrioux/blink-cmp-npm.nvim"
     },
     "blink-ripgrep.nvim": {
-      "rev": "dc35dbfc4868a54d3401d04e300c3840630f289f",
+      "rev": "896fc8a9ea23ff6274f54d03c77ba223ea54450b",
       "src": "https://github.com/mikavilpas/blink-ripgrep.nvim"
     },
     "blink.cmp": {
@@ -65,7 +65,7 @@
       "src": "https://github.com/joryeugene/dadbod-grip.nvim"
     },
     "diffview.nvim": {
-      "rev": "0be35882a82802d86175ca1c33dba913eb9e5a39",
+      "rev": "276d8a79bd90aece4960cf8bcf292cc7a35a4f57",
       "src": "https://github.com/dlyongemallo/diffview.nvim"
     },
     "fff.nvim": {
@@ -81,7 +81,7 @@
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "fzf": {
-      "rev": "abee152255387a5e0ee0543f275b792265e0ef5e",
+      "rev": "f5fbfd848ec0a5c9771dd103e921e7064445c9ba",
       "src": "https://github.com/junegunn/fzf"
     },
     "fzf-lua": {
@@ -148,12 +148,16 @@
       "rev": "7a19a42ec97ca4ee2c280d6d2c8ae51c482953b7",
       "src": "https://github.com/chrisgrieser/nvim-chainsaw"
     },
+    "nvim-lsp-file-operations": {
+      "rev": "b9c795d3973e8eec22706af14959bc60c579e771",
+      "src": "https://github.com/antosha417/nvim-lsp-file-operations"
+    },
     "nvim-lspconfig": {
       "rev": "229b79051b380377664edc4cbd534930154921a1",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-tree.lua": {
-      "rev": "07f541fcaa4a5ae019598240362449ab7e9812b3",
+      "rev": "82f58063d67defc620e1ef8be606fc62a7b5dc1e",
       "src": "https://github.com/nvim-tree/nvim-tree.lua"
     },
     "nvim-treesitter": {
@@ -181,7 +185,7 @@
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
     "schemastore.nvim": {
-      "rev": "30d47907079474907f24d4a546932119a8b9f641",
+      "rev": "8fa7f9cb8805f8abf27432d4b1e7c4be83d76807",
       "src": "https://github.com/b0o/schemastore.nvim"
     },
     "scribble.nvim": {

@@ -21,6 +21,12 @@ local nxmap = function(lhs, rhs, desc)
 	vim.keymap.set({ "x", "n" }, lhs, rhs, { desc = desc, silent = true, noremap = true })
 end
 
+--=================  Resize ==========================
+nmap("<A-k>", "<cmd>resize +2<cr>", "Increase window height")
+nmap("<A-j>", "<cmd>resize -2<cr>", "Decrease window height")
+nmap("<A-h>", "<cmd>vertical resize -2<cr>", "Decrease window width")
+nmap("<A-l>", "<cmd>vertical resize +2<cr>", "Increase window width")
+
 --=============== Leader Keys ===============
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
