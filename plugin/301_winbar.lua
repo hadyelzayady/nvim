@@ -4,6 +4,8 @@ function FilePath()
 	local filename = vim.fn.expand("%:.")
 	local modified = vim.bo.modified
 
+	filename = ShortenPath(filename, 2)
+
 	if modified then
 		return "%#@comment.warning#" .. filename .. "%*"
 	else
@@ -11,6 +13,25 @@ function FilePath()
 	end
 end
 
+function ShortenPath(path, keep_last, max_len)
+	keep_last = keep_last or 2
+	max_len = max_len or 100
+	if #path <= max_len then
+		return path
+	end
+	local parts = vim.split(path, "/", { plain = true })
+	if #parts <= keep_last + 1 then
+		return path
+	end
+	local shortened = {}
+	for i = 1, #parts - keep_last do
+		table.insert(shortened, parts[i]:sub(1, 1))
+	end
+	for i = #parts - keep_last + 1, #parts do
+		table.insert(shortened, parts[i])
+	end
+	return table.concat(shortened, "/")
+end
 local default_match_types = {
 	"function_declaration",
 	"method_declaration",
