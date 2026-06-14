@@ -25,11 +25,11 @@
       "src": "https://github.com/alexandre-abrioux/blink-cmp-npm.nvim"
     },
     "blink-ripgrep.nvim": {
-      "rev": "b15a0186e772311e9b58d887d3a8eeefbd86809c",
+      "rev": "a71468a7c271999c2b76d633d750a6bdf29e32ec",
       "src": "https://github.com/mikavilpas/blink-ripgrep.nvim"
     },
     "blink.cmp": {
-      "rev": "b02ac65634bdb8af2dcc4eb6c807c060e1e15ae6",
+      "rev": "13e7b50e7ba73ce781459da68d346925adfdb530",
       "src": "https://github.com/saghen/blink.cmp"
     },
     "blink.lib": {
@@ -41,7 +41,7 @@
       "src": "https://github.com/ravitemer/codecompanion-history.nvim"
     },
     "codecompanion.nvim": {
-      "rev": "c33f868c921bc877a3fb8b66673ff31cd98c3936",
+      "rev": "123d8b3428b321ade9a8c1b749a65e4021a14dd0",
       "src": "https://github.com/olimorris/codecompanion.nvim"
     },
     "codediff.nvim": {
@@ -57,7 +57,7 @@
       "src": "https://github.com/copilotlsp-nvim/copilot-lsp"
     },
     "copilot.lua": {
-      "rev": "0415bd625c3076a6a5ee445be484574d55b4fbfc",
+      "rev": "b54c05349d406f7af11b150824efa8e4f90015c6",
       "src": "https://github.com/zbirenbaum/copilot.lua"
     },
     "dadbod-grip.nvim": {
@@ -65,11 +65,11 @@
       "src": "https://github.com/joryeugene/dadbod-grip.nvim"
     },
     "diffview.nvim": {
-      "rev": "318a75a8899cdb0894ca432bf471b466adf785d2",
+      "rev": "0525c9c3e54f9c054fed61d3b7a4cd5deeb74cec",
       "src": "https://github.com/dlyongemallo/diffview.nvim"
     },
     "fff.nvim": {
-      "rev": "ec57eb02a679737dbf4f88520a0a79cc62eb1664",
+      "rev": "733431e068746681cdf392101cadc5692d7f0d88",
       "src": "https://github.com/dmtrKovalenko/fff.nvim"
     },
     "floating-input.nvim": {
@@ -117,7 +117,7 @@
       "src": "https://github.com/nvim-mini/mini.clue"
     },
     "mini.icons": {
-      "rev": "520995f1d75da0e4cc901ee95080b1ff2bc46b94",
+      "rev": "284509648db084c5e40a31afa9abb9887c49e04a",
       "src": "https://github.com/nvim-mini/mini.icons"
     },
     "mini.keymap": {
@@ -157,7 +157,7 @@
       "src": "https://github.com/mfussenegger/nvim-dap"
     },
     "nvim-java": {
-      "rev": "bb120763d717eb375db1fe9c5d2034855aa1514c",
+      "rev": "f36a376dfebbbb4cf382008ea6e8b70d40049112",
       "src": "https://github.com/nvim-java/nvim-java"
     },
     "nvim-jdtls": {
@@ -165,7 +165,7 @@
       "src": "https://github.com/mfussenegger/nvim-jdtls"
     },
     "nvim-jls": {
-      "rev": "6e229a2c37180d59d8c30aebf4e1be7bde3df31b",
+      "rev": "56cf84c7f842415605e54d3351f321c22f0d1ff1",
       "src": "https://github.com/idelice/nvim-jls"
     },
     "nvim-lsp-file-operations": {
@@ -173,7 +173,7 @@
       "src": "https://github.com/antosha417/nvim-lsp-file-operations"
     },
     "nvim-lspconfig": {
-      "rev": "ed19590a3a9792901553c388d1aadafce012f80d",
+      "rev": "a683e0ddf0cf64c6cd689e18ffb480ade3c162b7",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-tree.lua": {
@@ -205,7 +205,7 @@
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
     "schemastore.nvim": {
-      "rev": "c87dda7c8e5c4437d0d270ea6b73afb683607706",
+      "rev": "e1a36239e4e36759546852dae5f4737375b388f6",
       "src": "https://github.com/b0o/schemastore.nvim"
     },
     "scribble.nvim": {
@@ -213,7 +213,7 @@
       "src": "https://github.com/AnkushRoy-code/scribble.nvim"
     },
     "spring-boot.nvim": {
-      "rev": "98c6ff1dcdda943d341bba3c00ae9d190a2e5f7d",
+      "rev": "218c0c26c14d99feca778e4d13f5ec3e8b1b60f0",
       "src": "https://github.com/JavaHello/spring-boot.nvim",
       "version": "'218c0c26c14d99feca778e4d13f5ec3e8b1b60f0'"
     },
