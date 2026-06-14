@@ -5,30 +5,23 @@ vim.pack.add({
 	{ src = "https://github.com/rmagatti/goto-preview" },
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 	{ src = "https://github.com/antosha417/nvim-lsp-file-operations" },
+	-- { src = "https://github.com/JavaHello/spring-boot.nvim" },
+	-- { src = "https://github.com/mfussenegger/nvim-jdtls" },
+	-- { src = "https://github.com/idelice/nvim-jls" },
 })
 
--- LSP configuration using vim.lsp.config (Neovim 0.11+)
+vim.pack.add({
+	{
+		src = "https://github.com/JavaHello/spring-boot.nvim",
+		version = "218c0c26c14d99feca778e4d13f5ec3e8b1b60f0",
+	},
+	"https://github.com/MunifTanjim/nui.nvim",
+	"https://github.com/mfussenegger/nvim-dap",
 
---=============== Sign Config ===============
--- local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
--- for type, icon in pairs(signs) do
--- 	local hl = "DiagnosticSign" .. type
--- 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
--- end
+	"https://github.com/nvim-java/nvim-java",
+})
 
---=============== LSP Handlers =============--
--- vim.lsp.handlers["textDocument/hover"] = function(_, result, ctx, config)
--- 	config = config or {}
--- 	config.border = config.border or "rounded"
--- 	return vim.lsp.handlers.hover(_, result, ctx, config)
--- end
-
--- vim.lsp.handlers["textDocument/signatureHelp"] = function(_, result, ctx, config)
--- 	config = config or {}
--- 	config.border = config.border or "rounded"
--- 	return vim.lsp.handlers.signature_help(_, result, ctx, config)
--- end
-
+require("java").setup()
 --=============== Inlay Hint =============--
 vim.lsp.inlay_hint.enable = true
 
@@ -64,6 +57,7 @@ local lsp_servers = {
 	"yamlls",
 	"jsonls",
 	"biome",
+	"jdtls",
 	-- "nova",
 	-- "tsgo",
 }
