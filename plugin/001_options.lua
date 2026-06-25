@@ -65,7 +65,7 @@ opt.softtabstop = 4
 opt.ignorecase = true
 opt.smartcase = true
 opt.incsearch = true
-opt.hlsearch = false
+opt.hlsearch = true
 opt.mouse = "a"
 opt.confirm = true
 

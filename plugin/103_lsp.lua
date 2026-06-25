@@ -58,6 +58,8 @@ local lsp_servers = {
 	"jsonls",
 	"biome",
 	"jdtls",
+	"cssls",
+	"css_variables",
 	-- "nova",
 	-- "tsgo",
 }
