@@ -21,6 +21,7 @@ local nxmap = function(lhs, rhs, desc)
 	vim.keymap.set({ "x", "n" }, lhs, rhs, { desc = desc, silent = true, noremap = true })
 end
 
+map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
 --=================  Resize ==========================
 nmap("<A-k>", "<cmd>resize +2<cr>", "Increase window height")
 nmap("<A-j>", "<cmd>resize -2<cr>", "Decrease window height")
