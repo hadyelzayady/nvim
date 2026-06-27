@@ -4,5 +4,7 @@ vim.pack.add({
 	{ src = "https://github.com/XXiaoA/atone.nvim" },
 	{ src = "https://github.com/chrisgrieser/nvim-chainsaw" },
 	{ src = "https://github.com/nvim-mini/mini.keymap" },
+
+	-- { src = "https://github.com/nvim-mini/mini.input" },
 	{ src = "https://github.com/liangxianzhe/floating-input.nvim" },
 })
