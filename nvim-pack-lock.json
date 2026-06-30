@@ -25,7 +25,7 @@
       "src": "https://github.com/alexandre-abrioux/blink-cmp-npm.nvim"
     },
     "blink-ripgrep.nvim": {
-      "rev": "5ce0e95306f65a1b806dcb1e8b090998f174d5e0",
+      "rev": "d9efa6313f6c2bdd0dd7b9e4d0dba4e2bc832272",
       "src": "https://github.com/mikavilpas/blink-ripgrep.nvim"
     },
     "blink.cmp": {
@@ -41,7 +41,7 @@
       "src": "https://github.com/ravitemer/codecompanion-history.nvim"
     },
     "codecompanion.nvim": {
-      "rev": "635f001598d811c6ea256bc863b3d503c3a88d43",
+      "rev": "de5ce4475313d319867fe19dd3d2d7b273c66ecd",
       "src": "https://github.com/olimorris/codecompanion.nvim"
     },
     "codediff.nvim": {
@@ -73,7 +73,7 @@
       "src": "https://github.com/dlyongemallo/diffview-plus.nvim"
     },
     "fff.nvim": {
-      "rev": "957f222da76f120868defdf9e7204309c3800e5e",
+      "rev": "e0a9e08a3a6467ebb8d4b2889f1c21c3b36ba3e6",
       "src": "https://github.com/dmtrKovalenko/fff.nvim"
     },
     "floating-input.nvim": {
@@ -85,11 +85,11 @@
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "fzf": {
-      "rev": "f2e451596c5d23de0069cdc51ea3fec73b7fe835",
+      "rev": "9e2856559d50637df482b8598fd7b35b2d746485",
       "src": "https://github.com/junegunn/fzf"
     },
     "fzf-lua": {
-      "rev": "267f5db2aa2202b9f6cc7a50783f0ccd2121766c",
+      "rev": "39da6060d53659acf3ec118200bc48721b29b8fd",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "gitsigns.nvim": {
@@ -100,6 +100,10 @@
       "rev": "d2d6923c9b9e0e43f0b9b566f261a8b1ae016540",
       "src": "https://github.com/rmagatti/goto-preview"
     },
+    "gradle.nvim": {
+      "rev": "e3ab14164f5e39af3fbf4eb4dfb8a4dfb344c3dc",
+      "src": "https://github.com/oclay1st/gradle.nvim"
+    },
     "gx.nvim": {
       "rev": "ba9c408fc0130fc4548760c3933a81b58fc50de8",
       "src": "https://github.com/chrishrb/gx.nvim"
@@ -108,8 +112,12 @@
       "rev": "c45f568b1018529fe9c1f657806cfd3106df33b7",
       "src": "https://github.com/alexpasmantier/hubbamax.nvim"
     },
+    "maven.nvim": {
+      "rev": "fc1ff4e36fe6b82886c8231e1d42060aa281419a",
+      "src": "https://github.com/oclay1st/maven.nvim"
+    },
     "mini.ai": {
-      "rev": "d73c36349aa7b0bab5f77ad71701a1d42211a1df",
+      "rev": "cb20f298ebf5ae91924cd0c6c310712de2ef4086",
       "src": "https://github.com/nvim-mini/mini.ai"
     },
     "mini.bufremove": {
@@ -129,15 +137,15 @@
       "src": "https://github.com/nvim-mini/mini.keymap"
     },
     "mini.pairs": {
-      "rev": "4a014143fcb4e9df26198ccb3ecff3b9e77a048c",
+      "rev": "db0fac0a25884183650352ccf92b362a41ed2e9c",
       "src": "https://github.com/nvim-mini/mini.pairs"
     },
     "mini.statusline": {
-      "rev": "b5547f44560dae3ccd81f914256fa6f705837022",
+      "rev": "6a136236ec93090c820c1d2a6139aa053b2199c9",
       "src": "https://github.com/nvim-mini/mini.statusline"
     },
     "mini.surround": {
-      "rev": "580e4cb98c5900d9fe743865fb5a5b2178b4ab18",
+      "rev": "a2f644f3759edd3d3f8b6a6d55378408bfe6d290",
       "src": "https://github.com/nvim-mini/mini.surround"
     },
     "neogit": {
@@ -177,7 +185,7 @@
       "src": "https://github.com/antosha417/nvim-lsp-file-operations"
     },
     "nvim-lspconfig": {
-      "rev": "bfcc0171a43f22afa61d927ffe9fcb6cb85dc99e",
+      "rev": "3371bf298c1f56efc26771ee961f461176958fb5",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-tree.lua": {
@@ -193,7 +201,7 @@
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
     },
     "octo.nvim": {
-      "rev": "66b8eeca8e18213a19742f8a031e6947c738342f",
+      "rev": "b9a73e167f851a98d8f29d62658d3640bb8a7314",
       "src": "https://github.com/pwntester/octo.nvim"
     },
     "plenary.nvim": {
@@ -209,7 +217,7 @@
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
     "schemastore.nvim": {
-      "rev": "322751401046ae2dbbe32eeb31992a5d4fcc8d92",
+      "rev": "6ff1f21b2e2b77ec59f7433ce2d9fbc052d908ac",
       "src": "https://github.com/b0o/schemastore.nvim"
     },
     "scribble.nvim": {

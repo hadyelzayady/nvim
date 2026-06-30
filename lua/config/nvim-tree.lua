@@ -10,10 +10,14 @@ local function on_attach(bufnr)
 
 	-- default mappings
 	api.map.on_attach.default(bufnr)
-	vim.keymap.set("n", "<leader>f", function()
+	vim.keymap.set("n", "<leader>ff", function()
 		local node = api.tree.get_node_under_cursor()
 		require("fff").find_files_in_dir(node.absolute_path)
 	end, opts("Find In Dir"))
+	vim.keymap.set("n", "<leader>fs", function()
+		local node = api.tree.get_node_under_cursor()
+		require("fff").live_grep({cwd=node.absolute_path})
+	end, opts("Grep In Dir"))
 end
 return {
 	disable_netrw = true,
