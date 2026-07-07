@@ -36,6 +36,7 @@ vim.g.maplocalleader = "\\"
 vim.keymap.set("v", "p", '"_dP')
 --======================== find/search =================================
 nmap_leader("ff", ":FzfLua files<CR>", "Files")
+nmap_leader("fb", ":FzfLua buffers<CR>", "Buffers")
 nmap_leader("fw", ":FzfLua grep_cword<CR>", "Grep CWord")
 nmap_leader("f'", ":FzfLua resume<CR>", "Resume")
 nmap_leader("fS", ":FzfLua grep_curbuf<CR>", "Grep Current Buffer")
@@ -192,3 +193,39 @@ end, "Time")
 nmap_leader(",x", function()
 	Config.lazy_require("chainsaw").removeLogs()
 end, "Clear")
+
+-- =================== Package Manager ==========================
+-- Show dependency versions
+nmap_leader("ps", function()
+	require("package-info").show()
+end, "Show")
+
+-- Hide dependency versions
+nmap_leader("ph", function()
+	require("package-info").hide()
+end, "Hide")
+
+-- Toggle dependency versions
+nmap_leader("pt", function()
+	require("package-info").toggle()
+end, "Toggle")
+
+-- Update dependency on the line
+nmap_leader("pu", function()
+	require("package-info").update()
+end, "Update")
+
+-- Delete dependency on the line
+nmap_leader("pd", function()
+	require("package-info").delete()
+end, "Delete")
+
+-- Install a new dependency
+nmap_leader("pi", function()
+	require("package-info").install()
+end, "Install")
+
+-- Install a different dependency version
+nmap_leader("pp", function()
+	require("package-info").change_version()
+end, "Change Version")
