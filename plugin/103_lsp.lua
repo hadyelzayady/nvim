@@ -9,6 +9,10 @@ vim.pack.add({
 	-- { src = "https://github.com/mfussenegger/nvim-jdtls" },
 	-- { src = "https://github.com/idelice/nvim-jls" },
 })
+-- vim.pack.add({
+-- 	{ src = "https://github.com/folke/snacks.nvim" },
+-- 	{ src = "https://github.com/ryanmab/onoma.nvim" },
+-- })
 
 vim.pack.add({
 	{

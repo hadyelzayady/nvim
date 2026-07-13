@@ -195,16 +195,6 @@ nmap_leader(",x", function()
 end, "Clear")
 
 -- =================== Package Manager ==========================
--- Show dependency versions
-nmap_leader("ps", function()
-	require("package-info").show()
-end, "Show")
-
--- Hide dependency versions
-nmap_leader("ph", function()
-	require("package-info").hide()
-end, "Hide")
-
 -- Toggle dependency versions
 nmap_leader("pt", function()
 	require("package-info").toggle()

@@ -55,7 +55,7 @@ return {
 		enable = true,
 	},
 	view = {
-		adaptive_size = true,
+		adaptive_size = false,
 	},
 	on_attach = on_attach,
 }
