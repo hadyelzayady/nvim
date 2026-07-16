@@ -23,31 +23,42 @@ end, { range = true })
 
 --================================ LSP ============================================
 
+-- Clients that support TypeScript-style source code actions
+local ts_clients = { ts_ls = true, vtsls = true }
+
+-- Returns the first attached client matching the given predicate on client name
+local function get_client_by_names(bufnr, names)
+	for _, client in ipairs(vim.lsp.get_clients({ bufnr = bufnr })) do
+		if names[client.name] then
+			return client
+		end
+	end
+end
+
 vim.api.nvim_create_user_command("LspRemoveUnusedImports", function(args)
 	local bufnr = vim.api.nvim_get_current_buf()
-	local clients = vim.lsp.get_clients({ bufnr })
-	for _, client in ipairs(clients) do
-		if client.name == "ts_ls" or client.name == "vtsls" then
-			vim.lsp.buf.code_action({
-				context = { only = { "source.organizeImports" } },
-				apply = true,
-			})
-			return
-		end
+	-- jdtls organizes and removes unused imports via source.organizeImports too
+	if get_client_by_names(bufnr, { ts_ls = true, vtsls = true, jdtls = true }) then
+		vim.lsp.buf.code_action({
+			context = { only = { "source.organizeImports" } },
+			apply = true,
+		})
 	end
 end, {})
 
 vim.api.nvim_create_user_command("LspRemoveUnused", function(args)
 	local bufnr = vim.api.nvim_get_current_buf()
-	local clients = vim.lsp.get_clients({ bufnr })
-	for _, client in ipairs(clients) do
-		if client.name == "ts_ls" or client.name == "vtsls" then
-			vim.lsp.buf.code_action({
-				context = { only = { "source.removeUnused" } },
-				apply = true,
-			})
-			return
-		end
+	if get_client_by_names(bufnr, ts_clients) then
+		vim.lsp.buf.code_action({
+			context = { only = { "source.removeUnused" } },
+			apply = true,
+		})
+	elseif get_client_by_names(bufnr, { jdtls = true }) then
+		-- jdtls exposes unused-member cleanup through organizeImports
+		vim.lsp.buf.code_action({
+			context = { only = { "source.organizeImports" } },
+			apply = true,
+		})
 	end
 end, {})
 
@@ -153,28 +164,31 @@ end, {range=true})
 
 vim.api.nvim_create_user_command("LspAddMissingImports", function(args)
 	local bufnr = vim.api.nvim_get_current_buf()
-	local clients = vim.lsp.get_clients({ bufnr })
-	for _, client in ipairs(clients) do
-		if client.name == "ts_ls" or client.name == "vtsls" then
-			vim.lsp.buf.code_action({
-				context = { only = { "source.addMissingImports.ts" } },
-				apply = true,
-			})
-			return
-		end
+	if get_client_by_names(bufnr, ts_clients) then
+		vim.lsp.buf.code_action({
+			context = { only = { "source.addMissingImports.ts" } },
+			apply = true,
+		})
+	elseif get_client_by_names(bufnr, { jdtls = true }) then
+		-- jdtls resolves missing imports via organizeImports
+		vim.lsp.buf.code_action({
+			context = { only = { "source.organizeImports" } },
+			apply = true,
+		})
 	end
 end, {})
 
 vim.api.nvim_create_user_command("LspFixAll", function(args)
 	local bufnr = vim.api.nvim_get_current_buf()
-	local clients = vim.lsp.get_clients({ bufnr })
-	for _, client in ipairs(clients) do
-		if client.name == "ts_ls" or client.name=="vtsls" then
-			vim.lsp.buf.code_action({
-				context = { only = { "source.fixAll.ts" } },
-				apply = true,
-			})
-			return
-		end
+	if get_client_by_names(bufnr, ts_clients) then
+		vim.lsp.buf.code_action({
+			context = { only = { "source.fixAll.ts" } },
+			apply = true,
+		})
+	elseif get_client_by_names(bufnr, { jdtls = true }) then
+		vim.lsp.buf.code_action({
+			context = { only = { "source.fixAll" } },
+			apply = true,
+		})
 	end
 end, {})
