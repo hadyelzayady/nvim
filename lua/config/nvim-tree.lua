@@ -16,7 +16,7 @@ local function on_attach(bufnr)
 	end, opts("Find In Dir"))
 	vim.keymap.set("n", "<leader>fs", function()
 		local node = api.tree.get_node_under_cursor()
-		require("fff").live_grep({cwd=node.absolute_path})
+		require("fff").live_grep({ cwd = node.absolute_path })
 	end, opts("Grep In Dir"))
 end
 return {
@@ -56,6 +56,13 @@ return {
 	},
 	view = {
 		adaptive_size = false,
+		preserve_window_proportions = true,
+	},
+	actions = {
+		open_file = {
+			-- Keeps the window size intact when a new file buffer takes focus
+			resize_window = false,
+		},
 	},
 	on_attach = on_attach,
 }
