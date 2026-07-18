@@ -15,6 +15,7 @@ return {
 	settings = {
 		java = {
 			-- Custom eclipse.jdt.ls options go here
+			signatureHelp = { enabled = true }, -- Force enable signature help
 		},
 	},
 }
