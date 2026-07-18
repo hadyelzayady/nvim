@@ -5,8 +5,7 @@ if ok and mod.setup then
 local fzf = require("fzf-lua")
 local actions = require("fzf-lua.actions")
 fzf.setup({
-	{ "hide" },
-	ui_select = true,
+	ui_select = {},
 	fzf_bin = "sk",
 	fzf_opts = { ["--algo"] = "frizbee" },
 	previewers = {

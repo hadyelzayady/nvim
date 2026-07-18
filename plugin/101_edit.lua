@@ -7,4 +7,5 @@ vim.pack.add({
 
 	-- { src = "https://github.com/nvim-mini/mini.input" },
 	{ src = "https://github.com/liangxianzhe/floating-input.nvim" },
+	{ src = "https://github.com/MagicDuck/grug-far.nvim" },
 })

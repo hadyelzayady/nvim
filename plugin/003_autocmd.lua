@@ -125,15 +125,15 @@ autocmd("InsertEnter", {
 	end,
 })
 
--- Lazy load dadbod-grip on first :GripConnect command
-autocmd("CmdUndefined", {
-	group = au,
-	pattern = "GripConnect",
-	once = true,
-	callback = function()
-		Config.lazy_require("dadbod-grip")
-	end,
-})
+-- -- Lazy load dadbod-grip on first :GripConnect command
+-- autocmd("CmdUndefined", {
+-- 	group = au,
+-- 	pattern = "GripConnect",
+-- 	once = true,
+-- 	callback = function()
+-- 		Config.lazy_require("dadbod-grip",{ completion = false })
+-- 	end,
+-- })
 
 -- FylerToggle: lazy loads fyler on first use
 vim.api.nvim_create_user_command("FylerToggle", function()
