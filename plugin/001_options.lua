@@ -103,3 +103,18 @@ vim.diagnostic.config({
 
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 require("vim._core.ui2").enable()
+
+-- disable global shada; create separate shadafile for each workspace
+-- ensures project-scoped jumplist, marks, etc.
+--—@return string?
+local shadafile = function()
+    if not vim.g.workspace_root then
+        return
+    end
+    return vim.fs.joinpath(
+        vim.fn.stdpath 'state',
+        'shada',
+        vim.g.workspace_root:gsub('/', '_') .. '.shada'
+    )
+end
+vim.o.shadafile = shadafile() or 'NONE'

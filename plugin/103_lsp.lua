@@ -25,6 +25,11 @@ vim.pack.add({
 	"https://github.com/nvim-java/nvim-java",
 })
 
+vim.pack.add({
+	{ src = "https://github.com/MunifTanjim/nui.nvim" },
+	{ src = "https://github.com/retran/meow.yarn.nvim" },
+})
+
 require("java").setup()
 --=============== Inlay Hint =============--
 vim.lsp.inlay_hint.enable = true
