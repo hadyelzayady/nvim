@@ -2,12 +2,15 @@ vim.pack.add({
 	{ src = "https://github.com/b0o/schemastore.nvim" },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/stevearc/conform.nvim" },
-	{ src = "https://github.com/rmagatti/goto-preview" },
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 	{ src = "https://github.com/antosha417/nvim-lsp-file-operations" },
 	-- { src = "https://github.com/JavaHello/spring-boot.nvim" },
 	-- { src = "https://github.com/mfussenegger/nvim-jdtls" },
 	-- { src = "https://github.com/idelice/nvim-jls" },
+})
+vim.pack.add({
+	{ src = "https://github.com/rmagatti/logger.nvim" },
+	{ src = "https://github.com/rmagatti/goto-preview" },
 })
 -- vim.pack.add({
 -- 	{ src = "https://github.com/folke/snacks.nvim" },
