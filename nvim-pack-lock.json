@@ -148,9 +148,17 @@
       "rev": "c45f568b1018529fe9c1f657806cfd3106df33b7",
       "src": "https://github.com/alexpasmantier/hubbamax.nvim"
     },
+    "markdown-plus.nvim": {
+      "rev": "b85685dc8d3bd77c45a01f21651d51fe798bc318",
+      "src": "https://github.com/YousefHadder/markdown-plus.nvim"
+    },
     "maven.nvim": {
       "rev": "fc1ff4e36fe6b82886c8231e1d42060aa281419a",
       "src": "https://github.com/oclay1st/maven.nvim"
+    },
+    "mini-git": {
+      "rev": "62aa54f41c50181dceff90b55f989efe69ad198c",
+      "src": "https://github.com/nvim-mini/mini-git"
     },
     "mini.ai": {
       "rev": "25248c6aa002391936a6200f12d1466015987133",
@@ -259,6 +267,10 @@
     "octo.nvim": {
       "rev": "8476766529b7c0ee9b7da12b6dbce1b716bb62cd",
       "src": "https://github.com/pwntester/octo.nvim"
+    },
+    "oil.nvim": {
+      "rev": "b73018b75affd13fa38e2fc94ef753b465f770d7",
+      "src": "https://github.com/stevearc/oil.nvim"
     },
     "package-info.nvim": {
       "rev": "9725099fb118bab8360e560c1219bff60763b7e1",
