@@ -148,6 +148,10 @@
       "rev": "c45f568b1018529fe9c1f657806cfd3106df33b7",
       "src": "https://github.com/alexpasmantier/hubbamax.nvim"
     },
+    "logger.nvim": {
+      "rev": "63dd10c9b9a159fd6cfe08435d9606384ff103c5",
+      "src": "https://github.com/rmagatti/logger.nvim"
+    },
     "markdown-plus.nvim": {
       "rev": "b85685dc8d3bd77c45a01f21651d51fe798bc318",
       "src": "https://github.com/YousefHadder/markdown-plus.nvim"
@@ -155,6 +159,10 @@
     "maven.nvim": {
       "rev": "fc1ff4e36fe6b82886c8231e1d42060aa281419a",
       "src": "https://github.com/oclay1st/maven.nvim"
+    },
+    "meow.yarn.nvim": {
+      "rev": "507250e4c452d119cc46c7ca763b9acc72b3e20f",
+      "src": "https://github.com/retran/meow.yarn.nvim"
     },
     "mini-git": {
       "rev": "62aa54f41c50181dceff90b55f989efe69ad198c",
@@ -216,6 +224,22 @@
       "rev": "a0847c4bea5a5f92a36e3f3bf7da99d7d685d3ac",
       "src": "https://github.com/NeogitOrg/neogit"
     },
+    "neotest": {
+      "rev": "1c529a1ef9c82e8131e872368415cecc2bb86ea2",
+      "src": "https://github.com/nvim-neotest/neotest"
+    },
+    "neotest-java": {
+      "rev": "c16df20f0b8061e6b0f1fe57a56eb7e737574b88",
+      "src": "https://github.com/rcasia/neotest-java"
+    },
+    "neotest-jest": {
+      "rev": "0e7979d51301dfae5ef839d771bd28cf593fde3f",
+      "src": "https://github.com/nvim-neotest/neotest-jest"
+    },
+    "neotest-vitest": {
+      "rev": "c3c69715da4b158069fd4262083e7219a5c14cfb",
+      "src": "https://github.com/marilari88/neotest-vitest"
+    },
     "nui.nvim": {
       "rev": "de740991c12411b663994b2860f1a4fd0937c130",
       "src": "https://github.com/MunifTanjim/nui.nvim"
@@ -231,6 +255,11 @@
     "nvim-dap": {
       "rev": "531771530d4f82ad2d21e436e3cc052d68d7aebb",
       "src": "https://github.com/mfussenegger/nvim-dap"
+    },
+    "nvim-dap-view": {
+      "rev": "ba5c838e731003abefb8bc1c403c59aa5b3aa194",
+      "src": "https://github.com/igorlfs/nvim-dap-view",
+      "version": "1.0.0 - 2.0.0"
     },
     "nvim-java": {
       "rev": "9e8b842ea9eff3ebf25fb7360908ed4d4f87c56a",
@@ -251,6 +280,10 @@
     "nvim-lspconfig": {
       "rev": "d5b6e3db4c17b0146f63a2fc47e2027a754b2cb1",
       "src": "https://github.com/neovim/nvim-lspconfig"
+    },
+    "nvim-nio": {
+      "rev": "edcc181a875301dd21840189aa2f2f9ad69fc172",
+      "src": "https://github.com/nvim-neotest/nvim-nio"
     },
     "nvim-tree.lua": {
       "rev": "cf18a662cd5f200361b6fedfb794eed583e075e1",

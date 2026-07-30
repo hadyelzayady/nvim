@@ -35,7 +35,6 @@ vim.pack.add({
 
 require("java").setup()
 --=============== Inlay Hint =============--
-vim.lsp.inlay_hint.enable = true
 
 local on_attach = function(ev)
 	local client = vim.lsp.get_client_by_id(ev.data.client_id)
