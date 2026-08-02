@@ -57,7 +57,7 @@ opt.syntax = "off"
 
 --=============== Editing ===============
 opt.smartindent = true
-opt.breakindent=true -- break indent to same level as the line being broken
+opt.breakindent = true -- break indent to same level as the line being broken
 opt.expandtab = true
 opt.shiftwidth = 4
 opt.tabstop = 4
@@ -97,7 +97,7 @@ vim.diagnostic.config({
 		focusable = true,
 		style = "minimal",
 		border = "rounded",
-		source = true
+		source = true,
 	},
 })
 
@@ -108,13 +108,10 @@ require("vim._core.ui2").enable()
 -- ensures project-scoped jumplist, marks, etc.
 --—@return string?
 local shadafile = function()
-    if not vim.g.workspace_root then
-        return
-    end
-    return vim.fs.joinpath(
-        vim.fn.stdpath 'state',
-        'shada',
-        vim.g.workspace_root:gsub('/', '_') .. '.shada'
-    )
+    local root = vim.uv.cwd()
+	if not root then
+		return
+	end
+	return vim.fs.joinpath(vim.fn.stdpath("state"), "shada", root:gsub("/", "_") .. ".shada")
 end
-vim.o.shadafile = shadafile() or 'NONE'
+vim.o.shadafile = shadafile() or "NONE"

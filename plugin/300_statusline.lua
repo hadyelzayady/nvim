@@ -168,6 +168,13 @@ local function lsp_progress()
 	return spinner[math.floor(vim.uv.hrtime() / (1e6 * 80)) % #spinner + 1] .. " " .. status
 end
 
+local lint_progress = function()
+  local linters = require("lint").get_running()
+  if #linters == 0 then
+      return "󰦕"
+  end
+  return "󱉶 " .. table.concat(linters, ", ")
+end
 require("mini.statusline").setup({
 	content = {
 		active = function()
@@ -248,6 +255,7 @@ require("mini.statusline").setup({
 			local search = MiniStatusline.section_searchcount({ trunc_width = 75 })
 			local codecompanion = get_codecompanion_status()
 			local lsp_progress = lsp_progress()
+			local lint_progress = lint_progress()
 
 			return MiniStatusline.combine_groups({
 				{ hl = mode_hl, strings = { mode } },
@@ -255,7 +263,7 @@ require("mini.statusline").setup({
 				"%<", -- Mark general truncate point
 				"%=", -- End left alignment
 				{ hl = "MiniStatuslineProgressInfo", strings = { codecompanion } },
-				{ hl = "MiniStatuslineDevinfo", strings = { lsp_progress, diagnostics, lsp } },
+				{ hl = "MiniStatuslineDevinfo", strings = { lint_progress ,lsp_progress, diagnostics, lsp } },
 				{ hl = "MiniStatuslineFileinfo", strings = { fileinfo } },
 				{ hl = mode_hl, strings = { search, location } },
 			})

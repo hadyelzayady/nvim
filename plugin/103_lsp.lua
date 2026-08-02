@@ -2,6 +2,7 @@ vim.pack.add({
 	{ src = "https://github.com/b0o/schemastore.nvim" },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/stevearc/conform.nvim" },
+	{ src = "https://github.com/mfussenegger/nvim-lint" },
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 	{ src = "https://github.com/antosha417/nvim-lsp-file-operations" },
 	-- { src = "https://github.com/JavaHello/spring-boot.nvim" },

@@ -25,6 +25,7 @@ return {
 		lsp_format = "fallback",
 	},
 	formatters_by_ft = {
+		java = { "spring_javaformat" },
 		lua = { "stylua" },
 		python = { "isort", "black" },
 		javascript = js_like_formatters,
@@ -49,6 +50,12 @@ return {
 		["_"] = { "trim_whitespace" },
 	},
 	formatters = {
+		spring_javaformat = {
+			command = "./gradlew",
+			args = { "formatMain", "-q" },
+			cwd = require("conform.util").root_file({ "build.gradle" }),
+			stdin = false,
+		},
 		kulala = {
 			command = "kulala-fmt",
 			args = { "$FILENAME" },

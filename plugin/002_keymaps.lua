@@ -37,6 +37,7 @@ vim.keymap.set("v", "p", '"_dP')
 --======================== find/search =================================
 nmap_leader("ff", ":FzfLua files<CR>", "Files")
 nmap_leader("fb", ":FzfLua buffers<CR>", "Buffers")
+nmap_leader("fj", ":FzfLua jumps<CR>", "Jumps")
 nmap_leader("fw", ":FzfLua grep_cword<CR>", "Grep CWord")
 nmap_leader("f'", ":FzfLua resume<CR>", "Resume")
 nmap_leader("fS", ":FzfLua grep_curbuf<CR>", "Grep Current Buffer")
