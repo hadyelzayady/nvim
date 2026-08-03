@@ -7,4 +7,6 @@ vim.pack.add({
 	{ src = "https://github.com/esmuellert/codediff.nvim" },
 	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
 	{ src = "https://github.com/NeogitOrg/neogit" },
+	{ src = "https://github.com/lewis6991/async.nvim" },
+	{ src = "https://github.com/daliusd/ghlite.nvim" },
 })

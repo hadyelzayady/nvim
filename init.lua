@@ -18,3 +18,4 @@ Config.lazy_require = function(mod_name, setup_opts)
 	end
 	return loaded
 end
+
