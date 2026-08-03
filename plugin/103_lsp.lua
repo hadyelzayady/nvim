@@ -72,6 +72,7 @@ local lsp_servers = {
 	"jdtls",
 	"cssls",
 	"css_variables",
+    "typos_lsp"
 	-- "nova",
 	-- "tsgo",
 }
