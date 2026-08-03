@@ -9,7 +9,7 @@ end, {})
 
 vim.api.nvim_create_user_command("Lazygit", function()
 	vim.system({ "kitty", "@", "ls" }, { text = true }, function()
-		vim.system({ "kitty", "@", "launch", "--type=overlay", "--cwd=current", "lazygit" })
+		vim.system({ "kitty", "@", "launch", "--type=overlay", "--copy-env", "--cwd=current", "lazygit" })
 	end)
 end, {})
 
