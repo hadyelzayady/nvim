@@ -37,7 +37,7 @@
       "src": "https://github.com/mikavilpas/blink-ripgrep.nvim"
     },
     "blink.cmp": {
-      "rev": "005f8c859997f40f65bfbec5f4b400c45fecc06a",
+      "rev": "c127e28d1b28a780d78446871fc0dfb9e88f3511",
       "src": "https://github.com/saghen/blink.cmp"
     },
     "blink.lib": {
@@ -322,7 +322,7 @@
       "src": "https://github.com/stevearc/oil.nvim"
     },
     "package-info.nvim": {
-      "rev": "dd024d9c0a2dffea4edc5319f149351f39a82a94",
+      "rev": "1eb438ca04d7ab2f8c1fc64c28cfa12463eacfe7",
       "src": "https://github.com/vuki656/package-info.nvim"
     },
     "plenary.nvim": {
