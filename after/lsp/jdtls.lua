@@ -1,6 +1,6 @@
 return {
 
-	root_dir = vim.fs.root(0, { "gradlew" }),
+	root_dir = vim.fs.root(0, { ".git" }),
 	-- root_markers = {
 	-- 	-- "pom.xml",
 	-- 	"build.gradle",

@@ -9,4 +9,5 @@ vim.pack.add({
 	{ src = "https://github.com/NeogitOrg/neogit" },
 	{ src = "https://github.com/lewis6991/async.nvim" },
 	{ src = "https://github.com/daliusd/ghlite.nvim" },
+	{ src = "https://github.com/CoreyKaylor/diffbandit.nvim" },
 })

@@ -33,7 +33,7 @@
       "src": "https://github.com/alexandre-abrioux/blink-cmp-npm.nvim"
     },
     "blink-ripgrep.nvim": {
-      "rev": "7cfcb28e70dd6a4b78ac420a9ab0775df22da5e6",
+      "rev": "b8c9fcae4486cc5a074e96324540513b7a2f90c2",
       "src": "https://github.com/mikavilpas/blink-ripgrep.nvim"
     },
     "blink.cmp": {
@@ -53,7 +53,7 @@
       "src": "https://github.com/ravitemer/codecompanion-history.nvim"
     },
     "codecompanion.nvim": {
-      "rev": "0dc8c503d5eeae0dd5696538a2a5ad117da96cb0",
+      "rev": "b27a1a734fdaf73e40328091cb5929d65aaa09e9",
       "src": "https://github.com/olimorris/codecompanion.nvim"
     },
     "codediff.nvim": {
@@ -91,6 +91,10 @@
     "dbout.nvim": {
       "rev": "411e46041adeb8661e044f8421d8db5c56a9ef5d",
       "src": "https://github.com/zongben/dbout.nvim"
+    },
+    "diffbandit.nvim": {
+      "rev": "207ef5718edb74161897eafb1cbe6f7832cda28b",
+      "src": "https://github.com/CoreyKaylor/diffbandit.nvim"
     },
     "diffview-plus.nvim": {
       "rev": "62dc5adf4e77489a2a6d3bf36ef6e4ac5738b634",
@@ -257,7 +261,7 @@
       "src": "https://github.com/kevinhwang91/nvim-bqf"
     },
     "nvim-chainsaw": {
-      "rev": "823104b77da830d1a5de6d6aa8586c37537f7302",
+      "rev": "78a0e68c59f4e7760f33dacde0ff21b2498c015e",
       "src": "https://github.com/chrisgrieser/nvim-chainsaw"
     },
     "nvim-dap": {
@@ -298,7 +302,7 @@
       "src": "https://github.com/nvim-neotest/nvim-nio"
     },
     "nvim-tree.lua": {
-      "rev": "4213bd6eabac38b16dd6615002b6243b23cf3bf6",
+      "rev": "b2aadda94b107480c48e548d6db51c6840b7b33c",
       "src": "https://github.com/nvim-tree/nvim-tree.lua"
     },
     "nvim-treesitter": {
@@ -338,7 +342,7 @@
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
     "schemastore.nvim": {
-      "rev": "9f98b46e1dd61aeb666989c344d76517df63af55",
+      "rev": "885ecf4fa0ffcd20d052b14701540a451898fb34",
       "src": "https://github.com/b0o/schemastore.nvim"
     },
     "scribble.nvim": {
