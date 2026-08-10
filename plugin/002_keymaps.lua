@@ -35,13 +35,13 @@ vim.g.maplocalleader = "\\"
 -- not override clipboard when paste in visual mode
 vim.keymap.set("v", "p", '"_dP')
 --======================== find/search =================================
-nmap_leader("ff", ":FzfLua files<CR>", "Files")
+nmap_leader("ff", "<cmd>FzfLua files<CR>", "Files")
 nmap_leader("fb", ":FzfLua buffers<CR>", "Buffers")
 nmap_leader("fj", ":FzfLua jumps<CR>", "Jumps")
-nmap_leader("fw", ":FzfLua grep_cword<CR>", "Grep CWord")
+nmap_leader("fw", "<cmd>FzfLua grep_cword<CR>", "Grep CWord")
 nmap_leader("f'", ":FzfLua resume<CR>", "Resume")
-nmap_leader("fS", ":FzfLua grep_curbuf<CR>", "Grep Current Buffer")
-nmap_leader("fs", ":FzfLua live_grep<CR>", "Live Grep")
+nmap_leader("fS", "<cmd>FzfLua grep_curbuf<CR>", "Grep Current Buffer")
+nmap_leader("fs", "<cmd>FzfLua live_grep<CR>", "Live Grep")
 nmap_leader("fg", ":lua require('fff').live_grep()<cr>", "Live Grep")
 vmap_leader("fs", "<cmd>FzfLua grep_visual<CR>", "Grep Visual")
 nmap("ff", "<cmd>lua require('fff').find_files()<CR>", "fff")

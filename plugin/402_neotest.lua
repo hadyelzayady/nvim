@@ -1,6 +1,7 @@
 --=============== Plugins ===============--
 vim.pack.add({
 	{ src = "https://github.com/nvim-neotest/nvim-nio" },
+	{ src = "https://github.com/arthur944/neotest-bun" },
 	{ src = "https://github.com/nvim-neotest/neotest" },
 	-- Java
 	{ src = "https://github.com/rcasia/neotest-java" },
@@ -31,6 +32,7 @@ neotest.setup({
 			end,
 		}),
 		require("neotest-vitest"),
+		require("neotest-bun"),
 	},
 	discovery = {
 		enabled = true,

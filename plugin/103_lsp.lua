@@ -69,7 +69,7 @@ local lsp_servers = {
 	"yamlls",
 	"jsonls",
 	"biome",
-	"jdtls",
+	-- "jdtls",
 	"cssls",
 	"css_variables",
     "typos_lsp"
@@ -81,3 +81,5 @@ local lsp_servers = {
 for _, server in ipairs(lsp_servers) do
 	vim.lsp.enable(server)
 end
+vim.pack.add({ 'https://github.com/gipo355/nvim-intellij-lsp' })
+require('intellij-lsp').setup({ server_dir = '~/.local/share/intellij-server' })
