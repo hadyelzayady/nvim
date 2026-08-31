@@ -8,6 +8,7 @@ vim.pack.add({
 	{ src = "https://github.com/stevearc/quicker.nvim" },
 	{ src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" },
 	{ src = "https://github.com/nvim-mini/mini.ai" },
+	{ src = "https://github.com/nvim-mini/mini.statuscolumn" },
 })
 --======================== Mini Icons =================================
 -- Set up to not prefer extension-based icon for some extensions
