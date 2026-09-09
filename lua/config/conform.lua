@@ -34,7 +34,7 @@ return {
 		typescriptreact = js_like_formatters,
 		json = js_like_formatters,
 		jsonc = js_like_formatters,
-		scss = { "biome" },
+		scss = { "prettierd" },
 		css = js_like_formatters,
 		html = { "biome" },
 		mdx = { "prettierd" },
@@ -61,22 +61,22 @@ return {
 			args = { "$FILENAME" },
 			stdin = false,
 		},
-		biome = {
-			condition = function()
-				return true
-			end,
-		},
-		prettierd = {
-			condition = function(_, filedata)
-				if vim.bo.filetype == "mdx" then
-					return true
-				end
-				local plenary = require("plenary")
-				local biome_path = plenary.path:new(vim.loop.cwd() .. "/biome.json")
-				local biome_path2 = plenary.path:new(vim.loop.cwd() .. "/biome.jsonc")
-				return not biome_path:exists() and not biome_path2:exists()
-			end,
-		},
+		-- biome = {
+		-- 	condition = function()
+		-- 		return true
+		-- 	end,
+		-- },
+		-- prettierd = {
+		-- 	condition = function(_, filedata)
+		-- 		if vim.bo.filetype == "mdx" then
+		-- 			return true
+		-- 		end
+		-- 		local plenary = require("plenary")
+		-- 		local biome_path = plenary.path:new(vim.loop.cwd() .. "/biome.json")
+		-- 		local biome_path2 = plenary.path:new(vim.loop.cwd() .. "/biome.jsonc")
+		-- 		return not biome_path:exists() and not biome_path2:exists()
+		-- 	end,
+		-- },
 		injected = {
 			options = {
 				ignore_errors = true,

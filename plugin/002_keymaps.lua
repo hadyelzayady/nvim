@@ -59,10 +59,10 @@ nmap_leader("E", function()
 end, "File Tree")
 nmap_leader("bd", ":lua MiniBufremove.delete(0)<cr>", "Delete Buffer")
 nmap_leader("bD", ":lua MiniBufremove.delete(0, true)<cr>", "Force Delete Buffer")
-nmap("<C-l>", function()
-	local scribble = Config.lazy_require("scribble")
-	scribble.toggle()
-end, "Toggle Scribble")
+-- nmap("<C-l>", function()
+-- 	local scribble = Config.lazy_require("scribble")
+-- 	scribble.toggle()
+-- end, "Toggle Scribble")
 
 --================== Window/Buffers ====================
 nmap("<c-w>C", ":tabclose<cr>", "Close Tab")
@@ -177,6 +177,17 @@ nmap("]w", ":lua vim.diagnostic.jump({ count = vim.v.count1, severity = 'WARN' }
 nmap("[e", ":lua vim.diagnostic.jump({ count = -vim.v.count1, severity = 'ERROR' })<cr>", "Prev Error")
 nmap("]e", ":lua vim.diagnostic.jump({ count = vim.v.count1, severity = 'ERROR' })<cr>", "Next Error")
 nmap_leader("xx", ":lua vim.diagnostic.setqflist({open = true})<cr>", "Document Diagnostics")
+-- movement
+vim.keymap.set({ 'n', 'v' }, '<C-k>', '<cmd>Treewalker Up<cr>', { silent = true })
+vim.keymap.set({ 'n', 'v' }, '<C-j>', '<cmd>Treewalker Down<cr>', { silent = true })
+vim.keymap.set({ 'n', 'v' }, '<C-h>', '<cmd>Treewalker Left<cr>', { silent = true })
+vim.keymap.set({ 'n', 'v' }, '<C-l>', '<cmd>Treewalker Right<cr>', { silent = true })
+
+-- swapping
+vim.keymap.set('n', '<C-S-k>', '<cmd>Treewalker SwapUp<cr>', { silent = true })
+vim.keymap.set('n', '<C-S-j>', '<cmd>Treewalker SwapDown<cr>', { silent = true })
+vim.keymap.set('n', '<C-S-h>', '<cmd>Treewalker SwapLeft<cr>', { silent = true })
+vim.keymap.set('n', '<C-S-l>', '<cmd>Treewalker SwapRight<cr>', { silent = true })
 
 -- ==================== Debug/Log ==========================
 nmap_leader(",v", function()

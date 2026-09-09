@@ -6,6 +6,7 @@ vim.pack.add({
 	{ src = "https://github.com/dmtrKovalenko/fff.nvim" },
 	{ src = "https://github.com/echasnovski/mini.bufremove" },
 	{ src = "https://github.com/nvim-tree/nvim-tree.lua" },
+	{ src = "https://github.com/aaronik/treewalker.nvim" },
 })
 
 vim.api.nvim_create_autocmd("PackChanged", {
