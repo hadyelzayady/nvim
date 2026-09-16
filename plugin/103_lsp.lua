@@ -60,6 +60,7 @@ capabilities = vim.tbl_deep_extend(
 vim.lsp.config("*", {
 	capabilities = capabilities,
 })
+
 --=============== Load LSP Servers =============--
 local lsp_servers = {
 	"lua_ls",
@@ -72,7 +73,9 @@ local lsp_servers = {
 	-- "jdtls",
 	"cssls",
 	"css_variables",
-    "typos_lsp"
+	"typos_lsp",
+	"basedpyright",
+	"ruff",
 	-- "nova",
 	-- "tsgo",
 }
@@ -81,5 +84,5 @@ local lsp_servers = {
 for _, server in ipairs(lsp_servers) do
 	vim.lsp.enable(server)
 end
-vim.pack.add({ 'https://github.com/gipo355/nvim-intellij-lsp' })
-require('intellij-lsp').setup({ server_dir = '~/.local/share/intellij-server' })
+vim.pack.add({ "https://github.com/gipo355/nvim-intellij-lsp" })
+require("intellij-lsp").setup({ server_dir = "~/.local/share/intellij-server" })
