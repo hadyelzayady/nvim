@@ -177,17 +177,17 @@ nmap("]w", ":lua vim.diagnostic.jump({ count = vim.v.count1, severity = 'WARN' }
 nmap("[e", ":lua vim.diagnostic.jump({ count = -vim.v.count1, severity = 'ERROR' })<cr>", "Prev Error")
 nmap("]e", ":lua vim.diagnostic.jump({ count = vim.v.count1, severity = 'ERROR' })<cr>", "Next Error")
 nmap_leader("xx", ":lua vim.diagnostic.setqflist({open = true})<cr>", "Document Diagnostics")
--- movement
-vim.keymap.set({ 'n', 'v' }, '<C-k>', '<cmd>Treewalker Up<cr>', { silent = true })
-vim.keymap.set({ 'n', 'v' }, '<C-j>', '<cmd>Treewalker Down<cr>', { silent = true })
-vim.keymap.set({ 'n', 'v' }, '<C-h>', '<cmd>Treewalker Left<cr>', { silent = true })
-vim.keymap.set({ 'n', 'v' }, '<C-l>', '<cmd>Treewalker Right<cr>', { silent = true })
+-- movement (Alt+Shift avoids collisions with Kitty, macOS Cmd resizing, and builtin multicursor)
+vim.keymap.set({ 'n', 'v' }, '<A-S-k>', '<cmd>Treewalker Up<cr>', { silent = true })
+vim.keymap.set({ 'n', 'v' }, '<A-S-j>', '<cmd>Treewalker Down<cr>', { silent = true })
+vim.keymap.set({ 'n', 'v' }, '<A-S-h>', '<cmd>Treewalker Left<cr>', { silent = true })
+vim.keymap.set({ 'n', 'v' }, '<A-S-l>', '<cmd>Treewalker Right<cr>', { silent = true })
 
--- swapping
-vim.keymap.set('n', '<C-S-k>', '<cmd>Treewalker SwapUp<cr>', { silent = true })
-vim.keymap.set('n', '<C-S-j>', '<cmd>Treewalker SwapDown<cr>', { silent = true })
-vim.keymap.set('n', '<C-S-h>', '<cmd>Treewalker SwapLeft<cr>', { silent = true })
-vim.keymap.set('n', '<C-S-l>', '<cmd>Treewalker SwapRight<cr>', { silent = true })
+-- swapping (Ctrl+Alt, distinct from Ctrl and Ctrl+Shift used by Kitty)
+vim.keymap.set('n', '<C-A-k>', '<cmd>Treewalker SwapUp<cr>', { silent = true })
+vim.keymap.set('n', '<C-A-j>', '<cmd>Treewalker SwapDown<cr>', { silent = true })
+vim.keymap.set('n', '<C-A-h>', '<cmd>Treewalker SwapLeft<cr>', { silent = true })
+vim.keymap.set('n', '<C-A-l>', '<cmd>Treewalker SwapRight<cr>', { silent = true })
 
 -- ==================== Debug/Log ==========================
 nmap_leader(",v", function()

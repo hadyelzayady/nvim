@@ -3,10 +3,10 @@ local au = vim.api.nvim_create_augroup("GlobalSettings", { clear = true })
 local autocmd = vim.api.nvim_create_autocmd
 
 -- Highlight on yank
-autocmd('TextYankPost', {
-  callback = function()
-    vim.hl.hl_op()
-  end,
+autocmd("TextYankPost", {
+	callback = function()
+		vim.hl.hl_op()
+	end,
 })
 -- Check for external file changes
 autocmd({ "FileChangedShellPost" }, {
@@ -163,3 +163,51 @@ vim.api.nvim_create_user_command("FylerToggle", function()
 	end
 	fyler.open()
 end, {})
+
+-- ========================== Oversome undo file path length limitations ==========================
+-- Define a secure, dedicated directory inside Neovim's state folder
+local undodir = vim.fn.stdpath("state") .. "/undo/"
+
+-- Create the directory automatically if it doesn't exist
+if vim.fn.isdirectory(undodir) == 0 then
+	vim.fn.mkdir(undodir, "p")
+end
+
+-- 1. SAVE UNDO (Happens AFTER the file is successfully saved)
+vim.api.nvim_create_autocmd("BufWritePost", {
+	pattern = "*",
+	callback = function()
+		if vim.o.undofile then
+			-- Check the standard path length
+			local target_undo_file = vim.fn.undofile(vim.fn.expand("%:p"))
+			local undo_filename = vim.fn.fnamemodify(target_undo_file, ":t")
+
+			-- If it's a long path, force-write the undo tree to a hashed file
+			if string.len(undo_filename) > 240 then
+				local hashed_name = vim.fn.sha256(vim.fn.expand("%:p")) .. ".un~"
+				local custom_undo_path = undodir .. hashed_name
+
+				-- Force write the undo history out
+				vim.cmd("silent! wundo! " .. vim.fn.fnameescape(custom_undo_path))
+			end
+		end
+	end,
+})
+
+-- 2. LOAD UNDO (Happens right AFTER a buffer is loaded into memory)
+vim.api.nvim_create_autocmd("BufReadPost", {
+	pattern = "*",
+	callback = function()
+		-- Only attempt if undofile option is active globally/locally
+		if vim.o.undofile then
+			local hashed_name = vim.fn.sha256(vim.fn.expand("%:p")) .. ".un~"
+			local custom_undo_path = undodir .. hashed_name
+
+			-- If a hashed undo history exists for this specific path, read it
+			if vim.fn.filereadable(custom_undo_path) == 1 then
+				vim.cmd("silent! rundo " .. vim.fn.fnameescape(custom_undo_path))
+			end
+		end
+	end,
+})
+-- ========================= End of Oversome undo file path length limitations ==========================
