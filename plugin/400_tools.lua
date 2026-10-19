@@ -8,5 +8,6 @@ vim.pack.add({
 	{ src = "https://github.com/oclay1st/maven.nvim" },
 	{ src = "https://github.com/oclay1st/gradle.nvim" },
 	{ src = "https://github.com/vuki656/package-info.nvim" },
-	{ src = "https://github.com/mistweaverco/kulala.nvim" },
+	{ src = "https://github.com/dmmulroy/tsc.nvim" },
+	-- { src = "https://github.com/mistweaverco/kulala.nvim" },
 })

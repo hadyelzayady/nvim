@@ -45,7 +45,7 @@ return {
 		proto = { "buf" },
 		toml = { "taplo" },
 		nginx = { "nginxfmt" },
-		http = { "kulala" },
+		-- http = { "kulala" },
 		go = { "gofmt" },
 		["_"] = { "trim_whitespace" },
 	},

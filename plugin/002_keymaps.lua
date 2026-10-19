@@ -50,7 +50,7 @@ nxmap("gx", "<cmd>Browse<cr>", "Browse")
 --=============== File Tree ===============
 nmap_leader("e", ":<CR>", "Toggle File Tree")
 nmap_leader("e", function()
-	Config.lazy_require("nvim-tree", require("config.nvim-tree"))
+Config.lazy_require("nvim-tree", require("config.nvim-tree"))
 	vim.cmd("NvimTreeFindFileToggle")
 end, "File Tree")
 nmap_leader("E", function()

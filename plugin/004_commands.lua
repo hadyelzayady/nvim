@@ -136,31 +136,31 @@ vim.api.nvim_create_user_command("LspFileReferences", function(args)
 	local bufnr = vim.api.nvim_get_current_buf()
 	local clients = vim.lsp.get_clients({ bufnr })
 	for _, client in ipairs(clients) do
-		if client.name == "ts_ls" or client.name =="vtsls" then
-             local params = vim.lsp.util.make_text_document_params(bufnr)
-             client:request("workspace/executeCommand", {
-                 command = "typescript.findAllFileReferences",
-                 arguments = { params.uri }
-             }, function(err, result)
-                 if err then
-                     vim.notify("LSP command error: " .. err.message, vim.log.levels.ERROR)
-                     return
-                 end
-                 if not result or vim.tbl_isempty(result) then
-                     vim.notify("No references found", vim.log.levels.INFO)
-                     return
-                 end
-                 local items = vim.lsp.util.locations_to_items(result, client.offset_encoding)
-                 vim.fn.setqflist(items, "r")
-                 vim.cmd("copen")
-             end, bufnr)
+		if client.name == "ts_ls" or client.name == "vtsls" then
+			local params = vim.lsp.util.make_text_document_params(bufnr)
+			client:request("workspace/executeCommand", {
+				command = "typescript.findAllFileReferences",
+				arguments = { params.uri },
+			}, function(err, result)
+				if err then
+					vim.notify("LSP command error: " .. err.message, vim.log.levels.ERROR)
+					return
+				end
+				if not result or vim.tbl_isempty(result) then
+					vim.notify("No references found", vim.log.levels.INFO)
+					return
+				end
+				local items = vim.lsp.util.locations_to_items(result, client.offset_encoding)
+				vim.fn.setqflist(items, "r")
+				vim.cmd("copen")
+			end, bufnr)
 			-- client:exec_cmd({command="typescript.findAllFileReferences",
 			--  arguments = { params.uri}
 			--              },{bufnr=0})
 			return
 		end
 	end
-end, {range=true})
+end, { range = true })
 
 vim.api.nvim_create_user_command("LspAddMissingImports", function(args)
 	local bufnr = vim.api.nvim_get_current_buf()
@@ -191,4 +191,8 @@ vim.api.nvim_create_user_command("LspFixAll", function(args)
 			apply = true,
 		})
 	end
+end, {})
+
+vim.api.nvim_create_user_command("Winbar", function(args)
+	vim.o.winbar = "%#MyWinBar# %{%v:lua.FilePath()%} %r%m %#WinBarContext# %{%v:lua.TsContext()%}"
 end, {})

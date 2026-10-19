@@ -7,3 +7,8 @@ vim.pack.add({
 	{ src = "https://github.com/copilotlsp-nvim/copilot-lsp" },
 	{ src = "https://github.com/zbirenbaum/copilot.lua" },
 })
+
+vim.pack.add({
+	{ src = "https://github.com/nvim-lua/plenary.nvim", version = "master" },
+	{ src = "https://github.com/CopilotC-Nvim/CopilotChat.nvim" },
+})
